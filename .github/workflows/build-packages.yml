@@ -1,0 +1,82 @@
+name: Build Packages (aarch64)
+
+on:
+  workflow_dispatch:
+    inputs:
+      packages:
+        description: "Package names (space-separated)"
+        required: true
+        type: string
+      install-deps:
+        description: "Install dependencies from repo (-I)"
+        required: false
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - 'packages/**'
+
+permissions: {}
+
+concurrency:
+  group: build-packages-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TERMUX_BUILDER_IMAGE_NAME: ghcr.io/termux/package-builder:latest
+
+jobs:
+  build:
+    permissions:
+      contents: read
+    runs-on: ubuntu-26.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Apply patches
+        run: |
+          chmod +x build.sh
+          ./build.sh -n
+
+      - name: Build packages
+        run: |
+          PACKAGES="${{ github.event.inputs.packages }}"
+          INSTALL_DEPS="${{ github.event.inputs.install-deps }}"
+
+          BUILD_ARGS="-a aarch64 -o output/aarch64"
+          if [[ "$INSTALL_DEPS" == "true" ]]; then
+            BUILD_ARGS="$BUILD_ARGS -I"
+          fi
+
+          cd termux-packages
+          chmod +x build-package.sh
+          ./build-package.sh $BUILD_ARGS $PACKAGES \
+            &> ../output/build.log
+
+      - name: Show build result
+        if: always()
+        run: |
+          echo "=== Build log (last 50 lines) ==="
+          tail -50 output/build.log 2>/dev/null || echo "No build log"
+          echo "=== Built debs ==="
+          ls -lh output/aarch64/*.deb 2>/dev/null || echo "No debs found"
+
+      - name: Upload deb artifacts
+        if: success()
+        uses: actions/upload-artifact@v6
+        with:
+          name: packages-aarch64-${{ github.sha }}
+          path: output/aarch64/*.deb
+          retention-days: 30
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: build-log-${{ github.sha }}
+          path: output/build.log
+          retention-days: 7

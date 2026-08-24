@@ -1,0 +1,84 @@
+name: Build Bootstrap (aarch64)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'patches/**'
+      - 'build.sh'
+      - 'common.sh'
+      - 'packages.sh'
+
+permissions: {}
+
+concurrency:
+  group: build-bootstrap-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TERMUX_BUILDER_IMAGE_NAME: ghcr.io/termux/package-builder:latest
+
+jobs:
+  build:
+    permissions:
+      contents: read
+    runs-on: ubuntu-26.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Verify submodule
+        run: |
+          echo "=== Submodule status ==="
+          git submodule status
+          echo "=== Package name (before patch) ==="
+          grep "^TERMUX_APP__PACKAGE_NAME=" termux-packages/scripts/properties.sh
+
+      - name: Apply patches
+        run: |
+          chmod +x build.sh
+          ./build.sh -n
+
+      - name: Verify patches applied
+        run: |
+          echo "=== Package name (after patch) ==="
+          grep "^TERMUX_APP__PACKAGE_NAME=" termux-packages/scripts/properties.sh
+          echo "=== Repo paths ==="
+          grep "^TERMUX_REPO__PREFIX=" termux-packages/scripts/properties.sh
+
+      - name: Build bootstrap via Docker
+        run: |
+          mkdir -p output
+          cd termux-packages
+          chmod +x scripts/run-docker.sh scripts/build-bootstraps.sh
+          ./scripts/run-docker.sh \
+            ./scripts/build-bootstraps.sh \
+            --architectures aarch64 \
+            2>&1 | tee ../output/bootstrap-build.log
+
+      - name: Show build result
+        if: always()
+        run: |
+          echo "=== Build log (last 80 lines) ==="
+          tail -80 output/bootstrap-build.log 2>/dev/null || echo "No build log"
+          echo "=== Bootstrap files ==="
+          ls -lh termux-packages/bootstrap-*.zip 2>/dev/null || echo "No bootstrap zip found"
+
+      - name: Upload bootstrap artifact
+        if: success()
+        uses: actions/upload-artifact@v6
+        with:
+          name: bootstrap-aarch64-${{ github.sha }}
+          path: termux-packages/bootstrap-*.zip
+          retention-days: 30
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: build-log-${{ github.sha }}
+          path: output/bootstrap-build.log
+          retention-days: 7
