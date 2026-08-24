@@ -1,23 +1,49 @@
-diff --git a/scripts/run-docker.sh b/scripts/run-docker.sh
+--- a/scripts/build/toolchain/termux_setup_toolchain_29.sh
++++ b/scripts/build/toolchain/termux_setup_toolchain_29.sh
+@@ -133,7 +133,7 @@
+ 	[ -d "${TERMUX_STANDALONE_TOOLCHAIN}-work" ] || mkdir -p "${TERMUX_STANDALONE_TOOLCHAIN}-work"
+ 
+ 
+-	if ! mountpoint -q "${TERMUX_STANDALONE_TOOLCHAIN}"; then
++	if false; then
+ 		fuse-overlayfs \
+ 			"${TERMUX_STANDALONE_TOOLCHAIN}" \
+ 			-o lowerdir="${NDK}/toolchains/llvm/prebuilt/linux-x86_64" \
+@@ -145,12 +145,17 @@
+ 		return
+ 	fi
+ 
++	rm -rf "${TERMUX_STANDALONE_TOOLCHAIN}"
++
+ 	local _NDK_ARCHNAME=$TERMUX_ARCH
+ 	if [ "$TERMUX_ARCH" = "aarch64" ]; then
+ 		_NDK_ARCHNAME=arm64
+ 	elif [ "$TERMUX_ARCH" = "i686" ]; then
+ 		_NDK_ARCHNAME=x86
+ 	fi
++	cp -r "$NDK/toolchains/llvm/prebuilt/linux-x86_64" "${TERMUX_STANDALONE_TOOLCHAIN}"
++	cp "$NDK/source.properties" "${TERMUX_STANDALONE_TOOLCHAIN}"
++
+ 	# Remove android-support header wrapping not needed on android-21:
+ 	rm -Rf $TERMUX_STANDALONE_TOOLCHAIN/sysroot/usr/local
+ 
+
 --- a/scripts/run-docker.sh
 +++ b/scripts/run-docker.sh
-@@ -92,7 +92,7 @@ if [ "$UNAME" = Darwin ]; then
+@@ -92,7 +92,7 @@
  	SEC_OPT=""
  else
  	REPOROOT="$(dirname $(readlink -f $0))/../"
 -	SEC_OPT=" --security-opt seccomp=$REPOROOT/scripts/profile.json --security-opt apparmor=_custom-termux-package-builder-$CONTAINER_NAME --cap-add CAP_SYS_ADMIN --device /dev/fuse"
-+	SEC_OPT=" --security-opt seccomp=$REPOROOT/scripts/profile.json --cap-add CAP_SYS_ADMIN --device /dev/fuse"
++	SEC_OPT=" --security-opt seccomp=$REPOROOT/scripts/profile.json"
  fi
  
  if [ "${CI:-}" = "true" ]; then
-@@ -138,6 +138,10 @@ if [ -z "$APPARMOR_PARSER" ] || ! $SUDO aa-status --enabled; then
+@@ -138,6 +138,7 @@
  	echo "         Avoid executing untrusted code in the container"
  	APPARMOR_PARSER=""
  fi
-+# Disable AppArmor profile loading: the restricted profile blocks the Android
-+# SDK from writing its install-properties file, which breaks the termux-am
-+# (termux-tools -> pkg) Gradle build. See termux/termux-packages#29118.
 +APPARMOR_PARSER=""
  
  load_apparmor_profile() {
- 	local profile_path="$1" 
+ 	local profile_path="$1"

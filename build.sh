@@ -28,7 +28,7 @@ declare -a PATCHES=(
   # GPG key IDs for dep installation (-I flag)
   "use-our-keys-to-install-deps.patch"
 
-  # CI fix: disable AppArmor + fuse-overlayfs (#29118)
+  # CI: disable AppArmor + fuse-overlayfs for termux-am (#29118)
   "disable-apparmor-fuse-overlayfs.patch"
 
   # Bootstrap changes (optimized ZIP, brotli, strip)
@@ -151,6 +151,8 @@ setup_aurastudio_patches() {
     sed -i 's|TERMUX_PKG_DEPENDS="libandroid-support, libxcb|TERMUX_PKG_DEPENDS="libandroid-support, libandroid-shmem, libxcb|g' packages/libx11/build.sh
     aurastudio_ok "[+] Fixed libx11: added libandroid-shmem dependency"
   fi
+
+  # Step 5b: (handled by static patch: disable-apparmor-fuse-overlayfs.patch)
 
   # Step 6: Replace repo URLs — DISABLED
   # Official Termux repos must remain for -I dependency fetch.
