@@ -1,0 +1,7 @@
+--- a/packages/libx11/build.sh
++++ b/packages/libx11/build.sh
+@@ -14,3 +14,3 @@
+-TERMUX_PKG_DEPENDS="libandroid-support, libxcb, xorgproto"
++TERMUX_PKG_DEPENDS="libandroid-support, libandroid-shmem, libxcb, xorgproto"
+ TERMUX_PKG_BUILD_DEPENDS="xorg-util-macros, xtrans"
+ TERMUX_PKG_RECOMMENDS="xorg-xauth"

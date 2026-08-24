@@ -1,0 +1,7 @@
+# Generated patches (from .in templates)
+patches/termux-keyring.patch
+patches/termux-tools-name.patch
+
+# Output
+output/
+*.log
