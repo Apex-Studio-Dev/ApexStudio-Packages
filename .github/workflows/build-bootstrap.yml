@@ -2,13 +2,15 @@ name: Build Bootstrap (aarch64)
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'patches/**'
-      - 'build.sh'
-      - 'common.sh'
-      - 'packages.sh'
+    inputs:
+      method:
+        description: "Build method"
+        required: true
+        type: choice
+        options:
+          - from-source
+          - from-repo
+        default: from-repo
 
 permissions: {}
 
@@ -30,26 +32,13 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Verify submodule
-        run: |
-          echo "=== Submodule status ==="
-          git submodule status
-          echo "=== Package name (before patch) ==="
-          grep "^TERMUX_APP__PACKAGE_NAME=" termux-packages/scripts/properties.sh
-
       - name: Apply patches
         run: |
           chmod +x build.sh
           ./build.sh -n
 
-      - name: Verify patches applied
-        run: |
-          echo "=== Package name (after patch) ==="
-          grep "^TERMUX_APP__PACKAGE_NAME=" termux-packages/scripts/properties.sh
-          echo "=== Repo paths ==="
-          grep "^TERMUX_REPO__PREFIX=" termux-packages/scripts/properties.sh
-
-      - name: Build bootstrap via Docker
+      - name: Build bootstrap (from source — slow, ~2-4 hours)
+        if: ${{ github.event.inputs.method == 'from-source' }}
         run: |
           mkdir -p output
           cd termux-packages
@@ -57,6 +46,18 @@ jobs:
           ./scripts/run-docker.sh \
             ./scripts/build-bootstraps.sh \
             --architectures aarch64 \
+            2>&1 | tee ../output/bootstrap-build.log
+
+      - name: Build bootstrap (from hosted repo — fast, ~5 min)
+        if: ${{ github.event.inputs.method == 'from-repo' }}
+        run: |
+          mkdir -p output
+          cd termux-packages
+          chmod +x scripts/run-docker.sh scripts/generate-bootstraps.sh
+          ./scripts/run-docker.sh \
+            ./scripts/generate-bootstraps.sh \
+            --architectures aarch64 \
+            --repository "https://Arata-Labs.github.io/aurastudio-packages" \
             2>&1 | tee ../output/bootstrap-build.log
 
       - name: Show build result

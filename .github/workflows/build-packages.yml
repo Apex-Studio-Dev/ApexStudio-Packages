@@ -1,82 +1,87 @@
-name: Build Packages (aarch64)
+name: Build & Publish Packages
 
 on:
   workflow_dispatch:
     inputs:
       packages:
-        description: "Package names (space-separated)"
+        description: "Package names (space-separated, e.g. 'bash coreutils apt')"
         required: true
         type: string
-      install-deps:
-        description: "Install dependencies from repo (-I)"
+      rebuild-index:
+        description: "Rebuild APT index after build"
         required: false
         type: boolean
-        default: false
-  push:
-    branches: [main]
-    paths:
-      - 'packages/**'
+        default: true
 
-permissions: {}
-
-concurrency:
-  group: build-packages-${{ github.ref }}
-  cancel-in-progress: true
+permissions:
+  contents: write
+  pages: write
 
 env:
   TERMUX_BUILDER_IMAGE_NAME: ghcr.io/termux/package-builder:latest
 
 jobs:
   build:
-    permissions:
-      contents: read
     runs-on: ubuntu-26.04
     steps:
-      - name: Checkout repository
+      - name: Checkout aurastudio-termux
         uses: actions/checkout@v7
         with:
+          repository: Arata-Labs/aurastudio-termux
           submodules: recursive
+          path: aurastudio-termux
+
+      - name: Checkout aurastudio-packages
+        uses: actions/checkout@v7
+        with:
+          repository: Arata-Labs/aurastudio-packages
+          path: aurastudio-packages
 
       - name: Apply patches
         run: |
+          cd aurastudio-termux
           chmod +x build.sh
           ./build.sh -n
 
-      - name: Build packages
+      - name: Build packages via Docker
         run: |
-          PACKAGES="${{ github.event.inputs.packages }}"
-          INSTALL_DEPS="${{ github.event.inputs.install-deps }}"
+          cd aurastudio-termux/termux-packages
+          chmod +x scripts/run-docker.sh build-package.sh
+          mkdir -p output/aarch64
+          ./scripts/run-docker.sh \
+            ./build-package.sh -I -C -a aarch64 \
+            ${{ github.event.inputs.packages }}
 
-          BUILD_ARGS="-a aarch64 -o output/aarch64"
-          if [[ "$INSTALL_DEPS" == "true" ]]; then
-            BUILD_ARGS="$BUILD_ARGS -I"
+      - name: Import debs to APT repo
+        run: |
+          chmod +x aurastudio-packages/scripts/import-debs.sh
+          chmod +x aurastudio-packages/scripts/generate-index.sh
+          ./aurastudio-packages/scripts/import-debs.sh \
+            aurastudio-termux/termux-packages/output/aarch64
+
+      - name: Rebuild APT index
+        if: ${{ github.event.inputs.rebuild-index == 'true' }}
+        run: |
+          cd aurastudio-packages
+          ./scripts/generate-index.sh
+
+      - name: Push to aurastudio-packages
+        run: |
+          cd aurastudio-packages
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "feat: add packages — ${{ github.event.inputs.packages }}"
+            git push
           fi
-
-          cd termux-packages
-          chmod +x build-package.sh
-          ./build-package.sh $BUILD_ARGS $PACKAGES \
-            &> ../output/build.log
-
-      - name: Show build result
-        if: always()
-        run: |
-          echo "=== Build log (last 50 lines) ==="
-          tail -50 output/build.log 2>/dev/null || echo "No build log"
-          echo "=== Built debs ==="
-          ls -lh output/aarch64/*.deb 2>/dev/null || echo "No debs found"
-
-      - name: Upload deb artifacts
-        if: success()
-        uses: actions/upload-artifact@v6
-        with:
-          name: packages-aarch64-${{ github.sha }}
-          path: output/aarch64/*.deb
-          retention-days: 30
 
       - name: Upload build log
         if: always()
         uses: actions/upload-artifact@v6
         with:
           name: build-log-${{ github.sha }}
-          path: output/build.log
+          path: aurastudio-termux/termux-packages/output/aarch64/build.log
           retention-days: 7
