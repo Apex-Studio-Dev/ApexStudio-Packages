@@ -28,6 +28,9 @@ declare -a PATCHES=(
   # GPG key IDs for dep installation (-I flag)
   "use-our-keys-to-install-deps.patch"
 
+  # CI fix: disable AppArmor + fuse-overlayfs (#29118)
+  "disable-apparmor-fuse-overlayfs.patch"
+
   # Bootstrap changes (optimized ZIP, brotli, strip)
   "scripts-generate-bootstraps-CoGo-changes.patch"
   "scripts-cleanup-in-second-stage.patch"
