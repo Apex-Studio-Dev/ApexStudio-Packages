@@ -49,7 +49,7 @@ jobs:
           chmod +x scripts/run-docker.sh build-package.sh
           mkdir -p output/aarch64
           ./scripts/run-docker.sh \
-            ./build-package.sh -I -C -a aarch64 \
+            ./build-package.sh -C -a aarch64 \
             ${{ github.event.inputs.packages }}
 
       - name: Import debs to APT repo
