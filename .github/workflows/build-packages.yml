@@ -59,11 +59,12 @@ jobs:
           ./aurastudio-packages/scripts/import-debs.sh \
             aurastudio-termux/termux-packages/output/aarch64
 
-      - name: Rebuild APT index
+      - name: Rebuild APT index + website data
         if: ${{ github.event.inputs.rebuild-index == 'true' }}
         run: |
           cd aurastudio-packages
           ./scripts/generate-index.sh
+          ./scripts/generate-packages-json.sh
 
       - name: Push to aurastudio-packages
         run: |
