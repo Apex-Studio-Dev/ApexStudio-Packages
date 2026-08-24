@@ -98,11 +98,11 @@ setup_aurastudio_patches() {
     xargs -L1 sed -i "s|${TERMUX_PACKAGE_NAME}|${BUILD_PACKAGE_NAME}|g" ||
     aurastudio_error_exit "Failed to replace package name"
 
-  # Step 2: Remove existing GPG keys
-  aurastudio_info "[*] Removing existing GPG keys..."
-  rm -f packages/termux-keyring/*.gpg || true
+  # Step 2: DO NOT delete upstream GPG keys — they're needed for -I dependency fetch
+  # Our key is added alongside them, and use-our-keys-to-install-deps.patch imports all 4 keys
+  aurastudio_info "[*] Keeping upstream GPG keys for dependency resolution"
 
-  # Step 3: Copy our GPG key
+  # Step 3: Copy our GPG key alongside upstream keys (restored by patch)
   if [[ -f "$BUILD_GPG_KEY" ]]; then
     aurastudio_info "[*] Installing AuraStudio GPG key..."
     cp "$BUILD_GPG_KEY" "./packages/termux-keyring/$(basename "$BUILD_GPG_KEY")"
@@ -117,6 +117,7 @@ setup_aurastudio_patches() {
       local out="${patch%.in}"
       aurastudio_info "[*] Generating patch: $patch → $out"
       sed -e "s|@COTG_GPG_KEY@|$(basename "$BUILD_GPG_KEY")|g" \
+          -e "s|@AURASTUDIO_GPG_KEY@|$(basename "$BUILD_GPG_KEY")|g" \
           -e "s|@TERMUX_PACKAGE_NAME@|$(sed_escape "$BUILD_PACKAGE_NAME")|g" \
           -e "s|@AURASTUDIO_PACKAGE_NAME@|$(sed_escape "$BUILD_PACKAGE_NAME")|g" \
           "$SCRIPT_DIR/patches/$patch" > "$SCRIPT_DIR/patches/$out" 2>/dev/null || {
@@ -148,10 +149,10 @@ setup_aurastudio_patches() {
     aurastudio_ok "[+] Fixed libx11: added libandroid-shmem dependency"
   fi
 
-  # Step 6: Replace repo URLs
-  aurastudio_info "[*] Updating repo URLs..."
-  grep -rlI "https://packages-cf.termux.dev/apt/termux-main" --exclude-dir='.git' . 2>/dev/null |
-    xargs -L1 sed -i "s|https://packages-cf.termux.dev/apt/termux-main|${BUILD_REPO}|g" || true
+  # Step 6: Replace repo URLs — DISABLED
+  # Official Termux repos must remain for -I dependency fetch.
+  # Our repo is added separately in repo.json.
+  aurastudio_info "[*] Skipping repo URL replacement (official repos kept for -I)"
 
   # Mark as patched
   touch "$AURASTUDIO_PATCHED_MARKER"
