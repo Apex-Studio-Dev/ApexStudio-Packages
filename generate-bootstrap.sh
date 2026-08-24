@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 # AuraStudio bootstrap builder — builds bootstrap from source via build-bootstraps.sh
 #
 # This uses the upstream build-bootstraps.sh which compiles all packages from
