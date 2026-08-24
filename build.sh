@@ -25,9 +25,6 @@ declare -a PATCHES=(
   # Package name replacement in termux-tools
   "termux-tools-name.patch.in"
 
-  # GPG key IDs for dep installation (-I flag)
-  "use-our-keys-to-install-deps.patch"
-
   # CI: disable AppArmor + fuse-overlayfs for termux-am (#29118)
   "disable-apparmor-fuse-overlayfs.patch"
 
