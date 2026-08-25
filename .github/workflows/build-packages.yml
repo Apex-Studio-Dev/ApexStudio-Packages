@@ -194,14 +194,25 @@ jobs:
       - name: Download from Release
         run: |
           mkdir -p output/${{ inputs.arch }}
-          gh release download packages-${{ inputs.arch }} \
-            --pattern "packages-${{ inputs.arch }}.zip" --dir output/${{ inputs.arch }} || true
+          for attempt in 1 2 3; do
+            echo "Download attempt $attempt/3..."
+            if gh release download packages-${{ inputs.arch }} \
+              --pattern "packages-${{ inputs.arch }}.zip" \
+              --dir output/${{ inputs.arch }}; then
+              echo "Download succeeded"
+              break
+            fi
+            echo "Attempt $attempt failed, waiting 30s..."
+            sleep 30
+          done
           cd output/${{ inputs.arch }}
           if [ -f "packages-${{ inputs.arch }}.zip" ]; then
             unzip -o packages-${{ inputs.arch }}.zip
             rm packages-${{ inputs.arch }}.zip
+            echo "Unzipped $(find . -name '*.deb' -type f | wc -l) debs"
           else
-            echo "No release zip found, using existing debs"
+            echo "ERROR: Could not download release zip after 3 attempts"
+            exit 1
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -270,7 +281,7 @@ jobs:
 
   retry-failed:
     needs: publish
-    if: always() && needs.publish.result != 'cancelled'
+    if: needs.publish.result == 'success'
     runs-on: ubuntu-26.04
 
     container:
@@ -309,6 +320,7 @@ jobs:
             /data
             /github/home/.termux-build
             output/${{ inputs.arch }}
+          key: termux-retry-${{ inputs.arch }}-${{ github.run_id }}
           restore-keys: |
             termux-build-${{ inputs.arch }}-
 
@@ -403,8 +415,8 @@ jobs:
           overwrite: true
 
   final-publish:
-    needs: [build, retry-failed]
-    if: always() && needs.retry-failed.result != 'cancelled'
+    needs: [build, publish, retry-failed]
+    if: needs.publish.result == 'success' && needs.retry-failed.result == 'success'
     runs-on: ubuntu-26.04
 
     env:
@@ -419,8 +431,17 @@ jobs:
       - name: Download all debs from Release
         run: |
           mkdir -p output/${{ inputs.arch }}
-          gh release download packages-${{ inputs.arch }} \
-            --pattern "packages-${{ inputs.arch }}.zip" --dir output/${{ inputs.arch }} || true
+          for attempt in 1 2 3; do
+            echo "Download attempt $attempt/3..."
+            if gh release download packages-${{ inputs.arch }} \
+              --pattern "packages-${{ inputs.arch }}.zip" \
+              --dir output/${{ inputs.arch }}; then
+              echo "Download succeeded"
+              break
+            fi
+            echo "Attempt $attempt failed, waiting 30s..."
+            sleep 30
+          done
           cd output/${{ inputs.arch }}
           if [ -f "packages-${{ inputs.arch }}.zip" ]; then
             unzip -o packages-${{ inputs.arch }}.zip
@@ -428,6 +449,10 @@ jobs:
           fi
           DEB_COUNT=$(find . -name "*.deb" -type f 2>/dev/null | wc -l)
           echo "Total debs for APT repo: $DEB_COUNT"
+          if [ "$DEB_COUNT" -eq 0 ]; then
+            echo "ERROR: No debs found after download"
+            exit 1
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
