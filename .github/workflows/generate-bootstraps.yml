@@ -1,0 +1,96 @@
+name: Build Bootstraps
+
+on:
+  workflow_dispatch:
+    inputs:
+      arch:
+        description: "Target architecture"
+        required: true
+        default: "aarch64"
+        type: choice
+        options:
+          - aarch64
+
+      release:
+        description: "Release build?"
+        required: true
+        default: "true"
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-26.04
+
+    container:
+      image: ghcr.io/termux/package-builder:latest
+      options: --privileged --device /dev/fuse
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Setup Android NDK
+        run: |
+          mkdir -p /github/home/lib
+          if [ ! -d /github/home/lib/android-ndk-r29 ]; then
+            curl -L "https://dl.google.com/android/repository/android-ndk-r29-linux.zip" -o /tmp/ndk.zip
+            unzip -q /tmp/ndk.zip -d /github/home/lib/
+          else
+            echo "NDK cached"
+          fi
+
+      - name: Install bootstrap dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            bash git curl gnupg zip unzip xz-utils \
+            llvm findutils coreutils brotli
+
+      - name: Prepare output dir
+        run: |
+          mkdir -p "output/${{ inputs.arch }}"
+
+      - name: Build Bootstrap
+        run: |
+          export COTG_REPO="https://arata-labs.github.io/aurastudio-termux"
+          export COTG_OUTPUT_DIR="$(pwd)/output"
+
+          mkdir -p output
+
+          if [ "${{ inputs.release }}" = "true" ]; then
+            bash ./generate-bootstrap-archive.sh -g -r "$COTG_REPO" "${{ inputs.arch }}"
+          else
+            bash ./generate-bootstrap-archive.sh -r "$COTG_REPO" "${{ inputs.arch }}"
+          fi
+
+      - name: Show output
+        run: |
+          find output -type f | head -50
+
+      - name: Get release date
+        id: date
+        run: echo "date=$(date +'%Y.%-m.%-d')" >> $GITHUB_OUTPUT
+
+      - name: Generate SHA256
+        id: hash
+        run: |
+          cd output
+          sha256sum *.zip *.zip.9 > SHA256SUMS.txt 2>/dev/null || \
+          sha256sum *.zip > SHA256SUMS.txt 2>/dev/null || true
+          cat SHA256SUMS.txt
+
+      - name: Upload Bootstrap Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: bootstrap-${{ steps.date.outputs.date }}
+          name: Bootstrap ${{ steps.date.outputs.date }}
+          body_path: output/SHA256SUMS.txt
+          files: |
+            output/*.zip
+            output/*.zip.9
+            output/SHA256SUMS.txt
+          fail_on_unmatched_files: false

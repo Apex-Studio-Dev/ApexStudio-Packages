@@ -154,10 +154,11 @@ setup_aurastudio_patches() {
 
   # Step 5b: (handled by static patch: disable-apparmor-fuse-overlayfs.patch)
 
-  # Step 6: Replace repo URLs — DISABLED
-  # Official Termux repos must remain for -I dependency fetch.
-  # Our repo is added separately in repo.json.
-  aurastudio_info "[*] Skipping repo URL replacement (official repos kept for -I)"
+  # Step 6: Replace repo URLs with our hosted repo (for -I dependency fetch)
+  aurastudio_info "[*] Replacing repo URLs: official → $BUILD_REPO"
+  grep -rlF "https://packages-cf.termux.dev/apt/termux-main" --exclude-dir='.git' . 2>/dev/null |
+    xargs -L1 sed -i "s|https://packages-cf.termux.dev/apt/termux-main|${BUILD_REPO}|g" ||
+    aurastudio_warn "[!] No repo URLs found to replace"
 
   # Mark as patched
   touch "$AURASTUDIO_PATCHED_MARKER"

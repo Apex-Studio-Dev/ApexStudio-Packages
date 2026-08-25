@@ -1,99 +1,190 @@
-name: Build & Publish Packages
+name: Build Packages
 
 on:
   workflow_dispatch:
     inputs:
+      arch:
+        description: "Target architecture"
+        required: true
+        default: "aarch64"
+        type: choice
+        options:
+          - aarch64
       packages:
-        description: "Package names (space-separated, e.g. 'bash coreutils apt')"
+        description: "Package names (space-separated, or 'all' for base packages)"
         required: true
         type: string
-      rebuild-index:
-        description: "Rebuild APT index after build"
-        required: false
-        type: boolean
-        default: true
 
 permissions:
   contents: write
-  pages: write
-
-env:
-  TERMUX_BUILDER_IMAGE_NAME: ghcr.io/termux/package-builder:latest
+  actions: write
 
 jobs:
   build:
     runs-on: ubuntu-26.04
+
+    container:
+      image: ghcr.io/termux/package-builder:latest
+      options: --privileged --device /dev/fuse
+
     steps:
-      - name: Checkout aurastudio-termux
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
         with:
-          repository: Arata-Labs/aurastudio-termux
           submodules: recursive
-          path: aurastudio-termux
 
-      - name: Checkout aurastudio-packages
-        uses: actions/checkout@v7
+      - name: Cache built packages
+        if: always()
+        id: cache-packages
+        uses: actions/cache@v4
         with:
-          repository: Arata-Labs/aurastudio-packages
-          path: aurastudio-packages
-          token: ${{ secrets.REPO_PAT }}
+          path: |
+            /data
+            /github/home/.termux-build
+            output/${{ inputs.arch }}
+          key: termux-build-${{ inputs.arch }}-${{ github.sha }}
+          restore-keys: |
+            termux-build-${{ inputs.arch }}-
+          save-always: true
 
-      - name: Install APT indexing tools
-        run: sudo apt-get update && sudo apt-get install -y dpkg-dev
-
-      - name: Apply patches
+      - name: Check cache hit
         run: |
-          cd aurastudio-termux
-          chmod +x build.sh
-          ./build.sh -n
+          echo "Cache hit: ${{ steps.cache-packages.outputs.cache-hit }}"
+          ls output/${{ inputs.arch }}/ 2>/dev/null | head -10 || echo "output/${{ inputs.arch }} empty"
 
-      - name: Build packages via Docker
-        run: |
-          cd aurastudio-termux/termux-packages
-          chmod +x scripts/run-docker.sh build-package.sh
-          mkdir -p output/aarch64
-          ./scripts/run-docker.sh \
-            ./build-package.sh -C -a aarch64 -o output/aarch64 \
-            ${{ github.event.inputs.packages }} \
-            2>&1 | tee output/aarch64/build.log
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
-      - name: Import debs to APT repo
+      - name: Setup Android NDK
         run: |
-          chmod +x aurastudio-packages/scripts/import-debs.sh
-          chmod +x aurastudio-packages/scripts/generate-index.sh
-          echo "=== All .deb files ==="
-          find aurastudio-termux/termux-packages/output -name "*.deb" -type f 2>/dev/null || echo "none"
-          echo "=== Importing from output/aarch64 (requested packages) ==="
-          ./aurastudio-packages/scripts/import-debs.sh \
-            aurastudio-termux/termux-packages/output/aarch64 || true
-          echo "=== Importing from output (dependencies) ==="
-          ./aurastudio-packages/scripts/import-debs.sh \
-            aurastudio-termux/termux-packages/output || true
-
-      - name: Rebuild APT index + website data
-        if: ${{ github.event.inputs.rebuild-index == 'true' }}
-        run: |
-          cd aurastudio-packages
-          ./scripts/generate-index.sh
-          ./scripts/generate-packages-json.sh
-
-      - name: Push to aurastudio-packages
-        run: |
-          cd aurastudio-packages
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
+          mkdir -p /github/home/lib
+          if [ ! -d /github/home/lib/android-ndk-r29 ]; then
+            curl -L "https://dl.google.com/android/repository/android-ndk-r29-linux.zip" -o /tmp/ndk.zip
+            unzip -q /tmp/ndk.zip -d /github/home/lib/
           else
-            git commit -m "feat: add packages — ${{ github.event.inputs.packages }}"
-            git push
+            echo "NDK cached"
           fi
 
-      - name: Upload build log
-        if: always()
-        uses: actions/upload-artifact@v6
+      - name: Build packages
+        run: |
+          export ANDROID_NDK_HOME=/github/home/lib/android-ndk-r29
+          export NDK=/github/home/lib/android-ndk-r29
+
+          if [[ "${{ inputs.packages }}" == "all" ]]; then
+            bash build.sh -a "${{ inputs.arch }}"
+          else
+            bash build.sh -a "${{ inputs.arch }}" -e ${{ inputs.packages }}
+          fi
+
+      - name: Save built packages cache
+        if: success()
+        uses: actions/cache/save@v4
         with:
-          name: build-log-${{ github.sha }}
-          path: aurastudio-termux/termux-packages/output/aarch64/build.log
-          retention-days: 7
+          path: |
+            /data
+            /github/home/.termux-build
+            output/${{ inputs.arch }}
+          key: termux-build-${{ inputs.arch }}-${{ github.sha }}
+
+      - name: Show build log
+        if: always()
+        run: cat output/${{ inputs.arch }}/build.log 2>/dev/null || echo "no log"
+
+      - name: Debug debs location
+        if: always()
+        run: |
+          echo "=== output structure ==="
+          find output -name "*.deb" -type f | head -50
+          echo "=== all debs ==="
+          find . -name "*.deb" -not -path "./.git/*" | head -30
+
+      - name: Package debs
+        if: success()
+        run: |
+          cd output/${{ inputs.arch }}
+          for f in *.deb; do
+            newname=$(echo "$f" | tr ':' 'COLON')
+            [ "$f" != "$newname" ] && mv "$f" "$newname"
+          done
+          zip -0 ../packages-${{ inputs.arch }}.zip *.deb
+
+      - name: Delete old release tag
+        run: |
+          curl -X DELETE \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${GITHUB_REPOSITORY}/git/refs/tags/packages-${{ inputs.arch }} || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload to Release
+        if: success()
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: packages-${{ inputs.arch }}
+          name: Packages Build ${{ inputs.arch }}
+          files: output/packages-${{ inputs.arch }}.zip
+          fail_on_unmatched_files: false
+          overwrite_files: true
+          overwrite: true
+
+  publish:
+    needs: build
+    runs-on: ubuntu-26.04
+
+    env:
+      GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: pages
+          fetch-depth: 0
+
+      - name: Download from Release
+        run: |
+          mkdir -p output/${{ inputs.arch }}
+          gh release download packages-${{ inputs.arch }} \
+            --pattern "packages-${{ inputs.arch }}.zip" --dir output/${{ inputs.arch }} || true
+          cd output/${{ inputs.arch }}
+          if [ -f "packages-${{ inputs.arch }}.zip" ]; then
+            unzip -o packages-${{ inputs.arch }}.zip
+            rm packages-${{ inputs.arch }}.zip
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install tools
+        run: sudo apt-get update && sudo apt-get install -y gnupg curl wget python3
+
+      - name: Generate APT repository
+        run: |
+          export AURASTUDIO_OUTPUT_DIR="$(pwd)/output"
+          export AURASTUDIO_REPO_DIR="$(pwd)/output/repo"
+          bash ./generate-apt-repo.sh
+
+      - name: Import GPG key
+        if: ${{ secrets.PACKAGES_GPG_KEY != '' }}
+        run: |
+          echo "${{ secrets.PACKAGES_GPG_KEY }}" | base64 -d | gpg --batch --import
+
+      - name: Sign repository
+        if: ${{ secrets.PACKAGES_GPG_KEY != '' }}
+        run: |
+          echo "${{ secrets.PACKAGES_GPG_KEY_PASS }}" | \
+          gpg \
+            --yes \
+            --passphrase-fd 0 \
+            --pinentry-mode loopback \
+            --digest-algo SHA256 \
+            --clearsign \
+            -u "${GPG_KEY_ID}" \
+            -o output/repo/dists/stable/InRelease \
+            output/repo/dists/stable/Release
+
+      - name: Deploy to pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: pages
+          publish_dir: output/repo
+          keep_files: false

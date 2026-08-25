@@ -1,0 +1,20 @@
+name: Clear Build Caches
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  clear-cache:
+    runs-on: ubuntu-26.04
+
+    steps:
+      - name: Delete all caches
+        run: |
+          gh cache delete --all \
+            --succeed-on-no-caches \
+            --repo "${GITHUB_REPOSITORY}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
