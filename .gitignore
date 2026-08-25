@@ -6,3 +6,4 @@ patches/termux-tools-name.patch
 output/
 *.log
 aurastudio-packages/
+*.txt
