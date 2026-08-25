@@ -31,6 +31,9 @@ declare -a PATCHES=(
   # Bootstrap changes (optimized ZIP, brotli, strip)
   "scripts-generate-bootstraps-CoGo-changes.patch"
   "scripts-cleanup-in-second-stage.patch"
+
+  # -I dependency install: import our GPG key alongside upstream keys
+  "use-our-keys-to-install-deps.patch"
 )
 
 # Optional build-fix patches (applied with --extras flag)

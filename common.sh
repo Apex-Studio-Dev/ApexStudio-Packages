@@ -35,8 +35,8 @@ export AURASTUDIO_GPG_KEY
 AURASTUDIO_GPG_KEY_FP="${AURASTUDIO_GPG_KEY_FP:-}"
 export AURASTUDIO_GPG_KEY_FP
 
-# APT repository URL (for future publishing)
-AURASTUDIO_REPO="${AURASTUDIO_REPO:-https://packages.aurastudio.dev/apt/termux-main}"
+# APT repository URL (hosted on GitHub Pages)
+AURASTUDIO_REPO="${AURASTUDIO_REPO:-https://arata-labs.github.io/aurastudio-packages}"
 export AURASTUDIO_REPO
 
 # Base output directory
