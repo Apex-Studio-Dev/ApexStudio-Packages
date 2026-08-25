@@ -51,8 +51,23 @@ jobs:
           echo "Cache hit: ${{ steps.cache-packages.outputs.cache-hit }}"
           ls output/${{ inputs.arch }}/ 2>/dev/null | head -10 || echo "output/${{ inputs.arch }} empty"
 
+      - name: Setup Android NDK r29
+        run: |
+          if [ ! -d /usr/local/lib/android/ndk/29 ]; then
+            curl -L "https://dl.google.com/android/repository/android-ndk-r29-linux.zip" -o /tmp/ndk.zip
+            sudo mkdir -p /usr/local/lib/android/ndk/29
+            sudo unzip -q /tmp/ndk.zip -d /usr/local/lib/android/ndk/
+            sudo mv /usr/local/lib/android/ndk/android-ndk-r29/* /usr/local/lib/android/ndk/29/
+            sudo rm -rf /usr/local/lib/android/ndk/android-ndk-r29 /tmp/ndk.zip
+          else
+            echo "NDK r29 already installed"
+          fi
+
       - name: Build packages
         run: |
+          export ANDROID_NDK_HOME=/usr/local/lib/android/ndk/29
+          export NDK=/usr/local/lib/android/ndk/29
+
           if [ "${{ inputs.packages }}" = "all" ]; then
             bash build.sh -a "${{ inputs.arch }}"
           else
