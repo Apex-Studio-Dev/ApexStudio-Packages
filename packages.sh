@@ -7,14 +7,17 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   ## ---- Bootstrap packages ---- ##
   "apt"
   "bash"
+  "bzip2"
   "command-not-found"
   "coreutils"
+  "curl"
   "dash"
   "diffutils"
   "findutils"
   "gawk"
   "grep"
   "gzip"
+  "inetutils"
   "less"
   "libbz2"
   "procps"
@@ -26,6 +29,7 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   "termux-keyring"
   "termux-tools"
   "util-linux"
+  "xz-utils"
 
   ## ---- Additional ---- ##
   "ed"
