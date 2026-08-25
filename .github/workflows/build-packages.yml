@@ -53,7 +53,7 @@ jobs:
 
       - name: Build packages
         run: |
-          if [[ "${{ inputs.packages }}" == "all" ]]; then
+          if [ "${{ inputs.packages }}" = "all" ]; then
             bash build.sh -a "${{ inputs.arch }}"
           else
             bash build.sh -a "${{ inputs.arch }}" -e ${{ inputs.packages }}
@@ -175,6 +175,15 @@ jobs:
         env:
           PACKAGES_GPG_KEY_PASS: ${{ secrets.PACKAGES_GPG_KEY_PASS }}
           GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
+
+      - name: Generate packages.json
+        run: |
+          PACKAGES_FILE="output/repo/dists/stable/main/binary-aarch64/Packages"
+          bash ./generate-packages-json.sh "$PACKAGES_FILE" "output/repo/packages.json"
+
+      - name: Copy website
+        run: |
+          cp pages-index.html output/repo/index.html
 
       - name: Deploy to pages branch
         uses: peaceiris/actions-gh-pages@v4
