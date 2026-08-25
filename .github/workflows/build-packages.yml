@@ -37,6 +37,9 @@ jobs:
           repository: Arata-Labs/aurastudio-packages
           path: aurastudio-packages
 
+      - name: Install APT indexing tools
+        run: sudo apt-get update && sudo apt-get install -y dpkg-dev
+
       - name: Apply patches
         run: |
           cd aurastudio-termux
@@ -49,7 +52,7 @@ jobs:
           chmod +x scripts/run-docker.sh build-package.sh
           mkdir -p output/aarch64
           ./scripts/run-docker.sh \
-            ./build-package.sh -C -a aarch64 \
+            ./build-package.sh -C -a aarch64 -o output/aarch64 \
             ${{ github.event.inputs.packages }}
 
       - name: Import debs to APT repo
