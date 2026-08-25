@@ -147,23 +147,34 @@ jobs:
           bash ./generate-apt-repo.sh
 
       - name: Import GPG key
-        if: ${{ secrets.PACKAGES_GPG_KEY != '' }}
         run: |
-          echo "${{ secrets.PACKAGES_GPG_KEY }}" | base64 -d | gpg --batch --import
+          if [ -n "${PACKAGES_GPG_KEY:-}" ]; then
+            echo "$PACKAGES_GPG_KEY" | base64 -d | gpg --batch --import
+          else
+            echo "No GPG key configured, skipping signing"
+          fi
+        env:
+          PACKAGES_GPG_KEY: ${{ secrets.PACKAGES_GPG_KEY }}
 
       - name: Sign repository
-        if: ${{ secrets.PACKAGES_GPG_KEY != '' }}
         run: |
-          echo "${{ secrets.PACKAGES_GPG_KEY_PASS }}" | \
-          gpg \
-            --yes \
-            --passphrase-fd 0 \
-            --pinentry-mode loopback \
-            --digest-algo SHA256 \
-            --clearsign \
-            -u "${GPG_KEY_ID}" \
-            -o output/repo/dists/stable/InRelease \
-            output/repo/dists/stable/Release
+          if [ -n "${PACKAGES_GPG_KEY_PASS:-}" ] && [ -n "${GPG_KEY_ID:-}" ]; then
+            echo "$PACKAGES_GPG_KEY_PASS" | \
+            gpg \
+              --yes \
+              --passphrase-fd 0 \
+              --pinentry-mode loopback \
+              --digest-algo SHA256 \
+              --clearsign \
+              -u "${GPG_KEY_ID}" \
+              -o output/repo/dists/stable/InRelease \
+              output/repo/dists/stable/Release
+          else
+            echo "No GPG signing configured, skipping"
+          fi
+        env:
+          PACKAGES_GPG_KEY_PASS: ${{ secrets.PACKAGES_GPG_KEY_PASS }}
+          GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
 
       - name: Deploy to pages branch
         uses: peaceiris/actions-gh-pages@v4
