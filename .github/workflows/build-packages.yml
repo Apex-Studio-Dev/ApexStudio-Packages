@@ -53,12 +53,14 @@ jobs:
           mkdir -p output/aarch64
           ./scripts/run-docker.sh \
             ./build-package.sh -C -a aarch64 -o output/aarch64 \
-            ${{ github.event.inputs.packages }}
+            ${{ github.event.inputs.packages }} \
+            2>&1 | tee output/aarch64/build.log
 
       - name: Import debs to APT repo
         run: |
           chmod +x aurastudio-packages/scripts/import-debs.sh
           chmod +x aurastudio-packages/scripts/generate-index.sh
+          find aurastudio-termux/termux-packages/output/aarch64 -name "*.deb" -type f 2>/dev/null | head -20 || echo "No debs found"
           ./aurastudio-packages/scripts/import-debs.sh \
             aurastudio-termux/termux-packages/output/aarch64
 
