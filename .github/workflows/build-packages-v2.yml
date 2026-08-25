@@ -39,22 +39,22 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Setup Android NDK r29
         run: |
-          if [ ! -d /usr/local/lib/android/ndk/29 ]; then
+          if [ ! -d /github/home/lib/android-ndk-r29 ]; then
             curl -L "https://dl.google.com/android/repository/android-ndk-r29-linux.zip" -o /tmp/ndk.zip
-            sudo mkdir -p /usr/local/lib/android/ndk/29
-            sudo unzip -q /tmp/ndk.zip -d /usr/local/lib/android/ndk/
-            sudo mv /usr/local/lib/android/ndk/android-ndk-r29/* /usr/local/lib/android/ndk/29/
-            sudo rm -rf /usr/local/lib/android/ndk/android-ndk-r29 /tmp/ndk.zip
+            unzip -q /tmp/ndk.zip -d /github/home/lib/
           else
             echo "NDK r29 already installed"
           fi
 
       - name: Build stage 1
         run: |
-          export ANDROID_NDK_HOME=/usr/local/lib/android/ndk/29
-          export NDK=/usr/local/lib/android/ndk/29
+          export ANDROID_NDK_HOME=/github/home/lib/android-ndk-r29
+          export NDK=/github/home/lib/android-ndk-r29
 
           bash build.sh -a "${{ inputs.arch }}" -e ${{ inputs.stage1_packages }}
 
@@ -117,22 +117,22 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Setup Android NDK r29
         run: |
-          if [ ! -d /usr/local/lib/android/ndk/29 ]; then
+          if [ ! -d /github/home/lib/android-ndk-r29 ]; then
             curl -L "https://dl.google.com/android/repository/android-ndk-r29-linux.zip" -o /tmp/ndk.zip
-            sudo mkdir -p /usr/local/lib/android/ndk/29
-            sudo unzip -q /tmp/ndk.zip -d /usr/local/lib/android/ndk/
-            sudo mv /usr/local/lib/android/ndk/android-ndk-r29/* /usr/local/lib/android/ndk/29/
-            sudo rm -rf /usr/local/lib/android/ndk/android-ndk-r29 /tmp/ndk.zip
+            unzip -q /tmp/ndk.zip -d /github/home/lib/
           else
             echo "NDK r29 already installed"
           fi
 
       - name: Build stage 2 (with -I from hosted repo)
         run: |
-          export ANDROID_NDK_HOME=/usr/local/lib/android/ndk/29
-          export NDK=/usr/local/lib/android/ndk/29
+          export ANDROID_NDK_HOME=/github/home/lib/android-ndk-r29
+          export NDK=/github/home/lib/android-ndk-r29
           export AURASTUDIO_REPO="https://arata-labs.github.io/aurastudio-termux"
 
           bash build.sh -a "${{ inputs.arch }}" -I -e ${{ inputs.stage2_packages }}
