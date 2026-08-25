@@ -180,7 +180,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: pages
+          ref: main
           fetch-depth: 0
 
       - name: Download from Release
@@ -406,7 +406,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: pages
+          ref: main
           fetch-depth: 0
 
       - name: Download all debs from Release
