@@ -96,6 +96,46 @@ jobs:
           echo "=== all debs ==="
           find . -name "*.deb" -not -path "./.git/*" | head -30
 
+      - name: Send Telegram notification
+        if: always()
+        run: |
+          BOT_TOKEN="${{ secrets.TELEGRAM_BOT_TOKEN }}"
+          CHAT_ID="${{ secrets.TELEGRAM_CHAT_ID }}"
+          [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ] && echo "Telegram not configured, skipping" && exit 0
+
+          if [ "${{ job.status }}" = "success" ]; then
+            STATUS="✅ BUILD SUCCESS"
+          else
+            STATUS="❌ BUILD FAILED"
+          fi
+
+          DEB_COUNT=$(find output -name "*.deb" -type f 2>/dev/null | wc -l)
+          BUILD_LOG="output/${{ inputs.arch }}/build.log"
+          LOG_TAIL=""
+          if [ -f "$BUILD_LOG" ]; then
+            LOG_TAIL=$(tail -c 3000 "$BUILD_LOG" | sed 's/"/\\"/g')
+          fi
+
+          # Send status message
+          curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+            -d chat_id="$CHAT_ID" \
+            -d parse_mode="Markdown" \
+            -d text="🏗 *AuraStudio Build*
+
+📦 Packages: \`${{ inputs.packages }}\`
+🖥 Arch: \`${{ inputs.arch }}\`
+📊 Status: ${STATUS}
+📁 Debs built: ${DEB_COUNT}
+🔗 Run: [GitHub Actions](https://github.com/${GITHUB_REPOSITORY}/actions/runs/${{ github.run_id }})" || true
+
+          # Send build log
+          if [ -f "$BUILD_LOG" ]; then
+            curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument" \
+              -F chat_id="$CHAT_ID" \
+              -F document=@"$BUILD_LOG" \
+              -F caption="Build log - ${{ inputs.packages }}" || true
+          fi
+
       - name: Package debs
         if: success()
         run: |
@@ -207,3 +247,28 @@ jobs:
           publish_branch: pages
           publish_dir: output/repo
           keep_files: false
+
+      - name: Send publish notification
+        if: always()
+        run: |
+          BOT_TOKEN="${{ secrets.TELEGRAM_BOT_TOKEN }}"
+          CHAT_ID="${{ secrets.TELEGRAM_CHAT_ID }}"
+          [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ] && exit 0
+
+          if [ "${{ job.status }}" = "success" ]; then
+            curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+              -d chat_id="$CHAT_ID" \
+              -d parse_mode="Markdown" \
+              -d text="✅ *Published to APT repo*
+
+📦 Packages: \`${{ inputs.packages }}\`
+🌐 Hosted at: https://arata-labs.github.io/aurastudio-termux" || true
+          else
+            curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+              -d chat_id="$CHAT_ID" \
+              -d parse_mode="Markdown" \
+              -d text="❌ *Publish failed*
+
+📦 Packages: \`${{ inputs.packages }}\`
+🔗 Check: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${{ github.run_id }}" || true
+          fi

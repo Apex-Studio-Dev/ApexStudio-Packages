@@ -7,10 +7,8 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   ## ---- Bootstrap packages ---- ##
   "apt"
   "bash"
-  "bzip2"
   "command-not-found"
   "coreutils"
-  "curl"
   "dash"
   "diffutils"
   "findutils"
@@ -20,6 +18,8 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   "inetutils"
   "less"
   "libbz2"
+  "libcurl"
+  "liblzma"
   "procps"
   "psmisc"
   "sed"
@@ -29,7 +29,6 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   "termux-keyring"
   "termux-tools"
   "util-linux"
-  "xz-utils"
 
   ## ---- Additional ---- ##
   "ed"
@@ -46,7 +45,6 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
 
 # Debug-only packages
 declare -a AURASTUDIO_PACKAGES__DEBUG=(
-  "file"
   "vim"
   "wget"
   "which"
