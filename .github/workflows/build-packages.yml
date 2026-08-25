@@ -69,9 +69,9 @@ jobs:
           export NDK=/github/home/lib/android-ndk-r29
 
           if [ "${{ inputs.packages }}" = "all" ]; then
-            bash build.sh -a "${{ inputs.arch }}" -I --keep-going
+            bash build.sh -a "${{ inputs.arch }}" --keep-going
           else
-            bash build.sh -a "${{ inputs.arch }}" -I -e ${{ inputs.packages }}
+            bash build.sh -a "${{ inputs.arch }}" -e ${{ inputs.packages }}
           fi
 
       - name: Save built packages cache
