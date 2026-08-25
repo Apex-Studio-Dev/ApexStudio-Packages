@@ -37,19 +37,21 @@ declare -a PATCHES=(
 
   # Build fixes
   "openjdk-21-cleanup.patch"
+
+  # Shared memory (needed by libx11, libdb, etc.)
+  "libandroid-shmem-revert-a-shared-memory-patch.patch"
+  "libdb-depend-on-android-shmem.patch"
+  "libunbound-depend-on-android-shmem.patch"
+
+  # Build fixes (extras)
+  "libuv-force-cmake-build.patch"
+  "coreutils-depend-on-libacl.patch"
+  "subversion-missing-apr-includes.patch"
+  "git-symlink-scalar.patch"
 )
 
 # Optional build-fix patches (applied with --extras flag)
 declare -a EXTRA_PATCHES=(
-  "libdb-depend-on-android-shmem.patch"
-  "libunbound-depend-on-android-shmem.patch"
-  # libx11: handled via sed (upstream changed)
-  "libuv-force-cmake-build.patch"
-  "openjdk-21-cleanup.patch"
-  "coreutils-depend-on-libacl.patch"
-  "libandroid-shmem-revert-a-shared-memory-patch.patch"
-  "subversion-missing-apr-includes.patch"
-  "git-symlink-scalar.patch"
 )
 
 # Script configuration
