@@ -199,7 +199,18 @@ setup_aurastudio_patches() {
   popd || aurastudio_error_exit "Unable to leave termux-packages"
 }
 
-# Argument parsing
+# Argument parsing — handle long options before getopts
+ARGS=("$@")
+set -- 
+for arg in "${ARGS[@]}"; do
+  case "$arg" in
+    --keep-going) BUILD_KEEP_GOING="true" ;;
+    --extras) BUILD_EXTRAS="true" ;;
+    --) shift ;;
+    *) set -- "$@" "$arg" ;;
+  esac
+done
+
 while getopts "a:enp:r:s:Ifkh" opt; do
   case "$opt" in
     a) BUILD_ARCH="$OPTARG" ;;
@@ -211,11 +222,6 @@ while getopts "a:enp:r:s:Ifkh" opt; do
     I) BUILD_INSTALL_DEPS="true" ;;
     f) FORCE_REBUILD=true ;;
     k) BUILD_KEEP_GOING="true" ;;
-    -) case "${OPTARG}" in
-         keep-going) BUILD_KEEP_GOING="true" ;;
-         extras) BUILD_EXTRAS="true" ;;
-         *) aurastudio_error "Unknown option: --$OPTARG"; exit 1 ;;
-       esac; shift ;;
     h) usage; exit 0 ;;
     *) aurastudio_error "Invalid option"; usage; exit 1 ;;
   esac
@@ -308,7 +314,7 @@ if [[ "$BUILD_KEEP_GOING" == "true" ]]; then
     echo ">>> [$IDX/$TOTAL] Building: $pkg"
     echo ""
 
-    PKG_ARGS=("${BUILD_ARGS[@]}" -e "$pkg")
+    PKG_ARGS=("${BUILD_ARGS[@]}" "$pkg")
     if { time ./build-package.sh "${PKG_ARGS[@]}" 2>&1 | tee -a "$OUTPUT_DIR/build.log"; }; then
       SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
       aurastudio_ok "[OK] $pkg"
