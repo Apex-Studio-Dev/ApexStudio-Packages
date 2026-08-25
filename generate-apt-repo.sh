@@ -32,16 +32,25 @@ mkdir -p "$DEBS_DIR" "$REPO_DIR"
 
 # Symlink all debs into debs directory
 info "[*] Collecting .deb files..."
-for arch_dir in "$OUTPUT_DIR"/aarch64 "$OUTPUT_DIR"/arm; do
-  if [[ -d "$arch_dir" ]]; then
-    find "$arch_dir" \
-      -mindepth 1 -maxdepth 1 \
-      -type f -name "*.deb" \
-      -exec ln -sf {} "$DEBS_DIR/" \; || true
-  fi
-done
+# Search for debs recursively in output dir (handles both flat and nested layouts)
+find "$OUTPUT_DIR" \
+  -type f -name "*.deb" \
+  -not -path "$DEBS_DIR/*" \
+  -not -path "$REPO_DIR/*" \
+  -exec ln -sf {} "$DEBS_DIR/" \; 2>/dev/null || true
+# Fallback: also check flat layout directly
+if [[ -d "$OUTPUT_DIR/aarch64" ]]; then
+  find "$OUTPUT_DIR/aarch64" \
+    -maxdepth 1 -type f -name "*.deb" \
+    -exec ln -sf {} "$DEBS_DIR/" \; 2>/dev/null || true
+fi
+if [[ -d "$OUTPUT_DIR/arm" ]]; then
+  find "$OUTPUT_DIR/arm" \
+    -maxdepth 1 -type f -name "*.deb" \
+    -exec ln -sf {} "$DEBS_DIR/" \; 2>/dev/null || true
+fi
 
-deb_count=$(find "$DEBS_DIR" -name "*.deb" -type f 2>/dev/null | wc -l)
+deb_count=$(find "$DEBS_DIR" -name "*.deb" \( -type f -o -type l \) 2>/dev/null | wc -l)
 info "[*] Found $deb_count .deb files"
 
 if [[ "$deb_count" -eq 0 ]]; then
