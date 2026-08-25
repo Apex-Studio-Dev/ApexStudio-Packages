@@ -49,7 +49,6 @@ declare -a PATCHES=(
   "libuv-force-cmake-build.patch"
   "coreutils-depend-on-libacl.patch"
   "subversion-missing-apr-includes.patch"
-  "attr-fix-source-url.patch"
 )
 
 # Optional build-fix patches (applied with --extras flag)
@@ -158,6 +157,12 @@ setup_aurastudio_patches() {
     sed -i 's|TERMUX_PKG_DEPENDS="libandroid-support, libxcb|TERMUX_PKG_DEPENDS="libandroid-support, libandroid-shmem, libxcb|g' packages/libx11/build.sh
     aurastudio_ok "[+] Fixed libx11: added libandroid-shmem dependency"
   fi
+
+  # Savannah mirrors are down — use mirror URL
+  aurastudio_info "[*] Fixing Savannah source URLs..."
+  grep -rlE "https?://download\.savannah\.gnu\.org" --include="build.sh" packages/ 2>/dev/null |
+    xargs -L1 sed -i -E 's|https?://download\.savannah\.gnu\.org|https://download-mirror.savannah.gnu.org|g' ||
+    aurastudio_warn "[!] No Savannah URLs found"
 
   # Step 5b: (handled by static patch: disable-apparmor-fuse-overlayfs.patch)
 
