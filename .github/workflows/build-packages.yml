@@ -32,6 +32,15 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Generate cache key
+        id: cache-key
+        run: |
+          # Cache key based on packages + patches (stable across commits that don't change packages)
+          PACKAGES_HASH=$(md5sum packages.sh | cut -d' ' -f1)
+          PATCHES_HASH=$(find patches/ -type f -exec md5sum {} + 2>/dev/null | md5sum | cut -d' ' -f1)
+          echo "key=termux-build-${{ inputs.arch }}-${PACKAGES_HASH:0:8}-${PATCHES_HASH:0:8}" >> "$GITHUB_OUTPUT"
+          echo "Cache key: termux-build-${{ inputs.arch }}-${PACKAGES_HASH:0:8}-${PATCHES_HASH:0:8}"
+
       - name: Cache built packages
         if: always()
         id: cache-packages
@@ -41,7 +50,7 @@ jobs:
             /data
             /github/home/.termux-build
             output/${{ inputs.arch }}
-          key: termux-build-${{ inputs.arch }}-${{ github.sha }}
+          key: ${{ steps.cache-key.outputs.key }}
           restore-keys: |
             termux-build-${{ inputs.arch }}-
           save-always: true
@@ -82,7 +91,7 @@ jobs:
             /data
             /github/home/.termux-build
             output/${{ inputs.arch }}
-          key: termux-build-${{ inputs.arch }}-${{ github.sha }}
+          key: ${{ steps.cache-key.outputs.key }}
 
       - name: Show build summary
         if: always()
@@ -301,7 +310,6 @@ jobs:
             /data
             /github/home/.termux-build
             output/${{ inputs.arch }}
-          key: termux-build-${{ inputs.arch }}-${{ github.sha }}
           restore-keys: |
             termux-build-${{ inputs.arch }}-
 
