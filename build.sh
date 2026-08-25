@@ -42,12 +42,13 @@ declare -a PATCHES=(
   "libandroid-shmem-revert-a-shared-memory-patch.patch"
   "libdb-depend-on-android-shmem.patch"
   "libunbound-depend-on-android-shmem.patch"
+  "libx11-depend-on-android-shmem.patch"
+  "apr-link-against-libandroid-shmem.patch"
 
-  # Build fixes (extras)
+  # Build fixes
   "libuv-force-cmake-build.patch"
   "coreutils-depend-on-libacl.patch"
   "subversion-missing-apr-includes.patch"
-  "git-symlink-scalar.patch"
 )
 
 # Optional build-fix patches (applied with --extras flag)
