@@ -1,0 +1,1257 @@
+[
+  {
+    "name": "abseil-cpp",
+    "version": "20260526.0",
+    "desc": "Abseil C++ Common Libraries"
+  },
+  {
+    "name": "alsa-lib",
+    "version": "1.2.16.1",
+    "desc": "The Advanced Linux Sound Architecture (ALSA) - library"
+  },
+  {
+    "name": "apr-static",
+    "version": "1.7.6-2",
+    "desc": "Static libraries for apr"
+  },
+  {
+    "name": "apr-util-static",
+    "version": "1.6.5",
+    "desc": "Static libraries for apr-util"
+  },
+  {
+    "name": "apr-util",
+    "version": "1.6.5",
+    "desc": "Apache Portable Runtime Utility Library"
+  },
+  {
+    "name": "apr",
+    "version": "1.7.6-2",
+    "desc": "Apache Portable Runtime Library"
+  },
+  {
+    "name": "apt-ftparchive",
+    "version": "2.8.1-2",
+    "desc": "apt-ftparchive is the command line tool that generates the index files that APT uses to access a distribution source"
+  },
+  {
+    "name": "apt",
+    "version": "2.8.1-2",
+    "desc": "Front-end for the dpkg package manager"
+  },
+  {
+    "name": "attr-static",
+    "version": "2.6.0",
+    "desc": "Static libraries for attr"
+  },
+  {
+    "name": "attr",
+    "version": "2.6.0",
+    "desc": "Utilities for manipulating filesystem extended attributes"
+  },
+  {
+    "name": "bash",
+    "version": "5.3.15",
+    "desc": "A sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh)"
+  },
+  {
+    "name": "blk-utils",
+    "version": "2.42.1-4",
+    "desc": "Utilities for handling block device attributes"
+  },
+  {
+    "name": "brotli",
+    "version": "1.2.0",
+    "desc": "lossless compression algorithm and format (command line utility)"
+  },
+  {
+    "name": "bzip2",
+    "version": "1.0.8-8",
+    "desc": "Tools for working with bzip2 compression"
+  },
+  {
+    "name": "check-static",
+    "version": "0.15.2-3",
+    "desc": "Static libraries for check"
+  },
+  {
+    "name": "check",
+    "version": "0.15.2-3",
+    "desc": "A unit testing framework for C"
+  },
+  {
+    "name": "coreutils",
+    "version": "9.11-1",
+    "desc": "Basic file, shell and text manipulation utilities from the GNU project"
+  },
+  {
+    "name": "curl",
+    "version": "8.21.0",
+    "desc": "Command line tool for transferring data with URL syntax"
+  },
+  {
+    "name": "dash",
+    "version": "0.5.12-2",
+    "desc": "Small POSIX-compliant implementation of /bin/sh"
+  },
+  {
+    "name": "db",
+    "version": "18.1.40-6",
+    "desc": "The Berkeley DB embedded database system"
+  },
+  {
+    "name": "dbus",
+    "version": "1.16.2-3",
+    "desc": "Freedesktop.org message bus system"
+  },
+  {
+    "name": "debianutils",
+    "version": "5.23.2-1",
+    "desc": "Small utilities which are used primarily by the installation scripts of Debian packages"
+  },
+  {
+    "name": "dialog-static",
+    "version": "1.3-20260721-0",
+    "desc": "Static libraries for dialog"
+  },
+  {
+    "name": "dialog",
+    "version": "1.3-20260721-0",
+    "desc": "Application used in shell scripts which displays text user interface widgets"
+  },
+  {
+    "name": "diffutils",
+    "version": "3.12-2",
+    "desc": "Programs (cmp, diff, diff3 and sdiff) related to finding differences between files"
+  },
+  {
+    "name": "dos2unix",
+    "version": "7.5.6",
+    "desc": "Converts between DOS and Unix text files"
+  },
+  {
+    "name": "doxygen",
+    "version": "1.18.0",
+    "desc": "A documentation system for C++, C, Java, IDL and PHP"
+  },
+  {
+    "name": "dpkg",
+    "version": "1.22.6-5",
+    "desc": "Debian package management system"
+  },
+  {
+    "name": "ed",
+    "version": "1.22.6",
+    "desc": "Classic UNIX line editor"
+  },
+  {
+    "name": "fdisk",
+    "version": "2.42.1-4",
+    "desc": "Utilities to manipulate disk partition tables"
+  },
+  {
+    "name": "file",
+    "version": "5.48-3",
+    "desc": "Command-line tool that tells you in words what kind of data a file contains"
+  },
+  {
+    "name": "findutils",
+    "version": "4.10.0-1",
+    "desc": "Utilities to find files meeting specified criteria and perform various actions on the files which are found"
+  },
+  {
+    "name": "flac",
+    "version": "1.5.0-1",
+    "desc": "FLAC (Free Lossless Audio Codec) command-line tool"
+  },
+  {
+    "name": "fontconfig-static",
+    "version": "2.18.3",
+    "desc": "Static libraries for fontconfig"
+  },
+  {
+    "name": "fontconfig-utils",
+    "version": "2.18.3",
+    "desc": "Fontconfig binaries"
+  },
+  {
+    "name": "fontconfig",
+    "version": "2.18.3",
+    "desc": "Library for configuring and customizing font access"
+  },
+  {
+    "name": "freetype-static",
+    "version": "2.14.3",
+    "desc": "Static libraries for freetype"
+  },
+  {
+    "name": "freetype",
+    "version": "2.14.3",
+    "desc": "Software font engine capable of producing high-quality output"
+  },
+  {
+    "name": "gawk-static",
+    "version": "5.3.2",
+    "desc": "Static libraries for gawk"
+  },
+  {
+    "name": "gawk",
+    "version": "5.3.2",
+    "desc": "Programming language designed for text processing"
+  },
+  {
+    "name": "gdbm-static",
+    "version": "1.26-1",
+    "desc": "Static libraries for gdbm"
+  },
+  {
+    "name": "gdbm",
+    "version": "1.26-1",
+    "desc": "Library of database functions that use extensible hashing"
+  },
+  {
+    "name": "git-gitk",
+    "version": "2.55.0",
+    "desc": "Git repository browser"
+  },
+  {
+    "name": "git-gui",
+    "version": "2.55.0",
+    "desc": "A graphical interface to Git"
+  },
+  {
+    "name": "git",
+    "version": "2.55.0",
+    "desc": "Fast, scalable, distributed revision control system"
+  },
+  {
+    "name": "glib",
+    "version": "2.88.3",
+    "desc": "Library providing core building blocks for libraries and applications written in C"
+  },
+  {
+    "name": "gnupg",
+    "version": "2.5.17",
+    "desc": "Implementation of the OpenPGP standard for encrypting and signing data and communication"
+  },
+  {
+    "name": "gnutls",
+    "version": "3.8.13-1",
+    "desc": "Commandline utilities for interfacing with the gnutls library"
+  },
+  {
+    "name": "gpgv",
+    "version": "2.5.17",
+    "desc": "GNU privacy guard - signature verification tool"
+  },
+  {
+    "name": "grep",
+    "version": "3.12-3",
+    "desc": "Command which searches one or more input files for lines containing a match to a specified pattern"
+  },
+  {
+    "name": "gzip",
+    "version": "1.14-1",
+    "desc": "Standard GNU file compression utilities"
+  },
+  {
+    "name": "iconv",
+    "version": "1.18-1",
+    "desc": "Utility converting between different character encodings"
+  },
+  {
+    "name": "icu-devtools",
+    "version": "78.3",
+    "desc": "Development utilities for International Components for Unicode"
+  },
+  {
+    "name": "inetutils",
+    "version": "2.7",
+    "desc": "Collection of common network programs"
+  },
+  {
+    "name": "lame",
+    "version": "3.100-7",
+    "desc": "High quality MPEG Audio Layer III (MP3) encoder - frontend"
+  },
+  {
+    "name": "less",
+    "version": "704",
+    "desc": "Terminal pager program used to view the contents of a text file one screen at a time"
+  },
+  {
+    "name": "libacl-static",
+    "version": "2.4.0",
+    "desc": "Static libraries for libacl"
+  },
+  {
+    "name": "libacl",
+    "version": "2.4.0",
+    "desc": "Access control list shared library"
+  },
+  {
+    "name": "libandroid-execinfo-static",
+    "version": "0.1-3",
+    "desc": "Static libraries for libandroid-execinfo"
+  },
+  {
+    "name": "libandroid-execinfo",
+    "version": "0.1-3",
+    "desc": "Shared library for the backtrace system function"
+  },
+  {
+    "name": "libandroid-glob-static",
+    "version": "0.6-3",
+    "desc": "Static libraries for libandroid-glob"
+  },
+  {
+    "name": "libandroid-glob",
+    "version": "0.6-3",
+    "desc": "Shared library for the glob(3) system function"
+  },
+  {
+    "name": "libandroid-posix-semaphore-static",
+    "version": "0.1-4",
+    "desc": "Static libraries for libandroid-posix-semaphore"
+  },
+  {
+    "name": "libandroid-posix-semaphore",
+    "version": "0.1-4",
+    "desc": "Shared library for the posix semaphore system function"
+  },
+  {
+    "name": "libandroid-selinux",
+    "version": "14.0.0.11-1",
+    "desc": "Android fork of libselinux, an SELinux userland library"
+  },
+  {
+    "name": "libandroid-shmem-static",
+    "version": "0.7-1",
+    "desc": "Static libraries for libandroid-shmem"
+  },
+  {
+    "name": "libandroid-shmem",
+    "version": "0.7-1",
+    "desc": "System V shared memory emulation on Android using ashmem"
+  },
+  {
+    "name": "libandroid-stub",
+    "version": "29-2",
+    "desc": "Stub libandroid.so for non-Android certified environment"
+  },
+  {
+    "name": "libandroid-support-static",
+    "version": "29-1",
+    "desc": "Static libraries for libandroid-support"
+  },
+  {
+    "name": "libandroid-support",
+    "version": "29-1",
+    "desc": "Library extending the Android C library (Bionic) for additional multibyte, locale and math support"
+  },
+  {
+    "name": "libandroid-sysv-semaphore-static",
+    "version": "0.1-1",
+    "desc": "Static libraries for libandroid-sysv-semaphore"
+  },
+  {
+    "name": "libandroid-sysv-semaphore",
+    "version": "0.1-1",
+    "desc": "A shared library providing System V semaphores"
+  },
+  {
+    "name": "libandroid-utimes-static",
+    "version": "0.4",
+    "desc": "Static libraries for libandroid-utimes"
+  },
+  {
+    "name": "libandroid-utimes",
+    "version": "0.4",
+    "desc": "futimes, futimesat and lutimes from bionic"
+  },
+  {
+    "name": "libassuan-static",
+    "version": "3.0.2-1",
+    "desc": "Static libraries for libassuan"
+  },
+  {
+    "name": "libassuan",
+    "version": "3.0.2-1",
+    "desc": "Library implementing the Assuan IPC protocol used between most newer GnuPG components"
+  },
+  {
+    "name": "libblkid",
+    "version": "2.42.1-4",
+    "desc": "Block device identification library"
+  },
+  {
+    "name": "libbz2",
+    "version": "1.0.8-8",
+    "desc": "BZ2 format compression library"
+  },
+  {
+    "name": "libc++",
+    "version": "29",
+    "desc": "C++ Standard Library"
+  },
+  {
+    "name": "libcap-ng-static",
+    "version": "2:0.9.5",
+    "desc": "Static libraries for libcap-ng"
+  },
+  {
+    "name": "libcap-ng",
+    "version": "2:0.9.5",
+    "desc": "Library making programming with POSIX capabilities easier than traditional libcap"
+  },
+  {
+    "name": "libcrypt",
+    "version": "0.2-6",
+    "desc": "A crypt(3) implementation"
+  },
+  {
+    "name": "libcurl-static",
+    "version": "8.21.0",
+    "desc": "Static libraries for libcurl"
+  },
+  {
+    "name": "libcurl",
+    "version": "8.21.0",
+    "desc": "Easy-to-use client-side URL transfer library"
+  },
+  {
+    "name": "libdb-static",
+    "version": "18.1.40-6",
+    "desc": "Static libraries for libdb"
+  },
+  {
+    "name": "libdb",
+    "version": "18.1.40-6",
+    "desc": "The Berkeley DB embedded database system (library)"
+  },
+  {
+    "name": "libevent",
+    "version": "2.1.13",
+    "desc": "Library that provides asynchronous event notification"
+  },
+  {
+    "name": "libexpat-static",
+    "version": "2.8.3",
+    "desc": "Static libraries for libexpat"
+  },
+  {
+    "name": "libexpat",
+    "version": "2.8.3",
+    "desc": "XML parsing C library"
+  },
+  {
+    "name": "libfdisk",
+    "version": "2.42.1-4",
+    "desc": "Library for manipulating disk partition tables"
+  },
+  {
+    "name": "libffi-static",
+    "version": "3.5.2",
+    "desc": "Static libraries for libffi"
+  },
+  {
+    "name": "libffi",
+    "version": "3.5.2",
+    "desc": "Library providing a portable, high level programming interface to various calling conventions"
+  },
+  {
+    "name": "libflac-static",
+    "version": "1.5.0-1",
+    "desc": "Static libraries for libflac"
+  },
+  {
+    "name": "libflac",
+    "version": "1.5.0-1",
+    "desc": "FLAC (Free Lossless Audio Codec) library"
+  },
+  {
+    "name": "libgcrypt-static",
+    "version": "1.12.2",
+    "desc": "Static libraries for libgcrypt"
+  },
+  {
+    "name": "libgcrypt",
+    "version": "1.12.2",
+    "desc": "General purpose cryptographic library based on the code from GnuPG"
+  },
+  {
+    "name": "libgmp-static",
+    "version": "6.3.0-2",
+    "desc": "Static libraries for libgmp"
+  },
+  {
+    "name": "libgmp",
+    "version": "6.3.0-2",
+    "desc": "Library for arbitrary precision arithmetic"
+  },
+  {
+    "name": "libgnutls-static",
+    "version": "3.8.13-1",
+    "desc": "Static libraries for libgnutls"
+  },
+  {
+    "name": "libgnutls",
+    "version": "3.8.13-1",
+    "desc": "Secure communications library implementing the SSL, TLS and DTLS protocols and technologies around them"
+  },
+  {
+    "name": "libgpg-error-static",
+    "version": "1.61",
+    "desc": "Static libraries for libgpg-error"
+  },
+  {
+    "name": "libgpg-error",
+    "version": "1.61",
+    "desc": "Small library that defines common error values for all GnuPG components"
+  },
+  {
+    "name": "libiconv-static",
+    "version": "1.18-1",
+    "desc": "Static libraries for libiconv"
+  },
+  {
+    "name": "libiconv",
+    "version": "1.18-1",
+    "desc": "An implementation of iconv()"
+  },
+  {
+    "name": "libicu-static",
+    "version": "78.3",
+    "desc": "Static libraries for libicu"
+  },
+  {
+    "name": "libicu",
+    "version": "78.3",
+    "desc": "International Components for Unicode library"
+  },
+  {
+    "name": "libidn2-static",
+    "version": "2.3.8-1",
+    "desc": "Static libraries for libidn2"
+  },
+  {
+    "name": "libidn2",
+    "version": "2.3.8-1",
+    "desc": "Free software implementation of IDNA2008, Punycode and TR46"
+  },
+  {
+    "name": "libksba-static",
+    "version": "1.8.0",
+    "desc": "Static libraries for libksba"
+  },
+  {
+    "name": "libksba",
+    "version": "1.8.0",
+    "desc": "Library for using X.509 certificates and CMS (Cryptographic Message Syntax) easily accessible"
+  },
+  {
+    "name": "libltdl",
+    "version": "2.6.2",
+    "desc": "Library for dlopening libraries"
+  },
+  {
+    "name": "liblz4",
+    "version": "1.10.0-1",
+    "desc": "Fast LZ compression algorithm library"
+  },
+  {
+    "name": "liblzma-static",
+    "version": "5.8.3",
+    "desc": "Static libraries for liblzma"
+  },
+  {
+    "name": "liblzma",
+    "version": "5.8.3",
+    "desc": "XZ-format compression library"
+  },
+  {
+    "name": "libmagic-static",
+    "version": "5.48-3",
+    "desc": "Static libraries for libmagic"
+  },
+  {
+    "name": "libmagic",
+    "version": "5.48-3",
+    "desc": "File type identification library"
+  },
+  {
+    "name": "libmd-static",
+    "version": "1.1.0-1",
+    "desc": "Static libraries for libmd"
+  },
+  {
+    "name": "libmd",
+    "version": "1.1.0-1",
+    "desc": "Message Digest functions from BSD systems"
+  },
+  {
+    "name": "libmount",
+    "version": "2.42.1-4",
+    "desc": "Library for (un)mounting filesystems"
+  },
+  {
+    "name": "libmp3lame-static",
+    "version": "3.100-7",
+    "desc": "Static libraries for libmp3lame"
+  },
+  {
+    "name": "libmp3lame",
+    "version": "3.100-7",
+    "desc": "High quality MPEG Audio Layer III (MP3) encoder"
+  },
+  {
+    "name": "libmpfr-static",
+    "version": "4.2.1-1",
+    "desc": "Static libraries for libmpfr"
+  },
+  {
+    "name": "libmpfr",
+    "version": "4.2.1-1",
+    "desc": "C library for multiple-precision floating-point computations with correct rounding"
+  },
+  {
+    "name": "libnettle-static",
+    "version": "4.0+really3.10.2",
+    "desc": "Static libraries for libnettle"
+  },
+  {
+    "name": "libnettle",
+    "version": "4.0+really3.10.2",
+    "desc": "Cryptographic library that is designed to fit easily in more or less any context"
+  },
+  {
+    "name": "libnghttp2-static",
+    "version": "1.70.0",
+    "desc": "Static libraries for libnghttp2"
+  },
+  {
+    "name": "libnghttp2",
+    "version": "1.70.0",
+    "desc": "nghttp HTTP 2.0 library"
+  },
+  {
+    "name": "libnghttp3-static",
+    "version": "1.18.0",
+    "desc": "Static libraries for libnghttp3"
+  },
+  {
+    "name": "libnghttp3",
+    "version": "1.18.0",
+    "desc": "HTTP/3 library written in C"
+  },
+  {
+    "name": "libngtcp2-static",
+    "version": "1.25.0",
+    "desc": "Static libraries for libngtcp2"
+  },
+  {
+    "name": "libngtcp2",
+    "version": "1.25.0",
+    "desc": "Implementation of IETF QUIC protocol"
+  },
+  {
+    "name": "libnpth-static",
+    "version": "1.6-3",
+    "desc": "Static libraries for libnpth"
+  },
+  {
+    "name": "libnpth",
+    "version": "1.6-3",
+    "desc": "New GNU Portable Threads Library"
+  },
+  {
+    "name": "libogg-static",
+    "version": "1.3.6-1",
+    "desc": "Static libraries for libogg"
+  },
+  {
+    "name": "libogg",
+    "version": "1.3.6-1",
+    "desc": "Library for working with the Ogg multimedia container format"
+  },
+  {
+    "name": "libopus-static",
+    "version": "1.6.1",
+    "desc": "Static libraries for libopus"
+  },
+  {
+    "name": "libopus",
+    "version": "1.6.1",
+    "desc": "Reference implementation of the Opus codec"
+  },
+  {
+    "name": "libpng-static",
+    "version": "1.6.58",
+    "desc": "Static libraries for libpng"
+  },
+  {
+    "name": "libpng",
+    "version": "1.6.58",
+    "desc": "Official PNG reference library"
+  },
+  {
+    "name": "libsmartcols",
+    "version": "2.42.1-4",
+    "desc": "Library for smart adaptive formatting of tabular data"
+  },
+  {
+    "name": "libsoxr",
+    "version": "0.1.3-8",
+    "desc": "High quality, one-dimensional sample-rate conversion library"
+  },
+  {
+    "name": "libsqlite-static",
+    "version": "3.53.4",
+    "desc": "Static libraries for libsqlite"
+  },
+  {
+    "name": "libsqlite-tcl",
+    "version": "3.53.4",
+    "desc": "tcl bindings for SQLite"
+  },
+  {
+    "name": "libsqlite",
+    "version": "3.53.4",
+    "desc": "Library implementing a self-contained and transactional SQL database engine"
+  },
+  {
+    "name": "libssh2-static",
+    "version": "1.11.1-2",
+    "desc": "Static libraries for libssh2"
+  },
+  {
+    "name": "libssh2",
+    "version": "1.11.1-2",
+    "desc": "Client-side library implementing the SSH2 protocol"
+  },
+  {
+    "name": "libtasn1-static",
+    "version": "4.21.0",
+    "desc": "Static libraries for libtasn1"
+  },
+  {
+    "name": "libtasn1",
+    "version": "4.21.0",
+    "desc": "This is GNU Libtasn1, a small ASN.1 library"
+  },
+  {
+    "name": "libtirpc-static",
+    "version": "1.3.7-1",
+    "desc": "Static libraries for libtirpc"
+  },
+  {
+    "name": "libtirpc",
+    "version": "1.3.7-1",
+    "desc": "Transport Independent RPC library"
+  },
+  {
+    "name": "libtool",
+    "version": "2.6.2",
+    "desc": "Generic library support script hiding the complexity of using shared libraries behind a consistent, portable interface"
+  },
+  {
+    "name": "libunbound-static",
+    "version": "1.26.0",
+    "desc": "Static libraries for libunbound"
+  },
+  {
+    "name": "libunbound",
+    "version": "1.26.0",
+    "desc": "A validating, recursive, caching DNS resolver"
+  },
+  {
+    "name": "libunistring-static",
+    "version": "1.4.2",
+    "desc": "Static libraries for libunistring"
+  },
+  {
+    "name": "libunistring",
+    "version": "1.4.2",
+    "desc": "Library providing functions for manipulating Unicode strings"
+  },
+  {
+    "name": "libusb-static",
+    "version": "1.0.30",
+    "desc": "Static libraries for libusb"
+  },
+  {
+    "name": "libusb",
+    "version": "1.0.30",
+    "desc": "A C library that provides generic access to USB devices"
+  },
+  {
+    "name": "libuuid",
+    "version": "2.42.1-4",
+    "desc": "Library for handling universally unique identifiers"
+  },
+  {
+    "name": "libvorbis-static",
+    "version": "1.3.7-4",
+    "desc": "Static libraries for libvorbis"
+  },
+  {
+    "name": "libvorbis",
+    "version": "1.3.7-4",
+    "desc": "Library for using the Ogg Vorbis compressed audio format"
+  },
+  {
+    "name": "libwebrtc-audio-processing",
+    "version": "1.3-5",
+    "desc": "A library containing the AudioProcessing module from the WebRTC project"
+  },
+  {
+    "name": "libx11-static",
+    "version": "1.8.13-1",
+    "desc": "Static libraries for libx11"
+  },
+  {
+    "name": "libx11",
+    "version": "1.8.13-1",
+    "desc": "X11 client-side library"
+  },
+  {
+    "name": "libxau",
+    "version": "1.0.12-2",
+    "desc": "X11 authorisation library"
+  },
+  {
+    "name": "libxcb-static",
+    "version": "1.17.0-1",
+    "desc": "Static libraries for libxcb"
+  },
+  {
+    "name": "libxcb",
+    "version": "1.17.0-1",
+    "desc": "X11 client-side library"
+  },
+  {
+    "name": "libxdmcp-static",
+    "version": "1.1.5-2",
+    "desc": "Static libraries for libxdmcp"
+  },
+  {
+    "name": "libxdmcp",
+    "version": "1.1.5-2",
+    "desc": "X11 Display Manager Control Protocol library"
+  },
+  {
+    "name": "libxext-static",
+    "version": "1.3.7",
+    "desc": "Static libraries for libxext"
+  },
+  {
+    "name": "libxext",
+    "version": "1.3.7",
+    "desc": "X11 miscellaneous extensions library"
+  },
+  {
+    "name": "libxft-static",
+    "version": "2.3.9-1",
+    "desc": "Static libraries for libxft"
+  },
+  {
+    "name": "libxft",
+    "version": "2.3.9-1",
+    "desc": "FreeType-based font drawing library for X"
+  },
+  {
+    "name": "libxml2-python",
+    "version": "2.15.3-2",
+    "desc": "Python bindings for libxml2"
+  },
+  {
+    "name": "libxml2-utils",
+    "version": "2.15.3-2",
+    "desc": "XML utilities"
+  },
+  {
+    "name": "libxml2",
+    "version": "2.15.3-2",
+    "desc": "Library for parsing XML documents"
+  },
+  {
+    "name": "libxrender",
+    "version": "0.9.12-1",
+    "desc": "X Rendering Extension client library"
+  },
+  {
+    "name": "libxslt",
+    "version": "1.1.45-1",
+    "desc": "XSLT processing library"
+  },
+  {
+    "name": "libxss-static",
+    "version": "1.2.5",
+    "desc": "Static libraries for libxss"
+  },
+  {
+    "name": "libxss",
+    "version": "1.2.5",
+    "desc": "X11 Screen Saver extension library"
+  },
+  {
+    "name": "lsof-static",
+    "version": "4.99.7",
+    "desc": "Static libraries for lsof"
+  },
+  {
+    "name": "lsof",
+    "version": "4.99.7",
+    "desc": "Lists open files for running Unix processes"
+  },
+  {
+    "name": "lz4",
+    "version": "1.10.0-1",
+    "desc": "Fast LZ compression algorithm tool"
+  },
+  {
+    "name": "make",
+    "version": "4.4.1-1",
+    "desc": "Tool to control the generation of non-source files from source files"
+  },
+  {
+    "name": "mount-utils",
+    "version": "2.42.1-4",
+    "desc": "Utilities for (un)mounting filesystems"
+  },
+  {
+    "name": "nano",
+    "version": "9.2-1",
+    "desc": "Small, free and friendly text editor"
+  },
+  {
+    "name": "ncurses-static",
+    "version": "6.6.20260307+really6.5.20250830",
+    "desc": "Static libraries for ncurses"
+  },
+  {
+    "name": "ncurses-ui-libs-static",
+    "version": "6.6.20260307+really6.5.20250830",
+    "desc": "Static libraries for terminal user interfaces based on ncurses"
+  },
+  {
+    "name": "ncurses-ui-libs",
+    "version": "6.6.20260307+really6.5.20250830",
+    "desc": "Libraries for terminal user interfaces based on ncurses"
+  },
+  {
+    "name": "ncurses-utils",
+    "version": "6.6.20260307+really6.5.20250830",
+    "desc": "Tools for working with terminals"
+  },
+  {
+    "name": "ncurses",
+    "version": "6.6.20260307+really6.5.20250830",
+    "desc": "Library for text-based user interfaces in a terminal-independent manner"
+  },
+  {
+    "name": "net-tools",
+    "version": "2.10.0-1",
+    "desc": "Configuration tools for Linux networking"
+  },
+  {
+    "name": "nettle",
+    "version": "4.0+really3.10.2",
+    "desc": "Low level cryptographic tools"
+  },
+  {
+    "name": "openssl-static",
+    "version": "1:3.6.3",
+    "desc": "Static libraries for openssl"
+  },
+  {
+    "name": "openssl-tool",
+    "version": "1:3.6.3",
+    "desc": "The openssl command line cryptographic tool"
+  },
+  {
+    "name": "openssl",
+    "version": "1:3.6.3",
+    "desc": "Library implementing the SSL and TLS protocols as well as general purpose cryptography functions"
+  },
+  {
+    "name": "p11-kit",
+    "version": "0.26.5",
+    "desc": "Provides a way to load and enumerate PKCS#11 modules"
+  },
+  {
+    "name": "patch",
+    "version": "2.8-1",
+    "desc": "GNU patch which applies diff files to create patched files"
+  },
+  {
+    "name": "pcre2-static",
+    "version": "10.47",
+    "desc": "Static libraries for pcre2"
+  },
+  {
+    "name": "pcre2",
+    "version": "10.47",
+    "desc": "Perl 5 compatible regular expression library"
+  },
+  {
+    "name": "pcre2grep",
+    "version": "10.47",
+    "desc": "A grep with Perl-compatible regular expressions"
+  },
+  {
+    "name": "perl",
+    "version": "5.42.2",
+    "desc": "Capable, feature-rich programming language"
+  },
+  {
+    "name": "pinentry",
+    "version": "1.3.3",
+    "desc": "Dialog allowing secure password entry"
+  },
+  {
+    "name": "pkg-config",
+    "version": "0.29.2-3",
+    "desc": "Helper tool used when compiling applications and libraries"
+  },
+  {
+    "name": "procps-static",
+    "version": "3.3.17-6",
+    "desc": "Static libraries for procps"
+  },
+  {
+    "name": "procps",
+    "version": "3.3.17-6",
+    "desc": "Utilities that give information about processes using the /proc filesystem"
+  },
+  {
+    "name": "psmisc",
+    "version": "23.7-1",
+    "desc": "Some small useful utilities that use the proc filesystem"
+  },
+  {
+    "name": "python-static",
+    "version": "3.14.6-1",
+    "desc": "Static libraries for python"
+  },
+  {
+    "name": "python-tkinter",
+    "version": "3.14.6-1",
+    "desc": "Tkinter support for Python 3"
+  },
+  {
+    "name": "python",
+    "version": "3.14.6-1",
+    "desc": "Python 3 programming language intended to enable clear programs"
+  },
+  {
+    "name": "pyunbound",
+    "version": "1.26.0",
+    "desc": "Python bindings for Unbound"
+  },
+  {
+    "name": "pzstd",
+    "version": "1.5.7-1",
+    "desc": "A Pigz-like tool for Zstandard"
+  },
+  {
+    "name": "readline-static",
+    "version": "8.3.3",
+    "desc": "Static libraries for readline"
+  },
+  {
+    "name": "readline",
+    "version": "8.3.3",
+    "desc": "Library that allow users to edit command lines as they are typed in"
+  },
+  {
+    "name": "resolv-conf",
+    "version": "1.3",
+    "desc": "Resolver configuration file"
+  },
+  {
+    "name": "scdaemon",
+    "version": "2.5.17",
+    "desc": "Daemon invoked by gpg to manage smartcards"
+  },
+  {
+    "name": "sed",
+    "version": "4.9-2",
+    "desc": "GNU stream editor for filtering/transforming text"
+  },
+  {
+    "name": "serf-static",
+    "version": "1.3.10-2",
+    "desc": "Static libraries for serf"
+  },
+  {
+    "name": "serf",
+    "version": "1.3.10-2",
+    "desc": "High performance C-based HTTP client library"
+  },
+  {
+    "name": "speexdsp-static",
+    "version": "1.2.1-1",
+    "desc": "Static libraries for speexdsp"
+  },
+  {
+    "name": "speexdsp",
+    "version": "1.2.1-1",
+    "desc": "Speex audio processing library"
+  },
+  {
+    "name": "sqlite",
+    "version": "3.53.4",
+    "desc": "Command line shell for SQLite"
+  },
+  {
+    "name": "subversion-perl-static",
+    "version": "1.14.5-3",
+    "desc": "Static libraries for subversion-perl"
+  },
+  {
+    "name": "subversion-perl",
+    "version": "1.14.5-3",
+    "desc": "Perl interface to Subversion"
+  },
+  {
+    "name": "subversion-static",
+    "version": "1.14.5-3",
+    "desc": "Static libraries for subversion"
+  },
+  {
+    "name": "subversion",
+    "version": "1.14.5-3",
+    "desc": "Centralized version control system characterized by its simplicity"
+  },
+  {
+    "name": "swig",
+    "version": "4.5.0",
+    "desc": "Generate scripting interfaces to C/C++ code"
+  },
+  {
+    "name": "tar",
+    "version": "1.35-3",
+    "desc": "GNU tar for manipulating tar archives"
+  },
+  {
+    "name": "tcl",
+    "version": "8.6.16",
+    "desc": "Powerful but easy to learn dynamic programming language"
+  },
+  {
+    "name": "termux-am-socket",
+    "version": "1.5.0-1",
+    "desc": "A faster version of am with less features that only works while Termux is running"
+  },
+  {
+    "name": "termux-core-static",
+    "version": "0.4.0-1",
+    "desc": "Static libraries for termux-core"
+  },
+  {
+    "name": "termux-core",
+    "version": "0.4.0-1",
+    "desc": "Utils and libraries for Termux core"
+  },
+  {
+    "name": "termux-exec-static",
+    "version": "1:2.5.0-1",
+    "desc": "Static libraries for termux-exec"
+  },
+  {
+    "name": "termux-exec",
+    "version": "1:2.5.0-1",
+    "desc": "Utils and libraries for Termux exec including a LD_PRELOAD shared library for proper functioning of the Termux execution environment"
+  },
+  {
+    "name": "termux-tools",
+    "version": "1.46.0+really1.45.0-1",
+    "desc": "Basic system tools for Termux"
+  },
+  {
+    "name": "texinfo",
+    "version": "7.3",
+    "desc": "Documentation system for on-line information and printed output"
+  },
+  {
+    "name": "tk",
+    "version": "8.6.14-1",
+    "desc": "A windowing toolkit for use with tcl"
+  },
+  {
+    "name": "tor",
+    "version": "0.4.9.11",
+    "desc": "The Onion Router anonymizing overlay network"
+  },
+  {
+    "name": "unbound",
+    "version": "1.26.0",
+    "desc": "Unbound command-line tools"
+  },
+  {
+    "name": "unzip",
+    "version": "6.0-10",
+    "desc": "Tools for working with zip files"
+  },
+  {
+    "name": "utf8proc-static",
+    "version": "2.11.3",
+    "desc": "Static libraries for utf8proc"
+  },
+  {
+    "name": "utf8proc",
+    "version": "2.11.3",
+    "desc": "Library for processing UTF-8 Unicode data"
+  },
+  {
+    "name": "util-linux-static",
+    "version": "2.42.1-4",
+    "desc": "Static libraries for util-linux"
+  },
+  {
+    "name": "util-linux",
+    "version": "2.42.1-4",
+    "desc": "Miscellaneous system utilities"
+  },
+  {
+    "name": "uuid-utils",
+    "version": "2.42.1-4",
+    "desc": "Utilities for handling universally unique identifiers"
+  },
+  {
+    "name": "xsltproc",
+    "version": "1.1.45-1",
+    "desc": "XSLT command line processor"
+  },
+  {
+    "name": "xxhash-static",
+    "version": "0.8.3-1",
+    "desc": "Static libraries for xxhash"
+  },
+  {
+    "name": "xxhash",
+    "version": "0.8.3-1",
+    "desc": "Extremely fast non-cryptographic hash algorithm"
+  },
+  {
+    "name": "xz-utils",
+    "version": "5.8.3",
+    "desc": "XZ-format compression tools"
+  },
+  {
+    "name": "zlib-static",
+    "version": "1.3.2",
+    "desc": "Static libraries for zlib"
+  },
+  {
+    "name": "zlib",
+    "version": "1.3.2",
+    "desc": "Compression library implementing the deflate compression method found in gzip and PKZIP"
+  },
+  {
+    "name": "zstd",
+    "version": "1.5.7-1",
+    "desc": "Zstandard compression"
+  }
+]
