@@ -29,7 +29,7 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   "termux-tools"
   "util-linux"
 
-  ## ---- Additional ---- ##
+  ## ---- Additional (base) ---- ##
   "ed"
   "debianutils"
   "dos2unix"
@@ -40,13 +40,28 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   "openjdk-21"
   "patch"
   "unzip"
+  "libandroid-support"
+  "libandroid-glob"
+  "libsndfile"
 )
 
 # Debug-only packages
 declare -a AURASTUDIO_PACKAGES__DEBUG=(
+  "binutils"
+  "brotli"
+  "cmake"
+  "jq"
+  "libllvm"
+  "libprotobuf"
+  "libsqlite"
+  "mandoc"
+  "python"
+  "python-pip"
   "vim"
   "wget"
   "which"
+  "zip"
+  "zlib"
 )
 
 # Release-only packages
