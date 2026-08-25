@@ -49,6 +49,7 @@ declare -a PATCHES=(
   "libuv-force-cmake-build.patch"
   "coreutils-depend-on-libacl.patch"
   "subversion-missing-apr-includes.patch"
+  "attr-fix-source-url.patch"
 )
 
 # Optional build-fix patches (applied with --extras flag)
