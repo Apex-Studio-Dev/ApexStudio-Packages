@@ -34,6 +34,9 @@ declare -a PATCHES=(
 
   # -I dependency install: import our GPG key alongside upstream keys
   "use-our-keys-to-install-deps.patch"
+
+  # Build fixes
+  "openjdk-21-cleanup.patch"
 )
 
 # Optional build-fix patches (applied with --extras flag)

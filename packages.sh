@@ -39,6 +39,7 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   "lsof"
   "nano"
   "net-tools"
+  "openjdk-21"
   "patch"
   "unzip"
 )
