@@ -35,11 +35,11 @@ jobs:
       - name: Generate cache key
         id: cache-key
         run: |
-          # Cache key based on packages + patches (stable across commits that don't change packages)
-          PACKAGES_HASH=$(md5sum packages.sh | cut -d' ' -f1)
-          PATCHES_HASH=$(find patches/ -type f -exec md5sum {} + 2>/dev/null | md5sum | cut -d' ' -f1)
-          echo "key=termux-build-${{ inputs.arch }}-${PACKAGES_HASH:0:8}-${PATCHES_HASH:0:8}" >> "$GITHUB_OUTPUT"
-          echo "Cache key: termux-build-${{ inputs.arch }}-${PACKAGES_HASH:0:8}-${PATCHES_HASH:0:8}"
+          PACKAGES_HASH=$(md5sum packages.sh | cut -d' ' -f1 | cut -c1-8)
+          PATCHES_HASH=$(find patches/ -type f -exec md5sum {} + 2>/dev/null | md5sum | cut -d' ' -f1 | cut -c1-8)
+          CACHE_KEY="termux-build-${{ inputs.arch }}-${PACKAGES_HASH}-${PATCHES_HASH}"
+          echo "key=${CACHE_KEY}" >> "$GITHUB_OUTPUT"
+          echo "Cache key: ${CACHE_KEY}"
 
       - name: Cache built packages
         if: always()
@@ -53,7 +53,6 @@ jobs:
           key: ${{ steps.cache-key.outputs.key }}
           restore-keys: |
             termux-build-${{ inputs.arch }}-
-          save-always: true
 
       - name: Check cache hit
         run: |
