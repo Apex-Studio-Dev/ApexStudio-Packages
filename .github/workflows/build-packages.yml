@@ -112,16 +112,12 @@ jobs:
           DEB_COUNT=$(find output -name "*.deb" -type f 2>/dev/null | wc -l)
           BUILD_LOG="output/${{ inputs.arch }}/build.log"
 
-          MSG="AuraStudio Build"$'\n'
-          MSG+="Packages: ${{ inputs.packages }}"$'\n'
-          MSG+="Arch: ${{ inputs.arch }}"$'\n'
-          MSG+="Status: $STATUS"$'\n'
-          MSG+="Debs built: $DEB_COUNT"$'\n'
-          MSG+="Run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${{ github.run_id }}"
+          MSG=$(printf "AuraStudio Build\nPackages: %s\nArch: %s\nStatus: %s\nDebs built: %s\nRun: https://github.com/%s/actions/runs/%s" \
+            "${{ inputs.packages }}" "${{ inputs.arch }}" "$STATUS" "$DEB_COUNT" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
 
           curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
             -d chat_id="$CHAT_ID" \
-            -d text="$MSG" || true
+            --data-urlencode "text=$MSG" || true
 
           if [ -f "$BUILD_LOG" ]; then
             curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument" \
@@ -250,15 +246,12 @@ jobs:
           [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ] && exit 0
 
           if [ "${{ job.status }}" = "success" ]; then
-            MSG="Published to APT repo"$'\n'
-            MSG+="Packages: ${{ inputs.packages }}"$'\n'
-            MSG+="Hosted at: https://arata-labs.github.io/aurastudio-termux"
+            MSG=$(printf "Published to APT repo\nPackages: %s\nHosted at: https://arata-labs.github.io/aurastudio-termux" "${{ inputs.packages }}")
           else
-            MSG="Publish FAILED"$'\n'
-            MSG+="Packages: ${{ inputs.packages }}"$'\n'
-            MSG+="Check: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${{ github.run_id }}"
+            MSG=$(printf "Publish FAILED\nPackages: %s\nCheck: https://github.com/%s/actions/runs/%s" \
+              "${{ inputs.packages }}" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
           fi
 
           curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
             -d chat_id="$CHAT_ID" \
-            -d text="$MSG" || true
+            --data-urlencode "text=$MSG" || true

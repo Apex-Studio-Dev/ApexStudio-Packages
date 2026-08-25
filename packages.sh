@@ -7,7 +7,6 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   ## ---- Bootstrap packages ---- ##
   "apt"
   "bash"
-  "command-not-found"
   "coreutils"
   "dash"
   "diffutils"
