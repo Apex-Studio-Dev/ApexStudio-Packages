@@ -36,6 +36,7 @@ jobs:
         with:
           repository: Arata-Labs/aurastudio-packages
           path: aurastudio-packages
+          token: ${{ secrets.REPO_PAT }}
 
       - name: Install APT indexing tools
         run: sudo apt-get update && sudo apt-get install -y dpkg-dev
@@ -60,9 +61,14 @@ jobs:
         run: |
           chmod +x aurastudio-packages/scripts/import-debs.sh
           chmod +x aurastudio-packages/scripts/generate-index.sh
-          find aurastudio-termux/termux-packages/output/aarch64 -name "*.deb" -type f 2>/dev/null | head -20 || echo "No debs found"
+          echo "=== All .deb files ==="
+          find aurastudio-termux/termux-packages/output -name "*.deb" -type f 2>/dev/null || echo "none"
+          echo "=== Importing from output/aarch64 (requested packages) ==="
           ./aurastudio-packages/scripts/import-debs.sh \
-            aurastudio-termux/termux-packages/output/aarch64
+            aurastudio-termux/termux-packages/output/aarch64 || true
+          echo "=== Importing from output (dependencies) ==="
+          ./aurastudio-packages/scripts/import-debs.sh \
+            aurastudio-termux/termux-packages/output || true
 
       - name: Rebuild APT index + website data
         if: ${{ github.event.inputs.rebuild-index == 'true' }}
