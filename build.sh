@@ -61,6 +61,7 @@ BUILD_EXPLICIT="false"
 BUILD_NO_BUILD="false"
 BUILD_INSTALL_DEPS="false"
 BUILD_EXTRAS="false"
+BUILD_KEEP_GOING="false"
 BUILD_PACKAGE_NAME="$AURASTUDIO_PACKAGE_NAME"
 BUILD_REPO="$AURASTUDIO_REPO"
 BUILD_GPG_KEY="$AURASTUDIO_GPG_KEY"
@@ -80,6 +81,7 @@ Options:
   -s KEY         Override GPG key path
   -I             Install dependencies from repo before building
   -f             Force rebuild (clean + build)
+  --keep-going   Skip failed packages, continue building others
   --extras       Also apply build-fix patches (libdb, libuv, etc.)
   -h             Show this help
 
@@ -198,7 +200,7 @@ setup_aurastudio_patches() {
 }
 
 # Argument parsing
-while getopts "a:enp:r:s:Ifh" opt; do
+while getopts "a:enp:r:s:Ifkh" opt; do
   case "$opt" in
     a) BUILD_ARCH="$OPTARG" ;;
     e) BUILD_EXPLICIT="true" ;;
@@ -208,7 +210,9 @@ while getopts "a:enp:r:s:Ifh" opt; do
     s) BUILD_GPG_KEY="$(realpath "$OPTARG")" ;;
     I) BUILD_INSTALL_DEPS="true" ;;
     f) FORCE_REBUILD=true ;;
+    k) BUILD_KEEP_GOING="true" ;;
     -) case "${OPTARG}" in
+         keep-going) BUILD_KEEP_GOING="true" ;;
          extras) BUILD_EXTRAS="true" ;;
          *) aurastudio_error "Unknown option: --$OPTARG"; exit 1 ;;
        esac; shift ;;
@@ -284,8 +288,6 @@ if [[ -n "${FORCE_REBUILD:-}" ]]; then
   BUILD_ARGS+=("-f")
 fi
 
-BUILD_ARGS+=("${BUILD_PACKAGES[@]}")
-
 # Run build-package.sh inside termux-packages
 pushd "$TERMUX_PACKAGES_DIR" || aurastudio_error_exit "Unable to enter termux-packages"
 echo
@@ -294,9 +296,51 @@ echo "Building: ${BUILD_PACKAGES[*]} for $BUILD_ARCH"
 echo "==="
 echo
 
-if ! { time ./build-package.sh "${BUILD_ARGS[@]}" 2>&1 | tee "$OUTPUT_DIR/build.log"; }; then
-  aurastudio_error_exit "Build failed. See $OUTPUT_DIR/build.log"
-fi
+if [[ "$BUILD_KEEP_GOING" == "true" ]]; then
+  # --- Keep-going mode: build one-by-one, skip failures ---
+  FAILED_PKGS=()
+  SUCCESS_COUNT=0
+  TOTAL=${#BUILD_PACKAGES[@]}
 
-popd || aurastudio_error_exit "Unable to leave termux-packages"
-aurastudio_ok "[+] Build complete. Output: $OUTPUT_DIR"
+  for pkg in "${BUILD_PACKAGES[@]}"; do
+    IDX=$((SUCCESS_COUNT + ${#FAILED_PKGS[@]} + 1))
+    echo ""
+    echo ">>> [$IDX/$TOTAL] Building: $pkg"
+    echo ""
+
+    PKG_ARGS=("${BUILD_ARGS[@]}" -e "$pkg")
+    if { time ./build-package.sh "${PKG_ARGS[@]}" 2>&1 | tee -a "$OUTPUT_DIR/build.log"; }; then
+      SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+      aurastudio_ok "[OK] $pkg"
+    else
+      FAILED_PKGS+=("$pkg")
+      aurastudio_error "[FAILED] $pkg — skipping"
+    fi
+  done
+
+  echo ""
+  echo "=== Build Summary ==="
+  echo "Total:  $TOTAL"
+  echo "Built:  $SUCCESS_COUNT"
+  echo "Failed: ${#FAILED_PKGS[@]}"
+
+  if [ ${#FAILED_PKGS[@]} -gt 0 ]; then
+    printf '%s\n' "${FAILED_PKGS[@]}" > "$OUTPUT_DIR/failed-packages.txt"
+    echo "Failed packages saved to: $OUTPUT_DIR/failed-packages.txt"
+    echo "Failed: ${FAILED_PKGS[*]}"
+  fi
+
+  popd || aurastudio_error_exit "Unable to leave termux-packages"
+  aurastudio_ok "[+] Build complete (keep-going). Output: $OUTPUT_DIR"
+  exit 0
+else
+  # --- Normal mode: all-at-once ---
+  BUILD_ARGS+=("${BUILD_PACKAGES[@]}")
+
+  if ! { time ./build-package.sh "${BUILD_ARGS[@]}" 2>&1 | tee "$OUTPUT_DIR/build.log"; }; then
+    aurastudio_error_exit "Build failed. See $OUTPUT_DIR/build.log"
+  fi
+
+  popd || aurastudio_error_exit "Unable to leave termux-packages"
+  aurastudio_ok "[+] Build complete. Output: $OUTPUT_DIR"
+fi

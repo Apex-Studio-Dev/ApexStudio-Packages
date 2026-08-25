@@ -11,7 +11,7 @@ on:
         options:
           - aarch64
       packages:
-        description: "Package names (space-separated, or 'all' for base packages)"
+        description: "Package names (space-separated, or 'all' for all packages)"
         required: true
         type: string
 
@@ -63,19 +63,19 @@ jobs:
             echo "NDK r29 already installed"
           fi
 
-      - name: Build packages
+      - name: Build packages (keep-going)
         run: |
           export ANDROID_NDK_HOME=/github/home/lib/android-ndk-r29
           export NDK=/github/home/lib/android-ndk-r29
 
           if [ "${{ inputs.packages }}" = "all" ]; then
-            bash build.sh -a "${{ inputs.arch }}"
+            bash build.sh -a "${{ inputs.arch }}" --keep-going
           else
             bash build.sh -a "${{ inputs.arch }}" -e ${{ inputs.packages }}
           fi
 
       - name: Save built packages cache
-        if: success()
+        if: always()
         uses: actions/cache/save@v4
         with:
           path: |
@@ -84,57 +84,39 @@ jobs:
             output/${{ inputs.arch }}
           key: termux-build-${{ inputs.arch }}-${{ github.sha }}
 
-      - name: Show build log
-        if: always()
-        run: cat output/${{ inputs.arch }}/build.log 2>/dev/null || echo "no log"
-
-      - name: Debug debs location
+      - name: Show build summary
         if: always()
         run: |
-          echo "=== output structure ==="
-          find output -name "*.deb" -type f | head -50
-          echo "=== all debs ==="
-          find . -name "*.deb" -not -path "./.git/*" | head -30
+          echo "=== Debs built ==="
+          find output -name "*.deb" -type f 2>/dev/null | wc -l
+          echo "=== Failed packages ==="
+          cat output/${{ inputs.arch }}/failed-packages.txt 2>/dev/null || echo "none"
+          echo "=== Build log tail ==="
+          tail -30 output/${{ inputs.arch }}/build.log 2>/dev/null || echo "no log"
 
-      - name: Send Telegram notification
+      - name: Upload failed packages list
         if: always()
-        run: |
-          BOT_TOKEN="${{ secrets.TELEGRAM_BOT_TOKEN }}"
-          CHAT_ID="${{ secrets.TELEGRAM_CHAT_ID }}"
-          [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ] && echo "Telegram not configured, skipping" && exit 0
-
-          if [ "${{ job.status }}" = "success" ]; then
-            STATUS="SUCCESS"
-          else
-            STATUS="FAILED"
-          fi
-
-          DEB_COUNT=$(find output -name "*.deb" -type f 2>/dev/null | wc -l)
-          BUILD_LOG="output/${{ inputs.arch }}/build.log"
-
-          MSG=$(printf "AuraStudio Build\nPackages: %s\nArch: %s\nStatus: %s\nDebs built: %s\nRun: https://github.com/%s/actions/runs/%s" \
-            "${{ inputs.packages }}" "${{ inputs.arch }}" "$STATUS" "$DEB_COUNT" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
-
-          curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
-            -d chat_id="$CHAT_ID" \
-            --data-urlencode "text=$MSG" || true
-
-          if [ -f "$BUILD_LOG" ]; then
-            curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument" \
-              -F chat_id="$CHAT_ID" \
-              -F document=@"$BUILD_LOG" \
-              -F caption="Build log - ${{ inputs.packages }}" || true
-          fi
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-packages
+          path: output/${{ inputs.arch }}/failed-packages.txt
+          if-no-files-found: ignore
+          retention-days: 1
 
       - name: Package debs
-        if: success()
+        if: always()
         run: |
           cd output/${{ inputs.arch }}
-          for f in *.deb; do
-            newname=$(echo "$f" | tr ':' 'COLON')
-            [ "$f" != "$newname" ] && mv "$f" "$newname"
-          done
-          zip -0 ../packages-${{ inputs.arch }}.zip *.deb
+          DEB_COUNT=$(find . -name "*.deb" -type f 2>/dev/null | wc -l)
+          if [ "$DEB_COUNT" -gt 0 ]; then
+            for f in *.deb; do
+              newname=$(echo "$f" | tr ':' 'COLON')
+              [ "$f" != "$newname" ] && mv "$f" "$newname"
+            done
+            zip -0 ../packages-${{ inputs.arch }}.zip *.deb
+          else
+            echo "No debs to package"
+          fi
 
       - name: Delete old release tag
         run: |
@@ -146,7 +128,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload to Release
-        if: success()
+        if: always()
         uses: softprops/action-gh-release@v2
         with:
           tag_name: packages-${{ inputs.arch }}
@@ -156,8 +138,40 @@ jobs:
           overwrite_files: true
           overwrite: true
 
+      - name: Send build notification
+        if: always()
+        run: |
+          BOT_TOKEN="${{ secrets.TELEGRAM_BOT_TOKEN }}"
+          CHAT_ID="${{ secrets.TELEGRAM_CHAT_ID }}"
+          if [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ]; then
+            echo "Telegram not configured, skipping"
+            exit 0
+          fi
+
+          DEB_COUNT=$(find output -name "*.deb" -type f 2>/dev/null | wc -l)
+          FAILED_COUNT=0
+          FAILED_LIST=""
+          if [ -f "output/${{ inputs.arch }}/failed-packages.txt" ]; then
+            FAILED_COUNT=$(wc -l < "output/${{ inputs.arch }}/failed-packages.txt")
+            FAILED_LIST=$(cat "output/${{ inputs.arch }}/failed-packages.txt" | tr '\n' ', ' | sed 's/,$//')
+          fi
+
+          if [ "$FAILED_COUNT" -gt 0 ]; then
+            STATUS="PARTIAL (${DEB_COUNT} built, ${FAILED_COUNT} failed)"
+          else
+            STATUS="SUCCESS (${DEB_COUNT} built)"
+          fi
+
+          MSG=$(printf "AuraStudio Build\nPackages: %s\nArch: %s\nStatus: %s\nFailed: %s\nRun: https://github.com/%s/actions/runs/%s" \
+            "${{ inputs.packages }}" "${{ inputs.arch }}" "$STATUS" "$FAILED_LIST" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
+
+          curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+            -d chat_id="$CHAT_ID" \
+            --data-urlencode "text=$MSG" || true
+
   publish:
     needs: build
+    if: always() && needs.build.result != 'cancelled'
     runs-on: ubuntu-26.04
 
     env:
@@ -178,6 +192,8 @@ jobs:
           if [ -f "packages-${{ inputs.arch }}.zip" ]; then
             unzip -o packages-${{ inputs.arch }}.zip
             rm packages-${{ inputs.arch }}.zip
+          else
+            echo "No release zip found, using existing debs"
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -238,19 +254,265 @@ jobs:
           publish_dir: output/repo
           keep_files: false
 
-      - name: Send publish notification
+      - name: Publish summary
+        if: always()
+        run: |
+          DEB_COUNT=$(find output/repo/pool -name "*.deb" -type f 2>/dev/null | wc -l)
+          echo "Published ${DEB_COUNT} debs to APT repo"
+
+  retry-failed:
+    needs: publish
+    if: always() && needs.publish.result != 'cancelled'
+    runs-on: ubuntu-26.04
+
+    container:
+      image: ghcr.io/termux/package-builder:latest
+      options: --privileged --device /dev/fuse
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Download failed packages list
+        uses: actions/download-artifact@v4
+        with:
+          name: failed-packages
+          path: /tmp/
+        continue-on-error: true
+
+      - name: Check for failures
+        id: check
+        run: |
+          if [ ! -f /tmp/failed-packages.txt ] || [ ! -s /tmp/failed-packages.txt ]; then
+            echo "has_failures=false" >> "$GITHUB_OUTPUT"
+            echo "No failed packages to retry"
+          else
+            echo "has_failures=true" >> "$GITHUB_OUTPUT"
+            echo "Failed packages to retry:"
+            cat /tmp/failed-packages.txt
+          fi
+
+      - name: Cache built packages
+        if: steps.check.outputs.has_failures == 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            /data
+            /github/home/.termux-build
+            output/${{ inputs.arch }}
+          key: termux-build-${{ inputs.arch }}-${{ github.sha }}
+          restore-keys: |
+            termux-build-${{ inputs.arch }}-
+
+      - name: Setup Android SDK
+        if: steps.check.outputs.has_failures == 'true'
+        uses: android-actions/setup-android@v3
+
+      - name: Setup Android NDK r29
+        if: steps.check.outputs.has_failures == 'true'
+        run: |
+          if [ ! -d /github/home/lib/android-ndk-r29 ]; then
+            curl -L "https://dl.google.com/android/repository/android-ndk-r29-linux.zip" -o /tmp/ndk.zip
+            unzip -q /tmp/ndk.zip -d /github/home/lib/
+          else
+            echo "NDK r29 already installed"
+          fi
+
+      - name: Retry failed packages with -I
+        if: steps.check.outputs.has_failures == 'true'
+        run: |
+          export ANDROID_NDK_HOME=/github/home/lib/android-ndk-r29
+          export NDK=/github/home/lib/android-ndk-r29
+
+          RETRY_SUCCESS=0
+          RETRY_FAIL=0
+          while IFS= read -r pkg; do
+            [ -z "$pkg" ] && continue
+            echo ""
+            echo "=== Retrying: $pkg ==="
+            echo ""
+            if bash build.sh -a "${{ inputs.arch }}" -I -e "$pkg"; then
+              RETRY_SUCCESS=$((RETRY_SUCCESS + 1))
+              echo "[RECOVERED] $pkg"
+            else
+              RETRY_FAIL=$((RETRY_FAIL + 1))
+              echo "[STILL FAILED] $pkg"
+            fi
+          done < /tmp/failed-packages.txt
+
+          echo ""
+          echo "=== Retry Summary ==="
+          echo "Recovered: $RETRY_SUCCESS"
+          echo "Still failed: $RETRY_FAIL"
+
+          # Save retried status
+          echo "$RETRY_SUCCESS" > /tmp/retry_success_count
+          echo "$RETRY_FAIL" > /tmp/retry_fail_count
+
+      - name: Upload retried debs to Release
+        if: steps.check.outputs.has_failures == 'true'
+        run: |
+          cd output/${{ inputs.arch }}
+          DEB_COUNT=$(find . -name "*.deb" -type f 2>/dev/null | wc -l)
+          if [ "$DEB_COUNT" -gt 0 ]; then
+            for f in *.deb; do
+              newname=$(echo "$f" | tr ':' 'COLON')
+              [ "$f" != "$newname" ] && mv "$f" "$newname"
+            done
+            zip -0 ../packages-${{ inputs.arch }}.zip *.deb
+          fi
+
+      - name: Upload retry stats
+        if: steps.check.outputs.has_failures == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: retry-stats
+          path: |
+            /tmp/retry_success_count
+            /tmp/retry_fail_count
+          if-no-files-found: ignore
+          retention-days: 1
+
+      - name: Delete old release tag
+        if: steps.check.outputs.has_failures == 'true'
+        run: |
+          curl -X DELETE \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${GITHUB_REPOSITORY}/git/refs/tags/packages-${{ inputs.arch }} || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload to Release
+        if: steps.check.outputs.has_failures == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: packages-${{ inputs.arch }}
+          name: Packages Build ${{ inputs.arch }}
+          files: output/packages-${{ inputs.arch }}.zip
+          fail_on_unmatched_files: false
+          overwrite_files: true
+          overwrite: true
+
+  final-publish:
+    needs: [build, retry-failed]
+    if: always() && needs.retry-failed.result != 'cancelled'
+    runs-on: ubuntu-26.04
+
+    env:
+      GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: pages
+          fetch-depth: 0
+
+      - name: Download all debs from Release
+        run: |
+          mkdir -p output/${{ inputs.arch }}
+          gh release download packages-${{ inputs.arch }} \
+            --pattern "packages-${{ inputs.arch }}.zip" --dir output/${{ inputs.arch }} || true
+          cd output/${{ inputs.arch }}
+          if [ -f "packages-${{ inputs.arch }}.zip" ]; then
+            unzip -o packages-${{ inputs.arch }}.zip
+            rm packages-${{ inputs.arch }}.zip
+          fi
+          DEB_COUNT=$(find . -name "*.deb" -type f 2>/dev/null | wc -l)
+          echo "Total debs for APT repo: $DEB_COUNT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download retry stats
+        uses: actions/download-artifact@v4
+        with:
+          name: retry-stats
+          path: /tmp/
+        continue-on-error: true
+
+      - name: Install tools
+        run: sudo apt-get update && sudo apt-get install -y gnupg curl wget python3
+
+      - name: Regenerate APT repository
+        run: |
+          export AURASTUDIO_OUTPUT_DIR="$(pwd)/output"
+          export AURASTUDIO_REPO_DIR="$(pwd)/output/repo"
+          bash ./generate-apt-repo.sh
+
+      - name: Import GPG key
+        run: |
+          if [ -n "${PACKAGES_GPG_KEY:-}" ]; then
+            echo "$PACKAGES_GPG_KEY" | base64 -d | gpg --batch --import
+          fi
+        env:
+          PACKAGES_GPG_KEY: ${{ secrets.PACKAGES_GPG_KEY }}
+
+      - name: Sign repository
+        run: |
+          if [ -n "${PACKAGES_GPG_KEY_PASS:-}" ] && [ -n "${GPG_KEY_ID:-}" ]; then
+            echo "$PACKAGES_GPG_KEY_PASS" | \
+            gpg \
+              --yes \
+              --passphrase-fd 0 \
+              --pinentry-mode loopback \
+              --digest-algo SHA256 \
+              --clearsign \
+              -u "${GPG_KEY_ID}" \
+              -o output/repo/dists/stable/InRelease \
+              output/repo/dists/stable/Release
+          fi
+        env:
+          PACKAGES_GPG_KEY_PASS: ${{ secrets.PACKAGES_GPG_KEY_PASS }}
+          GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
+
+      - name: Generate packages.json
+        run: |
+          PACKAGES_FILE="output/repo/dists/stable/main/binary-aarch64/Packages"
+          bash ./generate-packages-json.sh "$PACKAGES_FILE" "output/repo/packages.json"
+
+      - name: Copy website
+        run: |
+          cp pages-index.html output/repo/index.html
+
+      - name: Deploy final repo to pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: pages
+          publish_dir: output/repo
+          keep_files: false
+
+      - name: Send final notification
         if: always()
         run: |
           BOT_TOKEN="${{ secrets.TELEGRAM_BOT_TOKEN }}"
           CHAT_ID="${{ secrets.TELEGRAM_CHAT_ID }}"
-          [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ] && exit 0
-
-          if [ "${{ job.status }}" = "success" ]; then
-            MSG=$(printf "Published to APT repo\nPackages: %s\nHosted at: https://arata-labs.github.io/aurastudio-termux" "${{ inputs.packages }}")
-          else
-            MSG=$(printf "Publish FAILED\nPackages: %s\nCheck: https://github.com/%s/actions/runs/%s" \
-              "${{ inputs.packages }}" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
+          if [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ]; then
+            exit 0
           fi
+
+          DEB_COUNT=$(find output/repo/pool -name "*.deb" -type f 2>/dev/null | wc -l)
+          RETRY_SUCCESS=0
+          RETRY_FAIL=0
+          [ -f /tmp/retry_success_count ] && RETRY_SUCCESS=$(cat /tmp/retry_success_count)
+          [ -f /tmp/retry_fail_count ] && RETRY_FAIL=$(cat /tmp/retry_fail_count)
+
+          FINAL_FAILED=0
+          FINAL_LIST=""
+          if [ "$RETRY_FAIL" -gt 0 ] && [ -f /tmp/failed-packages.txt ]; then
+            FINAL_FAILED=$RETRY_FAIL
+            FINAL_LIST=$(cat /tmp/failed-packages.txt | tr '\n' ', ' | sed 's/,$//')
+          fi
+
+          if [ "$FINAL_FAILED" -gt 0 ]; then
+            STATUS="PARTIAL"
+          else
+            STATUS="SUCCESS"
+          fi
+
+          MSG=$(printf "AuraStudio Build Complete\nArch: %s\nTotal debs: %s\nRecovered: %s\nStill failed: %s\nStatus: %s\nFailed: %s\nRepo: https://arata-labs.github.io/aurastudio-termux\nRun: https://github.com/%s/actions/runs/%s" \
+            "${{ inputs.arch }}" "$DEB_COUNT" "$RETRY_SUCCESS" "$FINAL_FAILED" "$STATUS" "$FINAL_LIST" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
 
           curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
             -d chat_id="$CHAT_ID" \
