@@ -36,6 +36,7 @@ declare -a PATCHES=(
   "use-our-keys-to-install-deps.patch"
 
   # Build fixes
+  "openjdk-17-cleanup.patch"
   "openjdk-21-cleanup.patch"
 
   # Shared memory (needed by libx11, libdb, etc.)
