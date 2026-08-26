@@ -76,6 +76,9 @@ jobs:
           export ANDROID_NDK_HOME=/github/home/lib/android-ndk-r29
           export NDK=/github/home/lib/android-ndk-r29
 
+          # Clear stale failed-packages.txt from cache restore
+          rm -f "output/${{ inputs.arch }}/failed-packages.txt"
+
           if [ "${{ inputs.packages }}" = "all" ]; then
             bash build.sh -a "${{ inputs.arch }}" --keep-going
           else
@@ -104,7 +107,15 @@ jobs:
 
       - name: Upload failed packages list
         if: always()
-        uses: actions/upload-artifact@v4
+        run: |
+          if [ -f "output/${{ inputs.arch }}/failed-packages.txt" ] && [ -s "output/${{ inputs.arch }}/failed-packages.txt" ]; then
+            echo "Failed packages found, uploading"
+          else
+            rm -f "output/${{ inputs.arch }}/failed-packages.txt"
+            echo "No failed packages"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: failed-packages
           path: output/${{ inputs.arch }}/failed-packages.txt
