@@ -12,18 +12,31 @@ for f in "$@"; do
 done
 
 python3 -c "
-import json, sys
+import json, sys, os
 
 packages = []
 current = {}
+current_arch = ''
 
 def flush():
-    global current
+    global current, current_arch
     if 'name' in current:
+        current['arch'] = current_arch
         packages.append(current)
     current = {}
+    current_arch = ''
 
 for path in sys.argv[2:]:
+    # Determine arch from path
+    if 'binary-aarch64' in path:
+        current_arch = 'aarch64'
+    elif 'binary-arm' in path:
+        current_arch = 'arm'
+    elif 'binary-all' in path:
+        current_arch = 'all'
+    else:
+        current_arch = 'unknown'
+
     with open(path) as f:
         for line in f:
             line = line.rstrip()
@@ -43,10 +56,20 @@ for path in sys.argv[2:]:
                 current['desc'] = val
     flush()
 
-# deduplicate by name (keep last seen, e.g. binary-aarch64 before binary-all)
+# Merge: if package exists in multiple archs, mark as 'both'
 seen = {}
 for pkg in packages:
-    seen[pkg['name']] = pkg
+    name = pkg['name']
+    arch = pkg.get('arch', 'unknown')
+    if name in seen:
+        old_arch = seen[name].get('arch', '')
+        if old_arch != arch and old_arch != 'all' and arch != 'all':
+            seen[name]['arch'] = 'both'
+        elif arch == 'all':
+            seen[name]['arch'] = 'all'
+    else:
+        seen[name] = pkg
+
 result = sorted(seen.values(), key=lambda p: p['name'])
 
 with open(sys.argv[1], 'w') as f:
