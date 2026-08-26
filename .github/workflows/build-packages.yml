@@ -229,8 +229,15 @@ jobs:
 
       - name: Download from Release
         run: |
-          mkdir -p output/aarch64 output/arm
-          for arch in aarch64 arm; do
+          INPUT_ARCH="${{ inputs.arch }}"
+          if [ "$INPUT_ARCH" = "both" ]; then
+            DOWNLOAD_ARCHS="aarch64 arm"
+          else
+            DOWNLOAD_ARCHS="$INPUT_ARCH"
+          fi
+
+          for arch in $DOWNLOAD_ARCHS; do
+            mkdir -p "output/${arch}"
             for attempt in 1 2 3; do
               echo "Download attempt $attempt/3 for $arch..."
               if gh release download "packages-${arch}" \
@@ -456,8 +463,15 @@ jobs:
 
       - name: Download all debs from Release
         run: |
-          mkdir -p output/aarch64 output/arm
-          for arch in aarch64 arm; do
+          INPUT_ARCH="${{ inputs.arch }}"
+          if [ "$INPUT_ARCH" = "both" ]; then
+            DOWNLOAD_ARCHS="aarch64 arm"
+          else
+            DOWNLOAD_ARCHS="$INPUT_ARCH"
+          fi
+
+          for arch in $DOWNLOAD_ARCHS; do
+            mkdir -p "output/${arch}"
             for attempt in 1 2 3; do
               echo "Download attempt $attempt/3 for $arch..."
               if gh release download "packages-${arch}" \
