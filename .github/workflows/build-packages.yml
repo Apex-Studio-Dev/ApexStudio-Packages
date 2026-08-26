@@ -10,6 +10,7 @@ on:
         type: choice
         options:
           - aarch64
+          - arm
       packages:
         description: "Package names (space-separated, or 'all' for all packages)"
         required: true
@@ -282,6 +283,7 @@ jobs:
           bash ./generate-packages-json.sh \
             "output/repo/packages.json" \
             "output/repo/dists/stable/main/binary-aarch64/Packages" \
+            "output/repo/dists/stable/main/binary-arm/Packages" \
             "output/repo/dists/stable/main/binary-all/Packages"
 
       - name: Copy website
@@ -512,6 +514,7 @@ jobs:
           bash ./generate-packages-json.sh \
             "output/repo/packages.json" \
             "output/repo/dists/stable/main/binary-aarch64/Packages" \
+            "output/repo/dists/stable/main/binary-arm/Packages" \
             "output/repo/dists/stable/main/binary-all/Packages"
 
       - name: Copy website

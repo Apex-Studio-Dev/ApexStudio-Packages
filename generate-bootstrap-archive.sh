@@ -107,7 +107,8 @@ echo "  Repository     : ${AURASTUDIO_REPO}"
 echo "  Packages       : ${#COTG_EXTRA_PACKAGES[@]}"
 
 # Build for target architectures
-for arch in aarch64; do
+TARGET_ARCH="${1:-aarch64}"
+for arch in $TARGET_ARCH; do
   build_bootstrap "$COTG_VARIANT" "$arch" "$AURASTUDIO_REPO" "${COTG_EXTRA_PACKAGES[@]}" ||
     aurastudio_error_exit "Unable to build bootstrap for ${arch}"
 done

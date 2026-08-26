@@ -15,8 +15,8 @@ export TERMUX_PACKAGE_NAME
 AURASTUDIO_PACKAGE_NAME="com.aurastudio"
 export AURASTUDIO_PACKAGE_NAME
 
-# Supported architectures (aarch64 only)
-AURASTUDIO_ARCHS=" aarch64 "
+# Supported architectures
+AURASTUDIO_ARCHS=" aarch64 arm "
 export AURASTUDIO_ARCHS
 
 # API level (Android 9+)

@@ -10,6 +10,7 @@ on:
         type: choice
         options:
           - aarch64
+          - arm
 
       release:
         description: "Release build?"
