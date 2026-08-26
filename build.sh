@@ -50,6 +50,9 @@ declare -a PATCHES=(
   "libuv-force-cmake-build.patch"
   "coreutils-depend-on-libacl.patch"
   "subversion-missing-apr-includes.patch"
+
+  # Custom MOTD
+  "termux-tools-motd.patch"
 )
 
 # Optional build-fix patches (applied with --extras flag)
