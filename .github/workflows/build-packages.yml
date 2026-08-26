@@ -330,7 +330,7 @@ jobs:
       - name: Publish summary
         if: always()
         run: |
-          DEB_COUNT=$(find output/repo/pool -name "*.deb" -type f 2>/dev/null | wc -l)
+          DEB_COUNT=$(find output/repo -path "*/binary-*/*.deb" -type f 2>/dev/null | wc -l)
           echo "Published ${DEB_COUNT} debs to APT repo"
 
   retry-failed:
@@ -582,7 +582,7 @@ jobs:
             exit 0
           fi
 
-          DEB_COUNT=$(find output/repo/pool -name "*.deb" -type f 2>/dev/null | wc -l)
+          DEB_COUNT=$(find output/repo -path "*/binary-*/*.deb" -type f 2>/dev/null | wc -l)
           RETRY_SUCCESS=0
           RETRY_FAIL=0
           [ -f /tmp/retry_success_count ] && RETRY_SUCCESS=$(cat /tmp/retry_success_count)

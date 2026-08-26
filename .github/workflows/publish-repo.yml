@@ -134,7 +134,7 @@ jobs:
       - name: Publish summary
         if: always()
         run: |
-          DEB_COUNT=$(find output/repo/pool -name "*.deb" -type f 2>/dev/null | wc -l)
+          DEB_COUNT=$(find output/repo -path "*/binary-*/*.deb" -type f 2>/dev/null | wc -l)
           echo "Published ${DEB_COUNT} debs to APT repo"
 
       - name: Send notification
@@ -146,7 +146,7 @@ jobs:
             exit 0
           fi
 
-          DEB_COUNT=$(find output/repo/pool -name "*.deb" -type f 2>/dev/null | wc -l)
+          DEB_COUNT=$(find output/repo -path "*/binary-*/*.deb" -type f 2>/dev/null | wc -l)
 
           MSG=$(printf "AuraStudio Publish (manual)\nArch: %s\nPublished: %s debs\nRepo: https://arata-labs.github.io/aurastudio-termux\nRun: https://github.com/%s/actions/runs/%s" \
             "${{ inputs.arch }}" "$DEB_COUNT" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
