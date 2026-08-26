@@ -750,6 +750,16 @@
     "desc": "Library for smart adaptive formatting of tabular data"
   },
   {
+    "name": "libsndfile",
+    "version": "1.2.2-3",
+    "desc": "Library for reading/writing audio files"
+  },
+  {
+    "name": "libsndfile-static",
+    "version": "1.2.2-3",
+    "desc": "Static libraries for libsndfile"
+  },
+  {
     "name": "libsoxr",
     "version": "0.1.3-8",
     "desc": "High quality, one-dimensional sample-rate conversion library"

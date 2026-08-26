@@ -2199,6 +2199,38 @@ SHA1: 906d45486b06e0f1cadc8b32cfa32b555486681a
 SHA256: 4517b1bc0c11c66deaced0005fff3287d90e2b6fcd33d7fb93a13276417865cf
 SHA512: e7aeb0b48ca6f14ea2e6f6067427e6333577f4ca7befe5d3149e1699e8fe68867b966ed11cb8d3e2ba66fb3ba5f7135177ad449a835274760267f95f2190a2d5
 
+Package: libsndfile-static
+Architecture: aarch64
+Installed-Size: 876
+Maintainer: @termux
+Version: 1.2.2-3
+Homepage: http://www.mega-nerd.com/libsndfile
+Depends: libsndfile (= 1.2.2-3)
+Description: Static libraries for libsndfile
+Filename: dists/stable/main/binary-aarch64/libsndfile-static_1.2.2-3_aarch64.deb
+Size: 187744
+MD5Sum: 56e0c2c69f40b79a5783e539636cf7af
+SHA1: 30236c8fddd95ee08f0128a056511a01a3544632
+SHA256: 4c8eb07a693f482ae87c336d43090cedfafda2eb23267035a1a5cc6377918c68
+SHA512: cdff220159a5cc98cf06888e8c39579039c39e74efac50ec48b35162e91ff404fc4fdb6823e891235ceaa3ea759e4b02f4b9515a23f3e434afff3bccfdca9fad
+
+Package: libsndfile
+Architecture: aarch64
+Installed-Size: 712
+Maintainer: @termux
+Version: 1.2.2-3
+Homepage: http://www.mega-nerd.com/libsndfile
+Breaks: libsndfile-dev
+Depends: libflac, libmp3lame, libmpg123, libogg, libopus, libvorbis
+Replaces: libsndfile-dev
+Description: Library for reading/writing audio files
+Filename: dists/stable/main/binary-aarch64/libsndfile_1.2.2-3_aarch64.deb
+Size: 216960
+MD5Sum: f70ba51bcb1b8080a6d412f926aa08bc
+SHA1: 3b4fbc8d51d60a1658102e43e014ad97526a9a69
+SHA256: 3c2f659196bf584cfcf9f5192c847214de61490583a6952ceb3a85f87ef0026c
+SHA512: 7c965c0ea9e0ed046365304029ac14e4f95758bf909dfe280e38f736cbacd329b32b4ce56e55a99b574950926e461ef98dc8c702b9ab8380af049bbc8505b43d
+
 Package: libsoxr
 Architecture: aarch64
 Installed-Size: 1076
