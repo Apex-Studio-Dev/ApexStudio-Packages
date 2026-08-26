@@ -46,6 +46,7 @@ declare -a PATCHES=(
   "apr-link-against-libandroid-shmem.patch"
 
   # Build fixes
+  "pulseaudio-link-against-libiconv.patch"
   "libuv-force-cmake-build.patch"
   "coreutils-depend-on-libacl.patch"
   "subversion-missing-apr-includes.patch"
