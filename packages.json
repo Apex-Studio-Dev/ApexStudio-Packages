@@ -9,49 +9,49 @@
     "name": "alsa-lib",
     "version": "1.2.16.1",
     "desc": "The Advanced Linux Sound Architecture (ALSA) - library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "alsa-plugins",
     "version": "1.2.12-1",
     "desc": "The Advanced Linux Sound Architecture (ALSA) - plugins",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "apr",
     "version": "1.7.6-2",
     "desc": "Apache Portable Runtime Library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "apr-static",
     "version": "1.7.6-2",
     "desc": "Static libraries for apr",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "apr-util",
     "version": "1.6.5",
     "desc": "Apache Portable Runtime Utility Library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "apr-util-static",
     "version": "1.6.5",
     "desc": "Static libraries for apr-util",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "apt",
     "version": "2.8.1-2",
     "desc": "Front-end for the dpkg package manager",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "apt-ftparchive",
     "version": "2.8.1-2",
     "desc": "apt-ftparchive is the command line tool that generates the index files that APT uses to access a distribution source",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "apt-transport-tor",
@@ -63,2124 +63,2124 @@
     "name": "aria2",
     "version": "1.37.0-3",
     "desc": "Download utility supporting HTTP/HTTPS, FTP, BitTorrent and Metalink",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "attr",
     "version": "2.6.0",
     "desc": "Utilities for manipulating filesystem extended attributes",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "attr-static",
     "version": "2.6.0",
     "desc": "Static libraries for attr",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "bash",
     "version": "5.3.15",
     "desc": "A sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh)",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "bash-completion",
     "version": "2.18.0",
     "desc": "Programmable completion for the bash shell",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "binutils",
     "version": "2.47",
     "desc": "A GNU collection of binary utilities",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "binutils-cross",
     "version": "2.47",
     "desc": "GNU Binutils for cross build on the host (NOT for Termux)",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "blk-utils",
     "version": "2.42.1-4",
     "desc": "Utilities for handling block device attributes",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "brotli",
     "version": "1.2.0",
     "desc": "lossless compression algorithm and format (command line utility)",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "bsdtar",
     "version": "3.8.9",
     "desc": "The tar(1) and cpio(1) programs from FreeBSD, using libarchive",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "bzip2",
     "version": "1.0.8-8",
     "desc": "Tools for working with bzip2 compression",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "c-ares",
     "version": "1.34.8",
     "desc": "Library for asynchronous DNS requests (including name resolves)",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "ca-certificates",
     "version": "1:2026.07.16",
     "desc": "Common CA certificates",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "ca-certificates-java",
     "version": "1:2026.07.16",
     "desc": "Common CA certificates (java keystore format)",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "check",
     "version": "0.15.2-3",
     "desc": "A unit testing framework for C",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "check-static",
     "version": "0.15.2-3",
     "desc": "Static libraries for check",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "clang",
     "version": "21.1.8-3",
     "desc": "C language frontend for LLVM",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "cmake",
     "version": "4.4.2",
     "desc": "Family of tools designed to build, test and package software",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "cmake-curses-gui",
     "version": "4.4.2",
     "desc": "Curses based user interface for CMake (ccmake)",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "coreutils",
     "version": "9.11-1",
     "desc": "Basic file, shell and text manipulation utilities from the GNU project",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "cups",
     "version": "2.4.19",
     "desc": "Common UNIX Printing System",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "cups-static",
     "version": "2.4.19",
     "desc": "Static libraries for cups",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "curl",
     "version": "8.21.0",
     "desc": "Command line tool for transferring data with URL syntax",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "dash",
     "version": "0.5.12-2",
     "desc": "Small POSIX-compliant implementation of /bin/sh",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "db",
     "version": "18.1.40-6",
     "desc": "The Berkeley DB embedded database system",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "dbus",
     "version": "1.16.2-3",
     "desc": "Freedesktop.org message bus system",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "debianutils",
     "version": "5.23.2-1",
     "desc": "Small utilities which are used primarily by the installation scripts of Debian packages",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "dialog",
     "version": "1.3-20260721-0",
     "desc": "Application used in shell scripts which displays text user interface widgets",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "dialog-static",
     "version": "1.3-20260721-0",
     "desc": "Static libraries for dialog",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "diffutils",
     "version": "3.12-2",
     "desc": "Programs (cmp, diff, diff3 and sdiff) related to finding differences between files",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "docbook-xml",
     "version": "5.1-1",
     "desc": "A widely used XML scheme for writing documentation and help",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "docbook-xsl",
     "version": "1.79.2-4",
     "desc": "XML stylesheets for Docbook-xml transformations",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "dos2unix",
     "version": "7.5.6",
     "desc": "Converts between DOS and Unix text files",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "doxygen",
     "version": "1.18.0",
     "desc": "A documentation system for C++, C, Java, IDL and PHP",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "dpkg",
     "version": "1.22.6-5",
     "desc": "Debian package management system",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "dpkg-perl",
     "version": "1.22.6-5",
     "desc": "Perl modules for dpkg",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "dpkg-scanpackages",
     "version": "1.22.6-5",
     "desc": "Creates Packages index files",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "ed",
     "version": "1.22.6",
     "desc": "Classic UNIX line editor",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "fdisk",
     "version": "2.42.1-4",
     "desc": "Utilities to manipulate disk partition tables",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "file",
     "version": "5.48-3",
     "desc": "Command-line tool that tells you in words what kind of data a file contains",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "findutils",
     "version": "4.10.0-1",
     "desc": "Utilities to find files meeting specified criteria and perform various actions on the files which are found",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "flac",
     "version": "1.5.0-1",
     "desc": "FLAC (Free Lossless Audio Codec) command-line tool",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "fontconfig",
     "version": "2.18.3",
     "desc": "Library for configuring and customizing font access",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "fontconfig-static",
     "version": "2.18.3",
     "desc": "Static libraries for fontconfig",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "fontconfig-utils",
     "version": "2.18.3",
     "desc": "Fontconfig binaries",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "freetype",
     "version": "2.14.3",
     "desc": "Software font engine capable of producing high-quality output",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "freetype-static",
     "version": "2.14.3",
     "desc": "Static libraries for freetype",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "gawk",
     "version": "5.3.2",
     "desc": "Programming language designed for text processing",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "gawk-static",
     "version": "5.3.2",
     "desc": "Static libraries for gawk",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "gdbm",
     "version": "1.26-1",
     "desc": "Library of database functions that use extensible hashing",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "gdbm-static",
     "version": "1.26-1",
     "desc": "Static libraries for gdbm",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "giflib",
     "version": "5.2.2-2",
     "desc": "A library for reading and writing gif images",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "giflib-static",
     "version": "5.2.2-2",
     "desc": "Static libraries for giflib",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "giflib-utils",
     "version": "5.2.2-2",
     "desc": "A set of utilities that comes with giflib package",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "git",
     "version": "2.55.0",
     "desc": "Fast, scalable, distributed revision control system",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "git-gitk",
     "version": "2.55.0",
     "desc": "Git repository browser",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "git-gui",
     "version": "2.55.0",
     "desc": "A graphical interface to Git",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "git-svn",
     "version": "2.55.0",
     "desc": "Convert between Git and Subversion repositories",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "glib",
     "version": "2.88.3",
     "desc": "Library providing core building blocks for libraries and applications written in C",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "glib-cross",
     "version": "2.88.3",
     "desc": "glib for host (NOT for Termux)",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "gnupg",
     "version": "2.5.17",
     "desc": "Implementation of the OpenPGP standard for encrypting and signing data and communication",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "gnutls",
     "version": "3.8.13-1",
     "desc": "Commandline utilities for interfacing with the gnutls library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "gpgv",
     "version": "2.5.17",
     "desc": "GNU privacy guard - signature verification tool",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "gradle",
     "version": "1:9.7.1",
     "desc": "Powerful build system for the JVM",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "grep",
     "version": "3.12-3",
     "desc": "Command which searches one or more input files for lines containing a match to a specified pattern",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "gzip",
     "version": "1.14-1",
     "desc": "Standard GNU file compression utilities",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "iconv",
     "version": "1.18-1",
     "desc": "Utility converting between different character encodings",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "icu-devtools",
     "version": "78.3",
     "desc": "Development utilities for International Components for Unicode",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "inetutils",
     "version": "2.7",
     "desc": "Collection of common network programs",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "jq",
     "version": "1.8.2",
     "desc": "Command-line JSON processor",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "jq-static",
     "version": "1.8.2",
     "desc": "Static libraries for jq",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "jsoncpp",
     "version": "1.9.8",
     "desc": "C++ library for interacting with JSON",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "jsoncpp-static",
     "version": "1.9.8",
     "desc": "Static libraries for jsoncpp",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "lame",
     "version": "3.100-7",
     "desc": "High quality MPEG Audio Layer III (MP3) encoder - frontend",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "less",
     "version": "704",
     "desc": "Terminal pager program used to view the contents of a text file one screen at a time",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libacl",
     "version": "2.4.0",
     "desc": "Access control list shared library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libacl-static",
     "version": "2.4.0",
     "desc": "Static libraries for libacl",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-execinfo",
     "version": "0.1-3",
     "desc": "Shared library for the backtrace system function",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-execinfo-static",
     "version": "0.1-3",
     "desc": "Static libraries for libandroid-execinfo",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-glob",
     "version": "0.6-3",
     "desc": "Shared library for the glob(3) system function",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-glob-static",
     "version": "0.6-3",
     "desc": "Static libraries for libandroid-glob",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-posix-semaphore",
     "version": "0.1-4",
     "desc": "Shared library for the posix semaphore system function",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-posix-semaphore-static",
     "version": "0.1-4",
     "desc": "Static libraries for libandroid-posix-semaphore",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-selinux",
     "version": "14.0.0.11-1",
     "desc": "Android fork of libselinux, an SELinux userland library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-shmem",
     "version": "0.7-1",
     "desc": "System V shared memory emulation on Android using ashmem",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-shmem-static",
     "version": "0.7-1",
     "desc": "Static libraries for libandroid-shmem",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-spawn",
     "version": "0.3",
     "desc": "Shared library for the posix_spawn system function",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-spawn-static",
     "version": "0.3",
     "desc": "Static libraries for libandroid-spawn",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-stub",
     "version": "29-2",
     "desc": "Stub libandroid.so for non-Android certified environment",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-support",
     "version": "29-1",
     "desc": "Library extending the Android C library (Bionic) for additional multibyte, locale and math support",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-support-static",
     "version": "29-1",
     "desc": "Static libraries for libandroid-support",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-sysv-semaphore",
     "version": "0.1-1",
     "desc": "A shared library providing System V semaphores",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-sysv-semaphore-static",
     "version": "0.1-1",
     "desc": "Static libraries for libandroid-sysv-semaphore",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-utimes",
     "version": "0.4",
     "desc": "futimes, futimesat and lutimes from bionic",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libandroid-utimes-static",
     "version": "0.4",
     "desc": "Static libraries for libandroid-utimes",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libarchive",
     "version": "3.8.9",
     "desc": "Multi-format archive and compression library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libarchive-static",
     "version": "3.8.9",
     "desc": "Static libraries for libarchive",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libassuan",
     "version": "3.0.2-1",
     "desc": "Library implementing the Assuan IPC protocol used between most newer GnuPG components",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libassuan-static",
     "version": "3.0.2-1",
     "desc": "Static libraries for libassuan",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libblkid",
     "version": "2.42.1-4",
     "desc": "Block device identification library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libbz2",
     "version": "1.0.8-8",
     "desc": "BZ2 format compression library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libc++",
     "version": "29",
     "desc": "C++ Standard Library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libcap-ng",
     "version": "2:0.9.5",
     "desc": "Library making programming with POSIX capabilities easier than traditional libcap",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libcap-ng-static",
     "version": "2:0.9.5",
     "desc": "Static libraries for libcap-ng",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libcompiler-rt",
     "version": "21.1.8-3",
     "desc": "Compiler runtime libraries for clang",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libcrypt",
     "version": "0.2-6",
     "desc": "A crypt(3) implementation",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libcurl",
     "version": "8.21.0",
     "desc": "Easy-to-use client-side URL transfer library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libcurl-static",
     "version": "8.21.0",
     "desc": "Static libraries for libcurl",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libdb",
     "version": "18.1.40-6",
     "desc": "The Berkeley DB embedded database system (library)",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libdb-static",
     "version": "18.1.40-6",
     "desc": "Static libraries for libdb",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libedit",
     "version": "20260512-3.1-0",
     "desc": "Library providing line editing, history, and tokenization functions",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libedit-static",
     "version": "20260512-3.1-0",
     "desc": "Static libraries for libedit",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libevent",
     "version": "2.1.13",
     "desc": "Library that provides asynchronous event notification",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libexpat",
     "version": "2.8.3",
     "desc": "XML parsing C library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libexpat-static",
     "version": "2.8.3",
     "desc": "Static libraries for libexpat",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libfdisk",
     "version": "2.42.1-4",
     "desc": "Library for manipulating disk partition tables",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libffi",
     "version": "3.5.2",
     "desc": "Library providing a portable, high level programming interface to various calling conventions",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libffi-static",
     "version": "3.5.2",
     "desc": "Static libraries for libffi",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libflac",
     "version": "1.5.0-1",
     "desc": "FLAC (Free Lossless Audio Codec) library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libflac-static",
     "version": "1.5.0-1",
     "desc": "Static libraries for libflac",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libgcrypt",
     "version": "1.12.2",
     "desc": "General purpose cryptographic library based on the code from GnuPG",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libgcrypt-static",
     "version": "1.12.2",
     "desc": "Static libraries for libgcrypt",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libgmp",
     "version": "6.3.0-2",
     "desc": "Library for arbitrary precision arithmetic",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libgmp-static",
     "version": "6.3.0-2",
     "desc": "Static libraries for libgmp",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libgnutls",
     "version": "3.8.13-1",
     "desc": "Secure communications library implementing the SSL, TLS and DTLS protocols and technologies around them",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libgnutls-static",
     "version": "3.8.13-1",
     "desc": "Static libraries for libgnutls",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libgpg-error",
     "version": "1.61",
     "desc": "Small library that defines common error values for all GnuPG components",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libgpg-error-static",
     "version": "1.61",
     "desc": "Static libraries for libgpg-error",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libice",
     "version": "1.1.2-1",
     "desc": "X11 Inter-Client Exchange library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libiconv",
     "version": "1.18-1",
     "desc": "An implementation of iconv()",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libiconv-static",
     "version": "1.18-1",
     "desc": "Static libraries for libiconv",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libicu",
     "version": "78.3",
     "desc": "International Components for Unicode library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libicu-static",
     "version": "78.3",
     "desc": "Static libraries for libicu",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libidn2",
     "version": "2.3.8-1",
     "desc": "Free software implementation of IDNA2008, Punycode and TR46",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libidn2-static",
     "version": "2.3.8-1",
     "desc": "Static libraries for libidn2",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libjpeg-turbo",
     "version": "3.2.0",
     "desc": "Library for reading and writing JPEG image files",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libjpeg-turbo-progs",
     "version": "3.2.0",
     "desc": "Programs for manipulating JPEG files",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libjpeg-turbo-static",
     "version": "3.2.0",
     "desc": "Static libraries for libjpeg-turbo",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libksba",
     "version": "1.8.0",
     "desc": "Library for using X.509 certificates and CMS (Cryptographic Message Syntax) easily accessible",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libksba-static",
     "version": "1.8.0",
     "desc": "Static libraries for libksba",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libllvm",
     "version": "21.1.8-3",
     "desc": "Modular compiler and toolchain technologies library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libllvm-static",
     "version": "21.1.8-3",
     "desc": "Static libraries for libllvm",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libltdl",
     "version": "2.6.2",
     "desc": "Library for dlopening libraries",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "liblz4",
     "version": "1.10.0-1",
     "desc": "Fast LZ compression algorithm library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "liblzma",
     "version": "5.8.3",
     "desc": "XZ-format compression library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "liblzma-static",
     "version": "5.8.3",
     "desc": "Static libraries for liblzma",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libmagic",
     "version": "5.48-3",
     "desc": "File type identification library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libmagic-static",
     "version": "5.48-3",
     "desc": "Static libraries for libmagic",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libmd",
     "version": "1.1.0-1",
     "desc": "Message Digest functions from BSD systems",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libmd-static",
     "version": "1.1.0-1",
     "desc": "Static libraries for libmd",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libmount",
     "version": "2.42.1-4",
     "desc": "Library for (un)mounting filesystems",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libmp3lame",
     "version": "3.100-7",
     "desc": "High quality MPEG Audio Layer III (MP3) encoder",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libmp3lame-static",
     "version": "3.100-7",
     "desc": "Static libraries for libmp3lame",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libmpfr",
     "version": "4.2.1-1",
     "desc": "C library for multiple-precision floating-point computations with correct rounding",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libmpfr-static",
     "version": "4.2.1-1",
     "desc": "Static libraries for libmpfr",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libmpg123",
     "version": "1.33.5",
     "desc": "Fast console MPEG Audio Player and decoder library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libmpg123-static",
     "version": "1.33.5",
     "desc": "Static libraries for libmpg123",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libnettle",
     "version": "4.0+really3.10.2",
     "desc": "Cryptographic library that is designed to fit easily in more or less any context",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libnettle-static",
     "version": "4.0+really3.10.2",
     "desc": "Static libraries for libnettle",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libnghttp2",
     "version": "1.70.0",
     "desc": "nghttp HTTP 2.0 library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libnghttp2-static",
     "version": "1.70.0",
     "desc": "Static libraries for libnghttp2",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libnghttp3",
     "version": "1.18.0",
     "desc": "HTTP/3 library written in C",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libnghttp3-static",
     "version": "1.18.0",
     "desc": "Static libraries for libnghttp3",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libngtcp2",
     "version": "1.25.0",
     "desc": "Implementation of IETF QUIC protocol",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libngtcp2-static",
     "version": "1.25.0",
     "desc": "Static libraries for libngtcp2",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libnpth",
     "version": "1.6-3",
     "desc": "New GNU Portable Threads Library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libnpth-static",
     "version": "1.6-3",
     "desc": "Static libraries for libnpth",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libogg",
     "version": "1.3.6-1",
     "desc": "Library for working with the Ogg multimedia container format",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libogg-static",
     "version": "1.3.6-1",
     "desc": "Static libraries for libogg",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libopus",
     "version": "1.6.1",
     "desc": "Reference implementation of the Opus codec",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libopus-static",
     "version": "1.6.1",
     "desc": "Static libraries for libopus",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libpng",
     "version": "1.6.58",
     "desc": "Official PNG reference library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libpng-static",
     "version": "1.6.58",
     "desc": "Static libraries for libpng",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libpolly",
     "version": "21.1.8-3",
     "desc": "High-level loop and data-locality optimizer for clang",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libprotobuf",
     "version": "2:35.1",
     "desc": "Protocol buffers C++ library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libsm",
     "version": "1.2.6-1",
     "desc": "X11 Session Management library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libsmartcols",
     "version": "2.42.1-4",
     "desc": "Library for smart adaptive formatting of tabular data",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libsndfile",
     "version": "1.2.2-3",
     "desc": "Library for reading/writing audio files",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libsndfile-static",
     "version": "1.2.2-3",
     "desc": "Static libraries for libsndfile",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libsodium",
     "version": "1.0.22-1",
     "desc": "Network communication, cryptography and signaturing library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libsodium-static",
     "version": "1.0.22-1",
     "desc": "Static libraries for libsodium",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libsoxr",
     "version": "0.1.3-8",
     "desc": "High quality, one-dimensional sample-rate conversion library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libsqlite",
     "version": "3.53.4",
     "desc": "Library implementing a self-contained and transactional SQL database engine",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libsqlite-static",
     "version": "3.53.4",
     "desc": "Static libraries for libsqlite",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libsqlite-tcl",
     "version": "3.53.4",
     "desc": "tcl bindings for SQLite",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libssh2",
     "version": "1.11.1-2",
     "desc": "Client-side library implementing the SSH2 protocol",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libssh2-static",
     "version": "1.11.1-2",
     "desc": "Static libraries for libssh2",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libtasn1",
     "version": "4.21.0",
     "desc": "This is GNU Libtasn1, a small ASN.1 library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libtasn1-static",
     "version": "4.21.0",
     "desc": "Static libraries for libtasn1",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libtiff",
     "version": "4.7.2",
     "desc": "Support for the Tag Image File Format (TIFF) for storing image data",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libtiff-static",
     "version": "4.7.2",
     "desc": "Static libraries for libtiff",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libtiff-utils",
     "version": "4.7.2",
     "desc": "Tools for working with tiff files",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libtirpc",
     "version": "1.3.7-1",
     "desc": "Transport Independent RPC library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libtirpc-static",
     "version": "1.3.7-1",
     "desc": "Static libraries for libtirpc",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libtool",
     "version": "2.6.2",
     "desc": "Generic library support script hiding the complexity of using shared libraries behind a consistent, portable interface",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libunbound",
     "version": "1.26.0",
     "desc": "A validating, recursive, caching DNS resolver",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libunbound-static",
     "version": "1.26.0",
     "desc": "Static libraries for libunbound",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libunistring",
     "version": "1.4.2",
     "desc": "Library providing functions for manipulating Unicode strings",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libunistring-static",
     "version": "1.4.2",
     "desc": "Static libraries for libunistring",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libusb",
     "version": "1.0.30",
     "desc": "A C library that provides generic access to USB devices",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libusb-static",
     "version": "1.0.30",
     "desc": "Static libraries for libusb",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libuuid",
     "version": "2.42.1-4",
     "desc": "Library for handling universally unique identifiers",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libuv",
     "version": "1.52.1",
     "desc": "Support library with a focus on asynchronous I/O",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libuv-static",
     "version": "1.52.1",
     "desc": "Static libraries for libuv",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libvorbis",
     "version": "1.3.7-4",
     "desc": "Library for using the Ogg Vorbis compressed audio format",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libvorbis-static",
     "version": "1.3.7-4",
     "desc": "Static libraries for libvorbis",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libwebrtc-audio-processing",
     "version": "1.3-5",
     "desc": "A library containing the AudioProcessing module from the WebRTC project",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libx11",
     "version": "1.8.13-1",
     "desc": "X11 client-side library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libx11-static",
     "version": "1.8.13-1",
     "desc": "Static libraries for libx11",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxau",
     "version": "1.0.12-2",
     "desc": "X11 authorisation library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxcb",
     "version": "1.17.0-1",
     "desc": "X11 client-side library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxcb-static",
     "version": "1.17.0-1",
     "desc": "Static libraries for libxcb",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxdmcp",
     "version": "1.1.5-2",
     "desc": "X11 Display Manager Control Protocol library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxdmcp-static",
     "version": "1.1.5-2",
     "desc": "Static libraries for libxdmcp",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxext",
     "version": "1.3.7",
     "desc": "X11 miscellaneous extensions library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxext-static",
     "version": "1.3.7",
     "desc": "Static libraries for libxext",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxfixes",
     "version": "6.0.2",
     "desc": "X11 miscellaneous 'fixes' extension library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxfixes-static",
     "version": "6.0.2",
     "desc": "Static libraries for libxfixes",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxft",
     "version": "2.3.9-1",
     "desc": "FreeType-based font drawing library for X",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxft-static",
     "version": "2.3.9-1",
     "desc": "Static libraries for libxft",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxi",
     "version": "1.8.3",
     "desc": "X11 Input extension library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxi-static",
     "version": "1.8.3",
     "desc": "Static libraries for libxi",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxml2",
     "version": "2.15.3-2",
     "desc": "Library for parsing XML documents",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxml2-python",
     "version": "2.15.3-2",
     "desc": "Python bindings for libxml2",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxml2-utils",
     "version": "2.15.3-2",
     "desc": "XML utilities",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxrandr",
     "version": "1.5.5",
     "desc": "X11 RandR extension library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxrandr-static",
     "version": "1.5.5",
     "desc": "Static libraries for libxrandr",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxrender",
     "version": "0.9.12-1",
     "desc": "X Rendering Extension client library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxslt",
     "version": "1.1.45-1",
     "desc": "XSLT processing library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxss",
     "version": "1.2.5",
     "desc": "X11 Screen Saver extension library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxss-static",
     "version": "1.2.5",
     "desc": "Static libraries for libxss",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxt",
     "version": "1.3.1-1",
     "desc": "X11 toolkit intrinsics library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxt-static",
     "version": "1.3.1-1",
     "desc": "Static libraries for libxt",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxtst",
     "version": "1.2.5-1",
     "desc": "Xlib-based library for XTEST & RECORD extensions",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libxtst-static",
     "version": "1.2.5-1",
     "desc": "Static libraries for libxtst",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libyaml",
     "version": "0.2.5-5",
     "desc": "LibYAML is a YAML 1.1 parser and emitter written in C",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "libyaml-static",
     "version": "0.2.5-5",
     "desc": "Static libraries for libyaml",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "littlecms",
     "version": "2.19.1",
     "desc": "Color management library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "littlecms-static",
     "version": "2.19.1",
     "desc": "Static libraries for littlecms",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "littlecms-utils",
     "version": "2.19.1",
     "desc": "Color management utilities",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "lld",
     "version": "21.1.8-3",
     "desc": "LLVM-based linker",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "lldb",
     "version": "21.1.8-3",
     "desc": "LLVM-based debugger",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "llvm",
     "version": "21.1.8-3",
     "desc": "LLVM modular compiler and toolchain executables",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "llvm-tools",
     "version": "21.1.8-3",
     "desc": "LLVM Development Tools",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "lsof",
     "version": "4.99.7",
     "desc": "Lists open files for running Unix processes",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "lsof-static",
     "version": "4.99.7",
     "desc": "Static libraries for lsof",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "luajit",
     "version": "1:2.1.1787165859+g1ee778a",
     "desc": "Just-In-Time Compiler for Lua",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "luajit-static",
     "version": "1:2.1.1787165859+g1ee778a",
     "desc": "Static libraries for luajit",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "lz4",
     "version": "1.10.0-1",
     "desc": "Fast LZ compression algorithm tool",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "make",
     "version": "4.4.1-1",
     "desc": "Tool to control the generation of non-source files from source files",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "mandoc",
     "version": "1.14.6-6",
     "desc": "Man page viewer from the mandoc toolset",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "mlir",
     "version": "21.1.8-3",
     "desc": "A Multi-Level Intermediate Representation for compilers from LLVM",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "mount-utils",
     "version": "2.42.1-4",
     "desc": "Utilities for (un)mounting filesystems",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "mpg123",
     "version": "1.33.5",
     "desc": "Fast console MPEG Audio Player based on libmpg123",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "nano",
     "version": "9.2-1",
     "desc": "Small, free and friendly text editor",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "ncurses",
     "version": "6.6.20260307+really6.5.20250830",
     "desc": "Library for text-based user interfaces in a terminal-independent manner",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "ncurses-static",
     "version": "6.6.20260307+really6.5.20250830",
     "desc": "Static libraries for ncurses",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "ncurses-ui-libs",
     "version": "6.6.20260307+really6.5.20250830",
     "desc": "Libraries for terminal user interfaces based on ncurses",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "ncurses-ui-libs-static",
     "version": "6.6.20260307+really6.5.20250830",
     "desc": "Static libraries for terminal user interfaces based on ncurses",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "ncurses-utils",
     "version": "6.6.20260307+really6.5.20250830",
     "desc": "Tools for working with terminals",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "ndk-sysroot",
     "version": "29-2",
     "desc": "System header and library files from the Android NDK needed for compiling C programs",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "net-tools",
     "version": "2.10.0-1",
     "desc": "Configuration tools for Linux networking",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "nettle",
     "version": "4.0+really3.10.2",
     "desc": "Low level cryptographic tools",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "oniguruma",
     "version": "6.9.10-1",
     "desc": "Regular expressions library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "oniguruma-static",
     "version": "6.9.10-1",
     "desc": "Static libraries for oniguruma",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "openjdk-17",
     "version": "17.0.20",
     "desc": "Java development kit and runtime",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "openjdk-17-source",
     "version": "17.0.20",
     "desc": "Source files for openjdk-17",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "openjdk-17-x",
     "version": "17.0.20",
     "desc": "Portion of openjdk-17 requiring X11 functionality",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "openjdk-21",
     "version": "21.0.12",
     "desc": "Java development kit and runtime",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "openjdk-21-source",
     "version": "21.0.12",
     "desc": "Source files for openjdk-21",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "openjdk-21-x",
     "version": "21.0.12",
     "desc": "Portion of openjdk-21 requiring X11 functionality",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "openssl",
     "version": "1:3.6.3",
     "desc": "Library implementing the SSL and TLS protocols as well as general purpose cryptography functions",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "openssl-static",
     "version": "1:3.6.3",
     "desc": "Static libraries for openssl",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "openssl-tool",
     "version": "1:3.6.3",
     "desc": "The openssl command line cryptographic tool",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "p11-kit",
     "version": "0.26.5",
     "desc": "Provides a way to load and enumerate PKCS#11 modules",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "patch",
     "version": "2.8-1",
     "desc": "GNU patch which applies diff files to create patched files",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "pcre2",
     "version": "10.47",
     "desc": "Perl 5 compatible regular expression library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "pcre2-static",
     "version": "10.47",
     "desc": "Static libraries for pcre2",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "pcre2grep",
     "version": "10.47",
     "desc": "A grep with Perl-compatible regular expressions",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "perl",
     "version": "5.42.2",
     "desc": "Capable, feature-rich programming language",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "pinentry",
     "version": "1.3.3",
     "desc": "Dialog allowing secure password entry",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "pkg-config",
     "version": "0.29.2-3",
     "desc": "Helper tool used when compiling applications and libraries",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "procps",
     "version": "3.3.17-6",
     "desc": "Utilities that give information about processes using the /proc filesystem",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "procps-static",
     "version": "3.3.17-6",
     "desc": "Static libraries for procps",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "protobuf",
     "version": "2:35.1",
     "desc": "Compiler for protocol buffer definition files",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "psmisc",
     "version": "23.7-1",
     "desc": "Some small useful utilities that use the proc filesystem",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "pulseaudio",
     "version": "17.0-4",
     "desc": "A featureful, general-purpose sound server",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "pulseaudio-glib",
     "version": "17.0-4",
     "desc": "PulseAudio GLIB mainloop component",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "python",
     "version": "3.14.6-1",
     "desc": "Python 3 programming language intended to enable clear programs",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "python-ensurepip-wheels",
     "version": "3.14.6-1",
     "desc": "Wheels for Python ensurepip",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "python-pip",
     "version": "26.2.1",
     "desc": "The PyPA recommended tool for installing Python packages",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "python-static",
     "version": "3.14.6-1",
     "desc": "Static libraries for python",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "python-tkinter",
     "version": "3.14.6-1",
     "desc": "Tkinter support for Python 3",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "python-xcbgen",
     "version": "1.17.0-3",
     "desc": "The xcbgen Python module",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "pyunbound",
     "version": "1.26.0",
     "desc": "Python bindings for Unbound",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "pzstd",
     "version": "1.5.7-1",
     "desc": "A Pigz-like tool for Zstandard",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "readline",
     "version": "8.3.3",
     "desc": "Library that allow users to edit command lines as they are typed in",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "readline-static",
     "version": "8.3.3",
     "desc": "Static libraries for readline",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "resolv-conf",
     "version": "1.3",
     "desc": "Resolver configuration file",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "rhash",
     "version": "1.4.6-1",
     "desc": "Console utility for calculation and verification of magnet links and a wide range of hash sums",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "rhash-static",
     "version": "1.4.6-1",
     "desc": "Static libraries for rhash",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "ruby",
     "version": "3.4.1-2",
     "desc": "Dynamic programming language with a focus on simplicity and productivity",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "ruby-ri",
     "version": "3.4.1-2",
     "desc": "Ruby documentation index",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "scdaemon",
     "version": "2.5.17",
     "desc": "Daemon invoked by gpg to manage smartcards",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "sed",
     "version": "4.9-2",
     "desc": "GNU stream editor for filtering/transforming text",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "serf",
     "version": "1.3.10-2",
     "desc": "High performance C-based HTTP client library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "serf-static",
     "version": "1.3.10-2",
     "desc": "Static libraries for serf",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "speexdsp",
     "version": "1.2.1-1",
     "desc": "Speex audio processing library",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "speexdsp-static",
     "version": "1.2.1-1",
     "desc": "Static libraries for speexdsp",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "sqlite",
     "version": "3.53.4",
     "desc": "Command line shell for SQLite",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "subversion",
     "version": "1.14.5-3",
     "desc": "Centralized version control system characterized by its simplicity",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "subversion-perl",
     "version": "1.14.5-3",
     "desc": "Perl interface to Subversion",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "subversion-perl-static",
     "version": "1.14.5-3",
     "desc": "Static libraries for subversion-perl",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "subversion-static",
     "version": "1.14.5-3",
     "desc": "Static libraries for subversion",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "swig",
     "version": "4.5.0",
     "desc": "Generate scripting interfaces to C/C++ code",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "tar",
     "version": "1.35-3",
     "desc": "GNU tar for manipulating tar archives",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "tcl",
     "version": "8.6.16",
     "desc": "Powerful but easy to learn dynamic programming language",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "termux-am",
     "version": "0.8.0-2",
     "desc": "Android Oreo-compatible am command reimplementation",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "termux-am-socket",
     "version": "1.5.0-1",
     "desc": "A faster version of am with less features that only works while Termux is running",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "termux-core",
     "version": "0.4.0-1",
     "desc": "Utils and libraries for Termux core",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "termux-core-static",
     "version": "0.4.0-1",
     "desc": "Static libraries for termux-core",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "termux-exec",
     "version": "1:2.5.0-1",
     "desc": "Utils and libraries for Termux exec including a LD_PRELOAD shared library for proper functioning of the Termux execution environment",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "termux-exec-static",
     "version": "1:2.5.0-1",
     "desc": "Static libraries for termux-exec",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "termux-keyring",
     "version": "3.13",
     "desc": "GPG public keys for the official Termux repositories",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "termux-licenses",
     "version": "2.2",
     "desc": "Contains LICENSE files for common licenses",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "termux-tools",
     "version": "1.46.0+really1.45.0-1",
     "desc": "Basic system tools for Termux",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "texinfo",
     "version": "7.3",
     "desc": "Documentation system for on-line information and printed output",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "tk",
     "version": "8.6.14-1",
     "desc": "A windowing toolkit for use with tcl",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "tor",
     "version": "0.4.9.11",
     "desc": "The Onion Router anonymizing overlay network",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "ttf-dejavu",
     "version": "2.37-8",
     "desc": "Font family based on the Bitstream Vera Fonts with a wider range of characters",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "unbound",
     "version": "1.26.0",
     "desc": "Unbound command-line tools",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "unzip",
     "version": "6.0-10",
     "desc": "Tools for working with zip files",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "update-info-dir",
     "version": "7.3",
     "desc": "Update or create index file from all installed info files in directory",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "utf8proc",
     "version": "2.11.3",
     "desc": "Library for processing UTF-8 Unicode data",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "utf8proc-static",
     "version": "2.11.3",
     "desc": "Static libraries for utf8proc",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "util-linux",
     "version": "2.42.1-4",
     "desc": "Miscellaneous system utilities",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "util-linux-static",
     "version": "2.42.1-4",
     "desc": "Static libraries for util-linux",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "uuid-utils",
     "version": "2.42.1-4",
     "desc": "Utilities for handling universally unique identifiers",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "vim",
     "version": "9.2.0950",
     "desc": "Vi IMproved - enhanced vi editor",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "wget",
     "version": "1.25.0-1",
     "desc": "Commandline tool for retrieving files using HTTP, HTTPS and FTP",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "which",
     "version": "2.25",
     "desc": "Shows the full path of (shell) commands",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "xcb-proto",
     "version": "1.17.0-3",
     "desc": "XML-XCB protocol descriptions",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "xorg-util-macros",
     "version": "1.20.2",
     "desc": "X.Org Autotools macros",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "xorgproto",
     "version": "2025.1",
     "desc": "X.Org X11 Protocol headers",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "xsltproc",
     "version": "1.1.45-1",
     "desc": "XSLT command line processor",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "xtrans",
     "version": "1.6.0",
     "desc": "X transport library",
-    "arch": ""
+    "arch": "all"
   },
   {
     "name": "xxd",
     "version": "9.2.0950",
     "desc": "Hexdump utility from vim",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "xxhash",
     "version": "0.8.3-1",
     "desc": "Extremely fast non-cryptographic hash algorithm",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "xxhash-static",
     "version": "0.8.3-1",
     "desc": "Static libraries for xxhash",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "xz-utils",
     "version": "5.8.3",
     "desc": "XZ-format compression tools",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "zip",
     "version": "3.0-7",
     "desc": "Tools for working with zip files",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "zlib",
     "version": "1.3.2",
     "desc": "Compression library implementing the deflate compression method found in gzip and PKZIP",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "zlib-static",
     "version": "1.3.2",
     "desc": "Static libraries for zlib",
-    "arch": ""
+    "arch": "aarch64"
   },
   {
     "name": "zstd",
     "version": "1.5.7-1",
     "desc": "Zstandard compression",
-    "arch": ""
+    "arch": "aarch64"
   }
 ]
