@@ -51,7 +51,7 @@ runs:
         curl -OL "https://cdn.kernel.org/pub/linux/kernel/v${KERNEL_VERSION%%\.*}.x/linux-${TAR_KERNEL_VERSION}.tar.xz"
         curl -OL "https://cdn.kernel.org/pub/linux/kernel/v${KERNEL_VERSION%%\.*}.x/linux-${TAR_KERNEL_VERSION}.tar.sign"
 
-        gpg --import ${{ github.workspace }}/termux-packages/scripts/linux-kernel-signing-keys.gpg
+        gpg --import $GITHUB_WORKSPACE/termux-packages/scripts/linux-kernel-signing-keys.gpg
         unxz "linux-${TAR_KERNEL_VERSION}.tar.xz"
         gpg --verify "linux-${TAR_KERNEL_VERSION}.tar.sign"
         tar --extract -f "linux-${TAR_KERNEL_VERSION}.tar"
@@ -60,7 +60,7 @@ runs:
         cd drivers/block/zram/
         make -C "${MODULES_DIR}/build/" M="$PWD" -j$(nproc)
         zstd zram.ko
-        cp zram.ko.zst ${{ github.workspace }}/scripts/
+        cp zram.ko.zst $GITHUB_WORKSPACE/scripts/
         rm -r "$LINUX_CHECKOUT_DIR"
 
     - name: Enable zram kernel module
