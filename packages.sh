@@ -77,4 +77,7 @@ declare -a AURASTUDIO_PACKAGES=(
   ## ---- JDK ---- ##
   "openjdk-17"
   "openjdk-21"
+
+  ## ---- AuraStudio CLI ---- ##
+  "aurastudio"
 )
