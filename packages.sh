@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 
-# AuraStudio bootstrap package lists
+# AuraStudio package lists
+#
+# BOOTSTRAP = minimal core packages for initial setup (small, fast download)
+# ALL = full packages including large dev tools (for complete build)
 
-declare -a AURASTUDIO_PACKAGES=(
-  ## ---- Bootstrap packages ---- ##
+# ─────────────────────────────────────────────────────────────
+# Bootstrap: core packages only (~50MB compressed)
+# Users can apt install the rest after setup
+# ─────────────────────────────────────────────────────────────
+declare -a AURASTUDIO_PACKAGES__BOOTSTRAP=(
+  # Core system
   "apt"
   "bash"
   "coreutils"
@@ -13,37 +20,55 @@ declare -a AURASTUDIO_PACKAGES=(
   "gawk"
   "grep"
   "gzip"
-  "inetutils"
   "less"
-  "libbz2"
-  "libcurl"
-  "liblzma"
-  "ncurses"
-  "procps"
-  "psmisc"
   "sed"
   "tar"
+
+  # Termux essentials
   "termux-core"
   "termux-exec"
   "termux-keyring"
   "termux-tools"
   "util-linux"
 
-  ## ---- Additional ---- ##
-  "aria2"
-  "ed"
-  "debianutils"
-  "dos2unix"
-  "git"
-  "lsof"
+  # Networking
+  "libcurl"
+  "wget"
+
+  # Shell tools
   "nano"
-  "net-tools"
   "patch"
   "unzip"
+  "procps"
+  "psmisc"
+
+  # Basic libs
+  "libbz2"
+  "liblzma"
+  "ncurses"
   "libandroid-support"
   "libandroid-glob"
 
-  ## ---- Audio deps (must be before openjdk-21) ---- ##
+  # VCS
+  "git"
+
+  # Optional small
+  "aria2"
+  "debianutils"
+  "dos2unix"
+  "ed"
+  "inetutils"
+  "lsof"
+  "net-tools"
+)
+
+# ─────────────────────────────────────────────────────────────
+# All packages: full build including large dev tools
+# ─────────────────────────────────────────────────────────────
+declare -a AURASTUDIO_PACKAGES=(
+  "${AURASTUDIO_PACKAGES__BOOTSTRAP[@]}"
+
+  # Audio deps (for openjdk)
   "libogg"
   "libflac"
   "libmp3lame"
@@ -52,7 +77,7 @@ declare -a AURASTUDIO_PACKAGES=(
   "libvorbis"
   "libsndfile"
 
-  ## ---- Development tools ---- ##
+  # Development tools
   "aapt2"
   "binutils"
   "brotli"
@@ -68,15 +93,14 @@ declare -a AURASTUDIO_PACKAGES=(
   "python"
   "python-pip"
   "vim"
-  "wget"
   "which"
   "zip"
   "zlib"
 
-  ## ---- JDK ---- ##
+  # JDK
   "openjdk-17"
   "openjdk-21"
 
-  ## ---- AuraStudio CLI ---- ##
+  # AuraStudio CLI
   "aurastudio"
 )

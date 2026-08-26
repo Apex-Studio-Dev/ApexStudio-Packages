@@ -12,7 +12,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=packages.sh
 . "$SCRIPT_DIR/packages.sh"
 
-COTG_RELEASE="false"
 COTG_LOCAL="false"
 
 usage() {
@@ -21,7 +20,6 @@ usage() {
   echo "Usage: $0 [options] [arch]"
   echo
   echo "Options:"
-  echo "  -g        Generate release bootstrap (includes debug packages)."
   echo "  -l        Use local packages repository."
   echo "  -r URL    Repository URL (default: $AURASTUDIO_REPO)."
   echo "  -h        Show this help."
@@ -47,6 +45,7 @@ build_bootstrap() {
   echo
   echo "==="
   echo "Building bootstrap: ${bootstrap_out}"
+  echo "Packages: ${#pkgs[@]}"
   echo "==="
   echo
 
@@ -68,13 +67,19 @@ build_bootstrap() {
   # Rename the built files
   mv "${bootstrap_name}" "${bootstrap_out}" 2>/dev/null || true
 
+  # Show size
+  if [[ -f "${bootstrap_out}" ]]; then
+    local size
+    size=$(du -h "${bootstrap_out}" | cut -f1)
+    echo "Bootstrap size: ${size}"
+  fi
+
   popd || aurastudio_error_exit "Unable to switch from output dir: ${out_dir}"
 }
 
 # Parse arguments
-while getopts "glr:h" opt; do
+while getopts "lr:h" opt; do
   case "$opt" in
-    g) COTG_RELEASE="true" ;;
     l) COTG_LOCAL="true" ;;
     r) AURASTUDIO_REPO="$OPTARG" ;;
     h) usage; exit 0 ;;
@@ -91,15 +96,15 @@ if [[ -z "${AURASTUDIO_REPO}" ]]; then
   aurastudio_error_exit "Repository URL must be specified."
 fi
 
-# Determine variant and packages
-COTG_VARIANT="debug"
+# Use bootstrap packages only (core + small deps)
+COTG_VARIANT="bootstrap"
 declare -a COTG_EXTRA_PACKAGES
-COTG_EXTRA_PACKAGES=("${AURASTUDIO_PACKAGES[@]}")
+COTG_EXTRA_PACKAGES=("${AURASTUDIO_PACKAGES__BOOTSTRAP[@]}")
 
 echo "Using configuration:"
 echo "  Variant        : ${COTG_VARIANT}"
 echo "  Repository     : ${AURASTUDIO_REPO}"
-echo "  Extra packages : ${COTG_EXTRA_PACKAGES[*]}"
+echo "  Packages       : ${#COTG_EXTRA_PACKAGES[@]}"
 
 # Build for target architectures
 for arch in aarch64; do
