@@ -197,9 +197,21 @@ jobs:
           MSG=$(printf "AuraStudio Build\nPackages: %s\nArch: %s\nStatus: %s\nFailed: %s\nRun: https://github.com/%s/actions/runs/%s" \
             "${{ inputs.packages }}" "${{ matrix.arch }}" "$STATUS" "$FAILED_LIST" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
 
+          # Send message
           curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
             -d chat_id="$CHAT_ID" \
             --data-urlencode "text=$MSG" || true
+
+          # Compress and upload build log
+          LOG_FILE="output/${{ matrix.arch }}/build.log"
+          if [ -f "$LOG_FILE" ]; then
+            gzip -k -f "$LOG_FILE"
+            curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument" \
+              -F chat_id="$CHAT_ID" \
+              -F document=@"${LOG_FILE}.gz" \
+              -F caption="Build log ${{ matrix.arch }} (compressed)" || true
+            rm -f "${LOG_FILE}.gz"
+          fi
 
   publish:
     needs: build
@@ -567,3 +579,14 @@ jobs:
           curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
             -d chat_id="$CHAT_ID" \
             --data-urlencode "text=$MSG" || true
+
+      - name: Upload final build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-build-log-${{ matrix.arch }}
+          path: |
+            output/**/*.log
+            /tmp/failed-packages.txt
+          if-no-files-found: ignore
+          retention-days: 7
