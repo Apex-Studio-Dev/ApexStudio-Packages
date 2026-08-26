@@ -29,7 +29,7 @@ while IFS= read -r -d '' deb; do
     LARGE_DEBS+=("$deb")
     echo "Large: ${deb} (${size_mb}MB)"
   fi
-done < <(find "${REPO_DIR}/pool" -name "*.deb" -type f -print0 2>/dev/null)
+done < <(find "${REPO_DIR}" -name "*.deb" -type f -print0 2>/dev/null)
 
 if [ ${#LARGE_DEBS[@]} -eq 0 ]; then
   echo "No large .deb files found. Skipping."
@@ -76,12 +76,12 @@ for arch in aarch64 arm all; do
   for deb in "${LARGE_DEBS[@]}"; do
     filename=$(basename "$deb")
     # Check if this .deb is in this arch's Packages
-    if grep -q "Filename: pool/.*${filename}" "$PACKAGES_FILE" 2>/dev/null; then
+    if grep -q "Filename:.*${filename}" "$PACKAGES_FILE" 2>/dev/null; then
       # Update Filename to point to release URL
-      sed -i "s|Filename: pool/.*${filename}|Filename: ${RELEASE_URL}/${filename}|g" "$PACKAGES_FILE"
+      sed -i "s|Filename:.*${filename}|Filename: ${RELEASE_URL}/${filename}|g" "$PACKAGES_FILE"
       echo "Updated ${arch}: ${filename} → Release URL"
 
-      # Remove from pool
+      # Remove from repo (was in dists/.../binary-arch/)
       rm -f "$deb"
       echo "Removed from pool: ${filename}"
     fi
