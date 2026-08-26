@@ -12,7 +12,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=packages.sh
 . "$SCRIPT_DIR/packages.sh"
 
-COTG_LOCAL="false"
+AURASTUDIO_LOCAL="false"
 
 usage() {
   echo "Script to generate bootstrap archives for AuraStudio."
@@ -80,7 +80,7 @@ build_bootstrap() {
 # Parse arguments
 while getopts "lr:h" opt; do
   case "$opt" in
-    l) COTG_LOCAL="true" ;;
+    l) AURASTUDIO_LOCAL="true" ;;
     r) AURASTUDIO_REPO="$OPTARG" ;;
     h) usage; exit 0 ;;
     *) aurastudio_error "Invalid option"; exit 1 ;;
@@ -88,7 +88,7 @@ while getopts "lr:h" opt; do
 done
 shift $((OPTIND - 1))
 
-if [[ "$COTG_LOCAL" == "true" ]]; then
+if [[ "$AURASTUDIO_LOCAL" == "true" ]]; then
   AURASTUDIO_REPO="file://${AURASTUDIO_REPO_DIR}"
 fi
 
@@ -97,18 +97,18 @@ if [[ -z "${AURASTUDIO_REPO}" ]]; then
 fi
 
 # Use bootstrap packages only (core + small deps)
-COTG_VARIANT="bootstrap"
-declare -a COTG_EXTRA_PACKAGES
-COTG_EXTRA_PACKAGES=("${AURASTUDIO_PACKAGES__BOOTSTRAP[@]}")
+AURASTUDIO_VARIANT="bootstrap"
+declare -a AURASTUDIO_EXTRA_PACKAGES
+AURASTUDIO_EXTRA_PACKAGES=("${AURASTUDIO_PACKAGES__BOOTSTRAP[@]}")
 
 echo "Using configuration:"
-echo "  Variant        : ${COTG_VARIANT}"
+echo "  Variant        : ${AURASTUDIO_VARIANT}"
 echo "  Repository     : ${AURASTUDIO_REPO}"
-echo "  Packages       : ${#COTG_EXTRA_PACKAGES[@]}"
+echo "  Packages       : ${#AURASTUDIO_EXTRA_PACKAGES[@]}"
 
 # Build for target architectures
 TARGET_ARCH="${1:-aarch64}"
 for arch in $TARGET_ARCH; do
-  build_bootstrap "$COTG_VARIANT" "$arch" "$AURASTUDIO_REPO" "${COTG_EXTRA_PACKAGES[@]}" ||
+  build_bootstrap "$AURASTUDIO_VARIANT" "$arch" "$AURASTUDIO_REPO" "${AURASTUDIO_EXTRA_PACKAGES[@]}" ||
     aurastudio_error_exit "Unable to build bootstrap for ${arch}"
 done

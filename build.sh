@@ -131,8 +131,7 @@ setup_aurastudio_patches() {
       # Template file — process with sed
       local out="${patch%.in}"
       aurastudio_info "[*] Generating patch: $patch → $out"
-      sed -e "s|@COTG_GPG_KEY@|$(basename "$BUILD_GPG_KEY")|g" \
-          -e "s|@AURASTUDIO_GPG_KEY@|$(basename "$BUILD_GPG_KEY")|g" \
+      sed -e "s|@AURASTUDIO_GPG_KEY@|$(basename "$BUILD_GPG_KEY")|g" \
           -e "s|@TERMUX_PACKAGE_NAME@|$(sed_escape "$BUILD_PACKAGE_NAME")|g" \
           -e "s|@AURASTUDIO_PACKAGE_NAME@|$(sed_escape "$BUILD_PACKAGE_NAME")|g" \
           "$SCRIPT_DIR/patches/$patch" > "$SCRIPT_DIR/patches/$out" 2>/dev/null || {

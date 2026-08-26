@@ -52,12 +52,12 @@ jobs:
 
       - name: Build Bootstrap
         run: |
-          export COTG_REPO="https://arata-labs.github.io/aurastudio-termux"
-          export COTG_OUTPUT_DIR="$(pwd)/output"
+          export AURASTUDIO_REPO="https://arata-labs.github.io/aurastudio-termux"
+          export AURASTUDIO_OUTPUT_DIR="$(pwd)/output"
 
           mkdir -p output
 
-          bash ./generate-bootstrap-archive.sh -r "$COTG_REPO" "${{ matrix.arch }}"
+          bash ./generate-bootstrap-archive.sh -r "$AURASTUDIO_REPO" "${{ matrix.arch }}"
 
       - name: Show output
         run: |
