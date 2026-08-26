@@ -58,6 +58,7 @@ declare -a AURASTUDIO_PACKAGES=(
   "binutils"
   "brotli"
   "cmake"
+  "glibc"
   "gradle"
   "jq"
   "libllvm"
@@ -74,5 +75,6 @@ declare -a AURASTUDIO_PACKAGES=(
   "zlib"
 
   ## ---- JDK ---- ##
+  "openjdk-17"
   "openjdk-21"
 )
