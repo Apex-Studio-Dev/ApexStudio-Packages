@@ -66,10 +66,8 @@ jobs:
           chmod +x scripts/free-space.sh
           CI=true bash scripts/free-space.sh
 
-      - name: Enable zram
-        uses: ./.github/actions/zram
-        with:
-          device_name: /dev/zram0
+      # zram skipped — kernel headers not available on GitHub Actions runners
+      # Use free-space.sh instead for disk cleanup
 
       - name: Lint packages
         run: |
