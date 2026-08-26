@@ -74,8 +74,8 @@ jobs:
           chmod +x scripts/lint-packages.sh
           PKG_SCRIPTS=""
           for pkg in ${{ inputs.packages }}; do
-            if [ -f "packages/${pkg}/build.sh" ]; then
-              PKG_SCRIPTS="${PKG_SCRIPTS} packages/${pkg}/build.sh"
+            if [ -f "termux-packages/packages/${pkg}/build.sh" ]; then
+              PKG_SCRIPTS="${PKG_SCRIPTS} termux-packages/packages/${pkg}/build.sh"
             fi
           done
           if [ -n "$PKG_SCRIPTS" ]; then

@@ -32,9 +32,19 @@ while [ $# -ge 1 ]; do
 	shift 1
 done
 
+# Resolve packages directory (termux-packages/packages or packages)
+if [ -d "termux-packages/packages" ]; then
+	PACKAGES_DIR="termux-packages/packages"
+elif [ -d "packages" ]; then
+	PACKAGES_DIR="packages"
+else
+	echo "$DRY_RUN_SCRIPT_NAME: No packages directory found"
+	exit 1
+fi
+
 for ((i=0; i<${#PACKAGE_LIST[@]}; i++)); do
 	TERMUX_PKG_NAME="${PACKAGE_LIST[i]}"
-	TERMUX_PKG_BUILDER_SCRIPT="packages/${TERMUX_PKG_NAME}/build.sh"
+	TERMUX_PKG_BUILDER_SCRIPT="${PACKAGES_DIR}/${TERMUX_PKG_NAME}/build.sh"
 
 	if [ ! -f "$TERMUX_PKG_BUILDER_SCRIPT" ]; then
 		echo "$DRY_RUN_SCRIPT_NAME: Package $TERMUX_PKG_NAME not found"
