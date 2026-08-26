@@ -29,7 +29,7 @@ declare -a PATCHES=(
   "disable-apparmor-fuse-overlayfs.patch"
 
   # Bootstrap changes (optimized ZIP, brotli, strip)
-  "scripts-generate-bootstraps-CoGo-changes.patch"
+  "scripts-generate-bootstraps-aurastudio.patch"
   "scripts-cleanup-in-second-stage.patch"
 
   # -I dependency install: import our GPG key alongside upstream keys

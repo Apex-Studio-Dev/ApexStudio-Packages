@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Generate bootstrap archives for AuraStudio
-# Adapted from terminal-packages (CoGo)
+# Adapted from terminal-packages
 
 set -euo pipefail
 
