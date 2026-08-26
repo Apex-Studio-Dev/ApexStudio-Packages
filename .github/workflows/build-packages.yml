@@ -67,34 +67,9 @@ jobs:
           CI=true bash scripts/free-space.sh
 
       - name: Enable zram
-        run: |
-          echo "Setting up zram..."
-          # Load zram module if available
-          sudo modprobe zram 2>/dev/null || true
-          if [ ! -e /dev/zram0 ]; then
-            echo "WARN: /dev/zram0 not available, trying to create..."
-            sudo mknod /dev/zram0 b 253 0 2>/dev/null || true
-          fi
-          if [ -e /dev/zram0 ]; then
-            sudo apt-get update -qq && sudo apt-get install -y -qq zram-tools
-            sudo swapoff /dev/zram0 2>/dev/null || true
-            sudo zramctl --reset /dev/zram0 2>/dev/null || true
-            sudo zramctl --find --algorithm zstd --size 16G || {
-              echo "WARN: zramctl failed, using tmpfs swap instead"
-              sudo fallocate -l 4G /swapfile
-              sudo chmod 600 /swapfile
-              sudo mkswap /swapfile
-              sudo swapon /swapfile
-            }
-            cat /proc/swaps
-          else
-            echo "WARN: zram not available, using tmpfs swap instead"
-            sudo fallocate -l 4G /swapfile
-            sudo chmod 600 /swapfile
-            sudo mkswap /swapfile
-            sudo swapon /swapfile
-            cat /proc/swaps
-          fi
+        uses: ./.github/actions/zram
+        with:
+          device_name: /dev/zram0
 
       - name: Lint packages
         run: |
