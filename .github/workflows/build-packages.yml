@@ -252,7 +252,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install tools
-        run: sudo apt-get update && sudo apt-get install -y gnupg curl wget python3
+        run: sudo apt-get update && sudo apt-get install -y gnupg curl wget python3 apt-utils
 
       - name: Generate APT repository
         run: |
@@ -292,6 +292,13 @@ jobs:
           echo "Repository signed successfully"
         env:
           GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
+
+      - name: Handle large debs (>100MB → GitHub Releases)
+        run: |
+          export GITHUB_REPOSITORY="${{ github.repository }}"
+          bash ./handle-large-debs.sh output/repo 100
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate packages.json
         run: |
@@ -484,7 +491,7 @@ jobs:
         continue-on-error: true
 
       - name: Install tools
-        run: sudo apt-get update && sudo apt-get install -y gnupg curl wget python3
+        run: sudo apt-get update && sudo apt-get install -y gnupg curl wget python3 apt-utils
 
       - name: Regenerate APT repository
         run: |
@@ -524,6 +531,13 @@ jobs:
           echo "Repository signed successfully"
         env:
           GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
+
+      - name: Handle large debs (>100MB → GitHub Releases)
+        run: |
+          export GITHUB_REPOSITORY="${{ github.repository }}"
+          bash ./handle-large-debs.sh output/repo 100
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate packages.json
         run: |
