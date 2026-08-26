@@ -257,20 +257,11 @@ jobs:
             KEY_ID="${GPG_KEY_ID}"
           fi
           echo "Signing with key: $KEY_ID"
-          gpg \
-            --yes \
-            --passphrase "" \
-            --pinentry-mode loopback \
-            --digest-algo SHA256 \
-            --clearsign \
-            -u "${KEY_ID}" \
+          gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
+            --clearsign -u "${KEY_ID}" \
             -o output/repo/dists/stable/InRelease \
             output/repo/dists/stable/Release
-          gpg \
-            --yes \
-            --passphrase "" \
-            --pinentry-mode loopback \
-            --digest-algo SHA256 \
+          gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
             -u "${KEY_ID}" \
             -o output/repo/dists/stable/Release.gpg \
             output/repo/dists/stable/Release
@@ -516,20 +507,11 @@ jobs:
             KEY_ID="${GPG_KEY_ID}"
           fi
           echo "Signing with key: $KEY_ID"
-          gpg \
-            --yes \
-            --passphrase "" \
-            --pinentry-mode loopback \
-            --digest-algo SHA256 \
-            --clearsign \
-            -u "${KEY_ID}" \
+          gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
+            --clearsign -u "${KEY_ID}" \
             -o output/repo/dists/stable/InRelease \
             output/repo/dists/stable/Release
-          gpg \
-            --yes \
-            --passphrase "" \
-            --pinentry-mode loopback \
-            --digest-algo SHA256 \
+          gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
             -u "${KEY_ID}" \
             -o output/repo/dists/stable/Release.gpg \
             output/repo/dists/stable/Release
