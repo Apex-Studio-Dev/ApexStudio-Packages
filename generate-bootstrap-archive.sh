@@ -94,14 +94,7 @@ fi
 # Determine variant and packages
 COTG_VARIANT="debug"
 declare -a COTG_EXTRA_PACKAGES
-COTG_EXTRA_PACKAGES=("${AURASTUDIO_PACKAGES__BASE[@]}")
-
-if [[ "$COTG_RELEASE" == "true" ]]; then
-  COTG_VARIANT="release"
-  COTG_EXTRA_PACKAGES+=("${AURASTUDIO_PACKAGES__RELEASE[@]}")
-else
-  COTG_EXTRA_PACKAGES+=("${AURASTUDIO_PACKAGES__DEBUG[@]}")
-fi
+COTG_EXTRA_PACKAGES=("${AURASTUDIO_PACKAGES[@]}")
 
 echo "Using configuration:"
 echo "  Variant        : ${COTG_VARIANT}"

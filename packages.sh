@@ -2,8 +2,7 @@
 
 # AuraStudio bootstrap package lists
 
-# Base packages common for all builds
-declare -a AURASTUDIO_PACKAGES__BASE=(
+declare -a AURASTUDIO_PACKAGES=(
   ## ---- Bootstrap packages ---- ##
   "apt"
   "bash"
@@ -29,7 +28,7 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   "termux-tools"
   "util-linux"
 
-  ## ---- Additional (base) ---- ##
+  ## ---- Additional ---- ##
   "ed"
   "debianutils"
   "dos2unix"
@@ -51,12 +50,7 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   "libvorbis"
   "libsndfile"
 
-  ## ---- JDK ---- ##
-  "openjdk-21"
-)
-
-# Debug-only packages
-declare -a AURASTUDIO_PACKAGES__DEBUG=(
+  ## ---- Development tools ---- ##
   "binutils"
   "brotli"
   "cmake"
@@ -72,14 +66,7 @@ declare -a AURASTUDIO_PACKAGES__DEBUG=(
   "which"
   "zip"
   "zlib"
-)
 
-# Release-only packages
-declare -a AURASTUDIO_PACKAGES__RELEASE=()
-
-# All packages
-declare -a AURASTUDIO_PACKAGES=(
-  "${AURASTUDIO_PACKAGES__BASE[@]}"
-  "${AURASTUDIO_PACKAGES__DEBUG[@]}"
-  "${AURASTUDIO_PACKAGES__RELEASE[@]}"
+  ## ---- JDK ---- ##
+  "openjdk-21"
 )

@@ -275,7 +275,7 @@ declare -a BUILD_PACKAGES=("$@")
 if [[ "$BUILD_EXPLICIT" != "true" ]]; then
   # Add base packages if none specified
   if [[ ${#BUILD_PACKAGES[@]} -eq 0 ]]; then
-    BUILD_PACKAGES=("${AURASTUDIO_PACKAGES__BASE[@]}")
+    BUILD_PACKAGES=("${AURASTUDIO_PACKAGES[@]}")
   fi
 fi
 
