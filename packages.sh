@@ -7,6 +7,7 @@ declare -a AURASTUDIO_PACKAGES=(
   "apt"
   "bash"
   "coreutils"
+  "curl"
   "dash"
   "diffutils"
   "findutils"
@@ -18,6 +19,7 @@ declare -a AURASTUDIO_PACKAGES=(
   "libbz2"
   "libcurl"
   "liblzma"
+  "ncurses-utils"
   "procps"
   "psmisc"
   "sed"
@@ -29,6 +31,7 @@ declare -a AURASTUDIO_PACKAGES=(
   "util-linux"
 
   ## ---- Additional ---- ##
+  "aria2"
   "ed"
   "debianutils"
   "dos2unix"
@@ -51,13 +54,16 @@ declare -a AURASTUDIO_PACKAGES=(
   "libsndfile"
 
   ## ---- Development tools ---- ##
+  "aapt2"
   "binutils"
   "brotli"
   "cmake"
+  "gradle"
   "jq"
   "libllvm"
   "libprotobuf"
   "libsqlite"
+  "make"
   "mandoc"
   "python"
   "python-pip"
