@@ -230,30 +230,41 @@ jobs:
         run: |
           if [ -n "${PACKAGES_GPG_KEY:-}" ]; then
             echo "$PACKAGES_GPG_KEY" | base64 -d | gpg --batch --import
+          fi
+          if gpg --list-secret-keys "5F128F230DEEF535" &>/dev/null; then
+            echo "AuraStudio Builder key available"
           else
-            echo "No GPG key configured, skipping signing"
+            gpg --batch --import aurastudio.gpg
           fi
         env:
           PACKAGES_GPG_KEY: ${{ secrets.PACKAGES_GPG_KEY }}
 
       - name: Sign repository
         run: |
-          if [ -n "${PACKAGES_GPG_KEY_PASS:-}" ] && [ -n "${GPG_KEY_ID:-}" ]; then
-            echo "$PACKAGES_GPG_KEY_PASS" | \
-            gpg \
-              --yes \
-              --passphrase-fd 0 \
-              --pinentry-mode loopback \
-              --digest-algo SHA256 \
-              --clearsign \
-              -u "${GPG_KEY_ID}" \
-              -o output/repo/dists/stable/InRelease \
-              output/repo/dists/stable/Release
-          else
-            echo "No GPG signing configured, skipping"
+          KEY_ID="5F128F230DEEF535"
+          if [ -n "${GPG_KEY_ID:-}" ]; then
+            KEY_ID="${GPG_KEY_ID}"
           fi
+          echo "Signing with key: $KEY_ID"
+          gpg \
+            --yes \
+            --passphrase "" \
+            --pinentry-mode loopback \
+            --digest-algo SHA256 \
+            --clearsign \
+            -u "${KEY_ID}" \
+            -o output/repo/dists/stable/InRelease \
+            output/repo/dists/stable/Release
+          gpg \
+            --yes \
+            --passphrase "" \
+            --pinentry-mode loopback \
+            --digest-algo SHA256 \
+            -u "${KEY_ID}" \
+            -o output/repo/dists/stable/Release.gpg \
+            output/repo/dists/stable/Release
+          echo "Repository signed successfully"
         env:
-          PACKAGES_GPG_KEY_PASS: ${{ secrets.PACKAGES_GPG_KEY_PASS }}
           GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
 
       - name: Generate packages.json
@@ -479,25 +490,40 @@ jobs:
           if [ -n "${PACKAGES_GPG_KEY:-}" ]; then
             echo "$PACKAGES_GPG_KEY" | base64 -d | gpg --batch --import
           fi
+          if gpg --list-secret-keys "5F128F230DEEF535" &>/dev/null; then
+            echo "AuraStudio Builder key available"
+          else
+            gpg --batch --import aurastudio.gpg
+          fi
         env:
           PACKAGES_GPG_KEY: ${{ secrets.PACKAGES_GPG_KEY }}
 
       - name: Sign repository
         run: |
-          if [ -n "${PACKAGES_GPG_KEY_PASS:-}" ] && [ -n "${GPG_KEY_ID:-}" ]; then
-            echo "$PACKAGES_GPG_KEY_PASS" | \
-            gpg \
-              --yes \
-              --passphrase-fd 0 \
-              --pinentry-mode loopback \
-              --digest-algo SHA256 \
-              --clearsign \
-              -u "${GPG_KEY_ID}" \
-              -o output/repo/dists/stable/InRelease \
-              output/repo/dists/stable/Release
+          KEY_ID="5F128F230DEEF535"
+          if [ -n "${GPG_KEY_ID:-}" ]; then
+            KEY_ID="${GPG_KEY_ID}"
           fi
+          echo "Signing with key: $KEY_ID"
+          gpg \
+            --yes \
+            --passphrase "" \
+            --pinentry-mode loopback \
+            --digest-algo SHA256 \
+            --clearsign \
+            -u "${KEY_ID}" \
+            -o output/repo/dists/stable/InRelease \
+            output/repo/dists/stable/Release
+          gpg \
+            --yes \
+            --passphrase "" \
+            --pinentry-mode loopback \
+            --digest-algo SHA256 \
+            -u "${KEY_ID}" \
+            -o output/repo/dists/stable/Release.gpg \
+            output/repo/dists/stable/Release
+          echo "Repository signed successfully"
         env:
-          PACKAGES_GPG_KEY_PASS: ${{ secrets.PACKAGES_GPG_KEY_PASS }}
           GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
 
       - name: Generate packages.json
