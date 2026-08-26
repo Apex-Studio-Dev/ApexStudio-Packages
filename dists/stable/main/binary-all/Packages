@@ -1,3 +1,33 @@
+Package: apt-transport-tor
+Architecture: all
+Installed-Size: 44
+Maintainer: @termux
+Version: 2.8.1-2
+Homepage: https://packages.debian.org/apt
+Depends: tor, apt (= 2.8.1-2)
+Description: APT transport for anonymous package downloads via Tor
+Filename: dists/stable/main/binary-all/apt-transport-tor_2.8.1-2_all.deb
+Size: 928
+MD5Sum: da37490d91970eaf792ed70be56c3581
+SHA1: 8a8bf55a17a259b2dc36504363a68f58a326331e
+SHA256: 33275ef9a59feb1cd06c7ceb60e319e3309e3f5fba81bd8529535ab16387e474
+SHA512: c2cf4cfb663b2046d0fd5d5bf34de1605d21cd11cdff5d21dde214400c217cdca9a231e51627343ba7884603b356b80c695cddf83f5644f8538ce22044663692
+
+Package: bash-completion
+Architecture: all
+Installed-Size: 2724
+Maintainer: Joshua Kahn <tom@termux.dev>
+Version: 2.18.0
+Homepage: https://github.com/scop/bash-completion
+Depends: bash
+Description: Programmable completion for the bash shell
+Filename: dists/stable/main/binary-all/bash-completion_2.18.0_all.deb
+Size: 194332
+MD5Sum: 53af895ff08020729026308ff67d1c89
+SHA1: 71ff2c53eba90bc71460acc07d06d411d29fafc5
+SHA256: f697cb83fa12e23ed4f740c8c958c070298e33b24364f8b7caeebfbfeb7b8bda
+SHA512: f19d872871edaeb39fd33c4ea6b8f525667ea81292631b01fa97c70d2b0c9697289a0bd378591ae0ae6e7acf1f8cda4bb118ba957f6475e8609c1b9bdc2f8d73
+
 Package: ca-certificates-java
 Architecture: all
 Installed-Size: 180
@@ -199,6 +229,21 @@ MD5Sum: b3e68e458fbb0ff1f79820f4aab341d3
 SHA1: 5ec492d01255ae9fd2b6216fc455bed92ac73b95
 SHA256: 6a1acb751d909c8f8322172fd025119af69bc1c100a92d9672fd2790d04e83bb
 SHA512: 8862f55b2a18896b941d233130736d079377895f7ce5e05278c0bae5327c16a40514dfebece4c9148fa56dc33a97e1704544e64c5da07629daf1edc2fa27c345
+
+Package: termux-licenses
+Architecture: all
+Installed-Size: 372
+Maintainer: @termux
+Version: 2.2
+Homepage: https://termux.dev
+Essential: yes
+Description: Contains LICENSE files for common licenses
+Filename: dists/stable/main/binary-all/termux-licenses_2.2_all.deb
+Size: 52276
+MD5Sum: 736a303a2d02b478e4e7e3906017ce4c
+SHA1: 23be1e0e735d23fda01dc52ee8f3826cdd36d6e5
+SHA256: 3cbd85f6f96f8370eac10345b87bb4702330f31cb29b8c69ddd73ff7c3009cf0
+SHA512: d52600e8378481845bddbde04341e3f0a011e73ded2becd997a3211bd325ed10850619171c3ed95634f28f17b3f36e8fcea59828f8009b53763e57696940dfbe
 
 Package: ttf-dejavu
 Architecture: all
