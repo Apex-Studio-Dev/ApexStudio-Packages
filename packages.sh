@@ -83,7 +83,6 @@ declare -a AURASTUDIO_PACKAGES=(
   "brotli"
   "cmake"
   "glibc"
-  "gradle"
   "jq"
   "libllvm"
   "libprotobuf"
