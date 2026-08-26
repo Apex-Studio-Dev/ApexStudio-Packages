@@ -263,6 +263,7 @@ jobs:
             output/repo/dists/stable/Release
           gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
             -u "${KEY_ID}" \
+            --detach-sign \
             -o output/repo/dists/stable/Release.gpg \
             output/repo/dists/stable/Release
           echo "Repository signed successfully"
@@ -513,6 +514,7 @@ jobs:
             output/repo/dists/stable/Release
           gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
             -u "${KEY_ID}" \
+            --detach-sign \
             -o output/repo/dists/stable/Release.gpg \
             output/repo/dists/stable/Release
           echo "Repository signed successfully"
