@@ -1,0 +1,132 @@
+diff --git a/packages/termux-tools/003-motd-aurastudio.patch b/packages/termux-tools/003-motd-aurastudio.patch
+new file mode 100644
+index 0000000..11ef005
+--- /dev/null
++++ b/packages/termux-tools/003-motd-aurastudio.patch
+@@ -0,0 +1,126 @@
++diff --git a/motds/Makefile.am b/motds/Makefile-mod.am
++index 5e34b42..d0ebfc2 100644
++--- a/motds/Makefile.am
+++++ b/motds/Makefile-mod.am
++@@ -43,29 +43,20 @@ $(eval $(call process-rule,motd.sh))
++ motd:
++ 	@echo "Creating motd file"
++ 
++-	@echo "Welcome to Termux!" > motd
+++	@echo "Welcome to Aura Studio!" > motd
+++	@echo "Android Development Environment" > motd
++ 	@echo "" >> motd
++-	@echo "Docs:       https://termux.dev/docs" >> motd
++-	@echo "Donate:     https://termux.dev/donate" >> motd
++-	@echo "Community:  https://termux.dev/community" >> motd
++ 
+++	@echo "Get started:" >> motd
+++	@echo "  aurastudio setup    # Configure environment" >> motd
+++	@echo "  aurastudio status   # Check installed tools" >> motd
+++	@echo "  aurastudio doctor   # Run diagnostics" >> motd
++ 	@echo "" >> motd
++-	@echo "Working with packages:" >> motd
++-	@echo "" >> motd
++-	@echo " - Search:  pkg search <query>" >> motd
++-	@echo " - Install: pkg install <package>" >> motd
++-	@echo " - Upgrade: pkg upgrade" >> motd
++-
++-    ifeq ($(TERMUX_PACKAGE_MANAGER),apt)
++-		@echo "" >> motd
++-		@echo "Subscribing to additional repositories:" >> motd
++-		@echo "" >> motd
++-		@echo " - Root:    pkg install root-repo" >> motd
++-		@echo " - X11:     pkg install x11-repo" >> motd
++-		@echo "" >> motd
++-		@echo "For fixing any repository issues," >> motd
++-		@echo "try 'termux-change-repo' command." >> motd
++-    endif
+++	@echo "Quick commands:" >> motd
+++	@echo "  apt search <pkg>    # Search packages" >> motd
+++	@echo "  apt install <pkg>   # Install package" >> motd
+++	@echo "  java -version       # Check Java" >> motd
+++	@echo "  gradle --version    # Check Gradle" >> motd
++ 
++ 	@echo "" >> motd
++-	@echo "Report issues at https://termux.dev/issues" >> motd
+++	@echo "Docs: https://arata-labs.github.io/aurastudio" >> motd
++diff --git a/motds/motd.sh.in b/motds/motd.sh-mod.in
++index 1a76844..4f679f5 100644
++--- a/motds/motd.sh.in
+++++ b/motds/motd.sh-mod.in
++@@ -3,59 +3,21 @@
++ # Setup TERMUX_APP_PACKAGE_MANAGER
++ source "@TERMUX_PREFIX@/bin/termux-setup-package-manager" || exit 1
++ 
++-terminal_width="$(stty size | cut -d" " -f2)"
++-if [[ "$terminal_width" =~ ^[0-9]+$ ]] && [ "$terminal_width" -gt 60 ]; then
++-
++-    motd="
++- \e[47m                \e[0m  \e[1mWelcome to Termux!\e[0m
++- \e[47m  \e[0m            \e[0;37m\e[47m .\e[0m
++- \e[47m  \e[0m  \e[47m  \e[0m        \e[47m  \e[0m  \e[1mDocs:\e[0m      \e[4mhttps://termux.dev/docs\e[0m
++- \e[47m  \e[0m  \e[47m  \e[0m        \e[47m  \e[0m  \e[1mDonate:\e[0m    \e[4mhttps://termux.dev/donate\e[0m
++- \e[47m  \e[0m            \e[47m  \e[0m  \e[1mCommunity:\e[0m \e[4mhttps://termux.dev/community\e[0m
++- \e[47m  \e[0m            \e[0;37m\e[47m .\e[0m
++- \e[47m                \e[0m  \e[1mTermux version:\e[0m ${TERMUX_VERSION-Unknown}
++-"
++-
++-    motd_indent="                   "
++-
++-else
++-
++-    motd="
++-\e[1mWelcome to Termux!\e[0m
++-
++-\e[1mDocs:\e[0m      \e[4mhttps://termux.dev/docs\e[0m
++-\e[1mDonate:\e[0m    \e[4mhttps://termux.dev/donate\e[0m
++-\e[1mCommunity:\e[0m \e[4mhttps://termux.dev/community\e[0m
++-
++-\e[1mTermux version:\e[0m ${TERMUX_VERSION-Unknown}
++-"
++-
++-    motd_indent=""
++-fi
++-
++-motd+="
++-${motd_indent}\e[1mWorking with packages:\e[0m
++-${motd_indent}\e[1mSearch:\e[0m  pkg search <query>
++-${motd_indent}\e[1mInstall:\e[0m pkg install <package>
++-${motd_indent}\e[1mUpgrade:\e[0m pkg upgrade
+++motd="
+++\e[1m\e[38;2;99;102;241mWelcome to AuraStudio!\e[0m
+++\e[2mAndroid Development Environment\e[0m
+++
+++\e[2mGet started:\e[0m
+++  aurastudio setup    \e[2m# Configure environment\e[0m
+++  aurastudio status   \e[2m# Check installed tools\e[0m
+++  aurastudio doctor   \e[2m# Run diagnostics\e[0m
+++
+++\e[2mQuick commands:\e[0m
+++  apt search <pkg>    \e[2m# Search packages\e[0m
+++  apt install <pkg>   \e[2m# Install package\e[0m
+++  java -version       \e[2m# Check Java\e[0m
+++  gradle --version    \e[2m# Check Gradle\e[0m
+++
+++\e[2mDocs: \e[4mhttps://arata-labs.github.io/aurastudio\e[0m
++ "
++-
++-
++-if [ "$TERMUX_APP_PACKAGE_MANAGER" = "apt" ]; then
++-
++-    motd+="
++-${motd_indent}\e[1mSubscribing to additional repos:\e[0m
++-${motd_indent}\e[1mRoot:\e[0m pkg install root-repo
++-${motd_indent}\e[1mX11:\e[0m  pkg install x11-repo
++-
++-${motd_indent}For fixing any repository issues,
++-${motd_indent}try 'termux-change-repo' command.
++-"
++-
++-fi
++-
++-motd+="
++-${motd_indent}Report issues at \e[4mhttps://termux.dev/issues\e[0m
++-"
++-
++ echo -e "$motd"
