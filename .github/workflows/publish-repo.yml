@@ -1,0 +1,148 @@
+name: Publish APT Repository
+
+on:
+  workflow_dispatch:
+    inputs:
+      arch:
+        description: "Architecture to publish"
+        required: true
+        default: "aarch64"
+        type: choice
+        options:
+          - aarch64
+          - arm
+          - both
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-26.04
+
+    env:
+      GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Download from Release
+        run: |
+          mkdir -p output/aarch64 output/arm
+          for arch in aarch64 arm; do
+            for attempt in 1 2 3; do
+              echo "Download attempt $attempt/3 for $arch..."
+              if gh release download "packages-${arch}" \
+                --pattern "packages-${arch}.zip" \
+                --dir "output/${arch}" 2>/dev/null; then
+                echo "Download succeeded for $arch"
+                cd "output/${arch}"
+                unzip -o "packages-${arch}.zip" 2>/dev/null || true
+                rm -f "packages-${arch}.zip"
+                echo "Unzipped $(find . -name '*.deb' -type f | wc -l) debs for $arch"
+                cd -
+                break
+              fi
+              echo "Attempt $attempt failed for $arch, waiting 30s..."
+              sleep 30
+            done
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install tools
+        run: sudo apt-get update && sudo apt-get install -y gnupg curl wget python3 apt-utils
+
+      - name: Generate APT repository
+        run: |
+          export AURASTUDIO_OUTPUT_DIR="$(pwd)/output"
+          export AURASTUDIO_REPO_DIR="$(pwd)/output/repo"
+          bash ./generate-apt-repo.sh
+
+      - name: Import GPG key
+        run: |
+          if [ -n "${PACKAGES_GPG_KEY:-}" ]; then
+            echo "$PACKAGES_GPG_KEY" | base64 -d | gpg --batch --import
+          fi
+          if gpg --list-secret-keys "5F128F230DEEF535" &>/dev/null; then
+            echo "AuraStudio Builder key available"
+          else
+            gpg --batch --import aurastudio.gpg
+          fi
+        env:
+          PACKAGES_GPG_KEY: ${{ secrets.PACKAGES_GPG_KEY }}
+
+      - name: Sign repository
+        run: |
+          KEY_ID="5F128F230DEEF535"
+          if [ -n "${GPG_KEY_ID:-}" ]; then
+            KEY_ID="${GPG_KEY_ID}"
+          fi
+          echo "Signing with key: $KEY_ID"
+          gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
+            --clearsign -u "${KEY_ID}" \
+            -o output/repo/dists/stable/InRelease \
+            output/repo/dists/stable/Release
+          gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
+            -u "${KEY_ID}" \
+            --detach-sign \
+            -o output/repo/dists/stable/Release.gpg \
+            output/repo/dists/stable/Release
+          echo "Repository signed successfully"
+        env:
+          GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
+
+      - name: Handle large debs (>100MB → GitHub Releases)
+        run: |
+          export GITHUB_REPOSITORY="${{ github.repository }}"
+          bash ./handle-large-debs.sh output/repo 100
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate packages.json
+        run: |
+          bash ./generate-packages-json.sh \
+            "output/repo/packages.json" \
+            "output/repo/dists/stable/main/binary-aarch64/Packages" \
+            "output/repo/dists/stable/main/binary-arm/Packages" \
+            "output/repo/dists/stable/main/binary-all/Packages"
+
+      - name: Copy website
+        run: |
+          cp pages-index.html output/repo/index.html
+
+      - name: Deploy to pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: pages
+          publish_dir: output/repo
+          keep_files: false
+
+      - name: Publish summary
+        if: always()
+        run: |
+          DEB_COUNT=$(find output/repo/pool -name "*.deb" -type f 2>/dev/null | wc -l)
+          echo "Published ${DEB_COUNT} debs to APT repo"
+
+      - name: Send notification
+        if: always()
+        run: |
+          BOT_TOKEN="${{ secrets.TELEGRAM_BOT_TOKEN }}"
+          CHAT_ID="${{ secrets.TELEGRAM_CHAT_ID }}"
+          if [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ]; then
+            exit 0
+          fi
+
+          DEB_COUNT=$(find output/repo/pool -name "*.deb" -type f 2>/dev/null | wc -l)
+
+          MSG=$(printf "AuraStudio Publish (manual)\nArch: %s\nPublished: %s debs\nRepo: https://arata-labs.github.io/aurastudio-termux\nRun: https://github.com/%s/actions/runs/%s" \
+            "${{ inputs.arch }}" "$DEB_COUNT" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
+
+          curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+            -d chat_id="$CHAT_ID" \
+            --data-urlencode "text=$MSG" || true
