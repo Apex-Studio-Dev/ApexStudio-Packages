@@ -72,14 +72,14 @@ jobs:
       - name: Lint packages
         run: |
           chmod +x scripts/lint-packages.sh
-          declare -a PKG_SCRIPTS=()
+          PKG_SCRIPTS=""
           for pkg in ${{ inputs.packages }}; do
             if [ -f "packages/${pkg}/build.sh" ]; then
-              PKG_SCRIPTS+=("packages/${pkg}/build.sh")
+              PKG_SCRIPTS="${PKG_SCRIPTS} packages/${pkg}/build.sh"
             fi
           done
-          if [ ${#PKG_SCRIPTS[@]} -gt 0 ]; then
-            bash scripts/lint-packages.sh "${PKG_SCRIPTS[@]}"
+          if [ -n "$PKG_SCRIPTS" ]; then
+            bash scripts/lint-packages.sh $PKG_SCRIPTS
           fi
 
       - name: Dry-run check
