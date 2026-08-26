@@ -34,9 +34,6 @@ pkg install apt-transport-https
 echo "deb https://arata-labs.github.io/aurastudio-termux stable main" \
   > $PREFIX/etc/apt/sources.list.d/aurastudio.list
 
-# Import GPG key
-curl -sL https://arata-labs.github.io/aurastudio-termux/gpg.pub | apt-key add -
-
 # Update and install
 pkg update && pkg install aurastudio
 ```
@@ -242,9 +239,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org/):
 
 ## Security
 
-If you discover a security vulnerability, please report it responsibly:
-- **Email**: security@aurastudio.dev
-- **GitHub**: [Report vulnerability](https://github.com/Arata-Labs/aurastudio-termux/security/advisories/new)
+If you discover a security vulnerability, please report it via [GitHub Issues](https://github.com/Arata-Labs/aurastudio-termux/issues).
 
 ## License
 
