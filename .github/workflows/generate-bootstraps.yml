@@ -11,6 +11,7 @@ on:
         options:
           - aarch64
           - arm
+          - both
 
       release:
         description: "Release build?"
@@ -24,6 +25,10 @@ permissions:
 jobs:
   bootstrap:
     runs-on: ubuntu-26.04
+
+    strategy:
+      matrix:
+        arch: ${{ fromJSON(inputs.arch == 'both' && '["aarch64", "arm"]' || format('["{0}"]', inputs.arch)) }}
 
     container:
       image: ghcr.io/termux/package-builder:latest
@@ -43,7 +48,7 @@ jobs:
 
       - name: Prepare output dir
         run: |
-          mkdir -p "output/${{ inputs.arch }}"
+          mkdir -p "output/${{ matrix.arch }}"
 
       - name: Build Bootstrap
         run: |
@@ -52,7 +57,7 @@ jobs:
 
           mkdir -p output
 
-          bash ./generate-bootstrap-archive.sh -r "$COTG_REPO" "${{ inputs.arch }}"
+          bash ./generate-bootstrap-archive.sh -r "$COTG_REPO" "${{ matrix.arch }}"
 
       - name: Show output
         run: |
