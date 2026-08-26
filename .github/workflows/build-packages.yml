@@ -22,6 +22,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-26.04
+    outputs:
+      has_failures: ${{ steps.failures.outputs.has_failures }}
 
     container:
       image: ghcr.io/termux/package-builder:latest
@@ -105,17 +107,22 @@ jobs:
           echo "=== Build log tail ==="
           tail -30 output/${{ inputs.arch }}/build.log 2>/dev/null || echo "no log"
 
-      - name: Upload failed packages list
+      - name: Check failures and set output
+        id: failures
         if: always()
         run: |
           if [ -f "output/${{ inputs.arch }}/failed-packages.txt" ] && [ -s "output/${{ inputs.arch }}/failed-packages.txt" ]; then
-            echo "Failed packages found, uploading"
+            echo "has_failures=true" >> "$GITHUB_OUTPUT"
+            echo "Failed packages:"
+            cat "output/${{ inputs.arch }}/failed-packages.txt"
           else
+            echo "has_failures=false" >> "$GITHUB_OUTPUT"
             rm -f "output/${{ inputs.arch }}/failed-packages.txt"
             echo "No failed packages"
           fi
+
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: steps.failures.outputs.has_failures == 'true'
         with:
           name: failed-packages
           path: output/${{ inputs.arch }}/failed-packages.txt
@@ -297,7 +304,7 @@ jobs:
 
   retry-failed:
     needs: publish
-    if: needs.publish.result == 'success'
+    if: needs.publish.result == 'success' && needs.build.outputs.has_failures == 'true'
     runs-on: ubuntu-26.04
 
     container:
@@ -314,22 +321,8 @@ jobs:
         with:
           name: failed-packages
           path: /tmp/
-        continue-on-error: true
-
-      - name: Check for failures
-        id: check
-        run: |
-          if [ ! -f /tmp/failed-packages.txt ] || [ ! -s /tmp/failed-packages.txt ]; then
-            echo "has_failures=false" >> "$GITHUB_OUTPUT"
-            echo "No failed packages to retry"
-          else
-            echo "has_failures=true" >> "$GITHUB_OUTPUT"
-            echo "Failed packages to retry:"
-            cat /tmp/failed-packages.txt
-          fi
 
       - name: Cache built packages
-        if: steps.check.outputs.has_failures == 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -341,11 +334,9 @@ jobs:
             termux-build-${{ inputs.arch }}-
 
       - name: Setup Android SDK
-        if: steps.check.outputs.has_failures == 'true'
         uses: android-actions/setup-android@v3
 
       - name: Setup Android NDK r29
-        if: steps.check.outputs.has_failures == 'true'
         run: |
           if [ ! -d /github/home/lib/android-ndk-r29 ]; then
             curl -L "https://dl.google.com/android/repository/android-ndk-r29-linux.zip" -o /tmp/ndk.zip
@@ -355,7 +346,6 @@ jobs:
           fi
 
       - name: Retry failed packages with -I
-        if: steps.check.outputs.has_failures == 'true'
         run: |
           export ANDROID_NDK_HOME=/github/home/lib/android-ndk-r29
           export NDK=/github/home/lib/android-ndk-r29
@@ -386,7 +376,6 @@ jobs:
           echo "$RETRY_FAIL" > /tmp/retry_fail_count
 
       - name: Upload retried debs to Release
-        if: steps.check.outputs.has_failures == 'true'
         run: |
           cd output/${{ inputs.arch }}
           DEB_COUNT=$(find . -name "*.deb" -type f 2>/dev/null | wc -l)
@@ -399,7 +388,6 @@ jobs:
           fi
 
       - name: Upload retry stats
-        if: steps.check.outputs.has_failures == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: retry-stats
@@ -410,7 +398,6 @@ jobs:
           retention-days: 1
 
       - name: Delete old release tag
-        if: steps.check.outputs.has_failures == 'true'
         run: |
           curl -X DELETE \
             -H "Authorization: Bearer $GITHUB_TOKEN" \
@@ -420,7 +407,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload to Release
-        if: steps.check.outputs.has_failures == 'true'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: packages-${{ inputs.arch }}
@@ -432,7 +418,7 @@ jobs:
 
   final-publish:
     needs: [build, publish, retry-failed]
-    if: needs.publish.result == 'success' && needs.retry-failed.result == 'success'
+    if: needs.build.outputs.has_failures == 'true' && needs.publish.result == 'success' && needs.retry-failed.result == 'success'
     runs-on: ubuntu-26.04
 
     env:
