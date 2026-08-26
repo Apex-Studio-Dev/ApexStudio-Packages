@@ -13,9 +13,13 @@ on:
           - arm
           - both
       packages:
-        description: "Package names (space-separated, or 'all' for all packages)"
+        description: "Package names (space-separated)"
         required: true
         type: string
+      free-space:
+        description: "Free disk space (for large packages)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -24,8 +28,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-26.04
-    outputs:
-      has_failures: ${{ steps.failures.outputs.has_failures }}
 
     strategy:
       matrix:
@@ -39,6 +41,63 @@ jobs:
       - uses: actions/checkout@v7
         with:
           submodules: recursive
+
+      - name: Gather build info
+        id: build-info
+        run: |
+          PACKAGES="${{ inputs.packages }}"
+          echo "Packages: $PACKAGES"
+
+          FREE_SPACE="${{ inputs.free-space }}"
+          BIG_PKGS="gradle openjdk-17 openjdk-21 libllvm-static"
+          for pkg in $PACKAGES; do
+            for big in $BIG_PKGS; do
+              if [ "$pkg" = "$big" ]; then
+                FREE_SPACE="true"
+                break 2
+              fi
+            done
+          done
+          echo "free_space=$FREE_SPACE" >> "$GITHUB_OUTPUT"
+
+      - name: Free disk space
+        if: steps.build-info.outputs.free_space == 'true'
+        run: |
+          chmod +x scripts/free-space.sh
+          CI=true bash scripts/free-space.sh
+
+      - name: Enable zram
+        run: |
+          echo "Setting up zram (16G, zstd)..."
+          sudo apt-get update -qq && sudo apt-get install -y -qq zram-tools
+          sudo swapoff /dev/zram0 2>/dev/null || true
+          sudo zramctl --reset /dev/zram0 2>/dev/null || true
+          sudo zramctl --find --algorithm zstd --size 16G
+          sudo mkswap -U clear /dev/zram0
+          sudo swapon --discard --priority 100 /dev/zram0
+          cat /proc/swaps
+
+      - name: Lint packages
+        run: |
+          chmod +x scripts/lint-packages.sh
+          declare -a PKG_SCRIPTS=()
+          for pkg in ${{ inputs.packages }}; do
+            if [ -f "packages/${pkg}/build.sh" ]; then
+              PKG_SCRIPTS+=("packages/${pkg}/build.sh")
+            fi
+          done
+          if [ ${#PKG_SCRIPTS[@]} -gt 0 ]; then
+            bash scripts/lint-packages.sh "${PKG_SCRIPTS[@]}"
+          fi
+
+      - name: Dry-run check
+        run: |
+          chmod +x scripts/build-package-dry-run-simulation.sh
+          scripts/build-package-dry-run-simulation.sh -a "${{ matrix.arch }}" ${{ inputs.packages }}
+          RESULT=$?
+          if [ "$RESULT" -eq 85 ]; then
+            echo "No packages to build for ${{ matrix.arch }}"
+          fi
 
       - name: Generate cache key
         id: cache-key
@@ -79,19 +138,14 @@ jobs:
             echo "NDK r29 already installed"
           fi
 
-      - name: Build packages (keep-going)
+      - name: Build packages
         run: |
           export ANDROID_NDK_HOME=/github/home/lib/android-ndk-r29
           export NDK=/github/home/lib/android-ndk-r29
 
-          # Clear stale failed-packages.txt from cache restore
           rm -f "output/${{ matrix.arch }}/failed-packages.txt"
 
-          if [ "${{ inputs.packages }}" = "all" ]; then
-            bash build.sh -a "${{ matrix.arch }}" --keep-going
-          else
-            bash build.sh -a "${{ matrix.arch }}" -e ${{ inputs.packages }}
-          fi
+          bash build.sh -a "${{ matrix.arch }}" -e ${{ inputs.packages }}
 
       - name: Save built packages cache
         if: always()
@@ -112,28 +166,6 @@ jobs:
           cat output/${{ matrix.arch }}/failed-packages.txt 2>/dev/null || echo "none"
           echo "=== Build log tail ==="
           tail -30 output/${{ matrix.arch }}/build.log 2>/dev/null || echo "no log"
-
-      - name: Check failures and set output
-        id: failures
-        if: always()
-        run: |
-          if [ -f "output/${{ matrix.arch }}/failed-packages.txt" ] && [ -s "output/${{ matrix.arch }}/failed-packages.txt" ]; then
-            echo "has_failures=true" >> "$GITHUB_OUTPUT"
-            echo "Failed packages:"
-            cat "output/${{ matrix.arch }}/failed-packages.txt"
-          else
-            echo "has_failures=false" >> "$GITHUB_OUTPUT"
-            rm -f "output/${{ matrix.arch }}/failed-packages.txt"
-            echo "No failed packages"
-          fi
-
-      - uses: actions/upload-artifact@v4
-        if: steps.failures.outputs.has_failures == 'true'
-        with:
-          name: failed-packages
-          path: output/${{ matrix.arch }}/failed-packages.txt
-          if-no-files-found: ignore
-          retention-days: 1
 
       - name: Package debs
         if: always()
@@ -197,25 +229,22 @@ jobs:
           MSG=$(printf "AuraStudio Build\nPackages: %s\nArch: %s\nStatus: %s\nFailed: %s\nRun: https://github.com/%s/actions/runs/%s" \
             "${{ inputs.packages }}" "${{ matrix.arch }}" "$STATUS" "$FAILED_LIST" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
 
-          # Send message
           curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
             -d chat_id="$CHAT_ID" \
             --data-urlencode "text=$MSG" || true
 
-          # Compress and upload build log
           LOG_FILE="output/${{ matrix.arch }}/build.log"
           if [ -f "$LOG_FILE" ]; then
             gzip -k -f "$LOG_FILE"
             curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument" \
               -F chat_id="$CHAT_ID" \
               -F document=@"${LOG_FILE}.gz" \
-              -F caption="Build log ${{ matrix.arch }} (compressed)" || true
+              -F caption="Build log ${{ matrix.arch }}" || true
             rm -f "${LOG_FILE}.gz"
           fi
 
   publish:
     needs: build
-    if: always() && needs.build.result != 'cancelled'
     runs-on: ubuntu-26.04
 
     env:
@@ -226,6 +255,39 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+
+      - name: Download existing debs from hosted repo
+        run: |
+          echo "=== Downloading existing packages from hosted repo ==="
+          REPO_URL="https://arata-labs.github.io/aurastudio-termux"
+          BUILD_PACKAGES="${{ inputs.packages }}"
+
+          for arch in aarch64 arm; do
+            mkdir -p "output/${arch}"
+            PACKAGES_URL="${REPO_URL}/dists/stable/main/binary-${arch}/Packages"
+            if curl -sL "$PACKAGES_URL" -o "/tmp/Packages-${arch}" 2>/dev/null; then
+              echo "Downloaded Packages file for $arch"
+              grep "^Filename:" "/tmp/Packages-${arch}" | sed 's|Filename: ||' | while read -r deb_path; do
+                deb_name=$(basename "$deb_path")
+                # Skip packages we're building (they'll be replaced by new version)
+                SKIP=false
+                for pkg in $BUILD_PACKAGES; do
+                  if echo "$deb_name" | grep -qE "^${pkg}_"; then
+                    SKIP=true
+                    break
+                  fi
+                done
+                if [ "$SKIP" = "false" ]; then
+                  deb_url="${REPO_URL}/${deb_path}"
+                  curl -sL "$deb_url" -o "output/${arch}/${deb_name}" 2>/dev/null || true
+                fi
+              done
+              EXISTING=$(find "output/${arch}" -name "*.deb" -type f 2>/dev/null | wc -l)
+              echo "Existing debs for $arch: $EXISTING"
+            else
+              echo "No existing Packages file for $arch (first build?)"
+            fi
+          done
 
       - name: Download from Release
         run: |
@@ -332,289 +394,3 @@ jobs:
         run: |
           DEB_COUNT=$(find output/repo -path "*/binary-*/*.deb" -type f 2>/dev/null | wc -l)
           echo "Published ${DEB_COUNT} debs to APT repo"
-
-  retry-failed:
-    needs: publish
-    if: needs.publish.result == 'success' && needs.build.outputs.has_failures == 'true'
-    runs-on: ubuntu-26.04
-
-    container:
-      image: ghcr.io/termux/package-builder:latest
-      options: --privileged --device /dev/fuse
-
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          submodules: recursive
-
-      - name: Download failed packages list
-        uses: actions/download-artifact@v4
-        with:
-          name: failed-packages
-          path: /tmp/
-
-      - name: Cache built packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            /data
-            /github/home/.termux-build
-            output/${{ matrix.arch }}
-          key: termux-retry-${{ matrix.arch }}-${{ github.run_id }}
-          restore-keys: |
-            termux-build-${{ matrix.arch }}-
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Setup Android NDK r29
-        run: |
-          if [ ! -d /github/home/lib/android-ndk-r29 ]; then
-            curl -L "https://dl.google.com/android/repository/android-ndk-r29-linux.zip" -o /tmp/ndk.zip
-            unzip -q /tmp/ndk.zip -d /github/home/lib/
-          else
-            echo "NDK r29 already installed"
-          fi
-
-      - name: Retry failed packages with -I
-        run: |
-          export ANDROID_NDK_HOME=/github/home/lib/android-ndk-r29
-          export NDK=/github/home/lib/android-ndk-r29
-
-          RETRY_SUCCESS=0
-          RETRY_FAIL=0
-          while IFS= read -r pkg; do
-            [ -z "$pkg" ] && continue
-            echo ""
-            echo "=== Retrying: $pkg ==="
-            echo ""
-            if bash build.sh -a "${{ matrix.arch }}" -I -e "$pkg"; then
-              RETRY_SUCCESS=$((RETRY_SUCCESS + 1))
-              echo "[RECOVERED] $pkg"
-            else
-              RETRY_FAIL=$((RETRY_FAIL + 1))
-              echo "[STILL FAILED] $pkg"
-            fi
-          done < /tmp/failed-packages.txt
-
-          echo ""
-          echo "=== Retry Summary ==="
-          echo "Recovered: $RETRY_SUCCESS"
-          echo "Still failed: $RETRY_FAIL"
-
-          # Save retried status
-          echo "$RETRY_SUCCESS" > /tmp/retry_success_count
-          echo "$RETRY_FAIL" > /tmp/retry_fail_count
-
-      - name: Upload retried debs to Release
-        run: |
-          cd output/${{ matrix.arch }}
-          DEB_COUNT=$(find . -name "*.deb" -type f 2>/dev/null | wc -l)
-          if [ "$DEB_COUNT" -gt 0 ]; then
-            for f in *.deb; do
-              newname=$(echo "$f" | tr ':' 'COLON')
-              [ "$f" != "$newname" ] && mv "$f" "$newname"
-            done
-            zip -0 ../packages-${{ matrix.arch }}.zip *.deb
-          fi
-
-      - name: Upload retry stats
-        uses: actions/upload-artifact@v4
-        with:
-          name: retry-stats
-          path: |
-            /tmp/retry_success_count
-            /tmp/retry_fail_count
-          if-no-files-found: ignore
-          retention-days: 1
-
-      - name: Delete old release tag
-        run: |
-          curl -X DELETE \
-            -H "Authorization: Bearer $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/${GITHUB_REPOSITORY}/git/refs/tags/packages-${{ matrix.arch }} || true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload to Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: packages-${{ matrix.arch }}
-          name: Packages Build ${{ matrix.arch }}
-          files: output/packages-${{ matrix.arch }}.zip
-          fail_on_unmatched_files: false
-          overwrite_files: true
-          overwrite: true
-
-  final-publish:
-    needs: [build, publish, retry-failed]
-    if: needs.build.outputs.has_failures == 'true' && needs.publish.result == 'success' && needs.retry-failed.result == 'success'
-    runs-on: ubuntu-26.04
-
-    env:
-      GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
-
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          ref: main
-          fetch-depth: 0
-
-      - name: Download all debs from Release
-        run: |
-          INPUT_ARCH="${{ inputs.arch }}"
-          if [ "$INPUT_ARCH" = "both" ]; then
-            DOWNLOAD_ARCHS="aarch64 arm"
-          else
-            DOWNLOAD_ARCHS="$INPUT_ARCH"
-          fi
-
-          for arch in $DOWNLOAD_ARCHS; do
-            mkdir -p "output/${arch}"
-            for attempt in 1 2 3; do
-              echo "Download attempt $attempt/3 for $arch..."
-              if gh release download "packages-${arch}" \
-                --pattern "packages-${arch}.zip" \
-                --dir "output/${arch}" 2>/dev/null; then
-                echo "Download succeeded for $arch"
-                cd "output/${arch}"
-                unzip -o "packages-${arch}.zip" 2>/dev/null || true
-                rm -f "packages-${arch}.zip"
-                cd -
-                break
-              fi
-              echo "Attempt $attempt failed for $arch, waiting 30s..."
-              sleep 30
-            done
-          done
-          DEB_COUNT=$(find output -name "*.deb" -type f 2>/dev/null | wc -l)
-          echo "Total debs for APT repo: $DEB_COUNT"
-          if [ "$DEB_COUNT" -eq 0 ]; then
-            echo "ERROR: No debs found after download"
-            exit 1
-          fi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Download retry stats
-        uses: actions/download-artifact@v4
-        with:
-          name: retry-stats
-          path: /tmp/
-        continue-on-error: true
-
-      - name: Install tools
-        run: sudo apt-get update && sudo apt-get install -y gnupg curl wget python3 apt-utils
-
-      - name: Regenerate APT repository
-        run: |
-          export AURASTUDIO_OUTPUT_DIR="$(pwd)/output"
-          export AURASTUDIO_REPO_DIR="$(pwd)/output/repo"
-          bash ./generate-apt-repo.sh
-
-      - name: Import GPG key
-        run: |
-          if [ -n "${PACKAGES_GPG_KEY:-}" ]; then
-            echo "$PACKAGES_GPG_KEY" | base64 -d | gpg --batch --import
-          fi
-          if gpg --list-secret-keys "5F128F230DEEF535" &>/dev/null; then
-            echo "AuraStudio Builder key available"
-          else
-            gpg --batch --import aurastudio.gpg
-          fi
-        env:
-          PACKAGES_GPG_KEY: ${{ secrets.PACKAGES_GPG_KEY }}
-
-      - name: Sign repository
-        run: |
-          KEY_ID="5F128F230DEEF535"
-          if [ -n "${GPG_KEY_ID:-}" ]; then
-            KEY_ID="${GPG_KEY_ID}"
-          fi
-          echo "Signing with key: $KEY_ID"
-          gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
-            --clearsign -u "${KEY_ID}" \
-            -o output/repo/dists/stable/InRelease \
-            output/repo/dists/stable/Release
-          gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
-            -u "${KEY_ID}" \
-            --detach-sign \
-            -o output/repo/dists/stable/Release.gpg \
-            output/repo/dists/stable/Release
-          echo "Repository signed successfully"
-        env:
-          GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
-
-      - name: Handle large debs (>100MB → GitHub Releases)
-        run: |
-          export GITHUB_REPOSITORY="${{ github.repository }}"
-          bash ./handle-large-debs.sh output/repo 100
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate packages.json
-        run: |
-          bash ./generate-packages-json.sh \
-            "output/repo/packages.json" \
-            "output/repo/dists/stable/main/binary-aarch64/Packages" \
-            "output/repo/dists/stable/main/binary-arm/Packages" \
-            "output/repo/dists/stable/main/binary-all/Packages"
-
-      - name: Copy website
-        run: |
-          cp pages-index.html output/repo/index.html
-
-      - name: Deploy final repo to pages branch
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: pages
-          publish_dir: output/repo
-          keep_files: false
-
-      - name: Send final notification
-        if: always()
-        run: |
-          BOT_TOKEN="${{ secrets.TELEGRAM_BOT_TOKEN }}"
-          CHAT_ID="${{ secrets.TELEGRAM_CHAT_ID }}"
-          if [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ]; then
-            exit 0
-          fi
-
-          DEB_COUNT=$(find output/repo -path "*/binary-*/*.deb" -type f 2>/dev/null | wc -l)
-          RETRY_SUCCESS=0
-          RETRY_FAIL=0
-          [ -f /tmp/retry_success_count ] && RETRY_SUCCESS=$(cat /tmp/retry_success_count)
-          [ -f /tmp/retry_fail_count ] && RETRY_FAIL=$(cat /tmp/retry_fail_count)
-
-          FINAL_FAILED=0
-          FINAL_LIST=""
-          if [ "$RETRY_FAIL" -gt 0 ] && [ -f /tmp/failed-packages.txt ]; then
-            FINAL_FAILED=$RETRY_FAIL
-            FINAL_LIST=$(cat /tmp/failed-packages.txt | tr '\n' ', ' | sed 's/,$//')
-          fi
-
-          if [ "$FINAL_FAILED" -gt 0 ]; then
-            STATUS="PARTIAL"
-          else
-            STATUS="SUCCESS"
-          fi
-
-          MSG=$(printf "AuraStudio Build Complete\nArch: %s\nTotal debs: %s\nRecovered: %s\nStill failed: %s\nStatus: %s\nFailed: %s\nRepo: https://arata-labs.github.io/aurastudio-termux\nRun: https://github.com/%s/actions/runs/%s" \
-            "${{ matrix.arch }}" "$DEB_COUNT" "$RETRY_SUCCESS" "$FINAL_FAILED" "$STATUS" "$FINAL_LIST" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
-
-          curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
-            -d chat_id="$CHAT_ID" \
-            --data-urlencode "text=$MSG" || true
-
-      - name: Upload final build log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: final-build-log-${{ matrix.arch }}
-          path: |
-            output/**/*.log
-            /tmp/failed-packages.txt
-          if-no-files-found: ignore
-          retention-days: 7
