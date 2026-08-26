@@ -37,12 +37,22 @@ declare -a AURASTUDIO_PACKAGES__BASE=(
   "lsof"
   "nano"
   "net-tools"
-  "openjdk-21"
   "patch"
   "unzip"
   "libandroid-support"
   "libandroid-glob"
+
+  ## ---- Audio deps (must be before openjdk-21) ---- ##
+  "libogg"
+  "libflac"
+  "libmp3lame"
+  "libmpg123"
+  "libopus"
+  "libvorbis"
   "libsndfile"
+
+  ## ---- JDK ---- ##
+  "openjdk-21"
 )
 
 # Debug-only packages
