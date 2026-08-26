@@ -1,13 +1,13 @@
 diff --git a/packages/pulseaudio/build.sh b/packages/pulseaudio/build.sh
-index ce4270f6e6..076cf8e7ad 100644
+index 6e291b9632..39767ab1d0 100644
 --- a/packages/pulseaudio/build.sh
 +++ b/packages/pulseaudio/build.sh
 @@ -5,7 +5,7 @@ TERMUX_PKG_MAINTAINER="@termux"
  TERMUX_PKG_SRCURL=git+https://github.com/pulseaudio/pulseaudio
  TERMUX_PKG_VERSION="17.0"
- TERMUX_PKG_REVISION=1
--TERMUX_PKG_DEPENDS="dbus, libandroid-execinfo, libandroid-glob, libc++, libltdl, libsndfile, libsoxr, libwebrtc-audio-processing, speexdsp"
-+TERMUX_PKG_DEPENDS="dbus, libandroid-execinfo, libandroid-glob, libc++, libiconv, libltdl, libsndfile, libsoxr, libwebrtc-audio-processing, speexdsp"
+ TERMUX_PKG_REVISION=4
+-TERMUX_PKG_DEPENDS="dbus, libandroid-stub, libandroid-execinfo, libandroid-glob, libc++, libltdl, libsndfile, libsoxr, libwebrtc-audio-processing, speexdsp"
++TERMUX_PKG_DEPENDS="dbus, libandroid-stub, libandroid-execinfo, libandroid-glob, libc++, libiconv, libltdl, libsndfile, libsoxr, libwebrtc-audio-processing, speexdsp"
  TERMUX_PKG_BREAKS="libpulseaudio-dev, libpulseaudio"
  TERMUX_PKG_REPLACES="libpulseaudio-dev, libpulseaudio"
  # glib is only a runtime dependency of pulseaudio-glib subpackage
