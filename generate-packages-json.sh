@@ -5,11 +5,18 @@ set -euo pipefail
 
 OUTPUT="${1:?Usage: $0 <output.json> <Packages-file> [Packages-file...]}"
 shift
-[[ $# -ge 1 ]] || { echo "Usage: $0 <output.json> <Packages-file> [Packages-file...]"; exit 1; }
 
+# Filter out missing Packages files
+VALID_FILES=()
 for f in "$@"; do
-  [[ -f "$f" ]] || { echo "Error: $f not found"; exit 1; }
+  if [[ -f "$f" ]]; then
+    VALID_FILES+=("$f")
+  else
+    echo "WARN: $f not found, skipping"
+  fi
 done
+
+[[ ${#VALID_FILES[@]} -ge 1 ]] || { echo "Error: no Packages files found"; exit 1; }
 
 python3 -c "
 import json, sys, os
@@ -76,4 +83,4 @@ with open(sys.argv[1], 'w') as f:
     json.dump(result, f, indent=2)
 
 print(f'Generated {len(result)} packages')
-" "$OUTPUT" "$@"
+" "$OUTPUT" "${VALID_FILES[@]}"
