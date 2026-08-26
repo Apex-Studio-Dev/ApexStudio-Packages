@@ -148,6 +148,20 @@ SHA1: 5393d2ba838b4a9f4f4f6bad64bf860ea438d216
 SHA256: 9b3f921efae8fbcf9d18ac1756c9024fce8094f46f0a0e465d3a36da2058983e
 SHA512: d301bdeefa3b353059456744ce5c5a5a78fc3e21b9cf1bd9c189539613e086a44c123d85483aed4bdd03823680c849655d19c627555f1bad6908787bc7244b02
 
+Package: openjdk-21-source
+Architecture: all
+Installed-Size: 52384
+Maintainer: @termux
+Version: 21.0.12
+Homepage: https://openjdk.java.net
+Description: Source files for openjdk-21
+Filename: dists/stable/main/binary-all/openjdk-21-source_21.0.12_all.deb
+Size: 49131444
+MD5Sum: 08b454d10057941d434aa8d9ec779235
+SHA1: b7b4612cffae814a6cc361b8860babae4ae63786
+SHA256: fc3cb7b2e80783f5b47011d5a925e5562097f775ee559955eb573a74c507ccfa
+SHA512: 30014099f5b374fd6d8e80395e75072348302d8bf5013b658e6787bbbf4ddd524dce16427b710f5911d463e62d4771179ae7a6d2d35c9ee82e2ccb3baa756c2d
+
 Package: python-ensurepip-wheels
 Architecture: all
 Installed-Size: 1812

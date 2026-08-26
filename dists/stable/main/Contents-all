@@ -4310,6 +4310,7 @@ data/data/com.aurastudio/files/usr/opt/glib/cross/share/locale/yi/LC_MESSAGES/gl
 data/data/com.aurastudio/files/usr/opt/glib/cross/share/locale/zh_CN/LC_MESSAGES/glib20.mo glib-cross
 data/data/com.aurastudio/files/usr/opt/glib/cross/share/locale/zh_HK/LC_MESSAGES/glib20.mo glib-cross
 data/data/com.aurastudio/files/usr/opt/glib/cross/share/locale/zh_TW/LC_MESSAGES/glib20.mo glib-cross
+data/data/com.aurastudio/files/usr/lib/jvm/java-21-openjdk/lib/src.zip           openjdk-21-source
 data/data/com.aurastudio/files/usr/lib/python3.14/ensurepip/_bundled/pip-26.1.2-py3-none-any.whl python-ensurepip-wheels
 data/data/com.aurastudio/files/usr/lib/python3.14/site-packages/xcbgen/__init__.py python-xcbgen
 data/data/com.aurastudio/files/usr/lib/python3.14/site-packages/xcbgen/align.py  python-xcbgen
