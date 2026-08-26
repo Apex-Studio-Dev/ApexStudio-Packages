@@ -258,8 +258,10 @@ jobs:
 
       - name: Generate packages.json
         run: |
-          PACKAGES_FILE="output/repo/dists/stable/main/binary-aarch64/Packages"
-          bash ./generate-packages-json.sh "$PACKAGES_FILE" "output/repo/packages.json"
+          bash ./generate-packages-json.sh \
+            "output/repo/packages.json" \
+            "output/repo/dists/stable/main/binary-aarch64/Packages" \
+            "output/repo/dists/stable/main/binary-all/Packages"
 
       - name: Copy website
         run: |
@@ -500,8 +502,10 @@ jobs:
 
       - name: Generate packages.json
         run: |
-          PACKAGES_FILE="output/repo/dists/stable/main/binary-aarch64/Packages"
-          bash ./generate-packages-json.sh "$PACKAGES_FILE" "output/repo/packages.json"
+          bash ./generate-packages-json.sh \
+            "output/repo/packages.json" \
+            "output/repo/dists/stable/main/binary-aarch64/Packages" \
+            "output/repo/dists/stable/main/binary-all/Packages"
 
       - name: Copy website
         run: |
