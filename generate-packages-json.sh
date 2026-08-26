@@ -26,12 +26,11 @@ current = {}
 current_arch = ''
 
 def flush():
-    global current, current_arch
+    global current
     if 'name' in current:
         current['arch'] = current_arch
         packages.append(current)
     current = {}
-    current_arch = ''
 
 for path in sys.argv[2:]:
     # Determine arch from path

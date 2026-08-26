@@ -44,29 +44,49 @@ echo ""
 echo "=== Upload to GitHub Release ==="
 
 # Delete existing release if present
-gh release delete "$RELEASE_TAG" --yes --cleanup-tag 2>/dev/null || true
+echo "Deleting existing release (if any)..."
+gh release delete "$RELEASE_TAG" --yes --cleanup-tag 2>/dev/null && \
+  echo "Deleted existing release" || \
+  echo "No existing release to delete"
 
 # Create release
-gh release create "$RELEASE_TAG" \
+echo "Creating release..."
+if gh release create "$RELEASE_TAG" \
   --title "Large .deb packages" \
   --notes "Auto-uploaded large .deb files (>${MAX_SIZE_MB}MB) for APT repo" \
-  --tag "$RELEASE_TAG" 2>/dev/null || true
+  --target main \
+  --tag "$RELEASE_TAG" 2>&1; then
+  echo "Release created successfully"
+else
+  echo "ERROR: Failed to create release!"
+  echo "Skipping upload. Packages will point to non-existent release."
+  echo "Check GH_TOKEN permissions (need repo scope)."
+  exit 1
+fi
 
 # Upload each large .deb
+UPLOAD_OK=true
 for deb in "${LARGE_DEBS[@]}"; do
   filename=$(basename "$deb")
-  echo "Uploading: ${filename}"
-  gh release upload "$RELEASE_TAG" "$deb" --clobber 2>/dev/null || {
-    echo "WARN: Failed to upload ${filename}"
-    continue
-  }
-  echo "Uploaded: ${filename}"
+  echo "Uploading: ${filename} ($(du -h "$deb" | cut -f1))..."
+  if gh release upload "$RELEASE_TAG" "$deb" --clobber 2>&1; then
+    echo "Uploaded: ${filename}"
+  else
+    echo "ERROR: Failed to upload ${filename}"
+    UPLOAD_OK=false
+  fi
 done
+
+if [ "$UPLOAD_OK" = false ]; then
+  echo ""
+  echo "WARNING: Some uploads failed. Packages may point to non-existent files."
+fi
 
 # Update Packages files
 echo ""
 echo "=== Update Packages index ==="
 
+UPDATED_COUNT=0
 for arch in aarch64 arm all; do
   PACKAGES_FILE="${REPO_DIR}/dists/stable/main/binary-${arch}/Packages"
   if [ ! -f "$PACKAGES_FILE" ]; then
@@ -80,13 +100,18 @@ for arch in aarch64 arm all; do
       # Update Filename to point to release URL
       sed -i "s|Filename:.*${filename}|Filename: ${RELEASE_URL}/${filename}|g" "$PACKAGES_FILE"
       echo "Updated ${arch}: ${filename} → Release URL"
+      UPDATED_COUNT=$((UPDATED_COUNT + 1))
 
-      # Remove from repo (was in dists/.../binary-arch/)
+      # Remove from repo
       rm -f "$deb"
-      echo "Removed from pool: ${filename}"
+      echo "Removed from repo: ${filename}"
     fi
   done
 done
+
+if [ "$UPDATED_COUNT" -eq 0 ]; then
+  echo "WARNING: No Packages files were updated. Release URLs may not work."
+fi
 
 # Regenerate Release files
 echo ""
@@ -94,11 +119,13 @@ echo "=== Regenerate Release files ==="
 
 # Generate Release file
 cd "${REPO_DIR}"
-apt-ftparchive release dists/stable > dists/stable/Release 2>/dev/null || {
+if apt-ftparchive release dists/stable > dists/stable/Release 2>/dev/null; then
+  echo "Release file regenerated"
+else
   echo "WARN: apt-ftparchive not available, skipping Release regeneration"
   cd - > /dev/null
   exit 0
-}
+fi
 
 # Re-sign if GPG key available
 if [ -n "${GPG_KEY_ID:-}" ] || gpg --list-secret-keys "5F128F230DEEF535" &>/dev/null; then
