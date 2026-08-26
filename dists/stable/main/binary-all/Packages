@@ -148,6 +148,35 @@ SHA1: 5393d2ba838b4a9f4f4f6bad64bf860ea438d216
 SHA256: 9b3f921efae8fbcf9d18ac1756c9024fce8094f46f0a0e465d3a36da2058983e
 SHA512: d301bdeefa3b353059456744ce5c5a5a78fc3e21b9cf1bd9c189539613e086a44c123d85483aed4bdd03823680c849655d19c627555f1bad6908787bc7244b02
 
+Package: gradle
+Architecture: all
+Installed-Size: 168384
+Maintainer: @termux
+Version: 1:9.7.1
+Homepage: https://gradle.org/
+Depends: openjdk-21
+Description: Powerful build system for the JVM
+Filename: https://github.com/Arata-Labs/aurastudio-termux/releases/download/debs/gradle_1C9.7.1_all.deb
+Size: 148983332
+MD5Sum: dac65bc2ea2e1c396a520bbcb3f23e22
+SHA1: 7e2c8ff0d437f37028d811ac810c44f08777353d
+SHA256: c5e99a3c0916b73dc4879448728726540cc0b8407dce51f3872db192e735b264
+SHA512: b766f5376adcc2cc80cedfd6fb46bd15b22c3252e5e89d7b2f88d5650421bfd57726edb9e797ce199e07106319533c0c95e9ace183af4abfb5093901e9e366b5
+
+Package: openjdk-17-source
+Architecture: all
+Installed-Size: 50792
+Maintainer: @termux
+Version: 17.0.20
+Homepage: https://openjdk.java.net
+Description: Source files for openjdk-17
+Filename: dists/stable/main/binary-all/openjdk-17-source_17.0.20_all.deb
+Size: 47126208
+MD5Sum: c4d7972e890e8b3957c9eb8c532bd984
+SHA1: b7b9558a07ec22c21078dcd782e142f363ea9646
+SHA256: ec726b2890033e1d4efe501bd247c18afd5fee5f90c600a6c5b6fff91832d140
+SHA512: 836d7576e78afb289ab85f4aa8ecdebf53e13751b17a49fe6de7b18b0e91add6f1a9ca8c2113a75a5a44cf7d5db05d23f642548a1af7bbdcd494061f1a68a60f
+
 Package: openjdk-21-source
 Architecture: all
 Installed-Size: 52384
@@ -179,6 +208,23 @@ SHA1: fbbe4bcb8e17fe8551deaf110138e7da147ac649
 SHA256: be62208c64c3ef22b4c132721c784fc8f72d4e03395ee2e739b69ce0f36dfe36
 SHA512: 358a7cde163c71b03f2ec6fe36dadd2c941af45cfdbe1f975eb36872a580fdbc6c60bd214cc2a6949ad86d61cda4b48891e92c1cdd06eb0120a461a43703834c
 
+Package: python-pip
+Architecture: all
+Installed-Size: 7388
+Maintainer: @termux
+Version: 26.2.1
+Homepage: https://pip.pypa.io/
+Breaks: python (<< 3.11.1-1)
+Depends: python (>= 3.11.1-1)
+Recommends: clang, make, pkg-config
+Description: The PyPA recommended tool for installing Python packages
+Filename: dists/stable/main/binary-all/python-pip_26.2.1_all.deb
+Size: 1191496
+MD5Sum: f7d884c48cf28ec89c90a6484dbab1bc
+SHA1: a96ade0e03942666caf72941bd168ada00b42eb7
+SHA256: a9c7d66dfd25bac013c2d438d5d3cb10fdcd15bdf56c4a121bbb1c0fa645f614
+SHA512: 9e8ff75e6db698eda20cb5cbb69c252c17850868addb03995ccba0a0df71ba93e72ec3414bbe18483727fec7b38b898b956549d3cb341083e86ce116c22d855b
+
 Package: python-xcbgen
 Architecture: all
 Installed-Size: 132
@@ -196,6 +242,21 @@ MD5Sum: fb52e81190be6ac73c3378dc8bfc84b2
 SHA1: aa120ea6a509f2154b8d92ff3567a4e64f9561f4
 SHA256: 134eeeac2d31c4b7a30df912b2519db63df99b2d3e364d314c41f526c0f7bde3
 SHA512: 7c4aee2d659c9e431ce2460efc429dc1f9f1fcbe589647cd51b84875b9960b1d75062ed8b82e9fdd48f162d9171f0fb544d7aa0621a799f8f578fbc6c46fdbe7
+
+Package: ruby-ri
+Architecture: all
+Installed-Size: 70268
+Maintainer: @termux
+Version: 3.4.1-2
+Homepage: https://www.ruby-lang.org/
+Depends: ruby (= 3.4.1-2)
+Description: Ruby documentation index
+Filename: dists/stable/main/binary-all/ruby-ri_3.4.1-2_all.deb
+Size: 1871112
+MD5Sum: 9f31fd5f6cdd27d492fa9a0c7d0bfce6
+SHA1: 847e853ab663f2df38eee0fb86087d05ce665475
+SHA256: 014be1fba45044c3784323ebc384c0f6bb3d68bb92ccd3f32cabdfbf48390358
+SHA512: 03cb0d1b5b78ac52416b4c68eedb19f0dbc2324cf4b9f94dbaa22771cc01d067032d4dd6586a28b0e045d8ea7f3df07f0611b43d3bf21821eb66749cee97e835
 
 Package: termux-am
 Architecture: all
