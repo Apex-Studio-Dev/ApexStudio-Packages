@@ -55,7 +55,7 @@ if gh release create "$RELEASE_TAG" \
   --title "Large .deb packages" \
   --notes "Auto-uploaded large .deb files (>${MAX_SIZE_MB}MB) for APT repo" \
   --target main \
-  --tag "$RELEASE_TAG" 2>&1; then
+  2>&1; then
   echo "Release created successfully"
 else
   echo "ERROR: Failed to create release!"
