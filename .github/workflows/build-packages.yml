@@ -162,6 +162,7 @@ jobs:
       - name: Save built packages cache
         if: always()
         uses: actions/cache/save@v4
+        continue-on-error: true
         with:
           path: |
             /data
