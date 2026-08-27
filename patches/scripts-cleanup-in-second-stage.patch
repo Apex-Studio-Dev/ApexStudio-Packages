@@ -1,8 +1,8 @@
 diff --git a/scripts/bootstrap/termux-bootstrap-second-stage.sh b/scripts/bootstrap/termux-bootstrap-second-stage.sh
-index 723993d6dc..2889c7e919 100755
+index 723993d6dc..e0bec45b5e 100755
 --- a/scripts/bootstrap/termux-bootstrap-second-stage.sh
 +++ b/scripts/bootstrap/termux-bootstrap-second-stage.sh
-@@ -149,8 +149,70 @@ run_bootstrap_second_stage_inner() {
+@@ -149,10 +149,65 @@ run_bootstrap_second_stage_inner() {
  		return $return_value
  	fi
  
@@ -23,8 +23,9 @@ index 723993d6dc..2889c7e919 100755
 +	fi
 +
  	return 0
-+}
-+
+ 
+ }
+ 
 +repack_archives() {
 +	# Find and repack all ZIP files with max compression
 +	while read -r -d '' zip; do
@@ -48,28 +49,22 @@ index 723993d6dc..2889c7e919 100755
 +}
 +
 +restore_ctsyms() {
-+	# Repack ct.sym in JDK
-+	jdk="21"
-+	dir="$TERMUX_PREFIX/lib/jvm/java-$jdk-openjdk"
-+	ctsym="$dir/lib/ct.sym"
-+	if ! [[ -f "$ctsym" ]]; then
-+		# Doesn't exist; continue
-+		log "JDK $jdk - ct.sym doesn't exist!"
-+		continue
-+	fi
++	# Repack ct.sym in all installed JDKs
++	for ctsym in "$TERMUX_PREFIX"/lib/jvm/java-*-openjdk/lib/ct.sym; do
++		[[ -f "$ctsym" ]] || continue
++		ctsym="$(realpath "$ctsym")"
++		local temp
++		temp=$(mktemp -d)
++		(cd "$temp"
++			brotli -do ct.sym "$ctsym"
++			unzip -qq "ct.sym"
++			rm "ct.sym"
++			rm "$ctsym"
++			zip -qr9 "$ctsym" ./*
++		) && rm -rf "$temp" && log "Restored ct.sym in $(basename "$(dirname "$(dirname "$ctsym")")")"
++	done
++}
 +
-+	ctsym="$(realpath "$ctsym")"
-+
-+	local temp
-+	temp=$(mktemp -d)
- 
-+	(cd "$temp"
-+		brotli -do ct.sym "$ctsym"
-+		unzip -qq "ct.sym"
-+		rm "ct.sym"
-+		rm "$ctsym"
-+		zip -qr9 "$ctsym" ./*
-+	) && rm -rf "$temp" && log "JDK $jdk - ct.sym restored"
- }
- 
  run_package_postinst_maintainer_scripts() {
+ 
+ 	local return_value

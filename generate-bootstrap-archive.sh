@@ -59,15 +59,13 @@ build_bootstrap() {
   mkdir -p "$out_dir"
   pushd "$out_dir" || aurastudio_error_exit "Unable to switch to output dir: ${out_dir}"
 
-  if ! {
-    set -x
-    time "$TERMUX_PACKAGES_DIR/scripts/generate-bootstraps.sh" \
+  if ! { time "$TERMUX_PACKAGES_DIR/scripts/generate-bootstraps.sh" \
       --architectures "$arch" \
       --repository "$repo" \
-      --add "${packages}" |&
-      tee "$out_dir/generate-bootstrap-${variant}.log"
-  }; then
-    aurastudio_error_exit "Failed to generate bootstrap for ${arch} ${variant}."
+      --add "${packages}" |& \
+      tee "$out_dir/generate-bootstrap-${variant}.log"; }; then
+    aurastudio_error "Failed to generate bootstrap for ${arch} ${variant}."
+    return 1
   fi
 
   # Rename the built files
@@ -123,6 +121,8 @@ echo "  Packages       : ${#AURASTUDIO_EXTRA_PACKAGES[@]}"
 # Build for target architectures
 TARGET_ARCH="${1:-aarch64}"
 for arch in $TARGET_ARCH; do
-  build_bootstrap "$AURASTUDIO_VARIANT" "$arch" "$AURASTUDIO_REPO" "${AURASTUDIO_EXTRA_PACKAGES[@]}" ||
-    aurastudio_error_exit "Unable to build bootstrap for ${arch}"
+  if ! build_bootstrap "$AURASTUDIO_VARIANT" "$arch" "$AURASTUDIO_REPO" "${AURASTUDIO_EXTRA_PACKAGES[@]}"; then
+    aurastudio_error "Unable to build bootstrap for ${arch}"
+    exit 1
+  fi
 done

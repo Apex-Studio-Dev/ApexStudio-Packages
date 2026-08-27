@@ -1,16 +1,16 @@
 diff --git a/scripts/generate-bootstraps.sh b/scripts/generate-bootstraps.sh
-index 825f2a886e..0e4ca238a1 100755
+index 186d8ee28e..aa93797444 100755
 --- a/scripts/generate-bootstraps.sh
 +++ b/scripts/generate-bootstraps.sh
-@@ -280,6 +280,7 @@ add_termux_bootstrap_second_stage_files() {
+@@ -279,6 +279,7 @@ add_termux_bootstrap_second_stage_files() {
+ # working directory.
  # Information about symlinks is stored in file SYMLINKS.txt.
  create_bootstrap_archive() {
- 	echo "[*] Creating 'bootstrap-${1}.zip'..."
 +	bszip="${BOOTSTRAP_TMPDIR}/bootstrap-${1}.zip"
+ 	echo "[*] Creating 'bootstrap-${1}.zip'..."
  	(cd "${BOOTSTRAP_ROOTFS}/${TERMUX_PREFIX}"
  		# Do not store symlinks in bootstrap archive.
- 		# Instead, put all information to SYMLINKS.txt
-@@ -288,13 +289,72 @@ create_bootstrap_archive() {
+@@ -288,13 +289,64 @@ create_bootstrap_archive() {
  			rm -f "$link"
  		done < <(find . -type l -print0)
  
@@ -21,29 +21,21 @@ index 825f2a886e..0e4ca238a1 100755
 +			repack_zip "$(realpath "$zip")"
 +		done < <(find . -type f -name \*.zip -print0)
 +
-+		# Repack ct.sym in JDKs
++		# Repack ct.sym in JDKs (skip JDKs not present in bootstrap)
 +		echo "[*] Repacking ct.sym"
-+		jdk="21"
-+		dir="./lib/jvm/java-$jdk-openjdk"
-+		ctsym="$dir/lib/ct.sym"
-+		if ! [[ -f "$ctsym" ]]; then
-+			# Doesn't exist; continue
-+			echo "[!] JDK $jdk - ct.sym doesn't exist!"
-+			echo "[!] ${ctsym}"
-+			return 1
-+		fi
-+
-+		ctsym="$(realpath "$ctsym")"
-+		local temp
-+		temp=$(mktemp -d)
-+		(cd "$temp"
-+			unzip -qq "$ctsym"
-+			rm "$ctsym"
-+			zip -qr0 "ct.sym" ./*
-+			brotli -Zo "$ctsym" ct.sym
-+			ls -hal "$ctsym"
-+			rm ct.sym
-+		) && rm -rf "$temp" && echo "[*] JDK $jdk - ct.sym repacked"
++		for ctsym in ./lib/jvm/java-*-openjdk/lib/ct.sym; do
++			[[ -f "$ctsym" ]] || continue
++			ctsym="$(realpath "$ctsym")"
++			local temp
++			temp=$(mktemp -d)
++			(cd "$temp"
++				unzip -qq "$ctsym"
++				rm "$ctsym"
++				zip -qr0 "ct.sym" ./*
++				brotli -Zo "$ctsym" ct.sym
++				rm ct.sym
++			) && rm -rf "$temp" && echo "[*] Repacked ct.sym in $(basename "$(dirname "$(dirname "$ctsym")")")"
++		done
 +
 +		# Strip all binary files
 +		echo "[*] Stripping binaries"
@@ -85,7 +77,7 @@ index 825f2a886e..0e4ca238a1 100755
  show_usage() {
  	echo
  	echo "Usage: generate-bootstraps.sh [options]"
-@@ -452,9 +512,7 @@ for package_arch in "${TERMUX_ARCHITECTURES[@]}"; do
+@@ -452,9 +504,7 @@ for package_arch in "${TERMUX_ARCHITECTURES[@]}"; do
  	# Core utilities.
  	pull_package bash # Used by `termux-bootstrap-second-stage.sh`
  	pull_package bzip2
