@@ -51,9 +51,20 @@ jobs:
                 echo "Downloaded Packages file for binary-${bin_arch}"
                 grep "^Filename:" "/tmp/Packages-${bin_arch}" | sed 's|Filename: ||' | while read -r deb_path; do
                   deb_name=$(basename "$deb_path")
-                  # Skip if Filename is a release URL (handled by handle-large-debs.sh)
+                  # Skip if Filename is a release URL — download from release directly
                   if echo "$deb_path" | grep -qE "^https?://"; then
-                    echo "Skipping $deb_name (release URL, handled by handle-large-debs.sh)"
+                    echo "Downloading from release URL: $deb_name"
+                    curl -sL --fail "$deb_path" -o "output/${arch}/${deb_name}" 2>/dev/null || {
+                      echo "WARN: Failed to download $deb_name from release URL, skipping"
+                      rm -f "output/${arch}/${deb_name}"
+                      continue
+                    }
+                    # Verify file is valid (>1KB)
+                    FILE_SIZE=$(stat -c%s "output/${arch}/${deb_name}" 2>/dev/null || echo "0")
+                    if [ "$FILE_SIZE" -lt 1024 ]; then
+                      echo "WARN: $deb_name too small (${FILE_SIZE} bytes), removing"
+                      rm -f "output/${arch}/${deb_name}"
+                    fi
                     continue
                   fi
                   deb_url="${REPO_URL}/${deb_path}"
