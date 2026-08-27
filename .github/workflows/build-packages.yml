@@ -24,6 +24,10 @@ on:
         description: "Skip failed packages, continue building others"
         type: boolean
         default: true
+      install-deps:
+        description: "Install dependencies from hosted repo before building (-I flag)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -153,11 +157,14 @@ jobs:
 
           rm -f "output/${{ matrix.arch }}/failed-packages.txt"
 
-          KEEP_GOING_FLAG=""
+          BUILD_FLAGS=""
           if [ "${{ inputs.keep-going }}" = "true" ]; then
-            KEEP_GOING_FLAG="--keep-going"
+            BUILD_FLAGS="${BUILD_FLAGS} --keep-going"
           fi
-          bash build.sh -a "${{ matrix.arch }}" $KEEP_GOING_FLAG -e ${{ inputs.packages }}
+          if [ "${{ inputs.install-deps }}" = "true" ]; then
+            BUILD_FLAGS="${BUILD_FLAGS} -I"
+          fi
+          bash build.sh -a "${{ matrix.arch }}" $BUILD_FLAGS -e ${{ inputs.packages }}
 
       - name: Save built packages cache
         if: always()
