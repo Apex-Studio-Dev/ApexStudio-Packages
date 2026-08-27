@@ -1,8 +1,26 @@
 [
   {
+    "name": "aapt",
+    "version": "16.0.0.4-1",
+    "desc": "Android Asset Packaging Tool",
+    "arch": "aarch64"
+  },
+  {
+    "name": "aapt2",
+    "version": "16.0.0.4-1",
+    "desc": "AAPT2 (Android Asset Packaging Tool)",
+    "arch": "aarch64"
+  },
+  {
     "name": "abseil-cpp",
     "version": "20260526.0",
     "desc": "Abseil C++ Common Libraries",
+    "arch": "aarch64"
+  },
+  {
+    "name": "aidl",
+    "version": "16.0.0.4-1",
+    "desc": "Android Interface Definition Language (AIDL)",
     "arch": "aarch64"
   },
   {
@@ -84,6 +102,18 @@
     "arch": "all"
   },
   {
+    "name": "binutils",
+    "version": "2.47",
+    "desc": "A GNU collection of binary utilities",
+    "arch": "aarch64"
+  },
+  {
+    "name": "binutils-cross",
+    "version": "2.47",
+    "desc": "GNU Binutils for cross build on the host (NOT for Termux)",
+    "arch": "aarch64"
+  },
+  {
     "name": "blk-utils",
     "version": "2.42.1-4",
     "desc": "Utilities for handling block device attributes",
@@ -126,6 +156,18 @@
     "arch": "all"
   },
   {
+    "name": "check",
+    "version": "0.15.2-3",
+    "desc": "A unit testing framework for C",
+    "arch": "aarch64"
+  },
+  {
+    "name": "check-static",
+    "version": "0.15.2-3",
+    "desc": "Static libraries for check",
+    "arch": "aarch64"
+  },
+  {
     "name": "clang",
     "version": "21.1.8-3",
     "desc": "C language frontend for LLVM",
@@ -165,6 +207,12 @@
     "name": "db",
     "version": "18.1.40-6",
     "desc": "The Berkeley DB embedded database system",
+    "arch": "aarch64"
+  },
+  {
+    "name": "dbus",
+    "version": "1.16.2-3",
+    "desc": "Freedesktop.org message bus system",
     "arch": "aarch64"
   },
   {
@@ -264,6 +312,12 @@
     "arch": "aarch64"
   },
   {
+    "name": "fmt",
+    "version": "1:11.2.0",
+    "desc": "Open-source formatting library for C++",
+    "arch": "aarch64"
+  },
+  {
     "name": "fontconfig",
     "version": "2.18.3",
     "desc": "Library for configuring and customizing font access",
@@ -342,6 +396,18 @@
     "arch": "all"
   },
   {
+    "name": "glib",
+    "version": "2.88.3",
+    "desc": "Library providing core building blocks for libraries and applications written in C",
+    "arch": "aarch64"
+  },
+  {
+    "name": "glib-cross",
+    "version": "2.88.3",
+    "desc": "glib for host (NOT for Termux)",
+    "arch": "all"
+  },
+  {
     "name": "gnupg",
     "version": "2.5.17",
     "desc": "Implementation of the OpenPGP standard for encrypting and signing data and communication",
@@ -351,6 +417,12 @@
     "name": "gnutls",
     "version": "3.8.13-1",
     "desc": "Commandline utilities for interfacing with the gnutls library",
+    "arch": "aarch64"
+  },
+  {
+    "name": "googletest",
+    "version": "1.17.0-1",
+    "desc": "Google C++ testing framework",
     "arch": "aarch64"
   },
   {
@@ -501,6 +573,12 @@
     "name": "libandroid-spawn-static",
     "version": "0.3",
     "desc": "Static libraries for libandroid-spawn",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libandroid-stub",
+    "version": "29-2",
+    "desc": "Stub libandroid.so for non-Android certified environment",
     "arch": "aarch64"
   },
   {
@@ -798,6 +876,12 @@
     "arch": "aarch64"
   },
   {
+    "name": "libltdl",
+    "version": "2.6.2",
+    "desc": "Library for dlopening libraries",
+    "arch": "aarch64"
+  },
+  {
     "name": "liblz4",
     "version": "1.10.0-1",
     "desc": "Fast LZ compression algorithm library",
@@ -867,6 +951,18 @@
     "name": "libmpfr-static",
     "version": "4.2.1-1",
     "desc": "Static libraries for libmpfr",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libmpg123",
+    "version": "1.33.5",
+    "desc": "Fast console MPEG Audio Player and decoder library",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libmpg123-static",
+    "version": "1.33.5",
+    "desc": "Static libraries for libmpg123",
     "arch": "aarch64"
   },
   {
@@ -984,6 +1080,18 @@
     "arch": "aarch64"
   },
   {
+    "name": "libsndfile",
+    "version": "1.2.2-3",
+    "desc": "Library for reading/writing audio files",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libsndfile-static",
+    "version": "1.2.2-3",
+    "desc": "Static libraries for libsndfile",
+    "arch": "aarch64"
+  },
+  {
     "name": "libsodium",
     "version": "1.0.22-1",
     "desc": "Network communication, cryptography and signaturing library",
@@ -993,6 +1101,12 @@
     "name": "libsodium-static",
     "version": "1.0.22-1",
     "desc": "Static libraries for libsodium",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libsoxr",
+    "version": "0.1.3-8",
+    "desc": "High quality, one-dimensional sample-rate conversion library",
     "arch": "aarch64"
   },
   {
@@ -1047,6 +1161,12 @@
     "name": "libtirpc-static",
     "version": "1.3.7-1",
     "desc": "Static libraries for libtirpc",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libtool",
+    "version": "2.6.2",
+    "desc": "Generic library support script hiding the complexity of using shared libraries behind a consistent, portable interface",
     "arch": "aarch64"
   },
   {
@@ -1113,6 +1233,12 @@
     "name": "libvorbis-static",
     "version": "1.3.7-4",
     "desc": "Static libraries for libvorbis",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libwebrtc-audio-processing",
+    "version": "1.3-5",
+    "desc": "A library containing the AudioProcessing module from the WebRTC project",
     "arch": "aarch64"
   },
   {
@@ -1236,6 +1362,12 @@
     "arch": "aarch64"
   },
   {
+    "name": "libzopfli",
+    "version": "1.0.3-5",
+    "desc": "New zlib compatible compressor library",
+    "arch": "aarch64"
+  },
+  {
     "name": "lld",
     "version": "21.1.8-3",
     "desc": "LLVM-based linker",
@@ -1311,6 +1443,12 @@
     "name": "mount-utils",
     "version": "2.42.1-4",
     "desc": "Utilities for (un)mounting filesystems",
+    "arch": "aarch64"
+  },
+  {
+    "name": "mpg123",
+    "version": "1.33.5",
+    "desc": "Fast console MPEG Audio Player based on libmpg123",
     "arch": "aarch64"
   },
   {
@@ -1440,6 +1578,12 @@
     "arch": "aarch64"
   },
   {
+    "name": "pkg-config",
+    "version": "0.29.2-3",
+    "desc": "Helper tool used when compiling applications and libraries",
+    "arch": "aarch64"
+  },
+  {
     "name": "procps",
     "version": "3.3.17-6",
     "desc": "Utilities that give information about processes using the /proc filesystem",
@@ -1461,6 +1605,18 @@
     "name": "psmisc",
     "version": "23.7-1",
     "desc": "Some small useful utilities that use the proc filesystem",
+    "arch": "aarch64"
+  },
+  {
+    "name": "pulseaudio",
+    "version": "17.0-4",
+    "desc": "A featureful, general-purpose sound server",
+    "arch": "aarch64"
+  },
+  {
+    "name": "pulseaudio-glib",
+    "version": "17.0-4",
+    "desc": "PulseAudio GLIB mainloop component",
     "arch": "aarch64"
   },
   {
@@ -1578,6 +1734,18 @@
     "arch": "aarch64"
   },
   {
+    "name": "speexdsp",
+    "version": "1.2.1-1",
+    "desc": "Speex audio processing library",
+    "arch": "aarch64"
+  },
+  {
+    "name": "speexdsp-static",
+    "version": "1.2.1-1",
+    "desc": "Static libraries for speexdsp",
+    "arch": "aarch64"
+  },
+  {
     "name": "sqlite",
     "version": "3.53.4",
     "desc": "Command line shell for SQLite",
@@ -1611,6 +1779,12 @@
     "name": "swig",
     "version": "4.5.0",
     "desc": "Generate scripting interfaces to C/C++ code",
+    "arch": "aarch64"
+  },
+  {
+    "name": "sysprop",
+    "version": "16.0.0.4-1",
+    "desc": "Android sysprop generators",
     "arch": "aarch64"
   },
   {
@@ -1680,6 +1854,12 @@
     "arch": "aarch64"
   },
   {
+    "name": "texinfo",
+    "version": "7.3",
+    "desc": "Documentation system for on-line information and printed output",
+    "arch": "aarch64"
+  },
+  {
     "name": "tk",
     "version": "8.6.14-1",
     "desc": "A windowing toolkit for use with tcl",
@@ -1708,6 +1888,12 @@
     "version": "6.0-10",
     "desc": "Tools for working with zip files",
     "arch": "aarch64"
+  },
+  {
+    "name": "update-info-dir",
+    "version": "7.3",
+    "desc": "Update or create index file from all installed info files in directory",
+    "arch": "all"
   },
   {
     "name": "utf8proc",
@@ -1827,6 +2013,12 @@
     "name": "zlib-static",
     "version": "1.3.2",
     "desc": "Static libraries for zlib",
+    "arch": "aarch64"
+  },
+  {
+    "name": "zopfli",
+    "version": "1.0.3-5",
+    "desc": "New zlib compatible compressor tools",
     "arch": "aarch64"
   },
   {

@@ -133,6 +133,21 @@ SHA1: ac11a1b10ded8c28e7c5a835ac170439946fc559
 SHA256: cd03861bf7efadc2e7ad9692dccadd5dfa798217f021a1236dfa86d4971044e1
 SHA512: 5577bebb097dfbcf24e4883da75e9e4f46f1eb317b442cbd1f2544efefb77a70a6a2aac17605cfa3e89205089e722ccf5d8420eba917320bcc98a33270100ca8
 
+Package: glib-cross
+Architecture: all
+Installed-Size: 83184
+Maintainer: @termux
+Version: 2.88.3
+Homepage: https://developer.gnome.org/glib/
+Depends: glib (= 2.88.3)
+Description: glib for host (NOT for Termux)
+Filename: dists/stable/main/binary-all/glib-cross_2.88.3_all.deb
+Size: 13173828
+MD5Sum: ca0a2dd69cc23dd4d9b28d6e6d1b28ae
+SHA1: 4db2f56855d9144eba98b0bb04ba5203edc8fc26
+SHA256: 47cab68c3958f1b7cae70c70c9b95cd561439c318c369f36a458e0cb84768930
+SHA512: da099adc3e3810e347f57970a3034888c07aa44cde4e10a02970cd72b00233e2375fd2e3ca13cb4b5a3e6eed4682669783b1ba78d7e26d2dd814ac952eed3a6e
+
 Package: python-ensurepip-wheels
 Architecture: all
 Installed-Size: 1812
@@ -258,6 +273,21 @@ MD5Sum: 3a1ad83d97c4161e829034c45921305f
 SHA1: 67d382450d80a1d336e235c909c40d5427bff8f1
 SHA256: 5e39f422639868c0439f914b52c07e0c72b61133282eb3bfc9f2e7a2b4d634ec
 SHA512: 38faecb5783554e09ac786b980876f3a1d6fd96c6c7c89b20931095091cb2f8da373b1421e52563607a7b35d3f877a768e426c5c5f0f3bb51d0243bed045aace
+
+Package: update-info-dir
+Architecture: all
+Installed-Size: 48
+Maintainer: @termux
+Version: 7.3
+Homepage: https://www.gnu.org/software/texinfo/
+Depends: texinfo (= 7.3)
+Description: Update or create index file from all installed info files in directory
+Filename: dists/stable/main/binary-all/update-info-dir_7.3_all.deb
+Size: 2480
+MD5Sum: 42d430bc68a79e2245945785c380a641
+SHA1: df1cf44eaecf01fdbf3d468295e0ea8793cf5237
+SHA256: 27ee2a83948d077cff292bcacc53d8c6e96e6fb8b43ca72474bfe21ab066f069
+SHA512: f2c43d11777c8ccf0ca26bf368e1904273d62d018a29c2331d9c14991f31a39252bbdf8c9864414039baac3fb135643852af71ff733700e913802f5f49aaef43
 
 Package: xcb-proto
 Architecture: all
