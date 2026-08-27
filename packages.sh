@@ -78,11 +78,11 @@ declare -a AURASTUDIO_PACKAGES=(
   "libsndfile"
 
   # Development tools
-  "aapt2"
+  "aapt"
   "binutils"
   "brotli"
   "cmake"
-  "glibc"
+  "glib"
   "gradle"
   "jq"
   "libllvm"
