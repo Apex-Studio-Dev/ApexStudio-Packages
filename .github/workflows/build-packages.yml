@@ -20,6 +20,10 @@ on:
         description: "Free disk space (for large packages)"
         type: boolean
         default: false
+      keep-going:
+        description: "Skip failed packages, continue building others"
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -137,7 +141,11 @@ jobs:
 
           rm -f "output/${{ matrix.arch }}/failed-packages.txt"
 
-          bash build.sh -a "${{ matrix.arch }}" --keep-going -e ${{ inputs.packages }}
+          KEEP_GOING_FLAG=""
+          if [ "${{ inputs.keep-going }}" = "true" ]; then
+            KEEP_GOING_FLAG="--keep-going"
+          fi
+          bash build.sh -a "${{ matrix.arch }}" $KEEP_GOING_FLAG -e ${{ inputs.packages }}
 
       - name: Save built packages cache
         if: always()
