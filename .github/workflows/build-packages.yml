@@ -281,47 +281,82 @@ jobs:
           REPO_URL="https://arata-labs.github.io/aurastudio-termux"
           BUILD_PACKAGES="${{ inputs.packages }}"
 
-          for arch in aarch64 arm; do
-            mkdir -p "output/${arch}"
-            # Download from both binary-${arch} and binary-all
-            for bin_arch in "${arch}" "all"; do
-              PACKAGES_URL="${REPO_URL}/dists/stable/main/binary-${bin_arch}/Packages"
-              if curl -sL "$PACKAGES_URL" -o "/tmp/Packages-${bin_arch}" 2>/dev/null; then
-                echo "Downloaded Packages file for binary-${bin_arch}"
-                grep "^Filename:" "/tmp/Packages-${bin_arch}" | sed 's|Filename: ||' | while read -r deb_path; do
-                  deb_name=$(basename "$deb_path")
-                  # Skip packages we're building (they'll be replaced by new version)
-                  SKIP=false
-                  for pkg in $BUILD_PACKAGES; do
-                    if echo "$deb_name" | grep -qE "^${pkg}_"; then
-                      SKIP=true
-                      break
-                    fi
-                  done
-                  # Skip if Filename is a release URL — download from release directly
-                  if echo "$deb_path" | grep -qE "^https?://"; then
-                    echo "Downloading from release URL: $deb_name"
-                    curl -sL --fail "$deb_path" -o "output/${arch}/${deb_name}" 2>/dev/null || {
-                      echo "ERROR: Failed to download $deb_name from release URL"
-                      exit 1
-                    }
-                    # Verify file is valid (>1KB)
-                    FILE_SIZE=$(stat -c%s "output/${arch}/${deb_name}" 2>/dev/null || echo "0")
-                    if [ "$FILE_SIZE" -lt 1024 ]; then
-                      echo "ERROR: $deb_name too small (${FILE_SIZE} bytes"
-                      exit 1
-                    fi
-                    continue
-                  fi
-                  if [ "$SKIP" = "false" ]; then
-                    deb_url="${REPO_URL}/${deb_path}"
-                    curl -sL "$deb_url" -o "output/${arch}/${deb_name}" 2>/dev/null || true
-                  fi
-                done
-              else
-                echo "No Packages file for binary-${bin_arch} (first build?)"
+          # Download binary-all once (shared across architectures)
+          mkdir -p "output/all"
+          PACKAGES_ALL_URL="${REPO_URL}/dists/stable/main/binary-all/Packages"
+          if curl -sL "$PACKAGES_ALL_URL" -o "/tmp/Packages-all" 2>/dev/null; then
+            echo "Downloaded Packages file for binary-all"
+            grep "^Filename:" "/tmp/Packages-all" | sed 's|Filename: ||' | while read -r deb_path; do
+              deb_name=$(basename "$deb_path")
+              # Skip packages we're building
+              SKIP=false
+              for pkg in $BUILD_PACKAGES; do
+                if echo "$deb_name" | grep -qE "^${pkg}_"; then
+                  SKIP=true
+                  break
+                fi
+              done
+              # Handle release URLs
+              if echo "$deb_path" | grep -qE "^https?://"; then
+                echo "Downloading from release URL: $deb_name"
+                curl -sL --fail "$deb_path" -o "output/all/${deb_name}" 2>/dev/null || {
+                  echo "ERROR: Failed to download $deb_name from release URL"
+                  exit 1
+                }
+                FILE_SIZE=$(stat -c%s "output/all/${deb_name}" 2>/dev/null || echo "0")
+                if [ "$FILE_SIZE" -lt 1024 ]; then
+                  echo "ERROR: $deb_name too small (${FILE_SIZE} bytes)"
+                  exit 1
+                fi
+                continue
+              fi
+              if [ "$SKIP" = "false" ]; then
+                curl -sL "${REPO_URL}/${deb_path}" -o "output/all/${deb_name}" 2>/dev/null || true
               fi
             done
+          else
+            echo "No Packages file for binary-all (first build?)"
+          fi
+          ALL_COUNT=$(find "output/all" -name "*.deb" -type f 2>/dev/null | wc -l)
+          echo "Existing debs for all: $ALL_COUNT"
+
+          # Download binary-${arch} for each architecture
+          for arch in aarch64 arm; do
+            mkdir -p "output/${arch}"
+            PACKAGES_URL="${REPO_URL}/dists/stable/main/binary-${arch}/Packages"
+            if curl -sL "$PACKAGES_URL" -o "/tmp/Packages-${arch}" 2>/dev/null; then
+              echo "Downloaded Packages file for binary-${arch}"
+              grep "^Filename:" "/tmp/Packages-${arch}" | sed 's|Filename: ||' | while read -r deb_path; do
+                deb_name=$(basename "$deb_path")
+                # Skip packages we're building
+                SKIP=false
+                for pkg in $BUILD_PACKAGES; do
+                  if echo "$deb_name" | grep -qE "^${pkg}_"; then
+                    SKIP=true
+                    break
+                  fi
+                done
+                # Handle release URLs
+                if echo "$deb_path" | grep -qE "^https?://"; then
+                  echo "Downloading from release URL: $deb_name"
+                  curl -sL --fail "$deb_path" -o "output/${arch}/${deb_name}" 2>/dev/null || {
+                    echo "ERROR: Failed to download $deb_name from release URL"
+                    exit 1
+                  }
+                  FILE_SIZE=$(stat -c%s "output/${arch}/${deb_name}" 2>/dev/null || echo "0")
+                  if [ "$FILE_SIZE" -lt 1024 ]; then
+                    echo "ERROR: $deb_name too small (${FILE_SIZE} bytes)"
+                    exit 1
+                  fi
+                  continue
+                fi
+                if [ "$SKIP" = "false" ]; then
+                  curl -sL "${REPO_URL}/${deb_path}" -o "output/${arch}/${deb_name}" 2>/dev/null || true
+                fi
+              done
+            else
+              echo "No Packages file for binary-${arch} (first build?)"
+            fi
             EXISTING=$(find "output/${arch}" -name "*.deb" -type f 2>/dev/null | wc -l)
             echo "Existing debs for $arch: $EXISTING"
           done
