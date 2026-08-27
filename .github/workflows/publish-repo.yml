@@ -2,16 +2,6 @@ name: Publish APT Repository
 
 on:
   workflow_dispatch:
-    inputs:
-      arch:
-        description: "Architecture to publish"
-        required: true
-        default: "aarch64"
-        type: choice
-        options:
-          - aarch64
-          - arm
-          - both
 
 permissions:
   contents: write
@@ -32,17 +22,10 @@ jobs:
 
       - name: Download existing debs from hosted repo
         run: |
-          echo "=== Downloading existing packages from hosted repo ==="
+          echo "=== Downloading ALL existing packages from hosted repo ==="
           REPO_URL="https://arata-labs.github.io/aurastudio-termux"
 
-          ARCH="${{ inputs.arch }}"
-          if [ "$ARCH" = "both" ]; then
-            DOWNLOAD_ARCHS="aarch64 arm"
-          else
-            DOWNLOAD_ARCHS="$ARCH"
-          fi
-
-          for arch in $DOWNLOAD_ARCHS; do
+          for arch in aarch64 arm; do
             mkdir -p "output/${arch}"
             # Download from both binary-${arch} and binary-all
             for bin_arch in "${arch}" "all"; do
@@ -79,16 +62,8 @@ jobs:
 
       - name: Download from Release
         run: |
-          ARCH="${{ inputs.arch }}"
-          mkdir -p "output/${ARCH}"
-
-          if [ "$ARCH" = "both" ]; then
-            DOWNLOAD_ARCHS="aarch64 arm"
-          else
-            DOWNLOAD_ARCHS="$ARCH"
-          fi
-
-          for arch in $DOWNLOAD_ARCHS; do
+          for arch in aarch64 arm; do
+            mkdir -p "output/${arch}"
             for attempt in 1 2 3; do
               echo "Download attempt $attempt/3 for $arch..."
               if gh release download "packages-${arch}" \
@@ -211,8 +186,8 @@ jobs:
 
           DEB_COUNT=$(find output/repo -path "*/binary-*/*.deb" -type f 2>/dev/null | wc -l)
 
-          MSG=$(printf "AuraStudio Publish (manual)\nArch: %s\nPublished: %s debs\nRepo: https://arata-labs.github.io/aurastudio-termux\nRun: https://github.com/%s/actions/runs/%s" \
-            "${{ inputs.arch }}" "$DEB_COUNT" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
+          MSG=$(printf "AuraStudio Publish (manual)\nPublished: %s debs (aarch64 + arm + all)\nRepo: https://arata-labs.github.io/aurastudio-termux\nRun: https://github.com/%s/actions/runs/%s" \
+            "$DEB_COUNT" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
 
           curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
             -d chat_id="$CHAT_ID" \
