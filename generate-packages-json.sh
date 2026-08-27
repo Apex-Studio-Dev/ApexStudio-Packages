@@ -6,7 +6,6 @@ set -euo pipefail
 OUTPUT="${1:?Usage: $0 <output.json> <Packages-file> [Packages-file...]}"
 shift
 
-# Filter out missing Packages files
 VALID_FILES=()
 for f in "$@"; do
   if [[ -f "$f" ]]; then
@@ -33,7 +32,6 @@ def flush():
     current = {}
 
 for path in sys.argv[2:]:
-    # Determine arch from path
     if 'binary-aarch64' in path:
         current_arch = 'aarch64'
     elif 'binary-arm' in path:
@@ -60,21 +58,40 @@ for path in sys.argv[2:]:
                 current['version'] = val
             elif key == 'description':
                 current['desc'] = val
+            elif key == 'filename':
+                current['filename'] = val
     flush()
 
-# Merge: if package exists in multiple archs, mark as 'both'
 seen = {}
 for pkg in packages:
     name = pkg['name']
     arch = pkg.get('arch', 'unknown')
+    filename = pkg.get('filename', '')
+    
     if name in seen:
-        old_arch = seen[name].get('arch', '')
-        if old_arch != arch and old_arch != 'all' and arch != 'all':
-            seen[name]['arch'] = 'both'
-        elif arch == 'all':
-            seen[name]['arch'] = 'all'
+        existing_archs = seen[name]['arch']
+        if arch == 'all' or 'all' in existing_archs:
+            seen[name]['arch'] = ['all']
+        else:
+            if arch not in existing_archs:
+                existing_archs.append(arch)
+        if filename:
+            if 'filenames' not in seen[name]:
+                seen[name]['filenames'] = {}
+            seen[name]['filenames'][arch] = filename
     else:
+        pkg['arch'] = ['all'] if arch == 'all' else [arch]
+        if filename:
+            pkg['filenames'] = {arch: filename}
+            del pkg['filename']
         seen[name] = pkg
+
+for pkg in seen.values():
+    if 'all' in pkg['arch']:
+        pkg['arch'] = ['all']
+    else:
+        order = {'aarch64': 0, 'arm': 1}
+        pkg['arch'].sort(key=lambda x: order.get(x, 99))
 
 result = sorted(seen.values(), key=lambda p: p['name'])
 
