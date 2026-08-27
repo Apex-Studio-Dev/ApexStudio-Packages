@@ -97,6 +97,22 @@ jobs:
       - name: Install tools
         run: sudo apt-get update && sudo apt-get install -y gnupg curl wget python3 apt-utils
 
+      - name: Cleanup broken/empty deb files
+        run: |
+          echo "=== Cleaning up broken symlinks and empty files ==="
+          for arch in aarch64 arm; do
+            if [ -d "output/${arch}" ]; then
+              # Remove broken symlinks
+              find "output/${arch}" -type l ! -exec test -e {} \; -delete 2>/dev/null || true
+              # Remove empty files
+              find "output/${arch}" -type f -empty -delete 2>/dev/null || true
+              # Remove files < 1KB (likely corrupted downloads)
+              find "output/${arch}" -name "*.deb" -type f -size -1k -delete 2>/dev/null || true
+              REMAINING=$(find "output/${arch}" -name "*.deb" -type f 2>/dev/null | wc -l)
+              echo "Remaining debs for $arch: $REMAINING"
+            fi
+          done
+
       - name: Generate APT repository
         run: |
           export AURASTUDIO_OUTPUT_DIR="$(pwd)/output"
