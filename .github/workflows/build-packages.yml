@@ -337,6 +337,11 @@ jobs:
 
           for arch in $DOWNLOAD_ARCHS; do
             mkdir -p "output/${arch}"
+            # Check if release exists
+            if ! gh release view "packages-${arch}" &>/dev/null 2>&1; then
+              echo "Release packages-${arch} does not exist yet, skipping"
+              continue
+            fi
             DOWNLOAD_SUCCESS=false
             for attempt in 1 2 3; do
               echo "Download attempt $attempt/3 for $arch..."
