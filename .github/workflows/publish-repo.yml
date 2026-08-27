@@ -51,6 +51,11 @@ jobs:
                 echo "Downloaded Packages file for binary-${bin_arch}"
                 grep "^Filename:" "/tmp/Packages-${bin_arch}" | sed 's|Filename: ||' | while read -r deb_path; do
                   deb_name=$(basename "$deb_path")
+                  # Skip if Filename is a release URL (handled by handle-large-debs.sh)
+                  if echo "$deb_path" | grep -qE "^https?://"; then
+                    echo "Skipping $deb_name (release URL, handled by handle-large-debs.sh)"
+                    continue
+                  fi
                   deb_url="${REPO_URL}/${deb_path}"
                   curl -sL "$deb_url" -o "output/${arch}/${deb_name}" 2>/dev/null || true
                 done

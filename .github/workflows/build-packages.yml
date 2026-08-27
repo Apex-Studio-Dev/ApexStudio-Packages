@@ -298,6 +298,11 @@ jobs:
                       break
                     fi
                   done
+                  # Skip if Filename is a release URL (handled by handle-large-debs.sh)
+                  if echo "$deb_path" | grep -qE "^https?://"; then
+                    echo "Skipping $deb_name (release URL, handled by handle-large-debs.sh)"
+                    continue
+                  fi
                   if [ "$SKIP" = "false" ]; then
                     deb_url="${REPO_URL}/${deb_path}"
                     curl -sL "$deb_url" -o "output/${arch}/${deb_name}" 2>/dev/null || true
