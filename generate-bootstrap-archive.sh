@@ -12,6 +12,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=packages.sh
 . "$SCRIPT_DIR/packages.sh"
 
+# shellcheck source=utils.sh
+. "$SCRIPT_DIR/utils.sh"
+
+# shellcheck source=patches.sh
+. "$SCRIPT_DIR/patches.sh"
+
 AURASTUDIO_LOCAL="false"
 
 usage() {
@@ -94,6 +100,14 @@ fi
 
 if [[ -z "${AURASTUDIO_REPO}" ]]; then
   aurastudio_error_exit "Repository URL must be specified."
+fi
+
+# Apply patches to termux-packages (same phase as build.sh) before generating bootstrap
+BUILD_REPO="$AURASTUDIO_REPO"
+if [[ ! -f "$AURASTUDIO_PATCHED_MARKER" ]]; then
+  setup_aurastudio_patches
+else
+  aurastudio_ok "[*] Termux-packages already patched ($AURASTUDIO_PATCHED_MARKER)"
 fi
 
 # Use bootstrap packages only (core + small deps)
