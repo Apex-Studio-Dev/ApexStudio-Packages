@@ -66,10 +66,10 @@ for ((i=0; i<${#PACKAGE_LIST[@]}; i++)); do
 	fi
 
 	echo "$DRY_RUN_SCRIPT_NAME: $BUILDSCRIPT_NAME would have continued building $TERMUX_PKG_NAME"
-	exit 0
+	SOME_WOULD_BUILD=true
 done
 
-if [ ${#PACKAGE_LIST[@]} -gt 0 ]; then
+if [ "${SOME_WOULD_BUILD:-false}" != "true" ] && [ ${#PACKAGE_LIST[@]} -gt 0 ]; then
 	echo "$DRY_RUN_SCRIPT_NAME: $BUILDSCRIPT_NAME would not have built any packages"
 	exit 85 # EX_C__NOOP
 fi
