@@ -163,6 +163,20 @@ SHA1: 7fc62a05ae284dee275a95f9c78398ed86253697
 SHA256: 954e04a91b37f99b6a6f6005e3402ebbc4d269c56660ce68304afdf804636a5f
 SHA512: ba3b1301e0dd672868b21f00df43fab4e535585eb401104cadb04ca1b0bf760111afe3417f91cb03364b909291a3019c28993cc7cc4457db47a5acedeef71eb6
 
+Package: openjdk-17-source
+Architecture: all
+Installed-Size: 50792
+Maintainer: @termux
+Version: 17.0.20
+Homepage: https://openjdk.java.net
+Description: Source files for openjdk-17
+Filename: dists/stable/main/binary-all/openjdk-17-source_17.0.20_all.deb
+Size: 47113628
+MD5Sum: 9821aec3f72e1058be25d60a46e56d19
+SHA1: e395c7b532bb72828548e1df277d5213ddeb419f
+SHA256: ad2ce212b4f7d8ef8d1e0030174bf304247e6b874cfdd9a98c71ea52ac1b0302
+SHA512: ca6469f69791e0ff6538b245b38b1c80b09a66a35f87dbdb375b945efeea7c45f734524c78f4c8808cb61736b031a738f961bfff146b5af1c61fc71560452e89
+
 Package: openjdk-21-source
 Architecture: all
 Installed-Size: 52384

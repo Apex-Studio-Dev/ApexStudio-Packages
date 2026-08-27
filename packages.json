@@ -1686,6 +1686,24 @@
     "arch": "aarch64"
   },
   {
+    "name": "openjdk-17",
+    "version": "17.0.20",
+    "desc": "Java development kit and runtime",
+    "arch": "aarch64"
+  },
+  {
+    "name": "openjdk-17-source",
+    "version": "17.0.20",
+    "desc": "Source files for openjdk-17",
+    "arch": "all"
+  },
+  {
+    "name": "openjdk-17-x",
+    "version": "17.0.20",
+    "desc": "Portion of openjdk-17 requiring X11 functionality",
+    "arch": "aarch64"
+  },
+  {
     "name": "openjdk-21",
     "version": "21.0.12",
     "desc": "Java development kit and runtime",

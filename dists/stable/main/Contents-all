@@ -5023,6 +5023,7 @@ data/data/com.aurastudio/files/usr/opt/gradle/lib/slf4j-api.properties          
 data/data/com.aurastudio/files/usr/opt/gradle/lib/tomlj-1.0.0.jar                gradle
 data/data/com.aurastudio/files/usr/opt/gradle/lib/tomlj.properties               gradle
 data/data/com.aurastudio/files/usr/share/doc/gradle/copyright                    gradle
+data/data/com.aurastudio/files/usr/lib/jvm/java-17-openjdk/lib/src.zip           openjdk-17-source
 data/data/com.aurastudio/files/usr/lib/jvm/java-21-openjdk/lib/src.zip           openjdk-21-source
 data/data/com.aurastudio/files/usr/lib/python3.14/ensurepip/_bundled/pip-26.1.2-py3-none-any.whl python-ensurepip-wheels
 data/data/com.aurastudio/files/usr/bin/pip                                       python-pip
