@@ -116,10 +116,10 @@ jobs:
           echo "key=${CACHE_KEY}" >> "$GITHUB_OUTPUT"
           echo "Cache key: ${CACHE_KEY}"
 
-      - name: Cache built packages
+      - name: Restore cached packages
         if: always()
         id: cache-packages
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: |
             /data
@@ -162,13 +162,12 @@ jobs:
       - name: Save built packages cache
         if: always()
         uses: actions/cache/save@v4
-        continue-on-error: true
         with:
           path: |
             /data
             /github/home/.termux-build
             output/${{ matrix.arch }}
-          key: ${{ steps.cache-key.outputs.key }}
+          key: ${{ steps.cache-packages.outputs.cache-primary-key }}
 
       - name: Show build summary
         if: always()
