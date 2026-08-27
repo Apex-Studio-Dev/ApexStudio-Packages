@@ -337,6 +337,7 @@ jobs:
 
           for arch in $DOWNLOAD_ARCHS; do
             mkdir -p "output/${arch}"
+            DOWNLOAD_SUCCESS=false
             for attempt in 1 2 3; do
               echo "Download attempt $attempt/3 for $arch..."
               if gh release download "packages-${arch}" \
@@ -348,11 +349,16 @@ jobs:
                 rm -f "packages-${arch}.zip"
                 echo "Unzipped $(find . -name '*.deb' -type f | wc -l) debs for $arch"
                 cd -
+                DOWNLOAD_SUCCESS=true
                 break
               fi
               echo "Attempt $attempt failed for $arch, waiting 30s..."
               sleep 30
             done
+            if [ "$DOWNLOAD_SUCCESS" = "false" ]; then
+              echo "ERROR: Failed to download packages-${arch} from Release after 3 attempts"
+              exit 1
+            fi
           done
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
