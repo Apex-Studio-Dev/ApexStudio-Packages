@@ -13,12 +13,6 @@ on:
           - arm
           - both
 
-      release:
-        description: "Release build?"
-        required: true
-        default: "true"
-        type: boolean
-
 permissions:
   contents: write
 
