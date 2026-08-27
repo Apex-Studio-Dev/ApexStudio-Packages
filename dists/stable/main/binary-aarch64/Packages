@@ -234,6 +234,21 @@ SHA1: 746a73f7d7f26ee3664cf9f8e410da9bdf4d3203
 SHA256: b253c77fa1e16c094e63b4474d358a2fc84aae0cd7440d76838fb5d306b36526
 SHA512: 4035060118f6a3c29b8400c2ccb9a00a7afa74ecbeafa5b2a3163d7e48ba4a1c2239b17a8c854db3a59ff0f8510a50515a8f81054346270a608a1525b07d974b
 
+Package: aurastudio
+Architecture: aarch64
+Installed-Size: 192
+Maintainer: Arata Labs <github.com/Arata-Labs>
+Version: 1.5
+Homepage: https://github.com/Arata-Labs/AuraStudio
+Depends: bash, curl, git, unzip, tar, findutils, sed, grep, gawk, openjdk-21
+Description: AuraStudio CLI — Android development tool suite for Termux
+Filename: dists/stable/main/binary-aarch64/aurastudio_1.5_aarch64.deb
+Size: 19332
+MD5Sum: 967df7932be07e48bdf91e3ee842175d
+SHA1: f5ec09b15d00eaeeaff5b9a10224196dcda05b9d
+SHA256: 0278ad1d9ed9dd65fa46da9465bdc080676dc9ceb2de30671a066f2cf87a32e6
+SHA512: 0a25b4cce3127881d030e99615f7d6b537ca3578c6928b0f3eec4aa7afffd2d2241ab5017c793184a3d880ab44584152fce2f77f27ca0bea45517428988e6847
+
 Package: bash
 Architecture: aarch64
 Installed-Size: 4688
@@ -4265,11 +4280,11 @@ Homepage: https://openjdk.java.net
 Depends: freetype, giflib, libandroid-shmem, libjpeg-turbo, libpng, libx11, libxext, libxi, libxrender, libxtst, openjdk-21 (= 21.0.12)
 Description: Portion of openjdk-21 requiring X11 functionality
 Filename: dists/stable/main/binary-aarch64/openjdk-21-x_21.0.12_aarch64.deb
-Size: 12659876
-MD5Sum: 8cc6f3c5d88e4d6d8650606a7240cef4
-SHA1: a7a6d698c506d2d3ff5fe4640f9cde116fd33120
-SHA256: 114ed8a21186f1087ad338ca9b3b161bf047220a3ddff84f24eb251cebe2af41
-SHA512: 2da90e1d82bec946045b1ff2d17dba3e2385b70b75919b5688bfc1329aadf3c7902b846bd73e94cbe1e7a95dee38d3cc141ec44f698f7b62028284e9f6c764e9
+Size: 12660144
+MD5Sum: 0680ca1067d855d9b0502f8718195573
+SHA1: 60e434f43c79225a82867aea67e3b4011a47af6a
+SHA256: 2523685f59b2dd2456abe73556d8badd84e0dd42533f0022ffa55c9890e1fb0f
+SHA512: ef63b868fd74628eb0a17494e80205058ffedae00a58475603efb61b21151369634d906858d7d0f7f16d43d0b5684f10b57bbbdc4b051280d042b194a9d37baa
 
 Package: openjdk-21
 Architecture: aarch64
@@ -4282,11 +4297,11 @@ Recommends: ca-certificates-java, openjdk-21-x, resolv-conf
 Suggests: cups
 Description: Java development kit and runtime
 Filename: dists/stable/main/binary-aarch64/openjdk-21_21.0.12_aarch64.deb
-Size: 102881512
-MD5Sum: 50f6c8034834f83058a51578e69b6473
-SHA1: 06ddb374bd6bc7c0e17b69d2e9699f1d1171f5af
-SHA256: 257afd47b523eeb9c7fab25751ac04bf382e0274e5bd5aff62cdc931f2c8152c
-SHA512: 5e70a1211aa8bf21995128b511f9b0031018c8df9d94afe500661f2ec6ba4ba0041ec583d9f3c1dd946aed323ee4ca81b9063560b133229350de0a389995e7c5
+Size: 102882928
+MD5Sum: 06f61edb29bdf4333f022f8f1b1af210
+SHA1: a51042cd9302cd1174609947573f29ac552b1908
+SHA256: 932cb03316cc048a71c9ccd254725f501f174a89a8a65354555af13539d7fd4c
+SHA512: 0f733716db415090566f2f3de6495586c1e82ab93f4378c2b1daee00e7d514ae74fb3c8e18d3859dd113956a470674a13b774337279d1add1fcdf04100e064bf
 
 Package: openssl-static
 Architecture: aarch64

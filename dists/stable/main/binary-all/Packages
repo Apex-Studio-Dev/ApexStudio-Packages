@@ -185,11 +185,11 @@ Version: 21.0.12
 Homepage: https://openjdk.java.net
 Description: Source files for openjdk-21
 Filename: dists/stable/main/binary-all/openjdk-21-source_21.0.12_all.deb
-Size: 49131760
-MD5Sum: 86f6cf4295dbcbb06f1100642a17e9b2
-SHA1: 9dd747fa1759718301ca452b10a8e14ec984be97
-SHA256: 6fddcaf0618b8bfddc09b42e8a4ccf24eb0b4b48287a5419d4f55af60e9a1ff5
-SHA512: 02f41587ebd381dd99258d30813bdf664138f332721e64806507e81c63e69f9e7b8a49a6aea466774e6a044cc051c050e9e2300b0b4f06650efa89d312587c84
+Size: 49131668
+MD5Sum: 49b861e7c42ead8e838bcf86c5d4842d
+SHA1: 0ef61c813e57892c8976273eda5b057fa4d8cdf5
+SHA256: 32e38a2d7aec4ef246c1f6e7ee557325cd52c5215d509d42f99af12e1d5b9b1c
+SHA512: 4902ffd77c88f3947233ccb76b823627eb73a8c85dc7b33b75627c3df573d3e3b38cb64afd422d545a0f42519432a5a3059c9e8f5ecec46d5504ea3887b9ace1
 
 Package: python-ensurepip-wheels
 Architecture: all
