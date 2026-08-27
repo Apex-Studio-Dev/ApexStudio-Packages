@@ -51,6 +51,7 @@ declare -a PATCHES=(
   "libuv-force-cmake-build.patch"
   "coreutils-depend-on-libacl.patch"
   "subversion-missing-apr-includes.patch"
+  "generate-db-fix-url.patch"
 
   # Termux motd
   "termux-tools-motd.patch"

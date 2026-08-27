@@ -25,6 +25,7 @@ declare -a AURASTUDIO_PACKAGES__BOOTSTRAP=(
   "tar"
 
   # Termux essentials
+  "command-not-found"
   "termux-core"
   "termux-exec"
   "termux-keyring"
