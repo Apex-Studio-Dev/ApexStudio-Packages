@@ -30,6 +30,12 @@
     "arch": "aarch64"
   },
   {
+    "name": "alsa-plugins",
+    "version": "1.2.12-1",
+    "desc": "The Advanced Linux Sound Architecture (ALSA) - plugins",
+    "arch": "aarch64"
+  },
+  {
     "name": "apr",
     "version": "1.7.6-2",
     "desc": "Apache Portable Runtime Library",
@@ -189,6 +195,18 @@
     "name": "coreutils",
     "version": "9.11-1",
     "desc": "Basic file, shell and text manipulation utilities from the GNU project",
+    "arch": "aarch64"
+  },
+  {
+    "name": "cups",
+    "version": "2.4.19",
+    "desc": "Common UNIX Printing System",
+    "arch": "aarch64"
+  },
+  {
+    "name": "cups-static",
+    "version": "2.4.19",
+    "desc": "Static libraries for cups",
     "arch": "aarch64"
   },
   {
@@ -372,6 +390,24 @@
     "arch": "aarch64"
   },
   {
+    "name": "giflib",
+    "version": "5.2.2-2",
+    "desc": "A library for reading and writing gif images",
+    "arch": "aarch64"
+  },
+  {
+    "name": "giflib-static",
+    "version": "5.2.2-2",
+    "desc": "Static libraries for giflib",
+    "arch": "aarch64"
+  },
+  {
+    "name": "giflib-utils",
+    "version": "5.2.2-2",
+    "desc": "A set of utilities that comes with giflib package",
+    "arch": "aarch64"
+  },
+  {
     "name": "git",
     "version": "2.55.0",
     "desc": "Fast, scalable, distributed revision control system",
@@ -430,6 +466,12 @@
     "version": "2.5.17",
     "desc": "GNU privacy guard - signature verification tool",
     "arch": "aarch64"
+  },
+  {
+    "name": "gradle",
+    "version": "1:9.7.1",
+    "desc": "Powerful build system for the JVM",
+    "arch": "all"
   },
   {
     "name": "grep",
@@ -816,6 +858,12 @@
     "arch": "aarch64"
   },
   {
+    "name": "libice",
+    "version": "1.1.2-1",
+    "desc": "X11 Inter-Client Exchange library",
+    "arch": "aarch64"
+  },
+  {
     "name": "libiconv",
     "version": "1.18-1",
     "desc": "An implementation of iconv()",
@@ -849,6 +897,24 @@
     "name": "libidn2-static",
     "version": "2.3.8-1",
     "desc": "Static libraries for libidn2",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libjpeg-turbo",
+    "version": "3.2.0",
+    "desc": "Library for reading and writing JPEG image files",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libjpeg-turbo-progs",
+    "version": "3.2.0",
+    "desc": "Programs for manipulating JPEG files",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libjpeg-turbo-static",
+    "version": "3.2.0",
+    "desc": "Static libraries for libjpeg-turbo",
     "arch": "aarch64"
   },
   {
@@ -1074,6 +1140,12 @@
     "arch": "aarch64"
   },
   {
+    "name": "libsm",
+    "version": "1.2.6-1",
+    "desc": "X11 Session Management library",
+    "arch": "aarch64"
+  },
+  {
     "name": "libsmartcols",
     "version": "2.42.1-4",
     "desc": "Library for smart adaptive formatting of tabular data",
@@ -1149,6 +1221,24 @@
     "name": "libtasn1-static",
     "version": "4.21.0",
     "desc": "Static libraries for libtasn1",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libtiff",
+    "version": "4.7.2",
+    "desc": "Support for the Tag Image File Format (TIFF) for storing image data",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libtiff-static",
+    "version": "4.7.2",
+    "desc": "Static libraries for libtiff",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libtiff-utils",
+    "version": "4.7.2",
+    "desc": "Tools for working with tiff files",
     "arch": "aarch64"
   },
   {
@@ -1296,6 +1386,18 @@
     "arch": "aarch64"
   },
   {
+    "name": "libxfixes",
+    "version": "6.0.2",
+    "desc": "X11 miscellaneous 'fixes' extension library",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libxfixes-static",
+    "version": "6.0.2",
+    "desc": "Static libraries for libxfixes",
+    "arch": "aarch64"
+  },
+  {
     "name": "libxft",
     "version": "2.3.9-1",
     "desc": "FreeType-based font drawing library for X",
@@ -1305,6 +1407,18 @@
     "name": "libxft-static",
     "version": "2.3.9-1",
     "desc": "Static libraries for libxft",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libxi",
+    "version": "1.8.3",
+    "desc": "X11 Input extension library",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libxi-static",
+    "version": "1.8.3",
+    "desc": "Static libraries for libxi",
     "arch": "aarch64"
   },
   {
@@ -1323,6 +1437,18 @@
     "name": "libxml2-utils",
     "version": "2.15.3-2",
     "desc": "XML utilities",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libxrandr",
+    "version": "1.5.5",
+    "desc": "X11 RandR extension library",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libxrandr-static",
+    "version": "1.5.5",
+    "desc": "Static libraries for libxrandr",
     "arch": "aarch64"
   },
   {
@@ -1350,6 +1476,30 @@
     "arch": "aarch64"
   },
   {
+    "name": "libxt",
+    "version": "1.3.1-1",
+    "desc": "X11 toolkit intrinsics library",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libxt-static",
+    "version": "1.3.1-1",
+    "desc": "Static libraries for libxt",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libxtst",
+    "version": "1.2.5-1",
+    "desc": "Xlib-based library for XTEST & RECORD extensions",
+    "arch": "aarch64"
+  },
+  {
+    "name": "libxtst-static",
+    "version": "1.2.5-1",
+    "desc": "Static libraries for libxtst",
+    "arch": "aarch64"
+  },
+  {
     "name": "libyaml",
     "version": "0.2.5-5",
     "desc": "LibYAML is a YAML 1.1 parser and emitter written in C",
@@ -1365,6 +1515,24 @@
     "name": "libzopfli",
     "version": "1.0.3-5",
     "desc": "New zlib compatible compressor library",
+    "arch": "aarch64"
+  },
+  {
+    "name": "littlecms",
+    "version": "2.19.1",
+    "desc": "Color management library",
+    "arch": "aarch64"
+  },
+  {
+    "name": "littlecms-static",
+    "version": "2.19.1",
+    "desc": "Static libraries for littlecms",
+    "arch": "aarch64"
+  },
+  {
+    "name": "littlecms-utils",
+    "version": "2.19.1",
+    "desc": "Color management utilities",
     "arch": "aarch64"
   },
   {
@@ -1515,6 +1683,24 @@
     "name": "oniguruma-static",
     "version": "6.9.10-1",
     "desc": "Static libraries for oniguruma",
+    "arch": "aarch64"
+  },
+  {
+    "name": "openjdk-21",
+    "version": "21.0.12",
+    "desc": "Java development kit and runtime",
+    "arch": "aarch64"
+  },
+  {
+    "name": "openjdk-21-source",
+    "version": "21.0.12",
+    "desc": "Source files for openjdk-21",
+    "arch": "all"
+  },
+  {
+    "name": "openjdk-21-x",
+    "version": "21.0.12",
+    "desc": "Portion of openjdk-21 requiring X11 functionality",
     "arch": "aarch64"
   },
   {

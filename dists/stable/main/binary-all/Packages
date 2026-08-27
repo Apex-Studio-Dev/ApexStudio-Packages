@@ -148,6 +148,35 @@ SHA1: 4db2f56855d9144eba98b0bb04ba5203edc8fc26
 SHA256: 47cab68c3958f1b7cae70c70c9b95cd561439c318c369f36a458e0cb84768930
 SHA512: da099adc3e3810e347f57970a3034888c07aa44cde4e10a02970cd72b00233e2375fd2e3ca13cb4b5a3e6eed4682669783b1ba78d7e26d2dd814ac952eed3a6e
 
+Package: gradle
+Architecture: all
+Installed-Size: 168380
+Maintainer: @termux
+Version: 1:9.7.1
+Homepage: https://gradle.org/
+Depends: openjdk-21
+Description: Powerful build system for the JVM
+Filename: https://github.com/Arata-Labs/aurastudio-termux/releases/download/debs/gradle_1C9.7.1_all.deb
+Size: 148982796
+MD5Sum: 9b28123bb86beed6f4f6a84bb81a830f
+SHA1: 7fc62a05ae284dee275a95f9c78398ed86253697
+SHA256: 954e04a91b37f99b6a6f6005e3402ebbc4d269c56660ce68304afdf804636a5f
+SHA512: ba3b1301e0dd672868b21f00df43fab4e535585eb401104cadb04ca1b0bf760111afe3417f91cb03364b909291a3019c28993cc7cc4457db47a5acedeef71eb6
+
+Package: openjdk-21-source
+Architecture: all
+Installed-Size: 52384
+Maintainer: @termux
+Version: 21.0.12
+Homepage: https://openjdk.java.net
+Description: Source files for openjdk-21
+Filename: dists/stable/main/binary-all/openjdk-21-source_21.0.12_all.deb
+Size: 49131760
+MD5Sum: 86f6cf4295dbcbb06f1100642a17e9b2
+SHA1: 9dd747fa1759718301ca452b10a8e14ec984be97
+SHA256: 6fddcaf0618b8bfddc09b42e8a4ccf24eb0b4b48287a5419d4f55af60e9a1ff5
+SHA512: 02f41587ebd381dd99258d30813bdf664138f332721e64806507e81c63e69f9e7b8a49a6aea466774e6a044cc051c050e9e2300b0b4f06650efa89d312587c84
+
 Package: python-ensurepip-wheels
 Architecture: all
 Installed-Size: 1812
