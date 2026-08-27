@@ -137,7 +137,7 @@ jobs:
 
           rm -f "output/${{ matrix.arch }}/failed-packages.txt"
 
-          bash build.sh -a "${{ matrix.arch }}" -e ${{ inputs.packages }}
+          bash build.sh -a "${{ matrix.arch }}" --keep-going -e ${{ inputs.packages }}
 
       - name: Save built packages cache
         if: always()
