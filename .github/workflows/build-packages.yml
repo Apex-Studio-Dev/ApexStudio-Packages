@@ -77,11 +77,20 @@ jobs:
         run: |
           chmod +x scripts/lint-packages.sh
           PKG_SCRIPTS=""
+          MISSING=""
           for pkg in ${{ inputs.packages }}; do
             if [ -f "termux-packages/packages/${pkg}/build.sh" ]; then
               PKG_SCRIPTS="${PKG_SCRIPTS} termux-packages/packages/${pkg}/build.sh"
+            else
+              MISSING="${MISSING} ${pkg}"
             fi
           done
+          if [ -n "$MISSING" ]; then
+            echo "ERROR: Packages not found:${MISSING}"
+            echo "Available packages:"
+            ls termux-packages/packages/ | head -20
+            exit 1
+          fi
           if [ -n "$PKG_SCRIPTS" ]; then
             bash scripts/lint-packages.sh $PKG_SCRIPTS
           fi
@@ -93,6 +102,9 @@ jobs:
           RESULT=$?
           if [ "$RESULT" -eq 85 ]; then
             echo "No packages to build for ${{ matrix.arch }}"
+          elif [ "$RESULT" -ne 0 ]; then
+            echo "ERROR: Dry-run check failed with exit code $RESULT"
+            exit $RESULT
           fi
 
       - name: Generate cache key
