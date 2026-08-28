@@ -179,12 +179,17 @@ lint_package() {
 		fi
 
 		echo -n "TERMUX_PKG_SRCURL: "
-		if [ ${#TERMUX_PKG_SRCURL} -gt 0 ]; then
-			echo "PASS"
-		else
-			echo "NOT SET"
-			pkg_lint_error=true
-		fi
+		case "${TERMUX_PKG_SKIP_SRC_EXTRACT:-false}" in
+			true|TRUE) echo "SKIP (TERMUX_PKG_SKIP_SRC_EXTRACT=true)" ;;
+			*)
+				if [ ${#TERMUX_PKG_SRCURL} -gt 0 ]; then
+					echo "PASS"
+				else
+					echo "NOT SET"
+					pkg_lint_error=true
+				fi
+			;;
+		esac
 
 		if [ "$pkg_lint_error" = 'true' ]; then
 			exit 1
