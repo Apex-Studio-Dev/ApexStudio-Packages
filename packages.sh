@@ -36,9 +36,11 @@ declare -a AURASTUDIO_PACKAGES__BOOTSTRAP=(
   "wget"
 
   # Shell tools
+  "brotli"
   "nano"
   "patch"
   "unzip"
+  "zip"
   "procps"
   "psmisc"
 
@@ -83,7 +85,6 @@ declare -a AURASTUDIO_PACKAGES=(
   # Development tools
   "aapt"
   "binutils"
-  "brotli"
   "cmake"
   "glib"
   "gradle"
@@ -97,7 +98,6 @@ declare -a AURASTUDIO_PACKAGES=(
   "python-pip"
   "vim"
   "which"
-  "zip"
   "zlib"
 
   # JDK
