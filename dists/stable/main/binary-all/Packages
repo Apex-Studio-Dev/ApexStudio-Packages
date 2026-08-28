@@ -275,18 +275,18 @@ SHA512: e833612b514945cc17a2b7940d58a222c8b50ec3468da4958b21ad222ee0e66f49c10c74
 
 Package: termux-keyring
 Architecture: all
-Installed-Size: 80
+Installed-Size: 76
 Maintainer: @termux
 Version: 3.13
 Homepage: https://github.com/termux
 Essential: yes
 Description: GPG public keys for the official Termux repositories
 Filename: dists/stable/main/binary-all/termux-keyring_3.13_all.deb
-Size: 6520
-MD5Sum: b3e68e458fbb0ff1f79820f4aab341d3
-SHA1: 5ec492d01255ae9fd2b6216fc455bed92ac73b95
-SHA256: 6a1acb751d909c8f8322172fd025119af69bc1c100a92d9672fd2790d04e83bb
-SHA512: 8862f55b2a18896b941d233130736d079377895f7ce5e05278c0bae5327c16a40514dfebece4c9148fa56dc33a97e1704544e64c5da07629daf1edc2fa27c345
+Size: 3912
+MD5Sum: d9dcee779a136f1715f98a298d86b279
+SHA1: da646dbcd445c0cd5aab769d22631d59be6cdfcf
+SHA256: 7ed5a59eb9ec2b9c345244ffbe1bffab13abc8d9410a4fe40b86b5cc3ea089b0
+SHA512: 1c956010e4593ba27c9903add87523de61f879cc984a22e576677cf27cd65ff484d849270799dce4e94d6d30fdfdcef48166622b428bb7688490040e166778cd
 
 Package: termux-licenses
 Architecture: all
