@@ -2,6 +2,9 @@ name: Publish APT Repository
 
 on:
   workflow_dispatch:
+  # Used by build-packages.yml so auto-publish and manual publish share
+  # exactly one implementation.
+  workflow_call:
 
 permissions:
   contents: write
@@ -10,6 +13,10 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-26.04
+
+    permissions:
+      contents: write
+      pages: write
 
     env:
       GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
@@ -271,7 +278,7 @@ jobs:
 
           DEB_COUNT=$(find output/repo -path "*/binary-*/*.deb" -type f 2>/dev/null | wc -l)
 
-          MSG=$(printf "AuraStudio Publish (manual)\nPublished: %s debs (aarch64 + arm + all)\nRepo: https://arata-labs.github.io/aurastudio-termux\nRun: https://github.com/%s/actions/runs/%s" \
+          MSG=$(printf "AuraStudio Publish\nPublished: %s debs (aarch64 + arm + all)\nRepo: https://arata-labs.github.io/aurastudio-termux\nRun: https://github.com/%s/actions/runs/%s" \
             "$DEB_COUNT" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
 
           curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
