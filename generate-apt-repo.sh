@@ -31,22 +31,27 @@ fi
 # Create directories
 mkdir -p "$DEBS_DIR" "$REPO_DIR"
 
-# Symlink all valid .debs into the debs directory. Each candidate is validated
-# with dpkg-deb --info so corrupt/truncated download leftovers (e.g. interrupted
-# large-deb fetches) are skipped instead of breaking dpkg-scanpackages with
-# "Error listing contents".
+# Symlink all .debs into the debs directory. Each candidate is validated with
+# dpkg-deb --info; any corrupt/truncated .deb (e.g. interrupted large-deb fetch)
+# aborts the publish so a package is never silently dropped from the repo.
+invalid=0
 info "[*] Collecting .deb files..."
-find "$OUTPUT_DIR" \
+while IFS= read -r -d '' src; do
+  if ! dpkg-deb --info "$src" >/dev/null 2>&1; then
+    warn "[!] Invalid .deb: $src"
+    invalid=$((invalid + 1))
+    continue
+  fi
+  ln -sf "$src" "$DEBS_DIR/$(basename "$src")"
+done < <(find "$OUTPUT_DIR" \
   -type f -name "*.deb" \
   -not -path "$DEBS_DIR/*" \
   -not -path "$REPO_DIR/*" \
-  -print0 2>/dev/null | while IFS= read -r -d '' src; do
-    if ! dpkg-deb --info "$src" >/dev/null 2>&1; then
-      warn "[!] Skipping invalid .deb: $src"
-      continue
-    fi
-    ln -sf "$src" "$DEBS_DIR/$(basename "$src")"
-  done
+  -print0 2>/dev/null)
+
+if [ "$invalid" -gt 0 ]; then
+  die "Found $invalid invalid .deb file(s); aborting to avoid dropping packages from the repo"
+fi
 
 deb_count=$(find "$DEBS_DIR" -name "*.deb" \( -type f -o -type l \) 2>/dev/null | wc -l)
 info "[*] Found $deb_count .deb files"
