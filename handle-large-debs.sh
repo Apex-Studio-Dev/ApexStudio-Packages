@@ -119,7 +119,12 @@ echo "=== Regenerate Release files ==="
 
 # Generate Release file
 cd "${REPO_DIR}"
-if apt-ftparchive release dists/stable > dists/stable/Release 2>/dev/null; then
+if apt-ftparchive \
+    -o APT::FTPArchive::Release::Origin="Arata-Labs" \
+    -o APT::FTPArchive::Release::Label="aurastudio-termux" \
+    -o APT::FTPArchive::Release::Suite="stable" \
+    -o APT::FTPArchive::Release::Codename="stable" \
+    release dists/stable > dists/stable/Release 2>/dev/null; then
   echo "Release file regenerated"
 else
   echo "WARN: apt-ftparchive not available, skipping Release regeneration"

@@ -74,7 +74,12 @@ info "[*] Removing compressed index variants (Packages.xz/.gz)..."
 find "$REPO_DIR/dists" -type f \( -name "Packages.xz" -o -name "Packages.gz" \) -delete
 if command -v apt-ftparchive >/dev/null 2>&1; then
   info "[*] Regenerating Release (plain-text indices only)..."
-  ( cd "$REPO_DIR" && apt-ftparchive release dists/stable > dists/stable/Release )
+  ( cd "$REPO_DIR" && apt-ftparchive \
+      -o APT::FTPArchive::Release::Origin="Arata-Labs" \
+      -o APT::FTPArchive::Release::Label="aurastudio-termux" \
+      -o APT::FTPArchive::Release::Suite="stable" \
+      -o APT::FTPArchive::Release::Codename="stable" \
+      release dists/stable > dists/stable/Release )
 else
   warn "[!] apt-ftparchive not found; Release file may still reference removed files"
 fi
