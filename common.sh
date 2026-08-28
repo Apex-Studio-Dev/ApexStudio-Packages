@@ -31,8 +31,8 @@ export TERMUX_PACKAGES_DIR
 AURASTUDIO_GPG_KEY="${SCRIPT_DIR}/aurastudio.gpg"
 export AURASTUDIO_GPG_KEY
 
-# GPG key fingerprint (placeholder — generate with gpg first)
-AURASTUDIO_GPG_KEY_FP="${AURASTUDIO_GPG_KEY_FP:-}"
+# GPG key fingerprint (AuraStudio Builder v2 primary)
+AURASTUDIO_GPG_KEY_FP="${AURASTUDIO_GPG_KEY_FP:-54F667C549A9B3AD79168D3F6D81A8C48CD43B73}"
 export AURASTUDIO_GPG_KEY_FP
 
 # APT repository URL (deployed to pages branch of same repo)

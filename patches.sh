@@ -32,7 +32,7 @@ declare -a PATCHES=(
   "scripts-cleanup-in-second-stage.patch"
 
   # -I dependency install: import our GPG key alongside upstream keys
-  "use-our-keys-to-install-deps.patch"
+  "use-our-keys-to-install-deps.patch.in"
 
   # Build fixes
   "openjdk-17-cleanup.patch"
@@ -95,6 +95,7 @@ setup_aurastudio_patches() {
       local out="${patch%.in}"
       aurastudio_info "[*] Generating patch: $patch → $out"
       sed -e "s|@AURASTUDIO_GPG_KEY@|$(basename "$BUILD_GPG_KEY")|g" \
+          -e "s|@AURASTUDIO_GPG_KEY_FP@|${AURASTUDIO_GPG_KEY_FP}|g" \
           -e "s|@TERMUX_PACKAGE_NAME@|$(sed_escape "$BUILD_PACKAGE_NAME")|g" \
           -e "s|@AURASTUDIO_PACKAGE_NAME@|$(sed_escape "$BUILD_PACKAGE_NAME")|g" \
           "$SCRIPT_DIR/patches/$patch" > "$SCRIPT_DIR/patches/$out" 2>/dev/null || {
