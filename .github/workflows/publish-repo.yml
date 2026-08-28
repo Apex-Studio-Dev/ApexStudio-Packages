@@ -147,20 +147,17 @@ jobs:
 
       - name: Import GPG key
         run: |
-          if [ -n "${PACKAGES_GPG_KEY:-}" ]; then
-            echo "$PACKAGES_GPG_KEY" | base64 -d | gpg --batch --import
+          if [ -z "${PACKAGES_GPG_KEY:-}" ]; then
+            echo "ERROR: secrets.PACKAGES_GPG_KEY not set (base64 of AuraStudio signing v2 secret key)" >&2
+            exit 1
           fi
-          if gpg --list-secret-keys "5F128F230DEEF535" &>/dev/null; then
-            echo "AuraStudio Builder key available"
-          else
-            gpg --batch --import aurastudio.gpg
-          fi
+          echo "$PACKAGES_GPG_KEY" | base64 -d | gpg --batch --import
         env:
           PACKAGES_GPG_KEY: ${{ secrets.PACKAGES_GPG_KEY }}
 
       - name: Sign repository
         run: |
-          KEY_ID="5F128F230DEEF535"
+          KEY_ID="6D81A8C48CD43B73"
           if [ -n "${GPG_KEY_ID:-}" ]; then
             KEY_ID="${GPG_KEY_ID}"
           fi

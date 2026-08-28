@@ -128,8 +128,8 @@ else
 fi
 
 # Re-sign if GPG key available
-if [ -n "${GPG_KEY_ID:-}" ] || gpg --list-secret-keys "5F128F230DEEF535" &>/dev/null; then
-  KEY_ID="${GPG_KEY_ID:-5F128F230DEEF535}"
+if [ -n "${GPG_KEY_ID:-}" ] || gpg --list-secret-keys "6D81A8C48CD43B73" &>/dev/null; then
+  KEY_ID="${GPG_KEY_ID:-6D81A8C48CD43B73}"
   echo "Signing with key: ${KEY_ID}"
 
   gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
