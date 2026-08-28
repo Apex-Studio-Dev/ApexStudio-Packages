@@ -60,6 +60,9 @@ declare -a AURASTUDIO_PACKAGES__BOOTSTRAP=(
   "inetutils"
   "lsof"
   "net-tools"
+
+  # AuraStudio CLI
+  "aurastudio"
 )
 
 # ─────────────────────────────────────────────────────────────
@@ -100,7 +103,4 @@ declare -a AURASTUDIO_PACKAGES=(
   # JDK
   "openjdk-17"
   "openjdk-21"
-
-  # AuraStudio CLI
-  "aurastudio"
 )
