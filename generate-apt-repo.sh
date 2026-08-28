@@ -31,25 +31,22 @@ fi
 # Create directories
 mkdir -p "$DEBS_DIR" "$REPO_DIR"
 
-# Symlink all debs into debs directory
+# Symlink all valid .debs into the debs directory. Each candidate is validated
+# with dpkg-deb --info so corrupt/truncated download leftovers (e.g. interrupted
+# large-deb fetches) are skipped instead of breaking dpkg-scanpackages with
+# "Error listing contents".
 info "[*] Collecting .deb files..."
-# Search for debs recursively in output dir (handles both flat and nested layouts)
 find "$OUTPUT_DIR" \
   -type f -name "*.deb" \
   -not -path "$DEBS_DIR/*" \
   -not -path "$REPO_DIR/*" \
-  -exec ln -sf {} "$DEBS_DIR/" \; 2>/dev/null || true
-# Fallback: also check flat layout directly
-if [[ -d "$OUTPUT_DIR/aarch64" ]]; then
-  find "$OUTPUT_DIR/aarch64" \
-    -maxdepth 1 -type f -name "*.deb" \
-    -exec ln -sf {} "$DEBS_DIR/" \; 2>/dev/null || true
-fi
-if [[ -d "$OUTPUT_DIR/arm" ]]; then
-  find "$OUTPUT_DIR/arm" \
-    -maxdepth 1 -type f -name "*.deb" \
-    -exec ln -sf {} "$DEBS_DIR/" \; 2>/dev/null || true
-fi
+  -print0 2>/dev/null | while IFS= read -r -d '' src; do
+    if ! dpkg-deb --info "$src" >/dev/null 2>&1; then
+      warn "[!] Skipping invalid .deb: $src"
+      continue
+    fi
+    ln -sf "$src" "$DEBS_DIR/$(basename "$src")"
+  done
 
 deb_count=$(find "$DEBS_DIR" -name "*.deb" \( -type f -o -type l \) 2>/dev/null | wc -l)
 info "[*] Found $deb_count .deb files"
