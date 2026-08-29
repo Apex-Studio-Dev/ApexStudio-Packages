@@ -204,6 +204,28 @@ jobs:
           export AURASTUDIO_REPO_DIR="$(pwd)/output/repo"
           bash ./generate-apt-repo.sh
 
+      - name: Handle large debs (>100MB → GitHub Releases)
+        run: |
+          export GITHUB_REPOSITORY="${{ github.repository }}"
+          bash ./handle-large-debs.sh output/repo 100
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Regenerate Release after large deb URL updates
+        run: |
+          if command -v apt-ftparchive >/dev/null 2>&1; then
+            echo "Regenerating Release with updated Packages checksums..."
+            cd output/repo && apt-ftparchive \
+              -o APT::FTPArchive::Release::Origin="Arata-Labs" \
+              -o APT::FTPArchive::Release::Label="aurastudio-termux" \
+              -o APT::FTPArchive::Release::Suite="stable" \
+              -o APT::FTPArchive::Release::Codename="stable" \
+              release dists/stable > dists/stable/Release
+            echo "Release regenerated with correct checksums"
+          else
+            echo "WARN: apt-ftparchive not available, Release may have stale checksums"
+          fi
+
       - name: Import GPG key
         run: |
           if [ -z "${PACKAGES_GPG_KEY:-}" ]; then
@@ -221,25 +243,19 @@ jobs:
             KEY_ID="${GPG_KEY_ID}"
           fi
           echo "Signing with key: $KEY_ID"
+          cd output/repo
           gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
             --clearsign -u "${KEY_ID}" \
-            -o output/repo/dists/stable/InRelease \
-            output/repo/dists/stable/Release
+            -o dists/stable/InRelease \
+            dists/stable/Release
           gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
             -u "${KEY_ID}" \
             --detach-sign \
-            -o output/repo/dists/stable/Release.gpg \
-            output/repo/dists/stable/Release
+            -o dists/stable/Release.gpg \
+            dists/stable/Release
           echo "Repository signed successfully"
         env:
           GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
-
-      - name: Handle large debs (>100MB → GitHub Releases)
-        run: |
-          export GITHUB_REPOSITORY="${{ github.repository }}"
-          bash ./handle-large-debs.sh output/repo 100
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate packages.json
         run: |

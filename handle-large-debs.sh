@@ -113,47 +113,13 @@ if [ "$UPDATED_COUNT" -eq 0 ]; then
   echo "WARNING: No Packages files were updated. Release URLs may not work."
 fi
 
-# Regenerate Release files
-echo ""
-echo "=== Regenerate Release files ==="
-
-# Generate Release file
-cd "${REPO_DIR}"
-if apt-ftparchive \
-    -o APT::FTPArchive::Release::Origin="Arata-Labs" \
-    -o APT::FTPArchive::Release::Label="aurastudio-termux" \
-    -o APT::FTPArchive::Release::Suite="stable" \
-    -o APT::FTPArchive::Release::Codename="stable" \
-    release dists/stable > dists/stable/Release 2>/dev/null; then
-  echo "Release file regenerated"
-else
-  echo "WARN: apt-ftparchive not available, skipping Release regeneration"
-  cd - > /dev/null
-  exit 0
-fi
-
-# Re-sign if GPG key available
-if [ -n "${GPG_KEY_ID:-}" ] || gpg --list-secret-keys "6D81A8C48CD43B73" &>/dev/null; then
-  KEY_ID="${GPG_KEY_ID:-6D81A8C48CD43B73}"
-  echo "Signing with key: ${KEY_ID}"
-
-  gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
-    --clearsign -u "${KEY_ID}" \
-    -o dists/stable/InRelease \
-    dists/stable/Release
-
-  gpg --batch --yes --pinentry-mode loopback --digest-algo SHA256 \
-    -u "${KEY_ID}" \
-    --detach-sign \
-    -o dists/stable/Release.gpg \
-    dists/stable/Release
-
-  echo "Signed successfully"
-else
-  echo "No GPG key, skipping signing"
-fi
-
-cd - > /dev/null
+# NOTE: Do NOT regenerate Release or re-sign here.
+# Release generation and GPG signing are handled by generate-apt-repo.sh
+# and the "Sign repository" step in publish-repo.yml.
+# Regenerating Release here causes Hash Sum mismatch because:
+# 1. generate-apt-repo.sh deletes Packages.xz
+# 2. apt-ftparchive scans directory and adds Packages.xz refs back to Release
+# 3. APT on client tries to fetch Packages.xz → gets stale/different file → hash mismatch
 
 echo ""
 echo "=== Done ==="
