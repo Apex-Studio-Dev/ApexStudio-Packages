@@ -41754,7 +41754,6 @@ data/data/com.aurastudio/files/usr/lib/libsmartcols.a                           
 data/data/com.aurastudio/files/usr/lib/libsmartcols.la                           util-linux-static
 data/data/com.aurastudio/files/usr/lib/libuuid.a                                 util-linux-static
 data/data/com.aurastudio/files/usr/lib/libuuid.la                                util-linux-static
-data/data/com.aurastudio/files/usr/lib/python3.14/site-packages/libmount/pylibmount.la util-linux-static
 data/data/com.aurastudio/files/usr/bin/addpart                                   util-linux
 data/data/com.aurastudio/files/usr/bin/bits                                      util-linux
 data/data/com.aurastudio/files/usr/bin/blkpr                                     util-linux
@@ -41831,8 +41830,6 @@ data/data/com.aurastudio/files/usr/bin/waitpid                                  
 data/data/com.aurastudio/files/usr/bin/wdctl                                     util-linux
 data/data/com.aurastudio/files/usr/bin/whereis                                   util-linux
 data/data/com.aurastudio/files/usr/bin/zramctl                                   util-linux
-data/data/com.aurastudio/files/usr/lib/python3.14/site-packages/libmount/__init__.py util-linux
-data/data/com.aurastudio/files/usr/lib/python3.14/site-packages/libmount/pylibmount.so util-linux
 data/data/com.aurastudio/files/usr/share/bash-completion/completions/addpart     util-linux
 data/data/com.aurastudio/files/usr/share/bash-completion/completions/bits        util-linux
 data/data/com.aurastudio/files/usr/share/bash-completion/completions/blkpr       util-linux

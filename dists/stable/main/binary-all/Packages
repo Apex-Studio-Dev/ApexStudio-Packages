@@ -37,11 +37,11 @@ Homepage: https://curl.se/docs/caextract.html
 Depends: ca-certificates (= 1:2026.07.16)
 Description: Common CA certificates (java keystore format)
 Filename: dists/stable/main/binary-all/ca-certificates-java_1C2026.07.16_all.deb
-Size: 95136
-MD5Sum: 68042d6643e854c3615d80883a8228c0
-SHA1: 5d6b9ffb475a1d32c6c6e3513f3c8df146b00c12
-SHA256: 50a140b246b43dfc6e5f65526a53a60d90f11cd635cd4c99dd4ebaa823b1753b
-SHA512: c2fdce4d5c5a678a4ee18d93d424e7583095126e0b358a9c5cce4f71e1154ca4d9cec988b278078fe2cfb92841730fe82f45a36acb9bdd2082b3688478a0c44b
+Size: 95144
+MD5Sum: f179ca96c2b9e82eadc0a16fb1e34468
+SHA1: c4c27be8ef140c69b68287994aa85d2743804fa9
+SHA256: 45b91b4cdac6428a87b6037fee24afc0390acf085245df4ba97dd2712f431f60
+SHA512: 5391f7b84b76595f92453e79303a0b81570e3c4d54b5e1abb33894fb2005e39358e3f5a5c8bb495053622fae73d853cf6ea4ec624063e1e0bae5f841a306647d
 
 Package: ca-certificates
 Architecture: all
@@ -52,10 +52,10 @@ Homepage: https://curl.se/docs/caextract.html
 Description: Common CA certificates
 Filename: dists/stable/main/binary-all/ca-certificates_1C2026.07.16_all.deb
 Size: 104220
-MD5Sum: e33f90b60076800aa9fd23c07a25f55c
-SHA1: 7d93798658b7b92b70358c6c31a505fcb0f04adb
-SHA256: 5b3e9d7b90a8b923ff430cd60dccf1fbf49bfb6223e85f42a0cabad6b927f542
-SHA512: 4c8d822cdc378b936507ff5da4558edc43a088f15e37ef811fe3bb29233a42d001586bdfbcae73692c5f6df93bfacb934a43a2e584e32d11e33e8d428d99d3c4
+MD5Sum: 613628eb7de122db2fcd095e5bea66de
+SHA1: 25b2b0c31f9ae791481d6ae7d09f149b6a98914d
+SHA256: a82b259b73a94c34df082f4c5dac01487da80833053983ffa22d61e98861d352
+SHA512: ddc92f502f6309cff7a33a8aefab35a660e44e1e511b6baa0580f2f89ccaabfee8c881042a4716bf8fc7034d3c9ade0d259cd2fab87fccdd48b9475d37a38c0f
 
 Package: docbook-xml
 Architecture: all
@@ -128,10 +128,10 @@ Depends: subversion-perl, git (= 2.55.0)
 Description: Convert between Git and Subversion repositories
 Filename: dists/stable/main/binary-all/git-svn_2.55.0_all.deb
 Size: 75552
-MD5Sum: 8e8ad44fa7006a3c4bf35bb128e1514d
-SHA1: ac11a1b10ded8c28e7c5a835ac170439946fc559
-SHA256: cd03861bf7efadc2e7ad9692dccadd5dfa798217f021a1236dfa86d4971044e1
-SHA512: 5577bebb097dfbcf24e4883da75e9e4f46f1eb317b442cbd1f2544efefb77a70a6a2aac17605cfa3e89205089e722ccf5d8420eba917320bcc98a33270100ca8
+MD5Sum: 2ade643b390b98f35ebcd76ad31a1740
+SHA1: 6b6dbe50bd8f1f76a9275a343267242630df0aae
+SHA256: 6fce68abb58c48be7223a19f401becd2ee7ec70942c5f9e6dc0fe3790a03ca4c
+SHA512: a8275dc42f7c7234d9046a54cb9bf312196818c38b42d854fadc24b4b942debe7c692d6cec58c55d44f0ce8426b230d7b76f0498bd5c27538e3bc543a2ba6b24
 
 Package: glib-cross
 Architecture: all
@@ -237,11 +237,11 @@ Recommends: python
 Replaces: xcb-proto (<< 1.15.2)
 Description: The xcbgen Python module
 Filename: dists/stable/main/binary-all/python-xcbgen_1.17.0-3_all.deb
-Size: 15196
-MD5Sum: 938f48afe5bbe09971eba1994ab8cd5f
-SHA1: a64834d5bb7f5344af3a07104bf32ce25ee04463
-SHA256: e6df9621f4c5d1a6a63617332c17968b4837a0e5faf53b86e99eb0f35c84a310
-SHA512: 86e8ef891a11eec81f599a0847025468e97e208f43ac467acd8c102c89f6d0237fba851e1366751364465cd57e4a059884317d86340cace0948ff69b8dab1484
+Size: 15192
+MD5Sum: d17501507b51783c4076686645b30efc
+SHA1: 601aaa762e235833ff0535ec2754dbd9c2e9cae4
+SHA256: 11c53f130f032c3af1c9fff937551807bc71c46f766db3f35d418b38f5ca03bf
+SHA512: e2da4b1c096df83f592b2a9f372ae5a69cadc911d65cc5807c414ddb87149abd607c3ed273b1e3c74f80181896cd2a71ba014b12f66a7f602248fa55dd45f7f2
 
 Package: ruby-ri
 Architecture: all
@@ -267,11 +267,11 @@ Homepage: https://github.com/termux/TermuxAm
 Conflicts: termux-tools (<< 0.51)
 Description: Android Oreo-compatible am command reimplementation
 Filename: dists/stable/main/binary-all/termux-am_0.8.0-2_all.deb
-Size: 577220
-MD5Sum: b234a18056dc27490075c42c87c124e0
-SHA1: a260d2f0e0c13ecf013fcdbb05fe077921f088fd
-SHA256: f122024db7abd5d853ebf143cb8639dd8184e1779292aa6b8e6df62231799beb
-SHA512: e833612b514945cc17a2b7940d58a222c8b50ec3468da4958b21ad222ee0e66f49c10c74cfc97ebbce44242c9cb0a21957e12384e35e77e64e906bc74b349df2
+Size: 577216
+MD5Sum: 41cdc33bef7512902d4d057421b5fc36
+SHA1: 1e0d2ebf09ce411862d6339d8a25e916a40c8449
+SHA256: e0ceb94264e10ded52990dd0a917a02b179227931589b4c2c14a4716c33d060f
+SHA512: f643490976be8b718172803960c71d5d754ac4cd4a60bcbbb2ba1efab49de93472d6f64bd5ae6ff7cdcd8d10c2f07d93f0cc2c531b4687ecfab2a55f57578500
 
 Package: termux-keyring
 Architecture: all
@@ -311,11 +311,11 @@ Version: 2.37-8
 Homepage: https://dejavu-fonts.github.io/
 Description: Font family based on the Bitstream Vera Fonts with a wider range of characters
 Filename: dists/stable/main/binary-all/ttf-dejavu_2.37-8_all.deb
-Size: 2460020
-MD5Sum: 3a1ad83d97c4161e829034c45921305f
-SHA1: 67d382450d80a1d336e235c909c40d5427bff8f1
-SHA256: 5e39f422639868c0439f914b52c07e0c72b61133282eb3bfc9f2e7a2b4d634ec
-SHA512: 38faecb5783554e09ac786b980876f3a1d6fd96c6c7c89b20931095091cb2f8da373b1421e52563607a7b35d3f877a768e426c5c5f0f3bb51d0243bed045aace
+Size: 2460092
+MD5Sum: c759586c0a7e2eaa54d3db3d48c59b91
+SHA1: a98aa429aa61b25d4f13cf515b3fe9b4ac1172c3
+SHA256: 8e52f2f0317aa2d65d34a42f6bd974c39310ae950bb283819263229c5d81bfba
+SHA512: 381f85cc323e50beb7dc0d2f15ad0d7f90793df8732692674c1dfa67dfd8d8b20e867af05e5c543905d0a2751214436bc72e5efb25198dfc00adb804cea21657
 
 Package: update-info-dir
 Architecture: all
@@ -342,11 +342,11 @@ Conflicts: xcbproto
 Replaces: xcbproto
 Description: XML-XCB protocol descriptions
 Filename: dists/stable/main/binary-all/xcb-proto_1.17.0-3_all.deb
-Size: 78640
-MD5Sum: 0437495eedbba4e0e362a20f1426a9eb
-SHA1: 626a5e7fef060235932044d09566e579998f3f4a
-SHA256: 37e1579da9bfa5feec7f80eabb128c62382f8f718c57cdabd7909a6398e0c0ac
-SHA512: 8210af6b716b9b7ba97e52a028a45a82c4a43ae303dd553bd5eb044257f9e0dfe791f75f746b1d62ee1f6ddbc6bd322a626c65e1cfd2c03c1e1151806c8d32c7
+Size: 78604
+MD5Sum: 4bc7260b5bd89c2800b027e618672d5d
+SHA1: 2d6b90a3cc564eef226f8580feb4ca223544fc04
+SHA256: d9eadbe988183efb5cfbbd1bf866404302959e63c001e5456de3b4977a00a93a
+SHA512: ca16f0f094e182ba123d2c04d5d4efdde640d6fbfd7acb4d03b8179e1d796a3b10bfaa8b4a26591e894a305747c411460003050ae4be5afc901ad87018478903
 
 Package: xorg-util-macros
 Architecture: all
@@ -356,11 +356,11 @@ Version: 1.20.2
 Homepage: https://xorg.freedesktop.org/
 Description: X.Org Autotools macros
 Filename: dists/stable/main/binary-all/xorg-util-macros_1.20.2_all.deb
-Size: 21980
-MD5Sum: cc9351fed94206ac15baf7bd608def08
-SHA1: 5fd96fc6b033aee4a9d06da159f72c316a619fab
-SHA256: ff0b5c60ea57db607021abf34de9eb6f4e0bb8231e727fc43e35bfde8918d192
-SHA512: cfe8b98b8b800432a4c9b6d59b97e637d943715f9f03e247d4dc6dd9bce603e987922e0528b8212a14471c541feb45a7cc52b73a6c3607d6cbdbd935230c63b4
+Size: 21972
+MD5Sum: 0c9f8c22efae06f0dbf83eb9e93fb0ef
+SHA1: 5a9759aa65127a8e01c4c85f5725c65275ae1cac
+SHA256: 030965146f8e9cf55c93da606c02260c84e6d4490b532339a1a1967b682a4abb
+SHA512: ee420fdccf7b447d8bb5504ebefed0f3f4213116060bd0a8bc1c1889929692640a7fec29418d2f35b0b32f238719ec520cc4f6839e32b8f4c1af80925011622f
 
 Package: xorgproto
 Architecture: all
@@ -373,11 +373,11 @@ Conflicts: x11-proto
 Replaces: x11-proto
 Description: X.Org X11 Protocol headers
 Filename: dists/stable/main/binary-all/xorgproto_2025.1_all.deb
-Size: 249504
-MD5Sum: 62b5c46e51d0b10be5debd479a9b0fef
-SHA1: 249b00eca9a3790995c3d1a20ed1d83ee92ae091
-SHA256: ed5b21811496fb35c97fffcdbeac164476a303da7d6715f49dd1d3931f128ef2
-SHA512: 812b6d15c521e98da2c79e08db9724983aa0466d0749fd3449cfc8522dafa9f3a382a994ca16e1af6005bc60cc8615e01337a58b34f7726628374c212e607dac
+Size: 249616
+MD5Sum: 64963647d6189d2a47474cece126c25b
+SHA1: 5b9eeb19e26b85958282571fa83c1cf30e40dda0
+SHA256: 8edc90a37617f234c385be22b56d111229704bdb8750ae0fcf6a0b6cade8b272
+SHA512: 5f8c1e53253805c96f391fb28e34a785f28d3be41ddf2ec83c0392f9c2fdc10768298d3c586de829f192c794bb87c65cf9930ccc96a4acad984531ae2c6989df
 
 Package: xtrans
 Architecture: all
@@ -387,9 +387,9 @@ Version: 1.6.0
 Homepage: https://xorg.freedesktop.org/
 Description: X transport library
 Filename: dists/stable/main/binary-all/xtrans_1.6.0_all.deb
-Size: 39916
-MD5Sum: d937ada4b731297afe1b67d089ca4605
-SHA1: 9f7c5b0bfc70f54ec7073a973511470b11bc3421
-SHA256: b1a2aaa19957169da8773a83f699ce37d454cc4f70d31ff9a8be4da93e03168f
-SHA512: ef41a95acd5a5188a413db8b431307e76b220d72d423647921b120fd9a95925289934a93201f36f9a5364b8514cf9aae98706ca02bee5ba3d0a8f05a0885dc98
+Size: 39896
+MD5Sum: 1f6f5624c3a206dc699f272c1de32a7c
+SHA1: 2f85c31b65b478e8c3ab871e6da3fff3c8c9412a
+SHA256: db0ca147981afb27539db4f0ce0d5ee6115f1bb416c35b9c185b1baf7e74b949
+SHA512: de370029c1a6182c8f44aaee4f5788602c8afd923ce5609201ff366ac9a4704f011a650a6c1a1e0d50b3f1a75cb9c8f7adad6c046dc4025e430c898d47fbe0fd
 
