@@ -236,18 +236,18 @@ SHA512: 8d22bd449d4544989d8655ed9dd09065f18f9d4fd98b8964e75073aeb499b25db7f6d507
 
 Package: aurastudio
 Architecture: aarch64
-Installed-Size: 192
+Installed-Size: 196
 Maintainer: Arata Labs <github.com/Arata-Labs>
 Version: 1.5
 Homepage: https://github.com/Arata-Labs/AuraStudio
-Depends: bash, curl, git, unzip, tar, findutils, sed, grep, gawk, openjdk-21
+Depends: bash, curl, git, unzip, tar, findutils, sed, grep, gawk, which
 Description: AuraStudio CLI — Android development tool suite for Termux
 Filename: dists/stable/main/binary-aarch64/aurastudio_1.5_aarch64.deb
-Size: 19332
-MD5Sum: 967df7932be07e48bdf91e3ee842175d
-SHA1: f5ec09b15d00eaeeaff5b9a10224196dcda05b9d
-SHA256: 0278ad1d9ed9dd65fa46da9465bdc080676dc9ceb2de30671a066f2cf87a32e6
-SHA512: 0a25b4cce3127881d030e99615f7d6b537ca3578c6928b0f3eec4aa7afffd2d2241ab5017c793184a3d880ab44584152fce2f77f27ca0bea45517428988e6847
+Size: 20556
+MD5Sum: e4af33a2d1e424a0e1ec985c443352e5
+SHA1: b0219fa3032fc4ea1d2c103d398c0484692ca1c8
+SHA256: 7aab6cbb6b5b8daae02568b18bdbe5524cf482f76a33c486d75ec730814e4d62
+SHA512: 88871ec4c433b22c4cc2a348cfcfd4566afad61c8e02ce3edb3a65584adca2856e97b34f3a78123cc1b0fbaab78e76231c95581510647a472ba784a5e8c6d4b5
 
 Package: bash
 Architecture: aarch64

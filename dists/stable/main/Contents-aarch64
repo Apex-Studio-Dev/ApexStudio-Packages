@@ -1150,6 +1150,7 @@ data/data/com.aurastudio/files/usr/opt/aurastudio/modules/setup.sh              
 data/data/com.aurastudio/files/usr/opt/aurastudio/modules/status.sh              aurastudio
 data/data/com.aurastudio/files/usr/opt/aurastudio/modules/uninstall.sh           aurastudio
 data/data/com.aurastudio/files/usr/opt/aurastudio/modules/update.sh              aurastudio
+data/data/com.aurastudio/files/usr/opt/aurastudio/modules/use.sh                 aurastudio
 data/data/com.aurastudio/files/usr/share/bash-completion/completions/aurastudio  aurastudio
 data/data/com.aurastudio/files/usr/share/doc/aurastudio/copyright                aurastudio
 data/data/com.aurastudio/files/usr/bin/bash                                      bash
