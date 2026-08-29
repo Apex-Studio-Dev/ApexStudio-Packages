@@ -213,9 +213,18 @@ jobs:
 
       - name: Regenerate Release after large deb URL updates
         run: |
+          cd output/repo
+          # Regenerate Packages.xz from updated Packages to keep them in sync
+          for arch in aarch64 arm all; do
+            PKG_FILE="dists/stable/main/binary-${arch}/Packages"
+            if [ -f "$PKG_FILE" ]; then
+              echo "Regenerating ${arch}/Packages.xz from updated Packages..."
+              xz -zkf "$PKG_FILE"
+            fi
+          done
           if command -v apt-ftparchive >/dev/null 2>&1; then
             echo "Regenerating Release with updated Packages checksums..."
-            cd output/repo && apt-ftparchive \
+            apt-ftparchive \
               -o APT::FTPArchive::Release::Origin="Arata-Labs" \
               -o APT::FTPArchive::Release::Label="aurastudio-termux" \
               -o APT::FTPArchive::Release::Suite="stable" \
