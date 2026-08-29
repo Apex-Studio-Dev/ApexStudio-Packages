@@ -70,8 +70,8 @@ info "[*] Generating APT repository..."
 # mismatches caused by stale CDN/edge copies of Packages.xz surviving across
 # deploys (each re-deploy replaced the .xz while Release already pointed to
 # the new hash -> apt on devices kept fetching the stale .xz object).
-info "[*] Removing compressed index variants (Packages.xz/.gz)..."
-find "$REPO_DIR/dists" -type f \( -name "Packages.xz" -o -name "Packages.gz" \) -delete
+# info "[*] Removing compressed index variants (Packages.xz/.gz)..."
+# find "$REPO_DIR/dists" -type f \( -name "Packages.xz" -o -name "Packages.gz" \) -delete (don't remove it)
 if command -v apt-ftparchive >/dev/null 2>&1; then
   info "[*] Regenerating Release (plain-text indices only)..."
   ( cd "$REPO_DIR" && apt-ftparchive \
