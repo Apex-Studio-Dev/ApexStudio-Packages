@@ -36,35 +36,12 @@ declare -a AURASTUDIO_PACKAGES__BOOTSTRAP=(
   "wget"
 
   # Shell tools
-  "brotli"
-  "nano"
-  "patch"
   "unzip"
-  "zip"
   "procps"
   "psmisc"
 
   # Basic libs
   "libbz2"
-  "liblzma"
-  "ncurses"
-  "libandroid-support"
-  "libandroid-glob"
-
-  # VCS
-  "git"
-
-  # Optional small
-  "aria2"
-  "debianutils"
-  "dos2unix"
-  "ed"
-  "inetutils"
-  "lsof"
-  "net-tools"
-
-  # AuraStudio CLI
-  "aurastudio"
 )
 
 # ─────────────────────────────────────────────────────────────
@@ -81,6 +58,18 @@ declare -a AURASTUDIO_PACKAGES=(
   "libopus"
   "libvorbis"
   "libsndfile"
+
+  # Shell tools
+  "brotli"
+  "nano"
+  "patch"
+  "zip"
+
+  # Basic libs
+  "liblzma"
+  "ncurses"
+  "libandroid-support"
+  "libandroid-glob"
 
   # Development tools
   "aapt"
@@ -103,4 +92,19 @@ declare -a AURASTUDIO_PACKAGES=(
   # JDK
   "openjdk-17"
   "openjdk-21"
+
+  # VCS
+  "git"
+
+  # Optional small
+  "aria2"
+  "debianutils"
+  "dos2unix"
+  "ed"
+  "inetutils"
+  "lsof"
+  "net-tools"
+
+  # AuraStudio CLI
+  "aurastudio"
 )
