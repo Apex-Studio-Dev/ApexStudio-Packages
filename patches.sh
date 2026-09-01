@@ -24,6 +24,9 @@ declare -a PATCHES=(
   # Package name replacement in termux-tools
   "termux-tools-name.patch.in"
 
+  # Update mirror configurations
+  "termux-tools-mirrors.patch"
+
   # CI: disable AppArmor + fuse-overlayfs for termux-am (#29118)
   "disable-apparmor-fuse-overlayfs.patch"
 
@@ -31,12 +34,16 @@ declare -a PATCHES=(
   "scripts-generate-bootstraps-apexstudio.patch"
   "scripts-cleanup-in-second-stage.patch"
 
+  # Fix dependencies in binutils-libs
+  "binutils-libs-fix-dependencies.patch"
+
   # -I dependency install: import our GPG key alongside upstream keys
   "use-our-keys-to-install-deps.patch.in"
 
   # Build fixes
   "openjdk-17-cleanup.patch"
   "openjdk-21-cleanup.patch"
+  "openjdk-25-cleanup.patch"
 
   # Shared memory (needed by libx11, libdb, etc.)
   "libandroid-shmem-revert-a-shared-memory-patch.patch"
