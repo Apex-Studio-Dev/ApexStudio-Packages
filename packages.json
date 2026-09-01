@@ -33,6 +33,17 @@
     }
   },
   {
+    "name": "aria2",
+    "version": "1.37.0-3",
+    "desc": "Download utility supporting HTTP/HTTPS, FTP, BitTorrent and Metalink",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/aria2_1.37.0-3_aarch64.deb"
+    }
+  },
+  {
     "name": "attr",
     "version": "2.6.0",
     "desc": "Utilities for manipulating filesystem extended attributes",
@@ -110,6 +121,17 @@
     }
   },
   {
+    "name": "c-ares",
+    "version": "1.34.8",
+    "desc": "Library for asynchronous DNS requests (including name resolves)",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/c-ares_1.34.8_aarch64.deb"
+    }
+  },
+  {
     "name": "ca-certificates",
     "version": "1:2026.07.16",
     "desc": "Common CA certificates",
@@ -176,6 +198,17 @@
     }
   },
   {
+    "name": "debianutils",
+    "version": "5.23.2-1",
+    "desc": "Small utilities which are used primarily by the installation scripts of Debian packages",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/debianutils_5.23.2-1_aarch64.deb"
+    }
+  },
+  {
     "name": "dialog",
     "version": "1.3-20260721-0",
     "desc": "Application used in shell scripts which displays text user interface widgets",
@@ -231,6 +264,17 @@
     }
   },
   {
+    "name": "dos2unix",
+    "version": "7.5.6",
+    "desc": "Converts between DOS and Unix text files",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/dos2unix_7.5.6_aarch64.deb"
+    }
+  },
+  {
     "name": "doxygen",
     "version": "1.18.0",
     "desc": "A documentation system for C++, C, Java, IDL and PHP",
@@ -272,6 +316,17 @@
     ],
     "filenames": {
       "all": "dists/stable/main/binary-all/dpkg-scanpackages_1.22.6-5_all.deb"
+    }
+  },
+  {
+    "name": "ed",
+    "version": "1.22.6",
+    "desc": "Classic UNIX line editor",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/ed_1.22.6_aarch64.deb"
     }
   },
   {
@@ -470,6 +525,17 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/icu-devtools_78.3_aarch64.deb"
+    }
+  },
+  {
+    "name": "inetutils",
+    "version": "2.7",
+    "desc": "Collection of common network programs",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/inetutils_2.7_aarch64.deb"
     }
   },
   {
@@ -1309,6 +1375,28 @@
     }
   },
   {
+    "name": "libtirpc",
+    "version": "1.3.7-1",
+    "desc": "Transport Independent RPC library",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libtirpc_1.3.7-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "libtirpc-static",
+    "version": "1.3.7-1",
+    "desc": "Static libraries for libtirpc",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libtirpc-static_1.3.7-1_aarch64.deb"
+    }
+  },
+  {
     "name": "libunbound",
     "version": "1.26.0",
     "desc": "A validating, recursive, caching DNS resolver",
@@ -1584,6 +1672,28 @@
     }
   },
   {
+    "name": "lsof",
+    "version": "4.99.7",
+    "desc": "Lists open files for running Unix processes",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/lsof_4.99.7_aarch64.deb"
+    }
+  },
+  {
+    "name": "lsof-static",
+    "version": "4.99.7",
+    "desc": "Static libraries for lsof",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/lsof-static_4.99.7_aarch64.deb"
+    }
+  },
+  {
     "name": "lz4",
     "version": "1.10.0-1",
     "desc": "Fast LZ compression algorithm tool",
@@ -1669,6 +1779,17 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/ncurses-utils_6.6.20260307+really6.5.20250830_aarch64.deb"
+    }
+  },
+  {
+    "name": "net-tools",
+    "version": "2.10.0-1",
+    "desc": "Configuration tools for Linux networking",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/net-tools_2.10.0-1_aarch64.deb"
     }
   },
   {
