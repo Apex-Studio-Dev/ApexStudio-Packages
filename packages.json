@@ -1540,6 +1540,28 @@
     }
   },
   {
+    "name": "libmpg123",
+    "version": "1.33.5",
+    "desc": "Fast console MPEG Audio Player and decoder library",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libmpg123_1.33.5_aarch64.deb"
+    }
+  },
+  {
+    "name": "libmpg123-static",
+    "version": "1.33.5",
+    "desc": "Static libraries for libmpg123",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libmpg123-static_1.33.5_aarch64.deb"
+    }
+  },
+  {
     "name": "libnettle",
     "version": "4.0+really3.10.2",
     "desc": "Cryptographic library that is designed to fit easily in more or less any context",
@@ -1735,6 +1757,28 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libsmartcols_2.42.1-4_aarch64.deb"
+    }
+  },
+  {
+    "name": "libsndfile",
+    "version": "1.2.2-3",
+    "desc": "Library for reading/writing audio files",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libsndfile_1.2.2-3_aarch64.deb"
+    }
+  },
+  {
+    "name": "libsndfile-static",
+    "version": "1.2.2-3",
+    "desc": "Static libraries for libsndfile",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libsndfile-static_1.2.2-3_aarch64.deb"
     }
   },
   {
@@ -2255,6 +2299,17 @@
     }
   },
   {
+    "name": "mpg123",
+    "version": "1.33.5",
+    "desc": "Fast console MPEG Audio Player based on libmpg123",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/mpg123_1.33.5_aarch64.deb"
+    }
+  },
+  {
     "name": "nano",
     "version": "9.2-1",
     "desc": "Small, free and friendly text editor",
@@ -2527,6 +2582,28 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/psmisc_23.7-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "pulseaudio",
+    "version": "17.0-4",
+    "desc": "A featureful, general-purpose sound server",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/pulseaudio_17.0-4_aarch64.deb"
+    }
+  },
+  {
+    "name": "pulseaudio-glib",
+    "version": "17.0-4",
+    "desc": "PulseAudio GLIB mainloop component",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/pulseaudio-glib_17.0-4_aarch64.deb"
     }
   },
   {

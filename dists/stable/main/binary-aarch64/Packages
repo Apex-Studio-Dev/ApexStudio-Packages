@@ -2057,6 +2057,37 @@ SHA1: 746837f9681ec890e6abd0450f4f01ef5e9afdfa
 SHA256: 3be83bf6971e7ebdfafd11e2cd5b7a0302a970cf973e882c056de6fe23890155
 SHA512: 5762d767421ea2157d3472b0aa333c143e1bd7f57d4efd2e351134fa570d61f1c8b459860e4f363f50eeb1d150b8a040de39a271bbe7a15166d9754022db1f68
 
+Package: libmpg123-static
+Architecture: aarch64
+Installed-Size: 612
+Maintainer: @termux
+Version: 1.33.5
+Homepage: https://mpg123.org/
+Depends: libmpg123 (= 1.33.5)
+Description: Static libraries for libmpg123
+Filename: dists/stable/main/binary-aarch64/libmpg123-static_1.33.5_aarch64.deb
+Size: 151120
+MD5Sum: 868a3523e75e7c779cf97251f12c293a
+SHA1: 8fa24b909610171f9a5913ff4f26fc0d63eb33fe
+SHA256: e1efaf37cfcbad9a10519e5fe010db796df4b8d8a2e8bc0100b841d52f084b69
+SHA512: 88ecf1d919264bcd3391d2662a9507f783ef17bbf8aa2ec473f4db863a8264999b8f322fe05ea8bb867a95453aa64cfc4c5b78457395b819858fa237f407d412
+
+Package: libmpg123
+Architecture: aarch64
+Installed-Size: 604
+Maintainer: @termux
+Version: 1.33.5
+Homepage: https://mpg123.org/
+Breaks: mpg123 (<< 1.33.1-1)
+Replaces: mpg123 (<< 1.33.1-1)
+Description: Fast console MPEG Audio Player and decoder library
+Filename: dists/stable/main/binary-aarch64/libmpg123_1.33.5_aarch64.deb
+Size: 174768
+MD5Sum: c712f55278e1c607e68305ed9ce7955e
+SHA1: b5108d026b19af7720b7e094b011c02df84afbe7
+SHA256: 9d8e9cb90fff5fea904eb4bf992557b3410bab339d9bf5d118bcdf018d786b5e
+SHA512: 702fcdacc62625045d31c5fb04a05bb67d2afe60e27bbb9a5ac37fb5fe456c6dd9b55520dfb4d75b7f03b66090137592eca861299cf322d1f92dae31e94b9d62
+
 Package: libnettle-static
 Architecture: aarch64
 Installed-Size: 3828
@@ -2339,6 +2370,38 @@ MD5Sum: eaef2bfef9923d937d65b53436ec2132
 SHA1: 610359abdf5767e9ae880feccf42992f38aba7b1
 SHA256: 360c721ae80eac2da452c9bdc2308fcf06b8f66ae0880d96f8f50d03b2abd92f
 SHA512: 60956e86a76c2692ec7d73acece8eaf0bdf929bb1616b1758ae961d55bcfb255a1bf13fbd3cfa2f2a91c7abfb418d339ed2132420bf6cb2de02d966bcce86e1e
+
+Package: libsndfile-static
+Architecture: aarch64
+Installed-Size: 876
+Maintainer: @termux
+Version: 1.2.2-3
+Homepage: http://www.mega-nerd.com/libsndfile
+Depends: libsndfile (= 1.2.2-3)
+Description: Static libraries for libsndfile
+Filename: dists/stable/main/binary-aarch64/libsndfile-static_1.2.2-3_aarch64.deb
+Size: 187696
+MD5Sum: 7bc2007b483111d3b3f880a4d2caca22
+SHA1: f3e522bdbbc7219888c65ef1e02e13a468db102c
+SHA256: 3bebe562f7aef6431add0fc85aa026332c3766ed1e3e946d17389ca65f92ef7a
+SHA512: 9d2d4fd323f39ed981d418d4d9b44539b21c925d2457efe2288798fcb05911ccc743d0d0cc9030308dd843e399c1bbf11f55789efae1d8ebb4d7d2e4767a19ef
+
+Package: libsndfile
+Architecture: aarch64
+Installed-Size: 712
+Maintainer: @termux
+Version: 1.2.2-3
+Homepage: http://www.mega-nerd.com/libsndfile
+Breaks: libsndfile-dev
+Depends: libflac, libmp3lame, libmpg123, libogg, libopus, libvorbis
+Replaces: libsndfile-dev
+Description: Library for reading/writing audio files
+Filename: dists/stable/main/binary-aarch64/libsndfile_1.2.2-3_aarch64.deb
+Size: 216996
+MD5Sum: 78e90a564860789e00bd700493e3a7b4
+SHA1: cb02b6e1a8d738741b6558ce529cc47413c624d6
+SHA256: ea0416b3bcb6b5f918cc82ef7054d4915e40fb296e41fcf0bcf05974cff9c78b
+SHA512: f29772f93626bc7d65442bff2fda9742277a46e20e8e68acaf3272c86a1add39f79616612915be20c6e88f54e7015f67959aa786b018d271f4c026eb91ced1dc
 
 Package: libsodium-static
 Architecture: aarch64
@@ -3071,6 +3134,21 @@ SHA1: 577b0ea28f74c2392ba7df89d63e5146f99eaba1
 SHA256: 0a964ab3bd9f95b30c406b21468e50d538600b366a0a5e21a4d916516d41d304
 SHA512: dda0e7102d189e43b00e23e7f20d0c1a686a10a55db9d52edab6ec117efc655446be40a63cc5b893b0aa472ac543b1a5d0ed73858c51c7d5aa60ee12c67047ab
 
+Package: mpg123
+Architecture: aarch64
+Installed-Size: 320
+Maintainer: @termux
+Version: 1.33.5
+Homepage: https://mpg123.org/
+Depends: pulseaudio, libmpg123 (= 1.33.5)
+Description: Fast console MPEG Audio Player based on libmpg123
+Filename: dists/stable/main/binary-aarch64/mpg123_1.33.5_aarch64.deb
+Size: 92864
+MD5Sum: 65f0c71505699ff46e91aa5d50405208
+SHA1: 1ffb152815f85ec97aacbd67d2984fa862bd6db9
+SHA256: 7fb221de3db0df2fa1d475e62266183d5647ba105bd7e8b86bbc2a937a3bac0e
+SHA512: 833fd5634d48e0285f8e3265eeeeed8eef65d9f7b76187d5894e79cdd41b814e4ed5264c1c116e1fdc1b1dd218821a95724b14efaac12ab22f48b5950275f8e3
+
 Package: nano
 Architecture: aarch64
 Installed-Size: 1024
@@ -3453,6 +3531,38 @@ MD5Sum: b52d50aa8c7745e7988cd158e0f6e3f4
 SHA1: 27fbaf39d5d7f91acd4c8f4905f5ff20047d37b8
 SHA256: 05e8ed229136b58bdc57c8c027acb5b55f27ebb8f7a1a7492fd417def14b57b6
 SHA512: 43b8adeeeb4c8e69e3f3900c8a0f9c812a33b31c4fd6f6b4ec2be3ab7191878973ac6a7ea0c11b2df60009c2a981475791206cd90d3b34840a0ef93f1c1567a0
+
+Package: pulseaudio-glib
+Architecture: aarch64
+Installed-Size: 84
+Maintainer: @termux
+Version: 17.0-4
+Homepage: https://www.freedesktop.org/wiki/Software/PulseAudio
+Depends: glib, pulseaudio (= 17.0-4)
+Description: PulseAudio GLIB mainloop component
+Filename: dists/stable/main/binary-aarch64/pulseaudio-glib_17.0-4_aarch64.deb
+Size: 6828
+MD5Sum: 28de15cb68b65e8639c97cfdfd811f87
+SHA1: 3239a77f71878ba4a7c4f589f6c5aa739cb65d71
+SHA256: 2e6f3e17030fc4cf1d7a713517d8ad1323259fae40856c3a9731b2194f9484b3
+SHA512: 53f83ffbfe9a22e05c76a97890846784f96ce7673e4d8e359c8918718616e2b54d03ffe5ede4f84e11eb84825484ffd13b2cb4b0e54d38bc245abc61a8689026
+
+Package: pulseaudio
+Architecture: aarch64
+Installed-Size: 3996
+Maintainer: @termux
+Version: 17.0-4
+Homepage: https://www.freedesktop.org/wiki/Software/PulseAudio
+Breaks: libpulseaudio-dev, libpulseaudio
+Depends: dbus, libandroid-stub, libandroid-execinfo, libandroid-glob, libc++, libiconv, libltdl, libsndfile, libsoxr, libwebrtc-audio-processing, speexdsp
+Replaces: libpulseaudio-dev, libpulseaudio
+Description: A featureful, general-purpose sound server
+Filename: dists/stable/main/binary-aarch64/pulseaudio_17.0-4_aarch64.deb
+Size: 846124
+MD5Sum: 6aa450986c8532152ade4479b819e644
+SHA1: f7ded1609089c8a0ec4fe4815aad35c5a2e89a35
+SHA256: d111d68cdd6093bb03d2479433f669754218e0129eb80a5b42a8101d8242ecfd
+SHA512: 4a200534409828068f425f52b54fb7e830e035319c82ff9daf7d0caf127aa26cf4e40a5186e0ee371e11464dd2e1554b855d2fad540294a6138a03aac358f7ce
 
 Package: python-static
 Architecture: aarch64
