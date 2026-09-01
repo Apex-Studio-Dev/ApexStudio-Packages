@@ -1,0 +1,285 @@
+name: Build All Packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      arch:
+        description: "Target architecture"
+        required: true
+        default: "aarch64"
+        type: choice
+        options:
+          - aarch64
+          - arm
+          - both
+      free-space:
+        description: "Free disk space (for large packages)"
+        type: boolean
+        default: false
+      keep-going:
+        description: "Skip failed packages, continue building others"
+        type: boolean
+        default: true
+      install-deps:
+        description: "Install dependencies from hosted repo before building (-I flag)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  build:
+    runs-on: ubuntu-26.04
+
+    strategy:
+      matrix:
+        arch: ${{ fromJSON(inputs.arch == 'both' && '["aarch64", "arm"]' || format('["{0}"]', inputs.arch)) }}
+
+    container:
+      image: ghcr.io/termux/package-builder:latest
+      options: --privileged --device /dev/fuse
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Gather package list from packages.sh
+        id: packages
+        run: |
+          # Source the package lists and expand the full APEXSTUDIO_PACKAGES array.
+          # packages.sh only declares arrays (safe to source); the array references
+          # APEXSTUDIO_PACKAGES__BOOTSTRAP are expanded correctly by bash.
+          . ./packages.sh
+
+          PACKAGES="${APEXSTUDIO_PACKAGES[*]}"
+
+          if [ -z "$PACKAGES" ]; then
+            echo "ERROR: APEXSTUDIO_PACKAGES is empty in packages.sh"
+            exit 1
+          fi
+
+          # Also detect large packages that need extra disk space
+          BIG_PKGS="gradle openjdk-17 openjdk-21 libllvm-static"
+          FREE_SPACE="${{ inputs.free-space }}"
+          for pkg in $PACKAGES; do
+            for big in $BIG_PKGS; do
+              if [ "$pkg" = "$big" ]; then
+                FREE_SPACE="true"
+                break 2
+              fi
+            done
+          done
+
+          echo "packages=$PACKAGES" >> "$GITHUB_OUTPUT"
+          echo "free_space=$FREE_SPACE" >> "$GITHUB_OUTPUT"
+          echo "Parsed $(echo "$PACKAGES" | wc -w) packages from APEXSTUDIO_PACKAGES"
+          echo "Packages: $PACKAGES"
+
+      - name: Free disk space
+        if: steps.packages.outputs.free_space == 'true'
+        run: |
+          chmod +x scripts/free-space.sh
+          CI=true bash scripts/free-space.sh
+
+      # zram skipped — kernel headers not available on GitHub Actions runners
+      # Use free-space.sh instead for disk cleanup
+
+      - name: Lint packages
+        run: |
+          chmod +x scripts/lint-packages.sh
+          PKG_SCRIPTS=""
+          MISSING=""
+          for pkg in ${{ steps.packages.outputs.packages }}; do
+            if [ -f "termux-packages/packages/${pkg}/build.sh" ]; then
+              PKG_SCRIPTS="${PKG_SCRIPTS} termux-packages/packages/${pkg}/build.sh"
+            else
+              MISSING="${MISSING} ${pkg}"
+            fi
+          done
+          if [ -n "$MISSING" ]; then
+            echo "ERROR: Packages not found:${MISSING}"
+            echo "Available packages:"
+            ls termux-packages/packages/ | head -20
+            exit 1
+          fi
+          if [ -n "$PKG_SCRIPTS" ]; then
+            bash scripts/lint-packages.sh $PKG_SCRIPTS
+          fi
+
+      - name: Dry-run check
+        run: |
+          chmod +x scripts/build-package-dry-run-simulation.sh
+          scripts/build-package-dry-run-simulation.sh -a "${{ matrix.arch }}" ${{ steps.packages.outputs.packages }}
+          RESULT=$?
+          if [ "$RESULT" -eq 85 ]; then
+            echo "No packages to build for ${{ matrix.arch }}"
+          elif [ "$RESULT" -ne 0 ]; then
+            echo "ERROR: Dry-run check failed with exit code $RESULT"
+            exit $RESULT
+          fi
+
+      - name: Generate cache key
+        id: cache-key
+        run: |
+          PACKAGES_HASH=$(md5sum packages.sh | cut -d' ' -f1 | cut -c1-8)
+          PATCHES_HASH=$(find patches/ -type f | sort | xargs md5sum 2>/dev/null | md5sum | cut -d' ' -f1 | cut -c1-8)
+          CACHE_KEY="termux-all-${{ matrix.arch }}-${PACKAGES_HASH}-${PATCHES_HASH}"
+          echo "key=${CACHE_KEY}" >> "$GITHUB_OUTPUT"
+          echo "Cache key: ${CACHE_KEY}"
+
+      - name: Restore cached packages
+        if: always()
+        id: cache-packages
+        uses: actions/cache/restore@v6
+        with:
+          path: |
+            /data
+            /github/home/.termux-build
+            output/${{ matrix.arch }}
+          key: ${{ steps.cache-key.outputs.key }}
+          restore-keys: |
+            termux-all-${{ matrix.arch }}-
+
+      - name: Check cache hit
+        run: |
+          echo "Cache hit: ${{ steps.cache-packages.outputs.cache-hit }}"
+          ls output/${{ matrix.arch }}/ 2>/dev/null | head -10 || echo "output/${{ matrix.arch }} empty"
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Setup Android NDK r29
+        run: |
+          if [ ! -d /github/home/lib/android-ndk-r29 ]; then
+            curl -L "https://dl.google.com/android/repository/android-ndk-r29-linux.zip" -o /tmp/ndk.zip
+            unzip -q /tmp/ndk.zip -d /github/home/lib/
+          else
+            echo "NDK r29 already installed"
+          fi
+
+      - name: Build all packages
+        run: |
+          export ANDROID_NDK_HOME=/github/home/lib/android-ndk-r29
+          export NDK=/github/home/lib/android-ndk-r29
+
+          rm -f "output/${{ matrix.arch }}/failed-packages.txt"
+
+          BUILD_FLAGS=""
+          if [ "${{ inputs.keep-going }}" = "true" ]; then
+            BUILD_FLAGS="${BUILD_FLAGS} --keep-going"
+          fi
+          if [ "${{ inputs.install-deps }}" = "true" ]; then
+            BUILD_FLAGS="${BUILD_FLAGS} -I"
+          fi
+
+          # No -e and no package args: build.sh builds the full APEXSTUDIO_PACKAGES list
+          # from packages.sh automatically. This guarantees the same list that was
+          # parsed, linted and dry-run checked above.
+          bash build.sh -a "${{ matrix.arch }}" $BUILD_FLAGS
+
+      - name: Save built packages cache
+        if: always()
+        uses: actions/cache/save@v6
+        with:
+          path: |
+            /data
+            /github/home/.termux-build
+            output/${{ matrix.arch }}
+          key: ${{ steps.cache-packages.outputs.cache-primary-key }}
+
+      - name: Show build summary
+        if: always()
+        run: |
+          echo "=== Debs built ==="
+          find output -name "*.deb" -type f 2>/dev/null | wc -l
+          echo "=== Failed packages ==="
+          cat output/${{ matrix.arch }}/failed-packages.txt 2>/dev/null || echo "none"
+          echo "=== Build log tail ==="
+          tail -30 output/${{ matrix.arch }}/build.log 2>/dev/null || echo "no log"
+
+      - name: Package debs
+        if: always()
+        run: |
+          cd output/${{ matrix.arch }}
+          DEB_COUNT=$(find . -name "*.deb" -type f 2>/dev/null | wc -l)
+          if [ "$DEB_COUNT" -gt 0 ]; then
+            for f in *.deb; do
+              newname=$(echo "$f" | tr ':' 'COLON')
+              [ "$f" != "$newname" ] && mv "$f" "$newname"
+            done
+            zip -0 ../packages-${{ matrix.arch }}.zip *.deb
+          else
+            echo "No debs to package"
+          fi
+
+      - name: Delete old release tag
+        run: |
+          curl -X DELETE \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${GITHUB_REPOSITORY}/git/refs/tags/packages-${{ matrix.arch }} || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload to Release
+        if: always()
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: packages-${{ matrix.arch }}
+          name: Packages Build ${{ matrix.arch }}
+          files: output/packages-${{ matrix.arch }}.zip
+          fail_on_unmatched_files: false
+          overwrite_files: true
+          overwrite: true
+
+      - name: Send build notification
+        if: always()
+        run: |
+          BOT_TOKEN="${{ secrets.TELEGRAM_BOT_TOKEN }}"
+          CHAT_ID="${{ secrets.TELEGRAM_CHAT_ID }}"
+          if [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ]; then
+            echo "Telegram not configured, skipping"
+            exit 0
+          fi
+
+          DEB_COUNT=$(find output -name "*.deb" -type f 2>/dev/null | wc -l)
+          FAILED_COUNT=0
+          FAILED_LIST=""
+          if [ -f "output/${{ matrix.arch }}/failed-packages.txt" ]; then
+            FAILED_COUNT=$(wc -l < "output/${{ matrix.arch }}/failed-packages.txt")
+            FAILED_LIST=$(cat "output/${{ matrix.arch }}/failed-packages.txt" | tr '\n' ', ' | sed 's/,$//')
+          fi
+
+          if [ "$FAILED_COUNT" -gt 0 ]; then
+            STATUS="PARTIAL (${DEB_COUNT} built, ${FAILED_COUNT} failed)"
+          else
+            STATUS="SUCCESS (${DEB_COUNT} built)"
+          fi
+
+          MSG=$(printf "Apex Studio All-Packages Build\nUniverse: APEXSTUDIO_PACKAGES\nArch: %s\nStatus: %s\nFailed: %s\nRun: https://github.com/%s/actions/runs/%s" \
+            "${{ matrix.arch }}" "$STATUS" "$FAILED_LIST" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
+
+          curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+            -d chat_id="$CHAT_ID" \
+            --data-urlencode "text=$MSG" || true
+
+          LOG_FILE="output/${{ matrix.arch }}/build.log"
+          if [ -f "$LOG_FILE" ]; then
+            gzip -k -f "$LOG_FILE"
+            curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument" \
+              -F chat_id="$CHAT_ID" \
+              -F document=@"${LOG_FILE}.gz" \
+              -F caption="Build log ${{ matrix.arch }}" || true
+            rm -f "${LOG_FILE}.gz"
+          fi
+
+  publish:
+    needs: build
+    permissions:
+      contents: write
+      pages: write
+    uses: ./.github/workflows/publish-repo.yml
+    secrets: inherit
