@@ -157,8 +157,8 @@ jobs:
           for KEYDEB in $DEBS; do
             EXTRACT=$(mktemp -d)
             dpkg-deb -x "$KEYDEB" "$EXTRACT"
-            if grep -rq "Apex Studio Builder <build@apexstudio.dev>" "$EXTRACT"; then
-              echo "WARN: $KEYDEB still embeds the LEAKED Apex Studio signing key"
+            if grep -rq "AuraStudio Builder <build@aurastudio.dev>" "$EXTRACT"; then
+              echo "WARN: $KEYDEB still embeds the LEAKED AuraStudio signing key"
               LEAKED=1
             fi
             if grep -rq "Apex Studio Builder <build@apexstudio.dev>" "$EXTRACT"; then
