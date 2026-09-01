@@ -1,115 +1,5 @@
 [
   {
-    "name": "aapt",
-    "version": "16.0.0.4-1",
-    "desc": "Android Asset Packaging Tool",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/aapt_16.0.0.4-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "aapt2",
-    "version": "16.0.0.4-1",
-    "desc": "AAPT2 (Android Asset Packaging Tool)",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/aapt2_16.0.0.4-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "abseil-cpp",
-    "version": "20260526.0",
-    "desc": "Abseil C++ Common Libraries",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/abseil-cpp_20260526.0_aarch64.deb"
-    }
-  },
-  {
-    "name": "aidl",
-    "version": "16.0.0.4-1",
-    "desc": "Android Interface Definition Language (AIDL)",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/aidl_16.0.0.4-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "alsa-lib",
-    "version": "1.2.16.1",
-    "desc": "The Advanced Linux Sound Architecture (ALSA) - library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/alsa-lib_1.2.16.1_aarch64.deb"
-    }
-  },
-  {
-    "name": "alsa-plugins",
-    "version": "1.2.12-1",
-    "desc": "The Advanced Linux Sound Architecture (ALSA) - plugins",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/alsa-plugins_1.2.12-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "apr",
-    "version": "1.7.6-2",
-    "desc": "Apache Portable Runtime Library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/apr_1.7.6-2_aarch64.deb"
-    }
-  },
-  {
-    "name": "apr-static",
-    "version": "1.7.6-2",
-    "desc": "Static libraries for apr",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/apr-static_1.7.6-2_aarch64.deb"
-    }
-  },
-  {
-    "name": "apr-util",
-    "version": "1.6.5",
-    "desc": "Apache Portable Runtime Utility Library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/apr-util_1.6.5_aarch64.deb"
-    }
-  },
-  {
-    "name": "apr-util-static",
-    "version": "1.6.5",
-    "desc": "Static libraries for apr-util",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/apr-util-static_1.6.5_aarch64.deb"
-    }
-  },
-  {
     "name": "apt",
     "version": "2.8.1-2",
     "desc": "Front-end for the dpkg package manager",
@@ -143,17 +33,6 @@
     }
   },
   {
-    "name": "aria2",
-    "version": "1.37.0-3",
-    "desc": "Download utility supporting HTTP/HTTPS, FTP, BitTorrent and Metalink",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/aria2_1.37.0-3_aarch64.deb"
-    }
-  },
-  {
     "name": "attr",
     "version": "2.6.0",
     "desc": "Utilities for manipulating filesystem extended attributes",
@@ -173,17 +52,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/attr-static_2.6.0_aarch64.deb"
-    }
-  },
-  {
-    "name": "aurastudio",
-    "version": "1.5",
-    "desc": "AuraStudio CLI \u2014 Android development tool suite for Termux",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/aurastudio_1.5_aarch64.deb"
     }
   },
   {
@@ -209,28 +77,6 @@
     }
   },
   {
-    "name": "binutils",
-    "version": "2.47",
-    "desc": "A GNU collection of binary utilities",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/binutils_2.47_aarch64.deb"
-    }
-  },
-  {
-    "name": "binutils-cross",
-    "version": "2.47",
-    "desc": "GNU Binutils for cross build on the host (NOT for Termux)",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/binutils-cross_2.47_aarch64.deb"
-    }
-  },
-  {
     "name": "blk-utils",
     "version": "2.42.1-4",
     "desc": "Utilities for handling block device attributes",
@@ -253,17 +99,6 @@
     }
   },
   {
-    "name": "bsdtar",
-    "version": "3.8.9",
-    "desc": "The tar(1) and cpio(1) programs from FreeBSD, using libarchive",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/bsdtar_3.8.9_aarch64.deb"
-    }
-  },
-  {
     "name": "bzip2",
     "version": "1.0.8-8",
     "desc": "Tools for working with bzip2 compression",
@@ -272,17 +107,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/bzip2_1.0.8-8_aarch64.deb"
-    }
-  },
-  {
-    "name": "c-ares",
-    "version": "1.34.8",
-    "desc": "Library for asynchronous DNS requests (including name resolves)",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/c-ares_1.34.8_aarch64.deb"
     }
   },
   {
@@ -308,61 +132,6 @@
     }
   },
   {
-    "name": "check",
-    "version": "0.15.2-3",
-    "desc": "A unit testing framework for C",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/check_0.15.2-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "check-static",
-    "version": "0.15.2-3",
-    "desc": "Static libraries for check",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/check-static_0.15.2-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "clang",
-    "version": "21.1.8-3",
-    "desc": "C language frontend for LLVM",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/clang_21.1.8-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "cmake",
-    "version": "4.4.2",
-    "desc": "Family of tools designed to build, test and package software",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/cmake_4.4.2_aarch64.deb"
-    }
-  },
-  {
-    "name": "cmake-curses-gui",
-    "version": "4.4.2",
-    "desc": "Curses based user interface for CMake (ccmake)",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/cmake-curses-gui_4.4.2_aarch64.deb"
-    }
-  },
-  {
     "name": "coreutils",
     "version": "9.11-1",
     "desc": "Basic file, shell and text manipulation utilities from the GNU project",
@@ -371,28 +140,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/coreutils_9.11-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "cups",
-    "version": "2.4.19",
-    "desc": "Common UNIX Printing System",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/cups_2.4.19_aarch64.deb"
-    }
-  },
-  {
-    "name": "cups-static",
-    "version": "2.4.19",
-    "desc": "Static libraries for cups",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/cups-static_2.4.19_aarch64.deb"
     }
   },
   {
@@ -426,28 +173,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/db_18.1.40-6_aarch64.deb"
-    }
-  },
-  {
-    "name": "dbus",
-    "version": "1.16.2-3",
-    "desc": "Freedesktop.org message bus system",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/dbus_1.16.2-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "debianutils",
-    "version": "5.23.2-1",
-    "desc": "Small utilities which are used primarily by the installation scripts of Debian packages",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/debianutils_5.23.2-1_aarch64.deb"
     }
   },
   {
@@ -506,17 +231,6 @@
     }
   },
   {
-    "name": "dos2unix",
-    "version": "7.5.6",
-    "desc": "Converts between DOS and Unix text files",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/dos2unix_7.5.6_aarch64.deb"
-    }
-  },
-  {
     "name": "doxygen",
     "version": "1.18.0",
     "desc": "A documentation system for C++, C, Java, IDL and PHP",
@@ -561,17 +275,6 @@
     }
   },
   {
-    "name": "ed",
-    "version": "1.22.6",
-    "desc": "Classic UNIX line editor",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/ed_1.22.6_aarch64.deb"
-    }
-  },
-  {
     "name": "fdisk",
     "version": "2.42.1-4",
     "desc": "Utilities to manipulate disk partition tables",
@@ -583,17 +286,6 @@
     }
   },
   {
-    "name": "file",
-    "version": "5.48-3",
-    "desc": "Command-line tool that tells you in words what kind of data a file contains",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/file_5.48-3_aarch64.deb"
-    }
-  },
-  {
     "name": "findutils",
     "version": "4.10.0-1",
     "desc": "Utilities to find files meeting specified criteria and perform various actions on the files which are found",
@@ -602,28 +294,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/findutils_4.10.0-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "flac",
-    "version": "1.5.0-1",
-    "desc": "FLAC (Free Lossless Audio Codec) command-line tool",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/flac_1.5.0-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "fmt",
-    "version": "1:11.2.0",
-    "desc": "Open-source formatting library for C++",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/fmt_1C11.2.0_aarch64.deb"
     }
   },
   {
@@ -726,105 +396,6 @@
     }
   },
   {
-    "name": "giflib",
-    "version": "5.2.2-2",
-    "desc": "A library for reading and writing gif images",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/giflib_5.2.2-2_aarch64.deb"
-    }
-  },
-  {
-    "name": "giflib-static",
-    "version": "5.2.2-2",
-    "desc": "Static libraries for giflib",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/giflib-static_5.2.2-2_aarch64.deb"
-    }
-  },
-  {
-    "name": "giflib-utils",
-    "version": "5.2.2-2",
-    "desc": "A set of utilities that comes with giflib package",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/giflib-utils_5.2.2-2_aarch64.deb"
-    }
-  },
-  {
-    "name": "git",
-    "version": "2.55.0",
-    "desc": "Fast, scalable, distributed revision control system",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/git_2.55.0_aarch64.deb"
-    }
-  },
-  {
-    "name": "git-gitk",
-    "version": "2.55.0",
-    "desc": "Git repository browser",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/git-gitk_2.55.0_aarch64.deb"
-    }
-  },
-  {
-    "name": "git-gui",
-    "version": "2.55.0",
-    "desc": "A graphical interface to Git",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/git-gui_2.55.0_aarch64.deb"
-    }
-  },
-  {
-    "name": "git-svn",
-    "version": "2.55.0",
-    "desc": "Convert between Git and Subversion repositories",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/git-svn_2.55.0_all.deb"
-    }
-  },
-  {
-    "name": "glib",
-    "version": "2.88.3",
-    "desc": "Library providing core building blocks for libraries and applications written in C",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/glib_2.88.3_aarch64.deb"
-    }
-  },
-  {
-    "name": "glib-cross",
-    "version": "2.88.3",
-    "desc": "glib for host (NOT for Termux)",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/glib-cross_2.88.3_all.deb"
-    }
-  },
-  {
     "name": "gnupg",
     "version": "2.5.17",
     "desc": "Implementation of the OpenPGP standard for encrypting and signing data and communication",
@@ -847,17 +418,6 @@
     }
   },
   {
-    "name": "googletest",
-    "version": "1.17.0-1",
-    "desc": "Google C++ testing framework",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/googletest_1.17.0-1_aarch64.deb"
-    }
-  },
-  {
     "name": "gpgv",
     "version": "2.5.17",
     "desc": "GNU privacy guard - signature verification tool",
@@ -866,17 +426,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/gpgv_2.5.17_aarch64.deb"
-    }
-  },
-  {
-    "name": "gradle",
-    "version": "1:9.7.1",
-    "desc": "Powerful build system for the JVM",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "https://github.com/Arata-Labs/aurastudio-termux/releases/download/debs/gradle_1C9.7.1_all.deb"
     }
   },
   {
@@ -924,72 +473,6 @@
     }
   },
   {
-    "name": "inetutils",
-    "version": "2.7",
-    "desc": "Collection of common network programs",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/inetutils_2.7_aarch64.deb"
-    }
-  },
-  {
-    "name": "jq",
-    "version": "1.8.2",
-    "desc": "Command-line JSON processor",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/jq_1.8.2_aarch64.deb"
-    }
-  },
-  {
-    "name": "jq-static",
-    "version": "1.8.2",
-    "desc": "Static libraries for jq",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/jq-static_1.8.2_aarch64.deb"
-    }
-  },
-  {
-    "name": "jsoncpp",
-    "version": "1.9.8",
-    "desc": "C++ library for interacting with JSON",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/jsoncpp_1.9.8_aarch64.deb"
-    }
-  },
-  {
-    "name": "jsoncpp-static",
-    "version": "1.9.8",
-    "desc": "Static libraries for jsoncpp",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/jsoncpp-static_1.9.8_aarch64.deb"
-    }
-  },
-  {
-    "name": "lame",
-    "version": "3.100-7",
-    "desc": "High quality MPEG Audio Layer III (MP3) encoder - frontend",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/lame_3.100-7_aarch64.deb"
-    }
-  },
-  {
     "name": "less",
     "version": "704",
     "desc": "Terminal pager program used to view the contents of a text file one screen at a time",
@@ -1020,28 +503,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libacl-static_2.4.0_aarch64.deb"
-    }
-  },
-  {
-    "name": "libandroid-execinfo",
-    "version": "0.1-3",
-    "desc": "Shared library for the backtrace system function",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libandroid-execinfo_0.1-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "libandroid-execinfo-static",
-    "version": "0.1-3",
-    "desc": "Static libraries for libandroid-execinfo",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libandroid-execinfo-static_0.1-3_aarch64.deb"
     }
   },
   {
@@ -1122,39 +583,6 @@
     }
   },
   {
-    "name": "libandroid-spawn",
-    "version": "0.3",
-    "desc": "Shared library for the posix_spawn system function",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libandroid-spawn_0.3_aarch64.deb"
-    }
-  },
-  {
-    "name": "libandroid-spawn-static",
-    "version": "0.3",
-    "desc": "Static libraries for libandroid-spawn",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libandroid-spawn-static_0.3_aarch64.deb"
-    }
-  },
-  {
-    "name": "libandroid-stub",
-    "version": "29-2",
-    "desc": "Stub libandroid.so for non-Android certified environment",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libandroid-stub_29-2_aarch64.deb"
-    }
-  },
-  {
     "name": "libandroid-support",
     "version": "29-1",
     "desc": "Library extending the Android C library (Bionic) for additional multibyte, locale and math support",
@@ -1177,28 +605,6 @@
     }
   },
   {
-    "name": "libandroid-sysv-semaphore",
-    "version": "0.1-1",
-    "desc": "A shared library providing System V semaphores",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libandroid-sysv-semaphore_0.1-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libandroid-sysv-semaphore-static",
-    "version": "0.1-1",
-    "desc": "Static libraries for libandroid-sysv-semaphore",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libandroid-sysv-semaphore-static_0.1-1_aarch64.deb"
-    }
-  },
-  {
     "name": "libandroid-utimes",
     "version": "0.4",
     "desc": "futimes, futimesat and lutimes from bionic",
@@ -1218,28 +624,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libandroid-utimes-static_0.4_aarch64.deb"
-    }
-  },
-  {
-    "name": "libarchive",
-    "version": "3.8.9",
-    "desc": "Multi-format archive and compression library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libarchive_3.8.9_aarch64.deb"
-    }
-  },
-  {
-    "name": "libarchive-static",
-    "version": "3.8.9",
-    "desc": "Static libraries for libarchive",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libarchive-static_3.8.9_aarch64.deb"
     }
   },
   {
@@ -1320,17 +704,6 @@
     }
   },
   {
-    "name": "libcompiler-rt",
-    "version": "21.1.8-3",
-    "desc": "Compiler runtime libraries for clang",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libcompiler-rt_21.1.8-3_aarch64.deb"
-    }
-  },
-  {
     "name": "libcrypt",
     "version": "0.2-6",
     "desc": "A crypt(3) implementation",
@@ -1383,28 +756,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libdb-static_18.1.40-6_aarch64.deb"
-    }
-  },
-  {
-    "name": "libedit",
-    "version": "20260512-3.1-0",
-    "desc": "Library providing line editing, history, and tokenization functions",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libedit_20260512-3.1-0_aarch64.deb"
-    }
-  },
-  {
-    "name": "libedit-static",
-    "version": "20260512-3.1-0",
-    "desc": "Static libraries for libedit",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libedit-static_20260512-3.1-0_aarch64.deb"
     }
   },
   {
@@ -1471,28 +822,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libffi-static_3.5.2_aarch64.deb"
-    }
-  },
-  {
-    "name": "libflac",
-    "version": "1.5.0-1",
-    "desc": "FLAC (Free Lossless Audio Codec) library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libflac_1.5.0-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libflac-static",
-    "version": "1.5.0-1",
-    "desc": "Static libraries for libflac",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libflac-static_1.5.0-1_aarch64.deb"
     }
   },
   {
@@ -1584,17 +913,6 @@
     }
   },
   {
-    "name": "libice",
-    "version": "1.1.2-1",
-    "desc": "X11 Inter-Client Exchange library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libice_1.1.2-1_aarch64.deb"
-    }
-  },
-  {
     "name": "libiconv",
     "version": "1.18-1",
     "desc": "An implementation of iconv()",
@@ -1661,39 +979,6 @@
     }
   },
   {
-    "name": "libjpeg-turbo",
-    "version": "3.2.0",
-    "desc": "Library for reading and writing JPEG image files",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libjpeg-turbo_3.2.0_aarch64.deb"
-    }
-  },
-  {
-    "name": "libjpeg-turbo-progs",
-    "version": "3.2.0",
-    "desc": "Programs for manipulating JPEG files",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libjpeg-turbo-progs_3.2.0_aarch64.deb"
-    }
-  },
-  {
-    "name": "libjpeg-turbo-static",
-    "version": "3.2.0",
-    "desc": "Static libraries for libjpeg-turbo",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libjpeg-turbo-static_3.2.0_aarch64.deb"
-    }
-  },
-  {
     "name": "libksba",
     "version": "1.8.0",
     "desc": "Library for using X.509 certificates and CMS (Cryptographic Message Syntax) easily accessible",
@@ -1713,39 +998,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libksba-static_1.8.0_aarch64.deb"
-    }
-  },
-  {
-    "name": "libllvm",
-    "version": "21.1.8-3",
-    "desc": "Modular compiler and toolchain technologies library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libllvm_21.1.8-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "libllvm-static",
-    "version": "21.1.8-3",
-    "desc": "Static libraries for libllvm",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libllvm-static_21.1.8-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "libltdl",
-    "version": "2.6.2",
-    "desc": "Library for dlopening libraries",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libltdl_2.6.2_aarch64.deb"
     }
   },
   {
@@ -1782,28 +1034,6 @@
     }
   },
   {
-    "name": "libmagic",
-    "version": "5.48-3",
-    "desc": "File type identification library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libmagic_5.48-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "libmagic-static",
-    "version": "5.48-3",
-    "desc": "Static libraries for libmagic",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libmagic-static_5.48-3_aarch64.deb"
-    }
-  },
-  {
     "name": "libmd",
     "version": "1.1.0-1",
     "desc": "Message Digest functions from BSD systems",
@@ -1837,28 +1067,6 @@
     }
   },
   {
-    "name": "libmp3lame",
-    "version": "3.100-7",
-    "desc": "High quality MPEG Audio Layer III (MP3) encoder",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libmp3lame_3.100-7_aarch64.deb"
-    }
-  },
-  {
-    "name": "libmp3lame-static",
-    "version": "3.100-7",
-    "desc": "Static libraries for libmp3lame",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libmp3lame-static_3.100-7_aarch64.deb"
-    }
-  },
-  {
     "name": "libmpfr",
     "version": "4.2.1-1",
     "desc": "C library for multiple-precision floating-point computations with correct rounding",
@@ -1878,28 +1086,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libmpfr-static_4.2.1-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libmpg123",
-    "version": "1.33.5",
-    "desc": "Fast console MPEG Audio Player and decoder library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libmpg123_1.33.5_aarch64.deb"
-    }
-  },
-  {
-    "name": "libmpg123-static",
-    "version": "1.33.5",
-    "desc": "Static libraries for libmpg123",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libmpg123-static_1.33.5_aarch64.deb"
     }
   },
   {
@@ -2013,50 +1199,6 @@
     }
   },
   {
-    "name": "libogg",
-    "version": "1.3.6-1",
-    "desc": "Library for working with the Ogg multimedia container format",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libogg_1.3.6-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libogg-static",
-    "version": "1.3.6-1",
-    "desc": "Static libraries for libogg",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libogg-static_1.3.6-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libopus",
-    "version": "1.6.1",
-    "desc": "Reference implementation of the Opus codec",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libopus_1.6.1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libopus-static",
-    "version": "1.6.1",
-    "desc": "Static libraries for libopus",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libopus-static_1.6.1_aarch64.deb"
-    }
-  },
-  {
     "name": "libpng",
     "version": "1.6.58",
     "desc": "Official PNG reference library",
@@ -2079,39 +1221,6 @@
     }
   },
   {
-    "name": "libpolly",
-    "version": "21.1.8-3",
-    "desc": "High-level loop and data-locality optimizer for clang",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libpolly_21.1.8-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "libprotobuf",
-    "version": "2:35.1",
-    "desc": "Protocol buffers C++ library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libprotobuf_2C35.1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libsm",
-    "version": "1.2.6-1",
-    "desc": "X11 Session Management library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libsm_1.2.6-1_aarch64.deb"
-    }
-  },
-  {
     "name": "libsmartcols",
     "version": "2.42.1-4",
     "desc": "Library for smart adaptive formatting of tabular data",
@@ -2120,61 +1229,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libsmartcols_2.42.1-4_aarch64.deb"
-    }
-  },
-  {
-    "name": "libsndfile",
-    "version": "1.2.2-3",
-    "desc": "Library for reading/writing audio files",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libsndfile_1.2.2-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "libsndfile-static",
-    "version": "1.2.2-3",
-    "desc": "Static libraries for libsndfile",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libsndfile-static_1.2.2-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "libsodium",
-    "version": "1.0.22-1",
-    "desc": "Network communication, cryptography and signaturing library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libsodium_1.0.22-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libsodium-static",
-    "version": "1.0.22-1",
-    "desc": "Static libraries for libsodium",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libsodium-static_1.0.22-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libsoxr",
-    "version": "0.1.3-8",
-    "desc": "High quality, one-dimensional sample-rate conversion library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libsoxr_0.1.3-8_aarch64.deb"
     }
   },
   {
@@ -2255,72 +1309,6 @@
     }
   },
   {
-    "name": "libtiff",
-    "version": "4.7.2",
-    "desc": "Support for the Tag Image File Format (TIFF) for storing image data",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libtiff_4.7.2_aarch64.deb"
-    }
-  },
-  {
-    "name": "libtiff-static",
-    "version": "4.7.2",
-    "desc": "Static libraries for libtiff",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libtiff-static_4.7.2_aarch64.deb"
-    }
-  },
-  {
-    "name": "libtiff-utils",
-    "version": "4.7.2",
-    "desc": "Tools for working with tiff files",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libtiff-utils_4.7.2_aarch64.deb"
-    }
-  },
-  {
-    "name": "libtirpc",
-    "version": "1.3.7-1",
-    "desc": "Transport Independent RPC library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libtirpc_1.3.7-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libtirpc-static",
-    "version": "1.3.7-1",
-    "desc": "Static libraries for libtirpc",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libtirpc-static_1.3.7-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libtool",
-    "version": "2.6.2",
-    "desc": "Generic library support script hiding the complexity of using shared libraries behind a consistent, portable interface",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libtool_2.6.2_aarch64.deb"
-    }
-  },
-  {
     "name": "libunbound",
     "version": "1.26.0",
     "desc": "A validating, recursive, caching DNS resolver",
@@ -2395,61 +1383,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libuuid_2.42.1-4_aarch64.deb"
-    }
-  },
-  {
-    "name": "libuv",
-    "version": "1.52.1",
-    "desc": "Support library with a focus on asynchronous I/O",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libuv_1.52.1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libuv-static",
-    "version": "1.52.1",
-    "desc": "Static libraries for libuv",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libuv-static_1.52.1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libvorbis",
-    "version": "1.3.7-4",
-    "desc": "Library for using the Ogg Vorbis compressed audio format",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libvorbis_1.3.7-4_aarch64.deb"
-    }
-  },
-  {
-    "name": "libvorbis-static",
-    "version": "1.3.7-4",
-    "desc": "Static libraries for libvorbis",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libvorbis-static_1.3.7-4_aarch64.deb"
-    }
-  },
-  {
-    "name": "libwebrtc-audio-processing",
-    "version": "1.3-5",
-    "desc": "A library containing the AudioProcessing module from the WebRTC project",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libwebrtc-audio-processing_1.3-5_aarch64.deb"
     }
   },
   {
@@ -2552,28 +1485,6 @@
     }
   },
   {
-    "name": "libxfixes",
-    "version": "6.0.2",
-    "desc": "X11 miscellaneous 'fixes' extension library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libxfixes_6.0.2_aarch64.deb"
-    }
-  },
-  {
-    "name": "libxfixes-static",
-    "version": "6.0.2",
-    "desc": "Static libraries for libxfixes",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libxfixes-static_6.0.2_aarch64.deb"
-    }
-  },
-  {
     "name": "libxft",
     "version": "2.3.9-1",
     "desc": "FreeType-based font drawing library for X",
@@ -2593,28 +1504,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libxft-static_2.3.9-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libxi",
-    "version": "1.8.3",
-    "desc": "X11 Input extension library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libxi_1.8.3_aarch64.deb"
-    }
-  },
-  {
-    "name": "libxi-static",
-    "version": "1.8.3",
-    "desc": "Static libraries for libxi",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libxi-static_1.8.3_aarch64.deb"
     }
   },
   {
@@ -2648,28 +1537,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libxml2-utils_2.15.3-2_aarch64.deb"
-    }
-  },
-  {
-    "name": "libxrandr",
-    "version": "1.5.5",
-    "desc": "X11 RandR extension library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libxrandr_1.5.5_aarch64.deb"
-    }
-  },
-  {
-    "name": "libxrandr-static",
-    "version": "1.5.5",
-    "desc": "Static libraries for libxrandr",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libxrandr-static_1.5.5_aarch64.deb"
     }
   },
   {
@@ -2717,204 +1584,6 @@
     }
   },
   {
-    "name": "libxt",
-    "version": "1.3.1-1",
-    "desc": "X11 toolkit intrinsics library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libxt_1.3.1-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libxt-static",
-    "version": "1.3.1-1",
-    "desc": "Static libraries for libxt",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libxt-static_1.3.1-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libxtst",
-    "version": "1.2.5-1",
-    "desc": "Xlib-based library for XTEST & RECORD extensions",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libxtst_1.2.5-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libxtst-static",
-    "version": "1.2.5-1",
-    "desc": "Static libraries for libxtst",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libxtst-static_1.2.5-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "libyaml",
-    "version": "0.2.5-5",
-    "desc": "LibYAML is a YAML 1.1 parser and emitter written in C",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libyaml_0.2.5-5_aarch64.deb"
-    }
-  },
-  {
-    "name": "libyaml-static",
-    "version": "0.2.5-5",
-    "desc": "Static libraries for libyaml",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libyaml-static_0.2.5-5_aarch64.deb"
-    }
-  },
-  {
-    "name": "libzopfli",
-    "version": "1.0.3-5",
-    "desc": "New zlib compatible compressor library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/libzopfli_1.0.3-5_aarch64.deb"
-    }
-  },
-  {
-    "name": "littlecms",
-    "version": "2.19.1",
-    "desc": "Color management library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/littlecms_2.19.1_aarch64.deb"
-    }
-  },
-  {
-    "name": "littlecms-static",
-    "version": "2.19.1",
-    "desc": "Static libraries for littlecms",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/littlecms-static_2.19.1_aarch64.deb"
-    }
-  },
-  {
-    "name": "littlecms-utils",
-    "version": "2.19.1",
-    "desc": "Color management utilities",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/littlecms-utils_2.19.1_aarch64.deb"
-    }
-  },
-  {
-    "name": "lld",
-    "version": "21.1.8-3",
-    "desc": "LLVM-based linker",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/lld_21.1.8-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "lldb",
-    "version": "21.1.8-3",
-    "desc": "LLVM-based debugger",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/lldb_21.1.8-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "llvm",
-    "version": "21.1.8-3",
-    "desc": "LLVM modular compiler and toolchain executables",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/llvm_21.1.8-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "llvm-tools",
-    "version": "21.1.8-3",
-    "desc": "LLVM Development Tools",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/llvm-tools_21.1.8-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "lsof",
-    "version": "4.99.7",
-    "desc": "Lists open files for running Unix processes",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/lsof_4.99.7_aarch64.deb"
-    }
-  },
-  {
-    "name": "lsof-static",
-    "version": "4.99.7",
-    "desc": "Static libraries for lsof",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/lsof-static_4.99.7_aarch64.deb"
-    }
-  },
-  {
-    "name": "luajit",
-    "version": "1:2.1.1787165859+g1ee778a",
-    "desc": "Just-In-Time Compiler for Lua",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/luajit_1C2.1.1787165859+g1ee778a_aarch64.deb"
-    }
-  },
-  {
-    "name": "luajit-static",
-    "version": "1:2.1.1787165859+g1ee778a",
-    "desc": "Static libraries for luajit",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/luajit-static_1C2.1.1787165859+g1ee778a_aarch64.deb"
-    }
-  },
-  {
     "name": "lz4",
     "version": "1.10.0-1",
     "desc": "Fast LZ compression algorithm tool",
@@ -2937,28 +1606,6 @@
     }
   },
   {
-    "name": "mandoc",
-    "version": "1.14.6-6",
-    "desc": "Man page viewer from the mandoc toolset",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/mandoc_1.14.6-6_aarch64.deb"
-    }
-  },
-  {
-    "name": "mlir",
-    "version": "21.1.8-3",
-    "desc": "A Multi-Level Intermediate Representation for compilers from LLVM",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/mlir_21.1.8-3_aarch64.deb"
-    }
-  },
-  {
     "name": "mount-utils",
     "version": "2.42.1-4",
     "desc": "Utilities for (un)mounting filesystems",
@@ -2967,28 +1614,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/mount-utils_2.42.1-4_aarch64.deb"
-    }
-  },
-  {
-    "name": "mpg123",
-    "version": "1.33.5",
-    "desc": "Fast console MPEG Audio Player based on libmpg123",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/mpg123_1.33.5_aarch64.deb"
-    }
-  },
-  {
-    "name": "nano",
-    "version": "9.2-1",
-    "desc": "Small, free and friendly text editor",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/nano_9.2-1_aarch64.deb"
     }
   },
   {
@@ -3047,28 +1672,6 @@
     }
   },
   {
-    "name": "ndk-sysroot",
-    "version": "29-2",
-    "desc": "System header and library files from the Android NDK needed for compiling C programs",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/ndk-sysroot_29-2_aarch64.deb"
-    }
-  },
-  {
-    "name": "net-tools",
-    "version": "2.10.0-1",
-    "desc": "Configuration tools for Linux networking",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/net-tools_2.10.0-1_aarch64.deb"
-    }
-  },
-  {
     "name": "nettle",
     "version": "4.0+really3.10.2",
     "desc": "Low level cryptographic tools",
@@ -3077,94 +1680,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/nettle_4.0+really3.10.2_aarch64.deb"
-    }
-  },
-  {
-    "name": "oniguruma",
-    "version": "6.9.10-1",
-    "desc": "Regular expressions library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/oniguruma_6.9.10-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "oniguruma-static",
-    "version": "6.9.10-1",
-    "desc": "Static libraries for oniguruma",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/oniguruma-static_6.9.10-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "openjdk-17",
-    "version": "17.0.20",
-    "desc": "Java development kit and runtime",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/openjdk-17_17.0.20_aarch64.deb"
-    }
-  },
-  {
-    "name": "openjdk-17-source",
-    "version": "17.0.20",
-    "desc": "Source files for openjdk-17",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/openjdk-17-source_17.0.20_all.deb"
-    }
-  },
-  {
-    "name": "openjdk-17-x",
-    "version": "17.0.20",
-    "desc": "Portion of openjdk-17 requiring X11 functionality",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/openjdk-17-x_17.0.20_aarch64.deb"
-    }
-  },
-  {
-    "name": "openjdk-21",
-    "version": "21.0.12",
-    "desc": "Java development kit and runtime",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/openjdk-21_21.0.12_aarch64.deb"
-    }
-  },
-  {
-    "name": "openjdk-21-source",
-    "version": "21.0.12",
-    "desc": "Source files for openjdk-21",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/openjdk-21-source_21.0.12_all.deb"
-    }
-  },
-  {
-    "name": "openjdk-21-x",
-    "version": "21.0.12",
-    "desc": "Portion of openjdk-21 requiring X11 functionality",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/openjdk-21-x_21.0.12_aarch64.deb"
     }
   },
   {
@@ -3209,17 +1724,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/p11-kit_0.26.5_aarch64.deb"
-    }
-  },
-  {
-    "name": "patch",
-    "version": "2.8-1",
-    "desc": "GNU patch which applies diff files to create patched files",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/patch_2.8-1_aarch64.deb"
     }
   },
   {
@@ -3278,17 +1782,6 @@
     }
   },
   {
-    "name": "pkg-config",
-    "version": "0.29.2-3",
-    "desc": "Helper tool used when compiling applications and libraries",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/pkg-config_0.29.2-3_aarch64.deb"
-    }
-  },
-  {
     "name": "procps",
     "version": "3.3.17-6",
     "desc": "Utilities that give information about processes using the /proc filesystem",
@@ -3311,17 +1804,6 @@
     }
   },
   {
-    "name": "protobuf",
-    "version": "2:35.1",
-    "desc": "Compiler for protocol buffer definition files",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/protobuf_2C35.1_aarch64.deb"
-    }
-  },
-  {
     "name": "psmisc",
     "version": "23.7-1",
     "desc": "Some small useful utilities that use the proc filesystem",
@@ -3330,28 +1812,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/psmisc_23.7-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "pulseaudio",
-    "version": "17.0-4",
-    "desc": "A featureful, general-purpose sound server",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/pulseaudio_17.0-4_aarch64.deb"
-    }
-  },
-  {
-    "name": "pulseaudio-glib",
-    "version": "17.0-4",
-    "desc": "PulseAudio GLIB mainloop component",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/pulseaudio-glib_17.0-4_aarch64.deb"
     }
   },
   {
@@ -3374,17 +1834,6 @@
     ],
     "filenames": {
       "all": "dists/stable/main/binary-all/python-ensurepip-wheels_3.14.6-1_all.deb"
-    }
-  },
-  {
-    "name": "python-pip",
-    "version": "26.2.1",
-    "desc": "The PyPA recommended tool for installing Python packages",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/python-pip_26.2.1_all.deb"
     }
   },
   {
@@ -3476,50 +1925,6 @@
     }
   },
   {
-    "name": "rhash",
-    "version": "1.4.6-1",
-    "desc": "Console utility for calculation and verification of magnet links and a wide range of hash sums",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/rhash_1.4.6-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "rhash-static",
-    "version": "1.4.6-1",
-    "desc": "Static libraries for rhash",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/rhash-static_1.4.6-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "ruby",
-    "version": "3.4.1-2",
-    "desc": "Dynamic programming language with a focus on simplicity and productivity",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/ruby_3.4.1-2_aarch64.deb"
-    }
-  },
-  {
-    "name": "ruby-ri",
-    "version": "3.4.1-2",
-    "desc": "Ruby documentation index",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/ruby-ri_3.4.1-2_all.deb"
-    }
-  },
-  {
     "name": "scdaemon",
     "version": "2.5.17",
     "desc": "Daemon invoked by gpg to manage smartcards",
@@ -3542,50 +1947,6 @@
     }
   },
   {
-    "name": "serf",
-    "version": "1.3.10-2",
-    "desc": "High performance C-based HTTP client library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/serf_1.3.10-2_aarch64.deb"
-    }
-  },
-  {
-    "name": "serf-static",
-    "version": "1.3.10-2",
-    "desc": "Static libraries for serf",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/serf-static_1.3.10-2_aarch64.deb"
-    }
-  },
-  {
-    "name": "speexdsp",
-    "version": "1.2.1-1",
-    "desc": "Speex audio processing library",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/speexdsp_1.2.1-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "speexdsp-static",
-    "version": "1.2.1-1",
-    "desc": "Static libraries for speexdsp",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/speexdsp-static_1.2.1-1_aarch64.deb"
-    }
-  },
-  {
     "name": "sqlite",
     "version": "3.53.4",
     "desc": "Command line shell for SQLite",
@@ -3597,50 +1958,6 @@
     }
   },
   {
-    "name": "subversion",
-    "version": "1.14.5-3",
-    "desc": "Centralized version control system characterized by its simplicity",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/subversion_1.14.5-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "subversion-perl",
-    "version": "1.14.5-3",
-    "desc": "Perl interface to Subversion",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/subversion-perl_1.14.5-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "subversion-perl-static",
-    "version": "1.14.5-3",
-    "desc": "Static libraries for subversion-perl",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/subversion-perl-static_1.14.5-3_aarch64.deb"
-    }
-  },
-  {
-    "name": "subversion-static",
-    "version": "1.14.5-3",
-    "desc": "Static libraries for subversion",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/subversion-static_1.14.5-3_aarch64.deb"
-    }
-  },
-  {
     "name": "swig",
     "version": "4.5.0",
     "desc": "Generate scripting interfaces to C/C++ code",
@@ -3649,17 +1966,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/swig_4.5.0_aarch64.deb"
-    }
-  },
-  {
-    "name": "sysprop",
-    "version": "16.0.0.4-1",
-    "desc": "Android sysprop generators",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/sysprop_16.0.0.4-1_aarch64.deb"
     }
   },
   {
@@ -3784,17 +2090,6 @@
     }
   },
   {
-    "name": "texinfo",
-    "version": "7.3",
-    "desc": "Documentation system for on-line information and printed output",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/texinfo_7.3_aarch64.deb"
-    }
-  },
-  {
     "name": "tk",
     "version": "8.6.14-1",
     "desc": "A windowing toolkit for use with tcl",
@@ -3839,50 +2134,6 @@
     }
   },
   {
-    "name": "unzip",
-    "version": "6.0-10",
-    "desc": "Tools for working with zip files",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/unzip_6.0-10_aarch64.deb"
-    }
-  },
-  {
-    "name": "update-info-dir",
-    "version": "7.3",
-    "desc": "Update or create index file from all installed info files in directory",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/update-info-dir_7.3_all.deb"
-    }
-  },
-  {
-    "name": "utf8proc",
-    "version": "2.11.3",
-    "desc": "Library for processing UTF-8 Unicode data",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/utf8proc_2.11.3_aarch64.deb"
-    }
-  },
-  {
-    "name": "utf8proc-static",
-    "version": "2.11.3",
-    "desc": "Static libraries for utf8proc",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/utf8proc-static_2.11.3_aarch64.deb"
-    }
-  },
-  {
     "name": "util-linux",
     "version": "2.42.1-4",
     "desc": "Miscellaneous system utilities",
@@ -3913,39 +2164,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/uuid-utils_2.42.1-4_aarch64.deb"
-    }
-  },
-  {
-    "name": "vim",
-    "version": "9.2.0950",
-    "desc": "Vi IMproved - enhanced vi editor",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/vim_9.2.0950_aarch64.deb"
-    }
-  },
-  {
-    "name": "wget",
-    "version": "1.25.0-1",
-    "desc": "Commandline tool for retrieving files using HTTP, HTTPS and FTP",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/wget_1.25.0-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "which",
-    "version": "2.25",
-    "desc": "Shows the full path of (shell) commands",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/which_2.25_aarch64.deb"
     }
   },
   {
@@ -4004,17 +2222,6 @@
     }
   },
   {
-    "name": "xxd",
-    "version": "9.2.0950",
-    "desc": "Hexdump utility from vim",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/xxd_9.2.0950_aarch64.deb"
-    }
-  },
-  {
     "name": "xxhash",
     "version": "0.8.3-1",
     "desc": "Extremely fast non-cryptographic hash algorithm",
@@ -4048,17 +2255,6 @@
     }
   },
   {
-    "name": "zip",
-    "version": "3.0-7",
-    "desc": "Tools for working with zip files",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/zip_3.0-7_aarch64.deb"
-    }
-  },
-  {
     "name": "zlib",
     "version": "1.3.2",
     "desc": "Compression library implementing the deflate compression method found in gzip and PKZIP",
@@ -4078,17 +2274,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/zlib-static_1.3.2_aarch64.deb"
-    }
-  },
-  {
-    "name": "zopfli",
-    "version": "1.0.3-5",
-    "desc": "New zlib compatible compressor tools",
-    "arch": [
-      "aarch64"
-    ],
-    "filenames": {
-      "aarch64": "dists/stable/main/binary-aarch64/zopfli_1.0.3-5_aarch64.deb"
     }
   },
   {
