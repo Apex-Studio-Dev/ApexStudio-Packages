@@ -245,7 +245,7 @@ jobs:
             STATUS="SUCCESS (${DEB_COUNT} built)"
           fi
 
-          MSG=$(printf "AuraStudio Build\nPackages: %s\nArch: %s\nStatus: %s\nFailed: %s\nRun: https://github.com/%s/actions/runs/%s" \
+          MSG=$(printf "Apex Studio Build\nPackages: %s\nArch: %s\nStatus: %s\nFailed: %s\nRun: https://github.com/%s/actions/runs/%s" \
             "${{ inputs.packages }}" "${{ matrix.arch }}" "$STATUS" "$FAILED_LIST" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
 
           curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \

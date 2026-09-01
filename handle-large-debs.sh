@@ -4,7 +4,7 @@
 #
 # Usage:
 #   export GH_TOKEN="..."
-#   export GITHUB_REPOSITORY="Arata-Labs/aurastudio-termux"
+#   export GITHUB_REPOSITORY="Apex-Studio-Dev/ApexStudio-Packages"
 #   bash handle-large-debs.sh <repo_dir> [max_size_mb]
 
 set -euo pipefail
@@ -12,7 +12,7 @@ set -euo pipefail
 REPO_DIR="${1:-.}"
 MAX_SIZE_MB="${2:-100}"
 RELEASE_TAG="debs"
-GITHUB_REPO="${GITHUB_REPOSITORY:-Arata-Labs/aurastudio-termux}"
+GITHUB_REPO="${GITHUB_REPOSITORY:-Apex-Studio-Dev/ApexStudio-Packages}"
 RELEASE_URL="https://github.com/${GITHUB_REPO}/releases/download/${RELEASE_TAG}"
 
 echo "=== Handle Large Debs ==="

@@ -46,12 +46,12 @@ jobs:
 
       - name: Build Bootstrap
         run: |
-          export AURASTUDIO_REPO="https://arata-labs.github.io/aurastudio-termux"
-          export AURASTUDIO_OUTPUT_DIR="$(pwd)/output"
+          export APEXSTUDIO_REPO="https://apex-studio-dev.github.io/ApexStudio-Packages"
+          export APEXSTUDIO_OUTPUT_DIR="$(pwd)/output"
 
           mkdir -p output
 
-          bash ./generate-bootstrap-archive.sh -r "$AURASTUDIO_REPO" "${{ matrix.arch }}"
+          bash ./generate-bootstrap-archive.sh -r "$APEXSTUDIO_REPO" "${{ matrix.arch }}"
 
       - name: Show output
         run: |

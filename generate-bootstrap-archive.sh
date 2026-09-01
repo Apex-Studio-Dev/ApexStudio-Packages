@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Generate bootstrap archives for AuraStudio
+# Generate bootstrap archives for Apex Studio
 # Adapted from terminal-packages
 
 set -euo pipefail
@@ -18,16 +18,16 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=patches.sh
 . "$SCRIPT_DIR/patches.sh"
 
-AURASTUDIO_LOCAL="false"
+APEXSTUDIO_LOCAL="false"
 
 usage() {
-  echo "Script to generate bootstrap archives for AuraStudio."
+  echo "Script to generate bootstrap archives for Apex Studio."
   echo
   echo "Usage: $0 [options] [arch]"
   echo
   echo "Options:"
   echo "  -l        Use local packages repository."
-  echo "  -r URL    Repository URL (default: $AURASTUDIO_REPO)."
+  echo "  -r URL    Repository URL (default: $APEXSTUDIO_REPO)."
   echo "  -h        Show this help."
 }
 
@@ -42,11 +42,11 @@ build_bootstrap() {
   packages=$(IFS=,; echo "${pkgs[*]}")
 
   if [[ -z "$variant" || -z "$arch" || -z "$repo" ]]; then
-    aurastudio_error_exit "variant, arch, and repo must not be empty"
+    apexstudio_error_exit "variant, arch, and repo must not be empty"
   fi
 
   local bootstrap_name="bootstrap-${arch}.zip"
-  local bootstrap_out="${AURASTUDIO_OUTPUT_DIR}/bootstrap-${variant}-${arch}.zip"
+  local bootstrap_out="${APEXSTUDIO_OUTPUT_DIR}/bootstrap-${variant}-${arch}.zip"
 
   echo
   echo "==="
@@ -57,14 +57,14 @@ build_bootstrap() {
 
   local out_dir="$SCRIPT_DIR/output/$arch"
   mkdir -p "$out_dir"
-  pushd "$out_dir" || aurastudio_error_exit "Unable to switch to output dir: ${out_dir}"
+  pushd "$out_dir" || apexstudio_error_exit "Unable to switch to output dir: ${out_dir}"
 
   if ! { time "$TERMUX_PACKAGES_DIR/scripts/generate-bootstraps.sh" \
       --architectures "$arch" \
       --repository "$repo" \
       --add "${packages}" |& \
       tee "$out_dir/generate-bootstrap-${variant}.log"; }; then
-    aurastudio_error "Failed to generate bootstrap for ${arch} ${variant}."
+    apexstudio_error "Failed to generate bootstrap for ${arch} ${variant}."
     return 1
   fi
 
@@ -78,51 +78,51 @@ build_bootstrap() {
     echo "Bootstrap size: ${size}"
   fi
 
-  popd || aurastudio_error_exit "Unable to switch from output dir: ${out_dir}"
+  popd || apexstudio_error_exit "Unable to switch from output dir: ${out_dir}"
 }
 
 # Parse arguments
 while getopts "lr:h" opt; do
   case "$opt" in
-    l) AURASTUDIO_LOCAL="true" ;;
-    r) AURASTUDIO_REPO="$OPTARG" ;;
+    l) APEXSTUDIO_LOCAL="true" ;;
+    r) APEXSTUDIO_REPO="$OPTARG" ;;
     h) usage; exit 0 ;;
-    *) aurastudio_error "Invalid option"; exit 1 ;;
+    *) apexstudio_error "Invalid option"; exit 1 ;;
   esac
 done
 shift $((OPTIND - 1))
 
-if [[ "$AURASTUDIO_LOCAL" == "true" ]]; then
-  AURASTUDIO_REPO="file://${AURASTUDIO_REPO_DIR}"
+if [[ "$APEXSTUDIO_LOCAL" == "true" ]]; then
+  APEXSTUDIO_REPO="file://${APEXSTUDIO_REPO_DIR}"
 fi
 
-if [[ -z "${AURASTUDIO_REPO}" ]]; then
-  aurastudio_error_exit "Repository URL must be specified."
+if [[ -z "${APEXSTUDIO_REPO}" ]]; then
+  apexstudio_error_exit "Repository URL must be specified."
 fi
 
 # Apply patches to termux-packages (same phase as build.sh) before generating bootstrap
-BUILD_REPO="$AURASTUDIO_REPO"
-if [[ ! -f "$AURASTUDIO_PATCHED_MARKER" ]]; then
-  setup_aurastudio_patches
+BUILD_REPO="$APEXSTUDIO_REPO"
+if [[ ! -f "$APEXSTUDIO_PATCHED_MARKER" ]]; then
+  setup_apexstudio_patches
 else
-  aurastudio_ok "[*] Termux-packages already patched ($AURASTUDIO_PATCHED_MARKER)"
+  apexstudio_ok "[*] Termux-packages already patched ($APEXSTUDIO_PATCHED_MARKER)"
 fi
 
 # Use bootstrap packages only (core + small deps)
-AURASTUDIO_VARIANT="bootstrap"
-declare -a AURASTUDIO_EXTRA_PACKAGES
-AURASTUDIO_EXTRA_PACKAGES=("${AURASTUDIO_PACKAGES__BOOTSTRAP[@]}")
+APEXSTUDIO_VARIANT="bootstrap"
+declare -a APEXSTUDIO_EXTRA_PACKAGES
+APEXSTUDIO_EXTRA_PACKAGES=("${APEXSTUDIO_PACKAGES__BOOTSTRAP[@]}")
 
 echo "Using configuration:"
-echo "  Variant        : ${AURASTUDIO_VARIANT}"
-echo "  Repository     : ${AURASTUDIO_REPO}"
-echo "  Packages       : ${#AURASTUDIO_EXTRA_PACKAGES[@]}"
+echo "  Variant        : ${APEXSTUDIO_VARIANT}"
+echo "  Repository     : ${APEXSTUDIO_REPO}"
+echo "  Packages       : ${#APEXSTUDIO_EXTRA_PACKAGES[@]}"
 
 # Build for target architectures
 TARGET_ARCH="${1:-aarch64}"
 for arch in $TARGET_ARCH; do
-  if ! build_bootstrap "$AURASTUDIO_VARIANT" "$arch" "$AURASTUDIO_REPO" "${AURASTUDIO_EXTRA_PACKAGES[@]}"; then
-    aurastudio_error "Unable to build bootstrap for ${arch}"
+  if ! build_bootstrap "$APEXSTUDIO_VARIANT" "$arch" "$APEXSTUDIO_REPO" "${APEXSTUDIO_EXTRA_PACKAGES[@]}"; then
+    apexstudio_error "Unable to build bootstrap for ${arch}"
     exit 1
   fi
 done

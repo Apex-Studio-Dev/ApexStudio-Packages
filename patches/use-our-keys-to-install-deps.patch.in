@@ -4,9 +4,9 @@ diff --git a/build-package.sh b/build-package.sh
 @@ -664,6 +664,10 @@ if [[ "${TERMUX_INSTALL_DEPS-false}" == "true" || "${TERMUX_PACKAGE_LIBRARY-bio
  		gpg --no-tty --command-file <(echo -e "trust\n5\ny") --edit-key 998DE27318E867EA976BA877389CEED64573DFCA
  	}
-+	gpg --list-keys @AURASTUDIO_GPG_KEY_FP@ > /dev/null 2>&1 || {
-+		gpg --import "$TERMUX_SCRIPTDIR/packages/termux-keyring/aurastudio.gpg"
-+		gpg --no-tty --command-file <(echo -e "trust\n5\ny") --edit-key @AURASTUDIO_GPG_KEY_FP@
++	gpg --list-keys @APEXSTUDIO_GPG_KEY_FP@ > /dev/null 2>&1 || {
++		gpg --import "$TERMUX_SCRIPTDIR/packages/termux-keyring/apexstudio.gpg"
++		gpg --no-tty --command-file <(echo -e "trust\n5\ny") --edit-key @APEXSTUDIO_GPG_KEY_FP@
 +	}
  fi
  

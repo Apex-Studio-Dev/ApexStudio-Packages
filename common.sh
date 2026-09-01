@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# AuraStudio termux-packages wrapper configuration
+# Apex Studio termux-packages wrapper configuration
 
 set -euo pipefail
 
@@ -11,13 +11,17 @@ export SCRIPT_DIR
 TERMUX_PACKAGE_NAME="com.termux"
 export TERMUX_PACKAGE_NAME
 
-# Target package name for AuraStudio
-AURASTUDIO_PACKAGE_NAME="com.aurastudio"
-export AURASTUDIO_PACKAGE_NAME
+# Target package name for Apex Studio.
+# This determines the --prefix that termux binaries are compiled with:
+# /data/data/<pkg>/files/usr. It MUST equal the installed app package
+# (and TermuxConstants.TERMUX_PACKAGE_NAME in the ApexStudio app repo),
+# currently dev.apexstudio.ide -> /data/data/dev.apexstudio.ide/files/usr
+APEXSTUDIO_PACKAGE_NAME="dev.apexstudio.ide"
+export APEXSTUDIO_PACKAGE_NAME
 
 # Supported architectures
-AURASTUDIO_ARCHS=" aarch64 arm "
-export AURASTUDIO_ARCHS
+APEXSTUDIO_ARCHS=" aarch64 arm "
+export APEXSTUDIO_ARCHS
 
 # API level (Android 9+)
 TERMUX_PKG_API_LEVEL=28
@@ -28,25 +32,25 @@ TERMUX_PACKAGES_DIR="${TERMUX_PACKAGES_DIR:-$SCRIPT_DIR/termux-packages}"
 export TERMUX_PACKAGES_DIR
 
 # GPG key path
-AURASTUDIO_GPG_KEY="${SCRIPT_DIR}/aurastudio.gpg"
-export AURASTUDIO_GPG_KEY
+APEXSTUDIO_GPG_KEY="${SCRIPT_DIR}/apexstudio.gpg"
+export APEXSTUDIO_GPG_KEY
 
-# GPG key fingerprint (AuraStudio Builder v2 primary)
-AURASTUDIO_GPG_KEY_FP="${AURASTUDIO_GPG_KEY_FP:-54F667C549A9B3AD79168D3F6D81A8C48CD43B73}"
-export AURASTUDIO_GPG_KEY_FP
+# GPG key fingerprint (Apex Studio Builder primary)
+APEXSTUDIO_GPG_KEY_FP="${APEXSTUDIO_GPG_KEY_FP:-2CF72FBB978DE04E1CE50C9D93342A231C32FCDE}"
+export APEXSTUDIO_GPG_KEY_FP
 
 # APT repository URL (deployed to pages branch of same repo)
-AURASTUDIO_REPO="${AURASTUDIO_REPO:-https://arata-labs.github.io/aurastudio-termux}"
-export AURASTUDIO_REPO
+APEXSTUDIO_REPO="${APEXSTUDIO_REPO:-https://apex-studio-dev.github.io/ApexStudio-Packages}"
+export APEXSTUDIO_REPO
 
 # Base output directory
-AURASTUDIO_OUTPUT_DIR="${AURASTUDIO_OUTPUT_DIR:-$SCRIPT_DIR/output}"
-export AURASTUDIO_OUTPUT_DIR
+APEXSTUDIO_OUTPUT_DIR="${APEXSTUDIO_OUTPUT_DIR:-$SCRIPT_DIR/output}"
+export APEXSTUDIO_OUTPUT_DIR
 
 # Directory for local repository
-AURASTUDIO_REPO_DIR="${AURASTUDIO_OUTPUT_DIR}/repo"
-export AURASTUDIO_REPO_DIR
+APEXSTUDIO_REPO_DIR="${APEXSTUDIO_OUTPUT_DIR}/repo"
+export APEXSTUDIO_REPO_DIR
 
 # Patched marker file
-AURASTUDIO_PATCHED_MARKER="${TERMUX_PACKAGES_DIR}/.aurastudio-patched"
-export AURASTUDIO_PATCHED_MARKER
+APEXSTUDIO_PATCHED_MARKER="${TERMUX_PACKAGES_DIR}/.apexstudio-patched"
+export APEXSTUDIO_PATCHED_MARKER

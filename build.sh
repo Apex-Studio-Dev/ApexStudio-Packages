@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AuraStudio wrapper for termux-packages: patch + build
+# Apex Studio wrapper for termux-packages: patch + build
 #
 # Usage:
 #   ./build.sh -a aarch64 bash coreutils
@@ -26,13 +26,13 @@ BUILD_NO_BUILD="false"
 BUILD_INSTALL_DEPS="false"
 BUILD_EXTRAS="false"
 BUILD_KEEP_GOING="false"
-BUILD_PACKAGE_NAME="$AURASTUDIO_PACKAGE_NAME"
-BUILD_REPO="$AURASTUDIO_REPO"
-BUILD_GPG_KEY="$AURASTUDIO_GPG_KEY"
+BUILD_PACKAGE_NAME="$APEXSTUDIO_PACKAGE_NAME"
+BUILD_REPO="$APEXSTUDIO_REPO"
+BUILD_GPG_KEY="$APEXSTUDIO_GPG_KEY"
 
 usage() {
   cat <<EOF
-AuraStudio wrapper for termux-packages
+Apex Studio wrapper for termux-packages
 
 Usage: $0 -a ARCH [options] [package...]
 
@@ -40,8 +40,8 @@ Options:
   -a ARCH        Target architecture (must be aarch64)
   -e             Build only explicitly specified packages
   -n             Patch only, do not build
-  -p NAME        Override package name (default: $AURASTUDIO_PACKAGE_NAME)
-  -r URL         Override repo URL (default: $AURASTUDIO_REPO)
+  -p NAME        Override package name (default: $APEXSTUDIO_PACKAGE_NAME)
+  -r URL         Override repo URL (default: $APEXSTUDIO_REPO)
   -s KEY         Override GPG key path
   -I             Install dependencies from repo before building
   -f             Force rebuild (clean + build)
@@ -80,7 +80,7 @@ while getopts "a:enp:r:s:Ifkh" opt; do
     f) FORCE_REBUILD=true ;;
     k) BUILD_KEEP_GOING="true" ;;
     h) usage; exit 0 ;;
-    *) aurastudio_error "Invalid option"; usage; exit 1 ;;
+    *) apexstudio_error "Invalid option"; usage; exit 1 ;;
   esac
 done
 shift $((OPTIND - 1))
@@ -88,35 +88,35 @@ shift $((OPTIND - 1))
 # Validate
 if [[ "$BUILD_NO_BUILD" != "true" ]]; then
   if [[ -z "$BUILD_ARCH" ]]; then
-    aurastudio_error "Architecture (-a) is required for build mode"
+    apexstudio_error "Architecture (-a) is required for build mode"
     usage
     exit 1
   fi
 
-  if [[ "$AURASTUDIO_ARCHS" != *" $BUILD_ARCH "* ]]; then
-    aurastudio_error_exit "Unsupported arch: '$BUILD_ARCH'. Supported: $AURASTUDIO_ARCHS"
+  if [[ "$APEXSTUDIO_ARCHS" != *" $BUILD_ARCH "* ]]; then
+    apexstudio_error_exit "Unsupported arch: '$BUILD_ARCH'. Supported: $APEXSTUDIO_ARCHS"
   fi
 fi
 
 # Check required commands
-aurastudio_check_command "git"
-aurastudio_check_command "patch"
+apexstudio_check_command "git"
+apexstudio_check_command "patch"
 
 # Apply patches if not already patched
-if [[ ! -f "$AURASTUDIO_PATCHED_MARKER" ]]; then
-  setup_aurastudio_patches
+if [[ ! -f "$APEXSTUDIO_PATCHED_MARKER" ]]; then
+  setup_apexstudio_patches
 else
-  aurastudio_ok "[*] Already patched. Use -f to force rebuild."
+  apexstudio_ok "[*] Already patched. Use -f to force rebuild."
 fi
 
 # If patch-only mode, stop here
 if [[ "$BUILD_NO_BUILD" == "true" ]]; then
-  aurastudio_ok "[*] Patching complete (no build requested)."
+  apexstudio_ok "[*] Patching complete (no build requested)."
   exit 0
 fi
 
 # Create output directory
-OUTPUT_DIR="${AURASTUDIO_OUTPUT_DIR}/$BUILD_ARCH"
+OUTPUT_DIR="${APEXSTUDIO_OUTPUT_DIR}/$BUILD_ARCH"
 mkdir -p "$OUTPUT_DIR"
 
 # Symlink output dir into termux-packages
@@ -131,11 +131,11 @@ declare -a BUILD_PACKAGES=("$@")
 if [[ "$BUILD_EXPLICIT" != "true" ]]; then
   # Add base packages if none specified
   if [[ ${#BUILD_PACKAGES[@]} -eq 0 ]]; then
-    BUILD_PACKAGES=("${AURASTUDIO_PACKAGES[@]}")
+    BUILD_PACKAGES=("${APEXSTUDIO_PACKAGES[@]}")
   fi
 fi
 
-aurastudio_info "[*] Building packages: ${BUILD_PACKAGES[*]}"
+apexstudio_info "[*] Building packages: ${BUILD_PACKAGES[*]}"
 
 # Build arguments
 declare -a BUILD_ARGS=(
@@ -152,7 +152,7 @@ if [[ -n "${FORCE_REBUILD:-}" ]]; then
 fi
 
 # Run build-package.sh inside termux-packages
-pushd "$TERMUX_PACKAGES_DIR" || aurastudio_error_exit "Unable to enter termux-packages"
+pushd "$TERMUX_PACKAGES_DIR" || apexstudio_error_exit "Unable to enter termux-packages"
 echo
 echo "==="
 echo "Building: ${BUILD_PACKAGES[*]} for $BUILD_ARCH"
@@ -174,10 +174,10 @@ if [[ "$BUILD_KEEP_GOING" == "true" ]]; then
     PKG_ARGS=("${BUILD_ARGS[@]}" "$pkg")
     if { time ./build-package.sh "${PKG_ARGS[@]}" 2>&1 | tee -a "$OUTPUT_DIR/build.log"; }; then
       SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
-      aurastudio_ok "[OK] $pkg"
+      apexstudio_ok "[OK] $pkg"
     else
       FAILED_PKGS+=("$pkg")
-      aurastudio_error "[FAILED] $pkg — skipping"
+      apexstudio_error "[FAILED] $pkg — skipping"
     fi
   done
 
@@ -193,17 +193,17 @@ if [[ "$BUILD_KEEP_GOING" == "true" ]]; then
     echo "Failed: ${FAILED_PKGS[*]}"
   fi
 
-  popd || aurastudio_error_exit "Unable to leave termux-packages"
-  aurastudio_ok "[+] Build complete (keep-going). Output: $OUTPUT_DIR"
+  popd || apexstudio_error_exit "Unable to leave termux-packages"
+  apexstudio_ok "[+] Build complete (keep-going). Output: $OUTPUT_DIR"
   exit 0
 else
   # --- Normal mode: all-at-once ---
   BUILD_ARGS+=("${BUILD_PACKAGES[@]}")
 
   if ! { time ./build-package.sh "${BUILD_ARGS[@]}" 2>&1 | tee "$OUTPUT_DIR/build.log"; }; then
-    aurastudio_error_exit "Build failed. See $OUTPUT_DIR/build.log"
+    apexstudio_error_exit "Build failed. See $OUTPUT_DIR/build.log"
   fi
 
-  popd || aurastudio_error_exit "Unable to leave termux-packages"
-  aurastudio_ok "[+] Build complete. Output: $OUTPUT_DIR"
+  popd || apexstudio_error_exit "Unable to leave termux-packages"
+  apexstudio_ok "[+] Build complete. Output: $OUTPUT_DIR"
 fi

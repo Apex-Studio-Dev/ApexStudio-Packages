@@ -6,8 +6,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-OUTPUT_DIR="${AURASTUDIO_OUTPUT_DIR:-$SCRIPT_DIR/output}"
-REPO_DIR="${AURASTUDIO_REPO_DIR:-$OUTPUT_DIR/repo}"
+OUTPUT_DIR="${APEXSTUDIO_OUTPUT_DIR:-$SCRIPT_DIR/output}"
+REPO_DIR="${APEXSTUDIO_REPO_DIR:-$OUTPUT_DIR/repo}"
 DEBS_DIR="$OUTPUT_DIR/debs"
 TERMUX_APT_REPO="$OUTPUT_DIR/termux-apt-repo"
 
@@ -75,8 +75,8 @@ info "[*] Generating APT repository..."
 if command -v apt-ftparchive >/dev/null 2>&1; then
   info "[*] Regenerating Release (plain-text indices only)..."
   ( cd "$REPO_DIR" && apt-ftparchive \
-      -o APT::FTPArchive::Release::Origin="Arata-Labs" \
-      -o APT::FTPArchive::Release::Label="aurastudio-termux" \
+      -o APT::FTPArchive::Release::Origin="Apex-Studio-Dev" \
+      -o APT::FTPArchive::Release::Label="ApexStudio-Packages" \
       -o APT::FTPArchive::Release::Suite="stable" \
       -o APT::FTPArchive::Release::Codename="stable" \
       release dists/stable > dists/stable/Release )

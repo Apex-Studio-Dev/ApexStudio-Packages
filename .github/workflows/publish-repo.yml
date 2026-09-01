@@ -30,7 +30,7 @@ jobs:
       - name: Download existing debs from hosted repo
         run: |
           echo "=== Downloading ALL existing packages from hosted repo ==="
-          REPO_URL="https://arata-labs.github.io/aurastudio-termux"
+          REPO_URL="https://apex-studio-dev.github.io/ApexStudio-Packages"
 
           # Download binary-all once (shared across architectures)
           mkdir -p "output/all"
@@ -157,12 +157,12 @@ jobs:
           for KEYDEB in $DEBS; do
             EXTRACT=$(mktemp -d)
             dpkg-deb -x "$KEYDEB" "$EXTRACT"
-            if grep -rq "AuraStudio Builder <build@aurastudio.dev>" "$EXTRACT"; then
-              echo "WARN: $KEYDEB still embeds the LEAKED signing key (AuraStudio Builder)"
+            if grep -rq "Apex Studio Builder <build@apexstudio.dev>" "$EXTRACT"; then
+              echo "WARN: $KEYDEB still embeds the LEAKED Apex Studio signing key"
               LEAKED=1
             fi
-            if grep -rq "AuraStudio Builder v2" "$EXTRACT"; then
-              echo "OK: $KEYDEB embeds signing key v2"
+            if grep -rq "Apex Studio Builder <build@apexstudio.dev>" "$EXTRACT"; then
+              echo "OK: $KEYDEB embeds the Apex Studio signing key"
               HAS_V2=1
             fi
             rm -rf "$EXTRACT"
@@ -173,11 +173,11 @@ jobs:
             exit 1
           fi
           if [ "${HAS_V2}" != "1" ]; then
-            echo "ERROR: no termux-keyring deb contains the v2 public key." >&2
+            echo "ERROR: no termux-keyring deb contains the Apex Studio public key." >&2
             echo "Rebuild termux-keyring first: ./build.sh -a aarch64 -e termux-keyring -f" >&2
             exit 1
           fi
-          echo "Verify passed: published binary-all will embed signing key v2"
+          echo "Verify passed: published binary-all will embed the Apex Studio signing key"
 
       - name: Install tools
         run: sudo apt-get update && sudo apt-get install -y gnupg curl wget python3 apt-utils dpkg-dev
@@ -200,8 +200,8 @@ jobs:
 
       - name: Generate APT repository
         run: |
-          export AURASTUDIO_OUTPUT_DIR="$(pwd)/output"
-          export AURASTUDIO_REPO_DIR="$(pwd)/output/repo"
+          export APEXSTUDIO_OUTPUT_DIR="$(pwd)/output"
+          export APEXSTUDIO_REPO_DIR="$(pwd)/output/repo"
           bash ./generate-apt-repo.sh
 
       - name: Handle large debs (>100MB → GitHub Releases)
@@ -225,8 +225,8 @@ jobs:
           if command -v apt-ftparchive >/dev/null 2>&1; then
             echo "Regenerating Release with updated Packages checksums..."
             apt-ftparchive \
-              -o APT::FTPArchive::Release::Origin="Arata-Labs" \
-              -o APT::FTPArchive::Release::Label="aurastudio-termux" \
+              -o APT::FTPArchive::Release::Origin="Apex-Studio-Dev" \
+              -o APT::FTPArchive::Release::Label="ApexStudio-Packages" \
               -o APT::FTPArchive::Release::Suite="stable" \
               -o APT::FTPArchive::Release::Codename="stable" \
               release dists/stable > dists/stable/Release
@@ -238,7 +238,7 @@ jobs:
       - name: Import GPG key
         run: |
           if [ -z "${PACKAGES_GPG_KEY:-}" ]; then
-            echo "ERROR: secrets.PACKAGES_GPG_KEY not set (base64 of AuraStudio signing v2 secret key)" >&2
+            echo "ERROR: secrets.PACKAGES_GPG_KEY not set (base64 of Apex Studio signing secret key)" >&2
             exit 1
           fi
           echo "$PACKAGES_GPG_KEY" | base64 -d | gpg --batch --import
@@ -247,7 +247,7 @@ jobs:
 
       - name: Sign repository
         run: |
-          KEY_ID="6D81A8C48CD43B73"
+          KEY_ID="93342A231C32FCDE"
           if [ -n "${GPG_KEY_ID:-}" ]; then
             KEY_ID="${GPG_KEY_ID}"
           fi
@@ -303,7 +303,7 @@ jobs:
 
           DEB_COUNT=$(find output/repo -path "*/binary-*/*.deb" -type f 2>/dev/null | wc -l)
 
-          MSG=$(printf "AuraStudio Publish\nPublished: %s debs (aarch64 + arm + all)\nRepo: https://arata-labs.github.io/aurastudio-termux\nRun: https://github.com/%s/actions/runs/%s" \
+          MSG=$(printf "Apex Studio Publish\nPublished: %s debs (aarch64 + arm + all)\nRepo: https://apex-studio-dev.github.io/ApexStudio-Packages\nRun: https://github.com/%s/actions/runs/%s" \
             "$DEB_COUNT" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
 
           curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \

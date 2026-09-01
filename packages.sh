@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# AuraStudio package lists
+# Apex Studio package lists
 #
 # BOOTSTRAP = minimal core packages for initial setup (small, fast download)
 # ALL = full packages including large dev tools (for complete build)
@@ -9,7 +9,7 @@
 # Bootstrap: core packages only (~50MB compressed)
 # Users can apt install the rest after setup
 # ─────────────────────────────────────────────────────────────
-declare -a AURASTUDIO_PACKAGES__BOOTSTRAP=(
+declare -a APEXSTUDIO_PACKAGES__BOOTSTRAP=(
   # Core system
   "apt"
   "bash"
@@ -47,8 +47,8 @@ declare -a AURASTUDIO_PACKAGES__BOOTSTRAP=(
 # ─────────────────────────────────────────────────────────────
 # All packages: full build including large dev tools
 # ─────────────────────────────────────────────────────────────
-declare -a AURASTUDIO_PACKAGES=(
-  "${AURASTUDIO_PACKAGES__BOOTSTRAP[@]}"
+declare -a APEXSTUDIO_PACKAGES=(
+  "${APEXSTUDIO_PACKAGES__BOOTSTRAP[@]}"
 
   # Audio deps (for openjdk)
   "libogg"
@@ -104,7 +104,4 @@ declare -a AURASTUDIO_PACKAGES=(
   "inetutils"
   "lsof"
   "net-tools"
-
-  # AuraStudio CLI
-  "aurastudio"
 )

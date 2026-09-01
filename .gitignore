@@ -5,5 +5,5 @@ patches/termux-tools-name.patch
 # Output
 output/
 *.log
-aurastudio-packages/
+apexstudio-packages/
 *.txt

@@ -1,14 +1,14 @@
 <p align="center">
   <img src="https://img.shields.io/badge/version-1.2-indigo?style=for-the-badge" alt="Version">
   <img src="https://img.shields.io/badge/arch-aarch64%20%7C%20arm-success?style=for-the-badge" alt="Architecture">
-  <img src="https://img.shields.io/github/license/Arata-Labs/aurastudio-termux?style=for-the-badge&color=purple" alt="License">
-  <img src="https://img.shields.io/github/actions/workflow/status/Arata-Labs/aurastudio-termux/build-packages.yml?style=for-the-badge&label=build" alt="Build Status">
+  <img src="https://img.shields.io/github/license/Apex-Studio-Dev/ApexStudio-Packages?style=for-the-badge&color=purple" alt="License">
+  <img src="https://img.shields.io/github/actions/workflow/status/Apex-Studio-Dev/ApexStudio-Packages/build-packages.yml?style=for-the-badge&label=build" alt="Build Status">
 </p>
 
-<h1 align="center">AuraStudio Packages</h1>
+<h1 align="center">Apex Studio Packages</h1>
 
 <p align="center">
-  APT package repository for <strong>AuraStudio</strong> on Termux.<br>
+  APT package repository for <strong>Apex Studio</strong> on Termux.<br>
   Pre-built packages for Android development — Java, Gradle, Android SDK, NDK, and more.
 </p>
 
@@ -19,10 +19,10 @@
 - **74+ packages** ready to install via APT
 - **Dual architecture** — AArch64 (64-bit) and ARM (32-bit) support
 - **Bootstrap archives** — minimal (~50MB) for fast initial setup
-- **Custom MOTD** — AuraStudio-branded terminal welcome message
+- **Custom MOTD** — Apex Studio-branded terminal welcome message
 - **GPG signed** — secure package verification
 - **Auto-updated** — CI/CD pipeline builds packages from upstream sources
-- **Web dashboard** — browse packages at [arata-labs.github.io/aurastudio-termux](https://arata-labs.github.io/aurastudio-termux)
+- **Web dashboard** — browse packages at [apex-studio-dev.github.io/ApexStudio-Packages](https://apex-studio-dev.github.io/ApexStudio-Packages)
 
 ## Quick Setup
 
@@ -30,12 +30,12 @@
 # Install prerequisites
 pkg install apt-transport-https
 
-# Add AuraStudio repository
-echo "deb https://arata-labs.github.io/aurastudio-termux stable main" \
-  > $PREFIX/etc/apt/sources.list.d/aurastudio.list
+# Add Apex Studio repository
+echo "deb https://apex-studio-dev.github.io/ApexStudio-Packages stable main" \
+  > $PREFIX/etc/apt/sources.list.d/apexstudio.list
 
 # Update and install
-pkg update && pkg install aurastudio
+pkg update && pkg upgrade
 ```
 
 ## Packages
@@ -105,7 +105,6 @@ pkg update && pkg install aurastudio
 ### CLI & Utilities
 | Package | Description |
 |---------|-------------|
-| `aurastudio` | AuraStudio CLI |
 | `git` | Version control |
 | `nano` | Text editor |
 | `vim` | Vi IMproved |
@@ -137,8 +136,8 @@ pkg update && pkg install aurastudio
 ### Build Packages
 ```bash
 # Clone repository
-git clone --recurse-submodules https://github.com/Arata-Labs/aurastudio-termux.git
-cd aurastudio-termux
+git clone --recurse-submodules https://github.com/Apex-Studio-Dev/ApexStudio-Packages.git
+cd ApexStudio-Packages
 
 # Build all packages (AArch64)
 ./build.sh -a aarch64 --keep-going
@@ -153,7 +152,7 @@ cd aurastudio-termux
 ### Generate Bootstrap
 ```bash
 # Generate bootstrap archive
-./generate-bootstrap-archive.sh -r "https://arata-labs.github.io/aurastudio-termux" aarch64
+./generate-bootstrap-archive.sh -r "https://apex-studio-dev.github.io/ApexStudio-Packages" aarch64
 ```
 
 ### Generate APT Repository
@@ -178,7 +177,7 @@ cd aurastudio-termux
 ## Repository Structure
 
 ```
-aurastudio-termux/
+ApexStudio-Packages/
 ├── build.sh                    # Main build script
 ├── packages.sh                 # Package definitions
 ├── common.sh                   # Shared configuration
@@ -187,7 +186,7 @@ aurastudio-termux/
 ├── generate-apt-repo.sh
 ├── generate-packages-json.sh
 ├── pages-index.html            # Web dashboard
-├── aurastudio.gpg              # GPG signing key
+├── apexstudio.gpg              # GPG signing key
 ├── patches/                    # Build patches
 │   ├── termux-keyring.patch.in
 │   ├── termux-tools-motd.patch
@@ -239,7 +238,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org/):
 
 ## Security
 
-If you discover a security vulnerability, please report it via [GitHub Issues](https://github.com/Arata-Labs/aurastudio-termux/issues).
+If you discover a security vulnerability, please report it via [GitHub Issues](https://github.com/Apex-Studio-Dev/ApexStudio-Packages/issues).
 
 ## License
 
@@ -248,7 +247,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 ```
 MIT License
 
-Copyright (c) 2026 Arata Labs
+Copyright (c) 2026 Apex Studio Dev
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -272,5 +271,5 @@ SOFTWARE.
 ---
 
 <p align="center">
-  Built with ❤️ by <a href="https://github.com/Arata-Labs">Arata Labs</a>
+  Built with ❤️ by <a href="https://github.com/Apex-Studio-Dev/ApexStudio-Packages">Apex Studio Dev</a>
 </p>
