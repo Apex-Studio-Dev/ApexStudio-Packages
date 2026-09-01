@@ -57,7 +57,7 @@ jobs:
           echo "Packages: $PACKAGES"
 
           FREE_SPACE="${{ inputs.free-space }}"
-          BIG_PKGS="gradle openjdk-17 openjdk-21 libllvm-static"
+          BIG_PKGS="gradle openjdk-17 openjdk-21 openjdk-25 libllvm-static"
           for pkg in $PACKAGES; do
             for big in $BIG_PKGS; do
               if [ "$pkg" = "$big" ]; then

@@ -12,6 +12,14 @@ on:
           - aarch64
           - arm
           - both
+      package-set:
+        description: "Which package set to build from packages.sh"
+        required: true
+        default: "full"
+        type: choice
+        options:
+          - full
+          - bootstrap
       free-space:
         description: "Free disk space (for large packages)"
         type: boolean
@@ -53,20 +61,25 @@ jobs:
       - name: Gather package list from packages.sh
         id: packages
         run: |
-          # Source the package lists and expand the full APEXSTUDIO_PACKAGES array.
-          # packages.sh only declares arrays (safe to source); the array references
+          # Source the package lists and expand the chosen array. packages.sh only
+          # declares arrays (safe to source); the array references
           # APEXSTUDIO_PACKAGES__BOOTSTRAP are expanded correctly by bash.
           . ./packages.sh
 
           PACKAGES="${APEXSTUDIO_PACKAGES[*]}"
+          SET_NAME="APEXSTUDIO_PACKAGES"
+          if [ "${{ inputs.package-set }}" = "bootstrap" ]; then
+            PACKAGES="${APEXSTUDIO_PACKAGES__BOOTSTRAP[*]}"
+            SET_NAME="APEXSTUDIO_PACKAGES__BOOTSTRAP"
+          fi
 
           if [ -z "$PACKAGES" ]; then
-            echo "ERROR: APEXSTUDIO_PACKAGES is empty in packages.sh"
+            echo "ERROR: ${SET_NAME} is empty in packages.sh"
             exit 1
           fi
 
           # Also detect large packages that need extra disk space
-          BIG_PKGS="gradle openjdk-17 openjdk-21 libllvm-static"
+          BIG_PKGS="gradle openjdk-17 openjdk-21 openjdk-25 libllvm-static"
           FREE_SPACE="${{ inputs.free-space }}"
           for pkg in $PACKAGES; do
             for big in $BIG_PKGS; do
@@ -78,8 +91,9 @@ jobs:
           done
 
           echo "packages=$PACKAGES" >> "$GITHUB_OUTPUT"
+          echo "set_name=$SET_NAME" >> "$GITHUB_OUTPUT"
           echo "free_space=$FREE_SPACE" >> "$GITHUB_OUTPUT"
-          echo "Parsed $(echo "$PACKAGES" | wc -w) packages from APEXSTUDIO_PACKAGES"
+          echo "Parsed $(echo "$PACKAGES" | wc -w) packages from ${SET_NAME}"
           echo "Packages: $PACKAGES"
 
       - name: Free disk space
@@ -130,7 +144,7 @@ jobs:
         run: |
           PACKAGES_HASH=$(md5sum packages.sh | cut -d' ' -f1 | cut -c1-8)
           PATCHES_HASH=$(find patches/ -type f | sort | xargs md5sum 2>/dev/null | md5sum | cut -d' ' -f1 | cut -c1-8)
-          CACHE_KEY="termux-all-${{ matrix.arch }}-${PACKAGES_HASH}-${PATCHES_HASH}"
+          CACHE_KEY="termux-all-${{ matrix.arch }}-${{ inputs.package-set }}-${PACKAGES_HASH}-${PATCHES_HASH}"
           echo "key=${CACHE_KEY}" >> "$GITHUB_OUTPUT"
           echo "Cache key: ${CACHE_KEY}"
 
@@ -164,7 +178,7 @@ jobs:
             echo "NDK r29 already installed"
           fi
 
-      - name: Build all packages
+      - name: Build packages (${{ inputs.package-set }})
         run: |
           export ANDROID_NDK_HOME=/github/home/lib/android-ndk-r29
           export NDK=/github/home/lib/android-ndk-r29
@@ -179,10 +193,9 @@ jobs:
             BUILD_FLAGS="${BUILD_FLAGS} -I"
           fi
 
-          # No -e and no package args: build.sh builds the full APEXSTUDIO_PACKAGES list
-          # from packages.sh automatically. This guarantees the same list that was
-          # parsed, linted and dry-run checked above.
-          bash build.sh -a "${{ matrix.arch }}" $BUILD_FLAGS
+          # Pass the exact parsed list with -e so what gets built matches what was
+          # linted and dry-run checked above (works for both package sets).
+          bash build.sh -a "${{ matrix.arch }}" -e $BUILD_FLAGS ${{ steps.packages.outputs.packages }}
 
       - name: Save built packages cache
         if: always()
@@ -263,8 +276,8 @@ jobs:
             STATUS="SUCCESS (${DEB_COUNT} built)"
           fi
 
-          MSG=$(printf "Apex Studio All-Packages Build\nUniverse: APEXSTUDIO_PACKAGES\nArch: %s\nStatus: %s\nFailed: %s\nRun: https://github.com/%s/actions/runs/%s" \
-            "${{ matrix.arch }}" "$STATUS" "$FAILED_LIST" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
+          MSG=$(printf "Apex Studio All-Packages Build\nSet: %s\nArch: %s\nStatus: %s\nFailed: %s\nRun: https://github.com/%s/actions/runs/%s" \
+            "${{ steps.packages.outputs.set_name }}" "${{ matrix.arch }}" "$STATUS" "$FAILED_LIST" "${GITHUB_REPOSITORY}" "${{ github.run_id }}")
 
           curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
             -d chat_id="$CHAT_ID" \
