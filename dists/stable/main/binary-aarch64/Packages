@@ -174,6 +174,37 @@ SHA1: bd3a2f1a118f1379818102db95077a63b1845e50
 SHA256: aac1a3c9a4e1fa489a0930a56b0ff9fa3ded5f63d7bd2642961d1000c5cf8ba2
 SHA512: 5ea9c5ac7b9eea3c4ecf715137ee13b114de4e5e3aef5a1046011b1aa2c713a5d701855d8f729933b380335b61d665941d6cc1626e47220dfc4a697455a34d55
 
+Package: binutils-cross
+Architecture: aarch64
+Installed-Size: 17892
+Maintainer: @termux
+Version: 2.47
+Homepage: https://www.gnu.org/software/binutils/
+Description: GNU Binutils for cross build on the host (NOT for Termux)
+Filename: dists/stable/main/binary-aarch64/binutils-cross_2.47_aarch64.deb
+Size: 2336756
+MD5Sum: 937f7917a144683ac5332178fbb33066
+SHA1: c5cf07949c4d776f17c02c4801ad2bf218a9e7d7
+SHA256: 8799d0b270b0b5012787ef9eb72d029bf2da0dff898f93f516b3b1a930f0edfb
+SHA512: c41cbbdb3ff58fca9400cd2f9db24cbabd5fb0c3a48c2fc087da2aa9c4a5262ad05b5f4c7e54a94a03e7fed37e7c513fea77d18043ffaa11ad1116bb3c995fb1
+
+Package: binutils
+Architecture: aarch64
+Installed-Size: 19124
+Maintainer: @termux
+Version: 2.47
+Homepage: https://www.gnu.org/software/binutils/
+Breaks: binutils (<< 2.46), binutils-bin, binutils-libs, binutils-dev
+Depends: libc++, zlib, zstd, libandroid-spawn, libandroid-glob
+Replaces: binutils (<< 2.46), binutils-bin, binutils-libs, binutils-dev
+Description: A GNU collection of binary utilities
+Filename: dists/stable/main/binary-aarch64/binutils_2.47_aarch64.deb
+Size: 2429472
+MD5Sum: ac1e4a6eddde51fcd4ff4ebb4c50fca8
+SHA1: 2f3b53659bb378b4de40c02acb3aec4b4891ddd4
+SHA256: 0645be0be25c9c439a6a0d5ee53461cbc4b33805426780b75209c42856d17576
+SHA512: 2b98cf78e70f2d5ac6596013712e8c8d8ef10d7bb935bf91b943decc288bbc5718c47b41896496c3e0dfbb58dd4d12bc0bdd4b48e1b520f03e5f1e90822163ff
+
 Package: blk-utils
 Architecture: aarch64
 Installed-Size: 900

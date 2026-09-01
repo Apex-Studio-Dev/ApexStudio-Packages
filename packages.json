@@ -143,6 +143,28 @@
     }
   },
   {
+    "name": "binutils",
+    "version": "2.47",
+    "desc": "A GNU collection of binary utilities",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/binutils_2.47_aarch64.deb"
+    }
+  },
+  {
+    "name": "binutils-cross",
+    "version": "2.47",
+    "desc": "GNU Binutils for cross build on the host (NOT for Termux)",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/binutils-cross_2.47_aarch64.deb"
+    }
+  },
+  {
     "name": "blk-utils",
     "version": "2.42.1-4",
     "desc": "Utilities for handling block device attributes",
