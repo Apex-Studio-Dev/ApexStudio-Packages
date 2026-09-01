@@ -1,5 +1,60 @@
 [
   {
+    "name": "aapt",
+    "version": "16.0.0.4-1",
+    "desc": "Android Asset Packaging Tool",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/aapt_16.0.0.4-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "aapt2",
+    "version": "16.0.0.4-1",
+    "desc": "AAPT2 (Android Asset Packaging Tool)",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/aapt2_16.0.0.4-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "abseil-cpp",
+    "version": "20260526.0",
+    "desc": "Abseil C++ Common Libraries",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/abseil-cpp_20260526.0_aarch64.deb"
+    }
+  },
+  {
+    "name": "aidl",
+    "version": "16.0.0.4-1",
+    "desc": "Android Interface Definition Language (AIDL)",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/aidl_16.0.0.4-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "alsa-lib",
+    "version": "1.2.16.1",
+    "desc": "The Advanced Linux Sound Architecture (ALSA) - library",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/alsa-lib_1.2.16.1_aarch64.deb"
+    }
+  },
+  {
     "name": "apt",
     "version": "2.8.1-2",
     "desc": "Front-end for the dpkg package manager",
@@ -19,17 +74,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/apt-ftparchive_2.8.1-2_aarch64.deb"
-    }
-  },
-  {
-    "name": "apt-transport-tor",
-    "version": "2.8.1-2",
-    "desc": "APT transport for anonymous package downloads via Tor",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/apt-transport-tor_2.8.1-2_all.deb"
     }
   },
   {
@@ -74,17 +118,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/bash_5.3.15_aarch64.deb"
-    }
-  },
-  {
-    "name": "bash-completion",
-    "version": "2.18.0",
-    "desc": "Programmable completion for the bash shell",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/bash-completion_2.18.0_all.deb"
     }
   },
   {
@@ -242,28 +275,6 @@
     }
   },
   {
-    "name": "docbook-xml",
-    "version": "5.1-1",
-    "desc": "A widely used XML scheme for writing documentation and help",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/docbook-xml_5.1-1_all.deb"
-    }
-  },
-  {
-    "name": "docbook-xsl",
-    "version": "1.79.2-4",
-    "desc": "XML stylesheets for Docbook-xml transformations",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/docbook-xsl_1.79.2-4_all.deb"
-    }
-  },
-  {
     "name": "dos2unix",
     "version": "7.5.6",
     "desc": "Converts between DOS and Unix text files",
@@ -297,28 +308,6 @@
     }
   },
   {
-    "name": "dpkg-perl",
-    "version": "1.22.6-5",
-    "desc": "Perl modules for dpkg",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/dpkg-perl_1.22.6-5_all.deb"
-    }
-  },
-  {
-    "name": "dpkg-scanpackages",
-    "version": "1.22.6-5",
-    "desc": "Creates Packages index files",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/dpkg-scanpackages_1.22.6-5_all.deb"
-    }
-  },
-  {
     "name": "ed",
     "version": "1.22.6",
     "desc": "Classic UNIX line editor",
@@ -349,6 +338,28 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/findutils_4.10.0-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "flac",
+    "version": "1.5.0-1",
+    "desc": "FLAC (Free Lossless Audio Codec) command-line tool",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/flac_1.5.0-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "fmt",
+    "version": "1:11.2.0",
+    "desc": "Open-source formatting library for C++",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/fmt_1C11.2.0_aarch64.deb"
     }
   },
   {
@@ -473,6 +484,17 @@
     }
   },
   {
+    "name": "googletest",
+    "version": "1.17.0-1",
+    "desc": "Google C++ testing framework",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/googletest_1.17.0-1_aarch64.deb"
+    }
+  },
+  {
     "name": "gpgv",
     "version": "2.5.17",
     "desc": "GNU privacy guard - signature verification tool",
@@ -536,6 +558,50 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/inetutils_2.7_aarch64.deb"
+    }
+  },
+  {
+    "name": "jq",
+    "version": "1.8.2",
+    "desc": "Command-line JSON processor",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/jq_1.8.2_aarch64.deb"
+    }
+  },
+  {
+    "name": "jq-static",
+    "version": "1.8.2",
+    "desc": "Static libraries for jq",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/jq-static_1.8.2_aarch64.deb"
+    }
+  },
+  {
+    "name": "jsoncpp",
+    "version": "1.9.8",
+    "desc": "C++ library for interacting with JSON",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/jsoncpp_1.9.8_aarch64.deb"
+    }
+  },
+  {
+    "name": "jsoncpp-static",
+    "version": "1.9.8",
+    "desc": "Static libraries for jsoncpp",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/jsoncpp-static_1.9.8_aarch64.deb"
     }
   },
   {
@@ -649,6 +715,28 @@
     }
   },
   {
+    "name": "libandroid-spawn",
+    "version": "0.3",
+    "desc": "Shared library for the posix_spawn system function",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libandroid-spawn_0.3_aarch64.deb"
+    }
+  },
+  {
+    "name": "libandroid-spawn-static",
+    "version": "0.3",
+    "desc": "Static libraries for libandroid-spawn",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libandroid-spawn-static_0.3_aarch64.deb"
+    }
+  },
+  {
     "name": "libandroid-support",
     "version": "29-1",
     "desc": "Library extending the Android C library (Bionic) for additional multibyte, locale and math support",
@@ -668,6 +756,28 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libandroid-support-static_29-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "libandroid-sysv-semaphore",
+    "version": "0.1-1",
+    "desc": "A shared library providing System V semaphores",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libandroid-sysv-semaphore_0.1-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "libandroid-sysv-semaphore-static",
+    "version": "0.1-1",
+    "desc": "Static libraries for libandroid-sysv-semaphore",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libandroid-sysv-semaphore-static_0.1-1_aarch64.deb"
     }
   },
   {
@@ -888,6 +998,28 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libffi-static_3.5.2_aarch64.deb"
+    }
+  },
+  {
+    "name": "libflac",
+    "version": "1.5.0-1",
+    "desc": "FLAC (Free Lossless Audio Codec) library",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libflac_1.5.0-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "libflac-static",
+    "version": "1.5.0-1",
+    "desc": "Static libraries for libflac",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libflac-static_1.5.0-1_aarch64.deb"
     }
   },
   {
@@ -1265,6 +1397,50 @@
     }
   },
   {
+    "name": "libogg",
+    "version": "1.3.6-1",
+    "desc": "Library for working with the Ogg multimedia container format",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libogg_1.3.6-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "libogg-static",
+    "version": "1.3.6-1",
+    "desc": "Static libraries for libogg",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libogg-static_1.3.6-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "libopus",
+    "version": "1.6.1",
+    "desc": "Reference implementation of the Opus codec",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libopus_1.6.1_aarch64.deb"
+    }
+  },
+  {
+    "name": "libopus-static",
+    "version": "1.6.1",
+    "desc": "Static libraries for libopus",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libopus-static_1.6.1_aarch64.deb"
+    }
+  },
+  {
     "name": "libpng",
     "version": "1.6.58",
     "desc": "Official PNG reference library",
@@ -1287,6 +1463,17 @@
     }
   },
   {
+    "name": "libprotobuf",
+    "version": "2:35.1",
+    "desc": "Protocol buffers C++ library",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libprotobuf_2C35.1_aarch64.deb"
+    }
+  },
+  {
     "name": "libsmartcols",
     "version": "2.42.1-4",
     "desc": "Library for smart adaptive formatting of tabular data",
@@ -1295,6 +1482,28 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libsmartcols_2.42.1-4_aarch64.deb"
+    }
+  },
+  {
+    "name": "libsodium",
+    "version": "1.0.22-1",
+    "desc": "Network communication, cryptography and signaturing library",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libsodium_1.0.22-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "libsodium-static",
+    "version": "1.0.22-1",
+    "desc": "Static libraries for libsodium",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libsodium-static_1.0.22-1_aarch64.deb"
     }
   },
   {
@@ -1471,6 +1680,28 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/libuuid_2.42.1-4_aarch64.deb"
+    }
+  },
+  {
+    "name": "libvorbis",
+    "version": "1.3.7-4",
+    "desc": "Library for using the Ogg Vorbis compressed audio format",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libvorbis_1.3.7-4_aarch64.deb"
+    }
+  },
+  {
+    "name": "libvorbis-static",
+    "version": "1.3.7-4",
+    "desc": "Static libraries for libvorbis",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libvorbis-static_1.3.7-4_aarch64.deb"
     }
   },
   {
@@ -1672,6 +1903,17 @@
     }
   },
   {
+    "name": "libzopfli",
+    "version": "1.0.3-5",
+    "desc": "New zlib compatible compressor library",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/libzopfli_1.0.3-5_aarch64.deb"
+    }
+  },
+  {
     "name": "lsof",
     "version": "4.99.7",
     "desc": "Lists open files for running Unix processes",
@@ -1804,6 +2046,28 @@
     }
   },
   {
+    "name": "oniguruma",
+    "version": "6.9.10-1",
+    "desc": "Regular expressions library",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/oniguruma_6.9.10-1_aarch64.deb"
+    }
+  },
+  {
+    "name": "oniguruma-static",
+    "version": "6.9.10-1",
+    "desc": "Static libraries for oniguruma",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/oniguruma-static_6.9.10-1_aarch64.deb"
+    }
+  },
+  {
     "name": "openssl",
     "version": "1:3.6.3",
     "desc": "Library implementing the SSL and TLS protocols as well as general purpose cryptography functions",
@@ -1845,6 +2109,17 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/p11-kit_0.26.5_aarch64.deb"
+    }
+  },
+  {
+    "name": "patch",
+    "version": "2.8-1",
+    "desc": "GNU patch which applies diff files to create patched files",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/patch_2.8-1_aarch64.deb"
     }
   },
   {
@@ -1925,6 +2200,17 @@
     }
   },
   {
+    "name": "protobuf",
+    "version": "2:35.1",
+    "desc": "Compiler for protocol buffer definition files",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/protobuf_2C35.1_aarch64.deb"
+    }
+  },
+  {
     "name": "psmisc",
     "version": "23.7-1",
     "desc": "Some small useful utilities that use the proc filesystem",
@@ -1947,17 +2233,6 @@
     }
   },
   {
-    "name": "python-ensurepip-wheels",
-    "version": "3.14.6-1",
-    "desc": "Wheels for Python ensurepip",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/python-ensurepip-wheels_3.14.6-1_all.deb"
-    }
-  },
-  {
     "name": "python-static",
     "version": "3.14.6-1",
     "desc": "Static libraries for python",
@@ -1977,17 +2252,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/python-tkinter_3.14.6-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "python-xcbgen",
-    "version": "1.17.0-3",
-    "desc": "The xcbgen Python module",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/python-xcbgen_1.17.0-3_all.deb"
     }
   },
   {
@@ -2090,6 +2354,17 @@
     }
   },
   {
+    "name": "sysprop",
+    "version": "16.0.0.4-1",
+    "desc": "Android sysprop generators",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/sysprop_16.0.0.4-1_aarch64.deb"
+    }
+  },
+  {
     "name": "tar",
     "version": "1.35-3",
     "desc": "GNU tar for manipulating tar archives",
@@ -2109,17 +2384,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/tcl_8.6.16_aarch64.deb"
-    }
-  },
-  {
-    "name": "termux-am",
-    "version": "0.8.0-2",
-    "desc": "Android Oreo-compatible am command reimplementation",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/termux-am_0.8.0-2_all.deb"
     }
   },
   {
@@ -2189,17 +2453,6 @@
     }
   },
   {
-    "name": "termux-licenses",
-    "version": "2.2",
-    "desc": "Contains LICENSE files for common licenses",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/termux-licenses_2.2_all.deb"
-    }
-  },
-  {
     "name": "termux-tools",
     "version": "1.46.0+really1.45.0-1",
     "desc": "Basic system tools for Termux",
@@ -2230,17 +2483,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/tor_0.4.9.11_aarch64.deb"
-    }
-  },
-  {
-    "name": "ttf-dejavu",
-    "version": "2.37-8",
-    "desc": "Font family based on the Bitstream Vera Fonts with a wider range of characters",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/ttf-dejavu_2.37-8_all.deb"
     }
   },
   {
@@ -2310,36 +2552,14 @@
     }
   },
   {
-    "name": "xcb-proto",
-    "version": "1.17.0-3",
-    "desc": "XML-XCB protocol descriptions",
+    "name": "which",
+    "version": "2.25",
+    "desc": "Shows the full path of (shell) commands",
     "arch": [
-      "all"
+      "aarch64"
     ],
     "filenames": {
-      "all": "dists/stable/main/binary-all/xcb-proto_1.17.0-3_all.deb"
-    }
-  },
-  {
-    "name": "xorg-util-macros",
-    "version": "1.20.2",
-    "desc": "X.Org Autotools macros",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/xorg-util-macros_1.20.2_all.deb"
-    }
-  },
-  {
-    "name": "xorgproto",
-    "version": "2025.1",
-    "desc": "X.Org X11 Protocol headers",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/xorgproto_2025.1_all.deb"
+      "aarch64": "dists/stable/main/binary-aarch64/which_2.25_aarch64.deb"
     }
   },
   {
@@ -2351,17 +2571,6 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/xsltproc_1.1.45-1_aarch64.deb"
-    }
-  },
-  {
-    "name": "xtrans",
-    "version": "1.6.0",
-    "desc": "X transport library",
-    "arch": [
-      "all"
-    ],
-    "filenames": {
-      "all": "dists/stable/main/binary-all/xtrans_1.6.0_all.deb"
     }
   },
   {
@@ -2398,6 +2607,17 @@
     }
   },
   {
+    "name": "zip",
+    "version": "3.0-7",
+    "desc": "Tools for working with zip files",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/zip_3.0-7_aarch64.deb"
+    }
+  },
+  {
     "name": "zlib",
     "version": "1.3.2",
     "desc": "Compression library implementing the deflate compression method found in gzip and PKZIP",
@@ -2417,6 +2637,17 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/zlib-static_1.3.2_aarch64.deb"
+    }
+  },
+  {
+    "name": "zopfli",
+    "version": "1.0.3-5",
+    "desc": "New zlib compatible compressor tools",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/zopfli_1.0.3-5_aarch64.deb"
     }
   },
   {
