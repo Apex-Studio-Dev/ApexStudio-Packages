@@ -2134,6 +2134,17 @@
     }
   },
   {
+    "name": "unzip",
+    "version": "6.0-10",
+    "desc": "Tools for working with zip files",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/unzip_6.0-10_aarch64.deb"
+    }
+  },
+  {
     "name": "util-linux",
     "version": "2.42.1-4",
     "desc": "Miscellaneous system utilities",
@@ -2164,6 +2175,17 @@
     ],
     "filenames": {
       "aarch64": "dists/stable/main/binary-aarch64/uuid-utils_2.42.1-4_aarch64.deb"
+    }
+  },
+  {
+    "name": "wget",
+    "version": "1.25.0-1",
+    "desc": "Commandline tool for retrieving files using HTTP, HTTPS and FTP",
+    "arch": [
+      "aarch64"
+    ],
+    "filenames": {
+      "aarch64": "dists/stable/main/binary-aarch64/wget_1.25.0-1_aarch64.deb"
     }
   },
   {

@@ -2827,6 +2827,21 @@ SHA1: fb945fa489135c9ee2e38552ad370c054d3f477a
 SHA256: 31d2baa02d53bd86d0006d0fcb2c4776842d5237ae76317bd66990d51c38cf65
 SHA512: 739258ce27a71f2ad5c6550f044b78f50b2108dadd1010088f9f3da046c90bf45e8a1b5336d2119f014e3d3d8dca43ea88d911719e5a42fa76b64e16e2b6ddee
 
+Package: unzip
+Architecture: aarch64
+Installed-Size: 324
+Maintainer: @termux
+Version: 6.0-10
+Homepage: https://sourceforge.net/projects/infozip/
+Depends: libbz2
+Description: Tools for working with zip files
+Filename: dists/stable/main/binary-aarch64/unzip_6.0-10_aarch64.deb
+Size: 116412
+MD5Sum: 96a1b5a7cac03eef758790fcb17403a2
+SHA1: 7dd42dd5639f41bafa61210af090c2a1593d7ad1
+SHA256: 7d8eb2288904a63e03bc8ef28041b3b3e399f33809ab1eb5a1ef1e38734d4ed0
+SHA512: 59e95ca735eebb20ec8f8b41eae453ccf08b5fd4d92199ea2a30950b23874c1693cb5510ef6762d0715f898af7d55de37df163d6d2133202ef8c308512d2a5da
+
 Package: util-linux-static
 Architecture: aarch64
 Installed-Size: 3300
@@ -2874,6 +2889,21 @@ MD5Sum: ff5379f41ca029b3be38454ba318e66d
 SHA1: 343852bad0bb2f03bf5c92cf6cb018da8bd27003
 SHA256: 4bc746f7005212f7fde6786b556c398f5823029e00396d69cfa92537af35249b
 SHA512: 226b22299c701b188ad693db0d25b1be4dd47870188ac58a65a8c33a4167e8808eecbd48225f22516883b22be96614abe6cbe170aa85e7ae27c1923192585541
+
+Package: wget
+Architecture: aarch64
+Installed-Size: 772
+Maintainer: @termux
+Version: 1.25.0-1
+Homepage: https://www.gnu.org/software/wget/
+Depends: libandroid-support, libiconv, libidn2, libuuid, openssl, pcre2, zlib
+Description: Commandline tool for retrieving files using HTTP, HTTPS and FTP
+Filename: dists/stable/main/binary-aarch64/wget_1.25.0-1_aarch64.deb
+Size: 280656
+MD5Sum: b055954997a3fb3ba5613011b30aef3a
+SHA1: 7ff14da06323f1812b72de4f572d19f819853ced
+SHA256: cf0b020570273b95f8a3bf8475ff51f2cf4289f6e02d35f63c4f0ca18e32eb2e
+SHA512: e41de6878980999b14a0012624dcb29048fd482084ebf0644c49cb8a03940facbee381ef9d76eb5f55c11057318d653db67904c779b56648721e22f5ee89b5e7
 
 Package: xsltproc
 Architecture: aarch64
