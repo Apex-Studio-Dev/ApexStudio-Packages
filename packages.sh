@@ -92,6 +92,7 @@ declare -a APEXSTUDIO_PACKAGES=(
   # JDK
   "openjdk-17"
   "openjdk-21"
+  "openjdk-25"
 
   # VCS
   "git"
